@@ -9,22 +9,17 @@ import javax.persistence.Table;
  * Created by Vladimir on 04.04.2016.
  */
 @Entity
-@Table(
-        name = "news"
-)
+@Table(name = "news")
 public class News {
+
     @Id
-    @Column(
-            name = "title_news"
-    )
+    @Column(name = "title_news")
     String title_news;
-    @Column(
-            name = "text"
-    )
+
+    @Column(name = "text")
     String text;
-    @Column(
-            name = "coment"
-    )
+
+    @Column(name = "coment")
     String coment;
 
     public News(String title_news, String text, String coment) {

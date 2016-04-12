@@ -6,29 +6,24 @@ import javax.persistence.*;
  * Created by Vladimir on 04.04.2016.
  */
 @Entity
-@Table(
-        name = "repository"
-)
+@Table(name = "repository")
 public class Repository {
+
     @Id
-    @Column(
-            name = "adress"
-    )
+    @Column(name = "adress")
     Integer adress;
+
     @ManyToOne
-    @JoinColumn(
-            name = "title_news"
-    )
+    @JoinColumn(name = "title_news")
     News title_news;
+
     @ManyToOne
-    @JoinColumn(
-            name = "login_adm"
-    )
+    @JoinColumn(name = "login_adm")
+
     Admin login_adm;
+
     @ManyToOne
-    @JoinColumn(
-            name = "login_user"
-    )
+    @JoinColumn(name = "login_user")
     User login_user;
 
     public Repository(Integer adress, User login_user, Admin login_adm, News title_news) {

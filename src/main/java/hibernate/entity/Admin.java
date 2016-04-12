@@ -9,18 +9,14 @@ import javax.persistence.Table;
  * Created by Vladimir on 04.04.2016.
  */
 @Entity
-@Table(
-        name = "admin"
-)
+@Table(name = "admin")
 public class Admin {
+
     @Id
-    @Column(
-            name = "login_adm"
-    )
+    @Column(name = "login_adm")
     String login_adm;
-    @Column(
-            name = "password"
-    )
+
+    @Column(name = "password")
     Integer password;
 
     public Admin(Integer password, String login_adm) {
