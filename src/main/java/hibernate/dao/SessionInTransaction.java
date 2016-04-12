@@ -1,10 +1,10 @@
 package hibernate.dao;
 
 import hibernate.HibernateUtil;
-import hibernate.entity.Repository;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -40,10 +40,10 @@ public class SessionInTransaction {
         session.close();
     }
 
-    public <T> List<T> getAll(ListHandler listHandler) {
-        List<T> list = listHandler.handle(session);
+    public <T> List<T> getAll(CollectionHandler collectionHandler) {
+        Collection<T> list = collectionHandler.handle(session);
         commitAndClose();
-        return list;
+        return (List<T>) list;
     }
 
     public <T> T getById(SingleHandler singleHandler) {
