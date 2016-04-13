@@ -1,13 +1,7 @@
-<%@ page import="java.util.List" %>
-<%@ page import="hibernate.entity.Repository" %>
-<%@ page import="hibernate.entity.News" %>
-<%@ page import="hibernate.entity.Admin" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: User
-  Date: 06.04.2016
-  Time: 1:04
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" errorPage="error.jsp" %>
 <html>
@@ -24,9 +18,6 @@
 </aside>
 
 <div class="tables">
-    <%List<Admin> admins = (List<Admin>) request.getAttribute("admins");%>
-    <%List<News> news = (List<News>) request.getAttribute("news");%>
-    <%List<Repository> repositories = (List<Repository>) request.getAttribute("repositories");%>
     <h1>Таблица Пользователей</h1>
     <table>
         <tr>
@@ -52,30 +43,40 @@
         <tr>
             <td>Login</td>
             <td>Password</td>
+            <td>Действия</td>
         </tr>
-        <% for (Admin admin : admins) { %>
-        <tr>
-            <td><%=admin.getLogin()%>
-            </td>
-            <td><%=admin.getPassword()%>
-            </td>
-        </tr>
+
+        <%--@elvariable id="admins" type="java.util.List<Admin>"--%>
+        <c:forEach items="${admins}" var="admin" varStatus="status">
+            <tr>
+                <td>${admin.login}</td>
+                <td> ${admin.password}</td>
+                <td>
+                    <a href="<c:url value="/edit?login=${admin.login}"/>">Edit</a>
+                    <a href="<c:url value="/delete?login=${admin.login}"/>">Delete</a>
+                </td>
+            </tr>
+        </c:forEach>
     </table>
-    <%}%>
+
 </div>
 <h1>Колонка Новостей</h1>
-<% for (News aNew : news) { %>
-<ul>
-    <li> Title<br> <%=aNew.getTitle()%>
-    </li>
+<%--@elvariable id="news" type="java.util.List<News>"--%>
+<c:forEach items="${news}" var="anew" varStatus="status">
+    <ul>
+        <li>
+            Title <br> ${anew.title}
+        </li>
 
-    <li>Article<br> <%=aNew.getText()%>
-    </li>
+        <li>
+            Article <br> ${anew.text}
+        </li>
 
-    <li>Comments<br> <%=aNew.getComment()%>
-    </li>
-</ul>
-<%}%>
+        <li>
+            Comments <br> ${anew.comment}
+        </li>
+    </ul>
+</c:forEach>
 <div class="tables">
     <h1>Таблица репозиториев</h1>
     <table>
@@ -84,20 +85,22 @@
             <td>Title news</td>
             <td>Admin login</td>
             <td>User login</td>
+            <td>Действия</td>
         </tr>
-        <% for (Repository repository : repositories) { %>
-        <tr>
-            <td><%=repository.getAddress()%>
-            </td>
-            <td><%=repository.getNews()%>
-            </td>
-            <td><%=repository.getAdmin()%>
-            </td>
-            <td><%=repository.getUser()%>
-            </td>
-        </tr>
+        <%--@elvariable id="repositories" type="java.util.List<Repository>"--%>
+        <c:forEach items="${repositories}" var="rep" varStatus="status">
+            <tr>
+                <td> ${rep.address}</td>
+                <td> ${rep.news.title}</td>
+                <td> ${rep.admin.login}</td>
+                <td> ${rep.user.login}</td>
+                <td>
+                    <a href="<c:url value="/edit?login=${rep.address}"/>">Edit</a>
+                    <a href="<c:url value="/delete?login=${rep.address}"/>">Delete</a>
+                </td>
+            </tr>
+        </c:forEach>
     </table>
-    <%}%>
 </div>
 </body>
 </html>
