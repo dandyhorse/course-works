@@ -4,7 +4,36 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
-    <!--Controller:add-->
+    <display-name>Spring MVC Application</display-name>
+
+    <!--Link to spring configuration-->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:spring-context.xml</param-value>
+    </context-param>
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <!--DispatcherServlet-->
+    <!--
+        <servlet>
+            <servlet-name>appServlet</servlet-name>
+            <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+            <init-param>
+                <param-name>contextConfigLocation</param-name>
+                <param-value>classpath:spring-context.xml</param-value>
+            </init-param>
+            <load-on-startup>1</load-on-startup>
+        </servlet>
+        <servlet-mapping>
+            <servlet-name>appServlet</servlet-name>
+            <url-pattern>**/*.jsp</url-pattern>
+        </servlet-mapping>
+    -->
+
+    <!--Servlet:add-->
     <servlet>
         <servlet-name>Add</servlet-name>
         <servlet-class>servlets.AddServlet</servlet-class>
@@ -14,7 +43,7 @@
         <url-pattern>/add</url-pattern>
     </servlet-mapping>
 
-    <!--Controller:edit-->
+    <!--Servlet:edit-->
     <servlet>
         <servlet-name>Edit</servlet-name>
         <servlet-class>servlets.EditServlet</servlet-class>
@@ -24,7 +53,7 @@
         <url-pattern>/edit</url-pattern>
     </servlet-mapping>
 
-    <!--Controller:delete-->
+    <!--Servlet:delete-->
     <servlet>
         <servlet-name>Delete</servlet-name>
         <servlet-class>servlets.DeleteServlet</servlet-class>
@@ -34,17 +63,17 @@
         <url-pattern>/delete</url-pattern>
     </servlet-mapping>
 
-    <!--Controller:show-->
+    <!--Servlet:show-->
     <servlet>
         <servlet-name>Show</servlet-name>
-        <servlet-class>servlets.ShowServlet</servlet-class>
+        <servlet-class>servlets.ShowResultsServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Show</servlet-name>
         <url-pattern>/results</url-pattern>
     </servlet-mapping>
 
-
+    <!--Welcome view-->
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
