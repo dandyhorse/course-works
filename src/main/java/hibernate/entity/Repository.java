@@ -11,60 +11,60 @@ public class Repository {
 
     @Id
     @Column(name = "adress")
-    Integer adress;
+    Integer address;
 
     @ManyToOne
     @JoinColumn(name = "title_news")
-    News title_news;
+    News news;
 
     @ManyToOne
     @JoinColumn(name = "login_adm")
 
-    Admin login_adm;
+    Admin admin;
 
     @ManyToOne
     @JoinColumn(name = "login_user")
-    User login_user;
+    User user;
 
-    public Repository(Integer adress, User login_user, Admin login_adm, News title_news) {
-        this.adress = adress;
-        this.login_user = login_user;
-        this.login_adm = login_adm;
-        this.title_news = title_news;
+    public Repository(Integer address, User user, Admin admin, News news) {
+        this.address = address;
+        this.user = user;
+        this.admin = admin;
+        this.news = news;
     }
 
     public Repository() {
     }
 
-    public Integer getAdress() {
-        return adress;
+    public Integer getAddress() {
+        return address;
     }
 
-    public void setAdress(Integer adress) {
-        this.adress = adress;
+    public void setAddress(Integer address) {
+        this.address = address;
     }
 
-    public News getTitle_news() {
-        return title_news;
+    public News getNews() {
+        return news;
     }
 
-    public void setTitle_news(News title_news) {
-        this.title_news = title_news;
+    public void setNews(News news) {
+        this.news = news;
     }
 
-    public Admin getLogin_adm() {
-        return login_adm;
+    public Admin getAdmin() {
+        return admin;
     }
 
-    public void setLogin_adm(Admin login_adm) {
-        this.login_adm = login_adm;
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
     }
 
-    public User getLogin_user() {
-        return login_user;
+    public User getUser() {
+        return user;
     }
 
-    public void setLogin_user(User login_user) {
-        this.login_user = login_user;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

@@ -14,29 +14,29 @@ public class News {
 
     @Id
     @Column(name = "title_news")
-    String title_news;
+    String title;
 
     @Column(name = "text")
     String text;
 
     @Column(name = "coment")
-    String coment;
+    String comment;
 
-    public News(String title_news, String text, String coment) {
-        this.title_news = title_news;
+    public News(String title, String text, String comment) {
+        this.title = title;
         this.text = text;
-        this.coment = coment;
+        this.comment = comment;
     }
 
     public News() {
     }
 
-    public String getTitle_news() {
-        return this.title_news;
+    public String getTitle() {
+        return this.title;
     }
 
-    public void setTitle_news(String title_news) {
-        this.title_news = title_news;
+    public void setTitle(String title_news) {
+        this.title = title_news;
     }
 
     public String getText() {
@@ -47,11 +47,11 @@ public class News {
         this.text = text;
     }
 
-    public String getComent() {
-        return this.coment;
+    public String getComment() {
+        return this.comment;
     }
 
-    public void setComent(String coment) {
-        this.coment = coment;
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 }

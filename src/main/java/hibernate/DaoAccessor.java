@@ -4,34 +4,53 @@ import hibernate.dao.AdminDao;
 import hibernate.dao.NewsDao;
 import hibernate.dao.RepositoryDao;
 import hibernate.dao.UserDao;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by Vladimir on 04.04.2016.
  */
+@Component
 public class DaoAccessor {
 
-    private static volatile DaoAccessor instance;
+    @Autowired
+    private AdminDao adminDao;
+    @Autowired
+    private NewsDao newsDao;
+    @Autowired
+    private UserDao userDao;
+    @Autowired
+    private RepositoryDao repositoryDao;
 
-    public static DaoAccessor getInstance() {
-        if (instance == null) {
-            instance = new DaoAccessor();
-        }
-        return instance;
+    public void setAdminDao(AdminDao adminDao) {
+        this.adminDao = adminDao;
+    }
+
+    public void setRepositoryDao(RepositoryDao repositoryDao) {
+        this.repositoryDao = repositoryDao;
+    }
+
+    public void setNewsDao(NewsDao newsDao) {
+        this.newsDao = newsDao;
+    }
+
+    public void setUserDao(UserDao userDao) {
+        this.userDao = userDao;
     }
 
     public AdminDao getAdminDao() {
-        return new AdminDao();
+        return adminDao;
     }
 
     public NewsDao getNewsDao() {
-        return new NewsDao();
+        return newsDao;
     }
 
     public UserDao getUserDao() {
-        return new UserDao();
+        return userDao;
     }
 
-    public RepositoryDao getRepositoryDAO() {
-        return new RepositoryDao();
+    public RepositoryDao getRepositoryDao() {
+        return repositoryDao;
     }
 }

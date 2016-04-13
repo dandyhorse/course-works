@@ -14,25 +14,25 @@ public class User {
 
     @Id
     @Column(name = "login_user")
-    String login_adm;
+    String login;
 
     @Column(name = "password")
     Integer password;
 
-    public User(String login_adm, Integer password) {
-        this.login_adm = login_adm;
-        this.password = password;
-    }
-
     public User() {
     }
 
-    public String getLogin() {
-        return login_adm;
+    public User(String login, Integer password) {
+        this.login = login;
+        this.password = password;
     }
 
-    public void setLogin(String login_adm) {
-        this.login_adm = login_adm;
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public Integer getPassword() {

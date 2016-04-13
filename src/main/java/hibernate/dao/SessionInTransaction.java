@@ -1,8 +1,16 @@
 package hibernate.dao;
 
-import hibernate.HibernateUtil;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Required;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 import java.util.List;
@@ -10,45 +18,58 @@ import java.util.List;
 /**
  * Created by User on 06.04.2016.
  */
+@Component
+@Lazy
 public class SessionInTransaction {
-    private Session session;
-    private Transaction transaction;
 
+    @Autowired
+    private SessionFactory sessionFactory;
 
-    public SessionInTransaction() {
-        session = HibernateUtil.getSessionFactory().openSession();
-        transaction = session.beginTransaction();
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
 
     public <T> void save(T t) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
         session.save(t);
-        commitAndClose();
+        commitAndClose(transaction, session);
     }
 
     public <T> void update(T t) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
         session.update(t);
-        commitAndClose();
+        commitAndClose(transaction, session);
     }
 
     public <T> void delete(T t) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
         session.delete(t);
-        commitAndClose();
-    }
-
-    private void commitAndClose() {
-        transaction.commit();
-        session.close();
+        commitAndClose(transaction, session);
     }
 
     public <T> List<T> getAll(CollectionHandler collectionHandler) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
         Collection<T> list = collectionHandler.handle(session);
-        commitAndClose();
+        commitAndClose(transaction, session);
         return (List<T>) list;
     }
 
     public <T> T getById(SingleHandler singleHandler) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
         T t = singleHandler.handle(session);
-        commitAndClose();
+        commitAndClose(transaction, session);
         return t;
     }
+
+    private void commitAndClose(Transaction transaction, Session session) {
+        transaction.commit();
+        session.close();
+    }
+
+
 }
