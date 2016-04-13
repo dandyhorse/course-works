@@ -20,7 +20,7 @@
     <form>
 
         <br><a href="${pageContext.request.contextPath}/results" methods="GET">Показать все таблицы</a>
-        <a href="">1111111111</a>
+        <a href="">"какой нибудь текст"</a>
 
     </form>
 
