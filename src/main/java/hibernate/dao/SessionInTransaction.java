@@ -17,6 +17,8 @@ import java.util.List;
 
 /**
  * Created by User on 06.04.2016.
+ * Hides Session and Transaction in self
+ * so we don't need use them anywhere else
  */
 @Component
 @Lazy
