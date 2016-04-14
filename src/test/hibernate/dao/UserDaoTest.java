@@ -1,9 +1,9 @@
 package hibernate.dao;
 
-import hibernate.DaoAccessor;
 import hibernate.entity.User;
 
 import org.junit.Test;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import java.util.List;
 
@@ -16,9 +16,10 @@ public class UserDaoTest extends AbsTest {
 
     @Test
     public void testGetById() throws Exception {
-        Integer sd = daoAccessor.getUserDao().getById("sd").getPassword();
-        System.out.println(sd);
-        assertTrue(sd == 234);
+        String login = "first-user";
+        User user = daoAccessor.getUserDao().getByPK(login);
+        assertTrue(user.getLogin().equals(login));
+        System.out.println(user.getLogin());
     }
 
     @Test

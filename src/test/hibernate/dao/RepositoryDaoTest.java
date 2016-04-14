@@ -1,8 +1,6 @@
 package hibernate.dao;
 
-import hibernate.DaoAccessor;
 import hibernate.entity.Repository;
-import hibernate.entity.User;
 import org.junit.Test;
 
 import java.util.List;
@@ -24,10 +22,10 @@ public class RepositoryDaoTest extends AbsTest{
 
     @Test
     public void testGetById() throws Exception {
-        Repository repository = daoAccessor.getRepositoryDao().getById("1");
+        Repository repository = daoAccessor.getRepositoryDao().getByPK("0");
         assertNotNull(repository);
-        System.out.println(repository.getAddress() + " " + repository.getNews().getTitle());
-        assertTrue(repository.getAddress() == 1);
+        System.out.println(repository.getId() + " " + repository.getNews().getTitle());
+        assertTrue(repository.getId() == 0);
     }
 
 

@@ -1,8 +1,8 @@
 package hibernate.dao;
 
-import hibernate.DaoAccessor;
 import hibernate.entity.Admin;
 import org.junit.Test;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import java.util.List;
 
@@ -23,9 +23,10 @@ public class AdminDaoTest extends AbsTest{
 
     @Test
     public void testGetById() throws Exception {
-        Admin admin = daoAccessor.getAdminDao().getById("root");
+        String login = "root";
+        Admin admin = daoAccessor.getAdminDao().getByPK(login);
         assertNotNull(admin);
-        assertTrue(admin.getPassword() == 4321);
+        assertTrue(admin.getLogin().equals(login));
         System.out.println(admin.getLogin());
     }
 }
