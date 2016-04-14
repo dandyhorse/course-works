@@ -5,8 +5,6 @@ import hibernate.DaoAccessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
-
-
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

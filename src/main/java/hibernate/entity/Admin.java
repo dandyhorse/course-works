@@ -1,9 +1,6 @@
 package hibernate.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by Vladimir on 04.04.2016.
@@ -13,33 +10,33 @@ import javax.persistence.Table;
 public class Admin {
 
     @Id
-    @Column(name = "login_adm")
-    String login_adm;
+    @Column(name = "login")
+    String login;
 
     @Column(name = "password")
-    Integer password;
+    String password;
 
-    public Admin(Integer password, String login_adm) {
+    public Admin(String login, String password) {
         this.password = password;
-        this.login_adm = login_adm;
+        this.login = login;
     }
 
     public Admin() {
     }
 
-    public Integer getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(Integer password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
     public String getLogin() {
-        return login_adm;
+        return login;
     }
 
-    public void setLogin(String login_adm) {
-        this.login_adm = login_adm;
+    public void setLogin(String login) {
+        this.login = login;
     }
 }

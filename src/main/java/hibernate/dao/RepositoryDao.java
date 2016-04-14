@@ -27,11 +27,11 @@ public class RepositoryDao extends AbstractDao<Repository>{
     }
 
     @Override
-    public Repository getById(String i) {
+    public Repository getByPK(String id) {
         return sessionInTransaction.getById(new SingleHandler() {
             @Override
             public Repository handle(Session session) {
-                return session.load(Repository.class, Integer.parseInt(i));
+                return session.load(Repository.class, Integer.parseInt(id));
             }
         });
     }

@@ -3,7 +3,8 @@
   Created by IntelliJ IDEA.
   User: User
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" errorPage="error.jsp" %>
+<%--errorPage="error.jsp"--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java"  %>
 <html>
 <head>
     <title>Title</title>
@@ -11,9 +12,9 @@
 <body>
 <aside>
 
-    <a href="<c:url value="/add"/>">Добавить</a>
+    <a href="index.jsp">На Главную</a>
     <br><br>
-    <a href="index.jsp">Назад</a>
+    <a href="add.jsp">Добавить</a>
 
 </aside>
 
@@ -90,13 +91,13 @@
         <%--@elvariable id="repositories" type="java.util.List<Repository>"--%>
         <c:forEach items="${repositories}" var="rep" varStatus="status">
             <tr>
-                <td> ${rep.address}</td>
+                <td> ${rep.id}</td>
                 <td> ${rep.news.title}</td>
                 <td> ${rep.admin.login}</td>
                 <td> ${rep.user.login}</td>
                 <td>
-                    <a href="<c:url value="/edit?login=${rep.address}"/>">Edit</a>
-                    <a href="<c:url value="/delete?login=${rep.address}"/>">Delete</a>
+                    <a href="<c:url value="/edit?login=${rep.id}"/>">Edit</a>
+                    <a href="<c:url value="/delete?login=${rep.id}"/>">Delete</a>
                 </td>
             </tr>
         </c:forEach>

@@ -10,38 +10,37 @@ import javax.persistence.*;
 public class Repository {
 
     @Id
-    @Column(name = "adress")
-    Integer address;
+    @Column(name = "id")
+    Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "title_news")
+    @JoinColumn(name = "news_id")
     News news;
 
     @ManyToOne
-    @JoinColumn(name = "login_adm")
-
+    @JoinColumn(name = "admin_login")
     Admin admin;
 
     @ManyToOne
-    @JoinColumn(name = "login_user")
+    @JoinColumn(name = "uzer_login")
     User user;
 
-    public Repository(Integer address, User user, Admin admin, News news) {
-        this.address = address;
-        this.user = user;
-        this.admin = admin;
+    public Repository(Integer id, News news, Admin admin, User user) {
+        this.id = id;
         this.news = news;
+        this.admin = admin;
+        this.user = user;
     }
 
     public Repository() {
     }
 
-    public Integer getAddress() {
-        return address;
+    public Integer getId() {
+        return id;
     }
 
-    public void setAddress(Integer address) {
-        this.address = address;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public News getNews() {

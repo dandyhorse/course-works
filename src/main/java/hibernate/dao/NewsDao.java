@@ -27,11 +27,11 @@ public class NewsDao extends AbstractDao<News> {
     }
 
     @Override
-    public News getById(String i) {
+    public News getByPK(String id) {
         return sessionInTransaction.getById(new SingleHandler() {
             @Override
             public News handle(Session session) {
-                return session.load(News.class, i);
+                return session.load(News.class, Integer.parseInt(id));
             }
         });
     }

@@ -13,16 +13,20 @@ import javax.persistence.Table;
 public class News {
 
     @Id
-    @Column(name = "title_news")
+    @Column(name = "id")
+    Integer id;
+
+    @Column(name = "title")
     String title;
 
     @Column(name = "text")
     String text;
 
-    @Column(name = "coment")
+    @Column(name = "comment")
     String comment;
 
-    public News(String title, String text, String comment) {
+    public News(Integer id, String title, String text, String comment) {
+        this.id = id;
         this.title = title;
         this.text = text;
         this.comment = comment;
@@ -31,16 +35,24 @@ public class News {
     public News() {
     }
 
-    public String getTitle() {
-        return this.title;
+    public Integer getId() {
+        return id;
     }
 
-    public void setTitle(String title_news) {
-        this.title = title_news;
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getText() {
-        return this.text;
+        return text;
     }
 
     public void setText(String text) {
@@ -48,7 +60,7 @@ public class News {
     }
 
     public String getComment() {
-        return this.comment;
+        return comment;
     }
 
     public void setComment(String comment) {

@@ -27,11 +27,11 @@ public class AdminDao extends AbstractDao<Admin> {
     }
 
     @Override
-    public Admin getById(String i) {
+    public Admin getByPK(String login) {
         return sessionInTransaction.getById(new SingleHandler() {
             @Override
             public Admin handle(Session session) {
-                return session.load(Admin.class, i);
+                return session.load(Admin.class, login);
             }
         });
     }

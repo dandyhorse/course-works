@@ -27,11 +27,11 @@ public class UserDao extends AbstractDao<User> {
     }
 
     @Override
-    public User getById(String i) {
+    public User getByPK(String login) {
         return sessionInTransaction.getById(new SingleHandler() {
             @Override
             public User handle(Session session) {
-                return session.load(User.class, i);
+                return session.load(User.class, login);
             }
         });
     }
