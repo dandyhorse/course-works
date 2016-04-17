@@ -44,18 +44,18 @@ public class AddServlet extends HttpServlet {
             if (addByOption(option, login, hashedPassword)) {
                 answer(req, resp, HttpServletResponse.SC_OK, "ACCEPTED!");
             } else {
-                answer(req, resp, HttpServletResponse.SC_BAD_REQUEST, "ERROR IN INPUT");
+                answer(req, resp, HttpServletResponse.SC_BAD_REQUEST, "ERROR IN ADDING TO DB");
             }
         } else {
-            answer(req, resp, HttpServletResponse.SC_BAD_REQUEST, "ERROR IN INPUT");
+            answer(req, resp, HttpServletResponse.SC_BAD_REQUEST, "SOME INPUTS ARE EMPTY");
         }
 
         req.getRequestDispatcher("add.jsp").forward(req, resp);
     }
 
-    private void answer(HttpServletRequest req, HttpServletResponse resp, int scBadRequest, String o) {
+    private void answer(HttpServletRequest req, HttpServletResponse resp, int status, String o) {
         req.setAttribute("message", o);
-        resp.setStatus(scBadRequest);
+        resp.setStatus(status);
     }
 
     private boolean isFillInputs(String option, String login, String password) {

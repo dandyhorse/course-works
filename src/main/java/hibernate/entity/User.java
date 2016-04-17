@@ -11,10 +11,10 @@ public class User {
 
     @Id
     @Column(name = "login")
-    String login;
+    private String login;
 
     @Column(name = "password")
-    String password;
+    private String password;
 
     public User() {
     }

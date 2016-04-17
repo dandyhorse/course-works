@@ -11,19 +11,19 @@ public class Repository {
 
     @Id
     @Column(name = "id")
-    Integer id;
+    private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "news_id")
-    News news;
+    private News news;
 
     @ManyToOne
     @JoinColumn(name = "admin_login")
-    Admin admin;
+    private Admin admin;
 
     @ManyToOne
     @JoinColumn(name = "uzer_login")
-    User user;
+    private User user;
 
     public Repository(Integer id, News news, Admin admin, User user) {
         this.id = id;

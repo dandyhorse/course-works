@@ -11,10 +11,10 @@ public class Admin {
 
     @Id
     @Column(name = "login")
-    String login;
+    private String login;
 
     @Column(name = "password")
-    String password;
+    private String password;
 
     public Admin(String login, String password) {
         this.password = password;

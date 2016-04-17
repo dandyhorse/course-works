@@ -14,16 +14,16 @@ public class News {
 
     @Id
     @Column(name = "id")
-    Integer id;
+    private Integer id;
 
     @Column(name = "title")
-    String title;
+    private String title;
 
     @Column(name = "text")
-    String text;
+    private String text;
 
     @Column(name = "comment")
-    String comment;
+    private String comment;
 
     public News(Integer id, String title, String text, String comment) {
         this.id = id;
