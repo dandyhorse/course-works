@@ -1,6 +1,4 @@
-<%--@elvariable id="message" type="java.lang.String"--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--@elvariable id="Admin" type="hibernate.entity.Admin"--%>
 <%--
   Created by IntelliJ IDEA.
   User: User
