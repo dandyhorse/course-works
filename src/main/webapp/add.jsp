@@ -40,6 +40,7 @@
     <input type="text" name="login" title="login">
     <input type="password" name="password" title="password">
     <input type="submit">
+    <%--@elvariable id="message" type="java.lang.String"--%>
     <p>${message}</p>
 
     <a href="<c:url value="/results"/>">Показать все данные</a>
