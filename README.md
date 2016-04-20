@@ -1,2 +1,2 @@
 # WebProject
-with Jsp, jstl, Spring, Hibernate, Servlet, TomCat
+with Jsp, jstl, Spring, Hibernate, Servlet
