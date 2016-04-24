@@ -17,22 +17,16 @@ public class NewsDao extends AbstractDao<News> {
 
     @Override
     public List<News> getAll() {
-        return sessionInTransaction.getAll(new CollectionHandler() {
-            @Override
-            public List<News> handle(Session session) {
-                Criteria criteria = session.createCriteria(News.class);
-                return criteria.list();
-            }
-        });
+        CollectionHandler<News> handler = session -> {
+            Criteria criteria = session.createCriteria(News.class);
+            return criteria.list();
+        };
+        return sessionInTransaction.getAll(handler);
     }
 
     @Override
     public News getByPK(String id) {
-        return sessionInTransaction.getById(new SingleHandler() {
-            @Override
-            public News handle(Session session) {
-                return session.load(News.class, Integer.parseInt(id));
-            }
-        });
+        SingleHandler<News> handler = session -> session.load(News.class, Integer.parseInt(id));
+        return sessionInTransaction.getById(handler);
     }
 }

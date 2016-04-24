@@ -9,6 +9,6 @@ import org.hibernate.Session;
  * with no care about closing Session and committing Transaction
  */
 @FunctionalInterface
-public interface SingleHandler {
-    <T> T handle(Session session);
+public interface SingleHandler<T> {
+    T handle(Session session);
 }

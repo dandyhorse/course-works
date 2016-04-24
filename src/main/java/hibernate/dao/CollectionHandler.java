@@ -12,6 +12,6 @@ import java.util.List;
  * with no care about closing Session and committing Transaction
  */
 @FunctionalInterface
-public interface CollectionHandler {
-    <T> Collection<T> handle(Session session);
+public interface CollectionHandler<T> {
+    Collection<T> handle(Session session);
 }

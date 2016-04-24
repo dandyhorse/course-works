@@ -1,6 +1,8 @@
 package hibernate.dao;
 
 import hibernate.entity.Admin;
+import hibernate.entity.News;
+import hibernate.entity.Repository;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.springframework.context.annotation.Lazy;
@@ -17,22 +19,16 @@ public class AdminDao extends AbstractDao<Admin> {
 
     @Override
     public List<Admin> getAll() {
-        return sessionInTransaction.getAll(new CollectionHandler() {
-            @Override
-            public List<Admin> handle(Session session) {
-                Criteria criteria = session.createCriteria(Admin.class);
-                return criteria.list();
-            }
-        });
+        CollectionHandler<Admin> handler = session -> {
+            Criteria criteria = session.createCriteria(Admin.class);
+            return criteria.list();
+        };
+        return sessionInTransaction.getAll(handler);
     }
 
     @Override
     public Admin getByPK(String login) {
-        return sessionInTransaction.getById(new SingleHandler() {
-            @Override
-            public Admin handle(Session session) {
-                return session.load(Admin.class, login);
-            }
-        });
+        SingleHandler<Admin> handler = session -> session.load(Admin.class, Integer.parseInt(login));
+        return sessionInTransaction.getById(handler);
     }
 }

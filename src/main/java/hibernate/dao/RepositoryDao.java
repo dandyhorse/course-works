@@ -17,22 +17,16 @@ public class RepositoryDao extends AbstractDao<Repository>{
 
     @Override
     public List<Repository> getAll() {
-        return sessionInTransaction.getAll(new CollectionHandler(){
-            @Override
-            public List<Repository> handle(Session session){
-                Criteria criteria = session.createCriteria(Repository.class);
-                return criteria.list();
-            }
-        });
+        CollectionHandler<Repository> handler = session -> {
+            Criteria criteria = session.createCriteria(Repository.class);
+            return criteria.list();
+        };
+        return sessionInTransaction.getAll(handler);
     }
 
     @Override
     public Repository getByPK(String id) {
-        return sessionInTransaction.getById(new SingleHandler() {
-            @Override
-            public Repository handle(Session session) {
-                return session.load(Repository.class, Integer.parseInt(id));
-            }
-        });
+        SingleHandler<Repository> handler = session -> session.load(Repository.class, Integer.parseInt(id));
+        return sessionInTransaction.getById(handler);
     }
 }

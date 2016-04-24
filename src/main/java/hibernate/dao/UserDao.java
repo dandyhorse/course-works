@@ -17,23 +17,17 @@ public class UserDao extends AbstractDao<User> {
 
     @Override
     public List<User> getAll() {
-        return sessionInTransaction.getAll(new CollectionHandler() {
-            @Override
-            public List<User> handle(Session session) {
-                Criteria criteria = session.createCriteria(User.class);
-                return criteria.list();
-            }
-        });
+        CollectionHandler<User> handler = session -> {
+            Criteria criteria = session.createCriteria(User.class);
+            return criteria.list();
+        };
+        return sessionInTransaction.getAll(handler);
     }
 
     @Override
     public User getByPK(String login) {
-        return sessionInTransaction.getById(new SingleHandler() {
-            @Override
-            public User handle(Session session) {
-                return session.load(User.class, login);
-            }
-        });
+        SingleHandler<User> handler = session -> session.load(User.class, Integer.parseInt(login));
+        return sessionInTransaction.getById(handler);
     }
 
 }

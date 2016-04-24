@@ -23,7 +23,7 @@ public abstract class AbstractDao<T> implements Dao<T> {
 
     public abstract List<T> getAll();
 
-    public abstract T getByPK(String i);
+    public abstract T getByPK(String id);
 
     public void add(T t) {
         sessionInTransaction.save(t);
