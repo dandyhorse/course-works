@@ -52,7 +52,7 @@ public class SessionInTransaction {
         commitAndClose(transaction, session);
     }
 
-    public <T> List<T> getAll(CollectionHandler collectionHandler) {
+    public <T> List<T> getAll(CollectionHandler<T> collectionHandler) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         Collection<T> list = collectionHandler.handle(session);
@@ -60,7 +60,7 @@ public class SessionInTransaction {
         return (List<T>) list;
     }
 
-    public <T> T getById(SingleHandler singleHandler) {
+    public <T> T getById(SingleHandler<T> singleHandler) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         T t = singleHandler.handle(session);
