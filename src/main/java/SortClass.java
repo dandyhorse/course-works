@@ -20,20 +20,20 @@ public class SortClass {
         int midIndex = (toIndex + fromIndex) >>> 1;
         int pivot = arr[midIndex];
         while (left <= right) {
-            while ((arr[left] < pivot) && (left <= toIndex)){
+            while ((arr[left] < pivot) && (left <= toIndex)) {
                 left++;
             }
-            while ((arr[right] > pivot) && (right >= fromIndex)){
+            while ((arr[right] > pivot) && (right >= fromIndex)) {
                 right--;
             }
             if (left <= right) {
                 swap(arr, left++, right--);
             }
         }
-        if (right > fromIndex){
+        if (right > fromIndex) {
             quickSort(arr, fromIndex, right);
         }
-        if (left < toIndex){
+        if (left < toIndex) {
             quickSort(arr, left, toIndex);
         }
     }

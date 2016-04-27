@@ -1,4 +1,3 @@
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,23 +11,31 @@ import static org.junit.Assert.*;
  * Created by User on 27.04.2016.
  */
 public class SortClassTest {
-    private int[] array;
+    private int[] normalArray;
+    private int[] nullArr;
+    private int[] emptyArr;
 
     @Before
     public void setUp() throws Exception {
         Random numbers = new Random();
         IntStream ints = numbers.ints(50L, -25, 25);
-        array = ints.toArray();
+        normalArray = ints.toArray();
+        nullArr = null;
+        emptyArr = new int[10];
         ints.close();
-        System.out.printf("Unsorted array : \n %s \n", Arrays.toString(array));
+        System.out.printf("Unsorted normalArray : \n %s \n", Arrays.toString(normalArray));
     }
 
     @Test
     public void sort() throws Exception {
-        SortClass.sort(array);
-        System.out.printf("Sorted array : \n %s \n", Arrays.toString(array));
-        for (int i = 0; i < array.length - 1; i++) {
+        SortClass.sort(normalArray);
+        SortClass.sort(nullArr);    //if will not be crashed test is passed
+        SortClass.sort(emptyArr);   //if will not be crashed test is passed
+
+        System.out.printf("Sorted normalArray : \n %s \n", Arrays.toString(normalArray));
+        for (int i = 0; i < normalArray.length - 1; i++) {
             assertTrue(i < i + 1);
         }
+
     }
 }
