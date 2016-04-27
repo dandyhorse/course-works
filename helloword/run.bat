@@ -1,0 +1,7 @@
+
+@echo off
+cd src/
+javac -d ../out Main.java
+cd ../out
+java Main
+cd ..
