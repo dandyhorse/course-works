@@ -37,7 +37,7 @@ public class SearchClassTest {
         int notFound1 = SearchClass.search(nullArr, element);
         int notFound2 = SearchClass.search(emptyArr, element);
 
-        System.out.printf("Element is  %d and his Index : %d\n", element, foundedIndex);
+        System.out.printf("Element is  %d and its Index : %d\n", element, foundedIndex);
         assertTrue(element == array[foundedIndex]);
 
         assertTrue(notFound1 == -1);

@@ -29,8 +29,8 @@ public class SortClassTest {
     @Test
     public void sort() throws Exception {
         SortClass.sort(normalArray);
-        SortClass.sort(nullArr);    //if will not be crashed test is passed
-        SortClass.sort(emptyArr);   //if will not be crashed test is passed
+        SortClass.sort(nullArr);    //if will not be crashed test will be passed
+        SortClass.sort(emptyArr);   //if will not be crashed test will be passed
 
         System.out.printf("Sorted normalArray : \n %s \n", Arrays.toString(normalArray));
         for (int i = 0; i < normalArray.length - 1; i++) {
