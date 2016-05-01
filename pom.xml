@@ -5,8 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.epam</groupId>
-    <artifactId>HomeWork</artifactId>
+    <artifactId>HomeWork_1</artifactId>
     <version>1.0-SNAPSHOT</version>
+
+    <name>Solovev Anton HW</name>
 
     <properties>
         <javac.level>1.8</javac.level>
