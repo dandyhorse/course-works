@@ -2,6 +2,8 @@ package com.epam.homework_3.lists;
 
 import org.junit.Test;
 
+import java.util.Iterator;
+
 import static org.junit.Assert.*;
 
 /**
@@ -10,83 +12,20 @@ import static org.junit.Assert.*;
 public class DoubleLinkedListTest {
 
     @Test
-    public void testClone() throws Exception {
-
+    public void iterator() throws Exception {
+        DoubleLinkedList<Integer> list = new DoubleLinkedList<>();
+        for (Integer i : list) {
+            System.out.println(i);
+        }
     }
 
     @Test
-    public void add() throws Exception {
-
+    public void backwardIterator() throws Exception {
+        DoubleLinkedList<Integer> list = new DoubleLinkedList<>();
+        Iterator<Integer> iterator = list.backwardIterator();
+        while (iterator.hasNext()) {
+            Integer i = iterator.next();
+            System.out.println(i);
+        }
     }
-
-    @Test
-    public void add1() throws Exception {
-
-    }
-
-    @Test
-    public void getFirst() throws Exception {
-
-    }
-
-    @Test
-    public void getLast() throws Exception {
-
-    }
-
-    @Test
-    public void get() throws Exception {
-
-    }
-
-    @Test
-    public void delete() throws Exception {
-
-    }
-
-    @Test
-    public void delete1() throws Exception {
-
-    }
-
-    @Test
-    public void set() throws Exception {
-
-    }
-
-    @Test
-    public void clear() throws Exception {
-
-    }
-
-    @Test
-    public void size() throws Exception {
-
-    }
-
-    @Test
-    public void getBackwardLIst() throws Exception {
-
-    }
-
-    @Test
-    public void getForwardLIst() throws Exception {
-
-    }
-
-    @Test
-    public void sort() throws Exception {
-
-    }
-
-    @Test
-    public void testForwardForEach() {
-
-    }
-
-    @Test
-    public void testBackwardForEach() {
-
-    }
-
 }

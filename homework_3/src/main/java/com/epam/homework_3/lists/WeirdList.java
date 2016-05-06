@@ -1,6 +1,6 @@
 package com.epam.homework_3.lists;
 
-public interface WeirdList<T> extends Sorted, DoubleIterable<T> {
+public interface WeirdList<T> extends Sorted {
 
     void add(T t);
 

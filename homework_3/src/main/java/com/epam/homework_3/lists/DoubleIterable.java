@@ -1,9 +1,10 @@
 package com.epam.homework_3.lists;
 
-public interface DoubleIterable<T> {
+import java.util.Iterator;
 
-    WeirdList<T> getBackwardLIst();
-
-    WeirdList<T> getForwardLIst();
-
+/**
+ * Created by User on 06.05.2016.
+ */
+public interface DoubleIterable<T> extends Iterable<T> {
+    Iterator<T> backwardIterator();
 }
