@@ -11,7 +11,7 @@ public class DoubleLinkedList<T extends Comparable<T>> implements WeirdList<T> {
     private Node<T> last;
     private Node<T> first;
 
-    private static class Node<T> {
+    static class Node<T> {
         T value;
         Node<T> previous;
         Node<T> next;
@@ -30,22 +30,6 @@ public class DoubleLinkedList<T extends Comparable<T>> implements WeirdList<T> {
 //        for (Node x = first; x != null; x = x.next)
 //            return super.clone();
         return list;
-    }
-
-    @Override
-    public void add(T t) {
-        linkLast(t);
-    }
-
-    private void linkLast(T t) {
-        Node<T> node = this.last;
-        Node<T> newNode = new Node<>(node, t, first);
-        last = newNode;
-        if (node == null)
-            first = newNode;
-        else
-            node.next = newNode;
-        size++;
     }
 
     @Override
@@ -115,6 +99,31 @@ public class DoubleLinkedList<T extends Comparable<T>> implements WeirdList<T> {
     }
 
     @Override
+    public void add(T t) {
+        if (size() == 0)
+            linkFirstElement(t);
+        else
+            linkLast(t);
+    }
+
+    private void linkFirstElement(T t) {
+        Node<T> newNode = new Node<>(last, t, first);
+        last = newNode;
+        first = newNode;
+        size++;
+    }
+
+    private void linkLast(T t) {
+        Node<T> last = this.last;
+        Node<T> newNode = new Node<>(last, t, first);
+        this.last = newNode;
+        last.next = newNode;
+        first.previous = newNode;
+
+        size++;
+    }
+
+    @Override
     public void add(int index, T t) {
         if (index == size) {
             linkLast(t);
@@ -138,7 +147,7 @@ public class DoubleLinkedList<T extends Comparable<T>> implements WeirdList<T> {
 
     }
 
-    private Node<T> node(int index) {
+    Node<T> node(int index) {
         if (index < (size >> 1)) {
             Node<T> x = first;
             for (int i = 0; i < index; i++)
@@ -178,20 +187,34 @@ public class DoubleLinkedList<T extends Comparable<T>> implements WeirdList<T> {
     }
 
     @Override
-    public T delete(T t) {
-        return null;
+    public void delete(T t) {
+        if (t == null) {
+            throw new NullPointerException();
+        } else {
+            for (Node<T> node = first; node != last; node = node.next) {
+                if (t.equals(node.value)) {
+                    unlink(node);
+                }
+            }
+        }
     }
 
     @Override
-    public T delete(int index) {
-        return null;
+    public void delete(int index) {
+        if (index < size() && index > 0) {
+            unlink(node(index));
+        } else {
+            throw new NoSuchElementException();
+        }
     }
 
     @Override
     public void set(int index, T t) {
-        if (size() > index) {
+        if (index < size() && index > 0) {
             Node<T> node = node(index);
             node.value = t;
+        } else {
+            throw new NoSuchElementException();
         }
     }
 
@@ -227,7 +250,6 @@ public class DoubleLinkedList<T extends Comparable<T>> implements WeirdList<T> {
         return newList;
     }
 
-
     @Override
     public void sort() {
         if (size < 2)
@@ -238,6 +260,15 @@ public class DoubleLinkedList<T extends Comparable<T>> implements WeirdList<T> {
     /**
      * Sorting
      */
+
+    private void unlink(Node<T> node) {
+        final Node<T> next = node.next;
+        final Node<T> previous = node.previous;
+        previous.next = next;
+        next.previous = previous;
+        size--;
+    }
+
     private void cocktailSort() {
         Node<T> node = this.first;
         int n = size();

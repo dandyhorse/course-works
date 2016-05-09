@@ -52,7 +52,6 @@ public class DoubleLinkedListTest {
     @Test
     public void listIterator() throws Exception {
         ListIterator<Integer> listIterator = list.listIterator();
-
         while (listIterator.hasNext()) {
             Integer next = listIterator.next();
             assertNotNull(next);
@@ -63,7 +62,6 @@ public class DoubleLinkedListTest {
             assertNotNull(previous);
             System.out.println(previous);
         }
-
     }
 
     @Test
@@ -145,5 +143,15 @@ public class DoubleLinkedListTest {
         DoubleLinkedList<String> stringList = list.map(wFunc);
         assertTrue(stringList.getLast().getClass().equals(String.class));
         System.out.println(stringList);
+    }
+
+    @Test
+    public void isListCircle() throws Exception {
+        DoubleLinkedList<Integer> dList = (DoubleLinkedList<Integer>) list;
+        DoubleLinkedList.Node<Integer> firstNode = dList.node(0);
+        DoubleLinkedList.Node<Integer> lastNode = dList.node(5);
+
+        assertTrue(firstNode.value.equals(lastNode.next.value));
+        assertTrue(firstNode.previous.value.equals(lastNode.value));
     }
 }

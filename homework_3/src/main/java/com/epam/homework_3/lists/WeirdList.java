@@ -16,9 +16,9 @@ public interface WeirdList<T> extends Sorted<T>, Iterable<T>, Cloneable {
 
     T get(int index);
 
-    T delete(T t);
+    void delete(T t);
 
-    T delete(int index);
+    void delete(int index);
 
     void set(int index, T t);
 
