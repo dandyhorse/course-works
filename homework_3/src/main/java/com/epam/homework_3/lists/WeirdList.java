@@ -2,7 +2,7 @@ package com.epam.homework_3.lists;
 
 import java.util.ListIterator;
 
-public interface WeirdList<T> extends Sorted<T>, Iterable<T>, Cloneable {
+public interface WeirdList<T> extends WeirdSorted<T>, Iterable<T>, Cloneable {
 
     void add(T t);
 

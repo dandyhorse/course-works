@@ -11,6 +11,9 @@ public class DoubleLinkedList<T extends Comparable<T>> implements WeirdList<T> {
     private Node<T> last;
     private Node<T> first;
 
+    /**
+     * It is not private only for test that DoubleLinkedList is self-contained
+     */
     static class Node<T> {
         T value;
         Node<T> previous;
@@ -23,13 +26,10 @@ public class DoubleLinkedList<T extends Comparable<T>> implements WeirdList<T> {
         }
     }
 
-    @SuppressWarnings("Unused method")
+    @SuppressWarnings("unused")
     @Override
     protected Object clone() throws CloneNotSupportedException {
-        DoubleLinkedList<T> list = new DoubleLinkedList<>();
-//        for (Node x = first; x != null; x = x.next)
-//            return super.clone();
-        return list;
+        throw new UnsupportedOperationException("clone");
     }
 
     @Override
@@ -119,12 +119,12 @@ public class DoubleLinkedList<T extends Comparable<T>> implements WeirdList<T> {
         this.last = newNode;
         last.next = newNode;
         first.previous = newNode;
-
         size++;
     }
 
     @Override
     public void add(int index, T t) {
+        checkIndex(index);
         if (index == size) {
             linkLast(t);
         } else {
@@ -133,16 +133,16 @@ public class DoubleLinkedList<T extends Comparable<T>> implements WeirdList<T> {
     }
 
     private void linkBefore(T t, Node<T> node) {
-        //TODO link circle
+        //TODO link as circle
 
-        final Node<T> pred = node.previous;
-        final Node<T> newNode = new Node<>(pred, t, node);
+        final Node<T> previous = node.previous;
+        final Node<T> newNode = new Node<>(previous, t, node);
         node.previous = newNode;
 
-        if (pred == null)
+        if (previous == null)
             first = newNode;
         else
-            pred.next = newNode;
+            previous.next = newNode;
         size++;
 
     }
@@ -177,8 +177,15 @@ public class DoubleLinkedList<T extends Comparable<T>> implements WeirdList<T> {
         return last.value;
     }
 
+    private void checkIndex(int index) {
+        if (index > size() || index <= 0) {
+            throw new IndexOutOfBoundsException("index is not between zero and size of list");
+        }
+    }
+
     @Override
     public T get(int index) {
+        checkIndex(index);
         if (size() < 2) {
             return getFirst();
         } else {
@@ -188,24 +195,20 @@ public class DoubleLinkedList<T extends Comparable<T>> implements WeirdList<T> {
 
     @Override
     public void delete(T t) {
-        if (t == null) {
-            throw new NullPointerException();
-        } else {
+        if (t != null) {
             for (Node<T> node = first; node != last; node = node.next) {
-                if (t.equals(node.value)) {
+                if (t.equals(node.value))
                     unlink(node);
-                }
             }
+        } else {
+            throw new NullPointerException();
         }
     }
 
     @Override
     public void delete(int index) {
-        if (index < size() && index > 0) {
-            unlink(node(index));
-        } else {
-            throw new NoSuchElementException();
-        }
+        checkIndex(index);
+        unlink(node(index));
     }
 
     @Override
@@ -220,12 +223,12 @@ public class DoubleLinkedList<T extends Comparable<T>> implements WeirdList<T> {
 
     @Override
     public void clear() {
-        for (Node<T> x = first; x != null; ) {
-            Node<T> next = x.next;
-            x.value = null;
-            x.next = null;
-            x.value = null;
-            x = next;
+        for (Node<T> node = first; node != null; ) {
+            Node<T> next = node.next;
+            node.value = null;
+            node.next = null;
+            node.value = null;
+            node = next;
         }
         first = last = null;
         size = 0;
@@ -256,10 +259,6 @@ public class DoubleLinkedList<T extends Comparable<T>> implements WeirdList<T> {
             return;
         cocktailSort();
     }
-
-    /**
-     * Sorting
-     */
 
     private void unlink(Node<T> node) {
         final Node<T> next = node.next;

@@ -96,12 +96,22 @@ public class DoubleLinkedListTest {
 
     @Test
     public void delete() throws Exception {
-
+        list.set(3, element);
+        assertEquals(list.size(), 5);
+        list.delete(element);
+        assertEquals(list.size(), 4);
+        Integer integer = list.get(3);
+        assertNotEquals(integer, element);
     }
 
     @Test
     public void deleteByIndex() throws Exception {
-
+        list.set(3, element);
+        assertEquals(list.size(), 5);
+        list.delete(3);
+        assertEquals(list.size(), 4);
+        Integer integer = list.get(3);
+        assertNotEquals(integer, element);
     }
 
     @Test
@@ -114,7 +124,7 @@ public class DoubleLinkedListTest {
     @Test(expected = NoSuchElementException.class)
     public void clear() throws Exception {
         list.clear();
-        assertTrue(list.size() == 0);
+        assertEquals(list.size(), 0);
         assertNull(list.getFirst());
         assertNull(list.getLast());
     }
@@ -146,7 +156,7 @@ public class DoubleLinkedListTest {
     }
 
     @Test
-    public void isListCircle() throws Exception {
+    public void isListSelfContained() throws Exception {
         DoubleLinkedList<Integer> dList = (DoubleLinkedList<Integer>) list;
         DoubleLinkedList.Node<Integer> firstNode = dList.node(0);
         DoubleLinkedList.Node<Integer> lastNode = dList.node(5);
