@@ -133,8 +133,6 @@ public class DoubleLinkedList<T extends Comparable<T>> implements WeirdList<T> {
     }
 
     private void linkBefore(T t, Node<T> node) {
-        //TODO link as circle
-
         final Node<T> previous = node.previous;
         final Node<T> newNode = new Node<>(previous, t, node);
         node.previous = newNode;
@@ -149,15 +147,15 @@ public class DoubleLinkedList<T extends Comparable<T>> implements WeirdList<T> {
 
     Node<T> node(int index) {
         if (index < (size >> 1)) {
-            Node<T> x = first;
+            Node<T> node = first;
             for (int i = 0; i < index; i++)
-                x = x.next;
-            return x;
+                node = node.next;
+            return node;
         } else {
-            Node<T> x = last;
+            Node<T> node = last;
             for (int i = size - 1; i > index; i--)
-                x = x.previous;
-            return x;
+                node = node.previous;
+            return node;
         }
     }
 
@@ -178,7 +176,7 @@ public class DoubleLinkedList<T extends Comparable<T>> implements WeirdList<T> {
     }
 
     private void checkIndex(int index) {
-        if (index > size() || index <= 0) {
+        if (index > size() || index < 0) {
             throw new IndexOutOfBoundsException("index is not between zero and size of list");
         }
     }
@@ -197,8 +195,10 @@ public class DoubleLinkedList<T extends Comparable<T>> implements WeirdList<T> {
     public void delete(T t) {
         if (t != null) {
             for (Node<T> node = first; node != last; node = node.next) {
-                if (t.equals(node.value))
+                if (t.equals(node.value)) {
                     unlink(node);
+                    return;
+                }
             }
         } else {
             throw new NullPointerException();
@@ -208,7 +208,61 @@ public class DoubleLinkedList<T extends Comparable<T>> implements WeirdList<T> {
     @Override
     public void delete(int index) {
         checkIndex(index);
+        if (index == size()) {
+            unlinkLast();
+            return;
+        }
+        if (index == 0) {
+            unlinkFirst();
+            return;
+        }
         unlink(node(index));
+    }
+
+    private void unlinkFirst() {
+        Node<T> node = this.first;
+        Node<T> next = this.first.next;
+        if (next == first) {
+            last = null;
+            first = null;
+        } else {
+            first = next;
+            last.next = next;
+            next.previous = last;
+        }
+        fillNullNode(node);
+        size--;
+    }
+
+    /**
+     * set nulls to node's fields
+     */
+    private void fillNullNode(Node<T> node) {
+        node.value = null;
+        node.previous = null;
+        node.next = null;
+    }
+
+    private void unlinkLast() {
+        Node<T> node = this.last;
+        Node<T> previous = this.last.previous;
+        if (previous == last) {
+            last = null;
+            first = null;
+        } else {
+            last = previous;
+            first.previous = previous;
+            previous.next = first;
+        }
+    }
+
+    private void unlink(Node<T> node) {
+        Node<T> next = node.next;
+        Node<T> previous = node.previous;
+        previous.next = next;
+        next.previous = previous;
+        fillNullNode(node);
+        size--;
     }
 
     @Override
@@ -258,14 +312,6 @@ public class DoubleLinkedList<T extends Comparable<T>> implements WeirdList<T> {
         if (size < 2)
             return;
         cocktailSort();
-    }
-
-    private void unlink(Node<T> node) {
-        final Node<T> next = node.next;
-        final Node<T> previous = node.previous;
-        previous.next = next;
-        next.previous = previous;
-        size--;
     }
 
     private void cocktailSort() {
@@ -334,11 +380,16 @@ public class DoubleLinkedList<T extends Comparable<T>> implements WeirdList<T> {
 
     @Override
     public String toString() {
-        Node<T> node = this.first;
-        String toString = node.value.toString();
-        for (int i = 0; i < size() - 1; i++) {
-            toString += ", " + node.next.value;
-            node = node.next;
+        String toString = "";
+        if (size() == 0) {
+            toString = "Empty List";
+        } else {
+            Node<T> node = this.first;
+            toString += node.value.toString();
+            for (int i = 0; i < size() - 1; i++) {
+                toString += ", " + node.next.value;
+                node = node.next;
+            }
         }
         return toString;
     }

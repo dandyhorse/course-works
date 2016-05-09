@@ -45,7 +45,7 @@ public class DoubleLinkedListTest {
     public void iterator() throws Exception {
         for (Integer i : list) {
             assertNotNull(i);
-            System.out.println(i.toString());
+            System.out.printf("%s, ", i.toString());
         }
     }
 
@@ -55,12 +55,12 @@ public class DoubleLinkedListTest {
         while (listIterator.hasNext()) {
             Integer next = listIterator.next();
             assertNotNull(next);
-            System.out.println(next);
+            System.out.printf("%d, ", next);
         }
         while (listIterator.hasPrevious()) {
             Integer previous = listIterator.previous();
             assertNotNull(previous);
-            System.out.println(previous);
+            System.out.printf("%d, ", previous);
         }
     }
 
@@ -97,18 +97,47 @@ public class DoubleLinkedListTest {
     @Test
     public void delete() throws Exception {
         list.set(3, element);
+        System.out.println(list);
         assertEquals(list.size(), 5);
         list.delete(element);
+        System.out.println(list);
         assertEquals(list.size(), 4);
         Integer integer = list.get(3);
         assertNotEquals(integer, element);
     }
 
     @Test
+    public void getLastByIndex() throws Exception {
+        Integer last = list.get(5);
+        System.out.println(last);
+        assertEquals(this.last, last);
+    }
+
+    @Test
+    public void getFirstByIndex() throws Exception {
+        Integer first = list.get(0);
+        System.out.println(first);
+        assertEquals(this.first, first);
+    }
+
+    @Test(expected = NoSuchElementException.class)
+    public void deleteAll() throws Exception {
+        System.out.println(list);
+        for (int i = 0; i < 5; i++) {
+            list.delete(0);
+        }
+        System.out.println(list);
+        list.getFirst(); //NoSuchElementException
+    }
+
+
+    @Test
     public void deleteByIndex() throws Exception {
         list.set(3, element);
+        System.out.println(list);
         assertEquals(list.size(), 5);
         list.delete(3);
+        System.out.println(list);
         assertEquals(list.size(), 4);
         Integer integer = list.get(3);
         assertNotEquals(integer, element);
@@ -125,8 +154,7 @@ public class DoubleLinkedListTest {
     public void clear() throws Exception {
         list.clear();
         assertEquals(list.size(), 0);
-        assertNull(list.getFirst());
-        assertNull(list.getLast());
+        assertNull(list.getFirst()); //NoSuchElementException
     }
 
     @Test
