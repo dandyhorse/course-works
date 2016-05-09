@@ -176,8 +176,7 @@ public class DoubleLinkedListTest {
     public void map() throws Exception {
         WeirdFunction<String, Integer> wFunc = Object::toString;
         DoubleLinkedList<String> stringList = list.map(wFunc);
-        assertTrue(stringList.getLast().getClass().equals(String.class));
-        System.out.println(stringList);
+        assertEquals(stringList.getLast().getClass(), String.class);
     }
 
     @Test
