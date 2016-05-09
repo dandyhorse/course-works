@@ -6,6 +6,6 @@ public interface WeirdSorted<T> {
 
     void sort();
 
-    void sort(Comparator<T> comp);
+    void sort(Comparator<? super T> comp);
 
 }

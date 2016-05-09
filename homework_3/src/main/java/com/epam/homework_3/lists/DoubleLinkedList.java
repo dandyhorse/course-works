@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
-public class DoubleLinkedList<T extends Comparable<T>> implements WeirdList<T> {
+public class DoubleLinkedList<T extends Comparable<? super T>> implements WeirdList<T> {
 
     private int size;
     private Node<T> last;
@@ -44,42 +44,57 @@ public class DoubleLinkedList<T extends Comparable<T>> implements WeirdList<T> {
 
     private class JustIterator implements Iterator<T> {
 
-        private int current = 0;
+        int currentIndex;
+        Node<T> currentNode;
+
+        JustIterator() {
+            this.currentIndex = 0;
+            this.currentNode = node(currentIndex);
+        }
 
         @Override
         public boolean hasNext() {
-            return (current != size());
+            return (currentIndex < size);
         }
 
         @Override
         public T next() {
-            return get(current++);
+            Node<T> result = this.currentNode;
+            currentNode = currentNode.next;
+            currentIndex++;
+            return result.value;
         }
 
     }
 
     private class TwoWaysListIterator extends JustIterator implements ListIterator<T> {
 
-        private int current = size();
+        TwoWaysListIterator() {
+            this.currentIndex = size;
+            this.currentNode = node(currentIndex);
+        }
 
         @Override
         public boolean hasPrevious() {
-            return (current != -1);
+            return (currentIndex > 0);
         }
 
         @Override
         public T previous() {
-            return get(current--);
+            Node<T> result = currentNode;
+            currentIndex--;
+            currentNode = result.previous;
+            return result.value;
         }
 
         @Override
         public int nextIndex() {
-            return current + 1;
+            throw new UnsupportedOperationException("nextIndex");
         }
 
         @Override
         public int previousIndex() {
-            return current - 1;
+            throw new UnsupportedOperationException("previousIndex");
         }
 
         @Override
@@ -184,11 +199,8 @@ public class DoubleLinkedList<T extends Comparable<T>> implements WeirdList<T> {
     @Override
     public T get(int index) {
         checkIndex(index);
-        if (size() < 2) {
-            return getFirst();
-        } else {
-            return node(index).value;
-        }
+        return node(index).value;
+
     }
 
     @Override
@@ -347,7 +359,7 @@ public class DoubleLinkedList<T extends Comparable<T>> implements WeirdList<T> {
     }
 
     @Override
-    public void sort(Comparator<T> comp) {
+    public void sort(Comparator<? super T> comp) {
         if (size < 2)
             return;
         if (comp == null)
@@ -355,7 +367,7 @@ public class DoubleLinkedList<T extends Comparable<T>> implements WeirdList<T> {
         cocktailSort(comp);
     }
 
-    private void cocktailSort(Comparator<T> comp) {
+    private void cocktailSort(Comparator<? super T> comp) {
         Node<T> node = this.first;
         int n = size();
         int i, c = 0;

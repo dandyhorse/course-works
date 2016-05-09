@@ -45,18 +45,14 @@ public class DoubleLinkedListTest {
     public void iterator() throws Exception {
         for (Integer i : list) {
             assertNotNull(i);
-            System.out.printf("%s, ", i.toString());
+            System.out.printf("%d, ", i);
         }
     }
 
     @Test
     public void listIterator() throws Exception {
         ListIterator<Integer> listIterator = list.listIterator();
-        while (listIterator.hasNext()) {
-            Integer next = listIterator.next();
-            assertNotNull(next);
-            System.out.printf("%d, ", next);
-        }
+        assertFalse(listIterator.hasNext());
         while (listIterator.hasPrevious()) {
             Integer previous = listIterator.previous();
             assertNotNull(previous);
