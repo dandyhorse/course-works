@@ -38,7 +38,7 @@ public class DoubleLinkedListTest {
         list.add(element);
         assertTrue(list.size() == 6);
         System.out.println(list);
-        assertTrue(element.equals(list.get(6)));
+        assertEquals(element, list.get(6));
     }
 
     @Test
@@ -68,14 +68,14 @@ public class DoubleLinkedListTest {
     public void addByIndex() throws Exception {
         list.add(3, element);
         Integer integer = list.get(3);
-        assertTrue(integer.equals(element));
+        assertEquals(integer, element);
         System.out.println(integer);
     }
 
     @Test
     public void getFirst() throws Exception {
         Integer first = list.getFirst();
-        assertTrue(first.equals(this.first));
+        assertEquals(first, this.first);
         System.out.println(first);
     }
 
@@ -90,8 +90,8 @@ public class DoubleLinkedListTest {
     public void get() throws Exception {
         Integer integer_0 = list.get(0);
         Integer integer_5 = list.get(5);
-        assertTrue(integer_0.equals(first));
-        assertTrue(integer_5.equals(last));
+        assertEquals(integer_0, first);
+        assertEquals(integer_5, last);
     }
 
     @Test
@@ -147,7 +147,7 @@ public class DoubleLinkedListTest {
     public void set() throws Exception {
         list.set(3, element);
         Integer integer = list.get(3);
-        assertTrue(integer.equals(element));
+        assertEquals(integer, element);
     }
 
     @Test(expected = NoSuchElementException.class)
@@ -163,7 +163,6 @@ public class DoubleLinkedListTest {
         for (int i = 0; i < list.size() - 1; i++) {
             assertTrue(list.get(i) < list.get(i + 1));
         }
-        System.out.println(list);
     }
 
     @Test
@@ -172,7 +171,9 @@ public class DoubleLinkedListTest {
             Integer i = o1 * (-1);
             return (i).compareTo(o2 * -1);
         });
-        System.out.println(list);
+        for (int i = 0; i < list.size() - 1; i++) {
+            assertTrue(list.get(i) > list.get(i + 1));
+        }
     }
 
     @Test
@@ -189,7 +190,7 @@ public class DoubleLinkedListTest {
         DoubleLinkedList.Node<Integer> firstNode = dList.node(0);
         DoubleLinkedList.Node<Integer> lastNode = dList.node(5);
 
-        assertTrue(firstNode.value.equals(lastNode.next.value));
-        assertTrue(firstNode.previous.value.equals(lastNode.value));
+        assertEquals(firstNode.value, lastNode.next.value);
+        assertEquals(firstNode.previous.value, lastNode.value);
     }
 }
