@@ -54,7 +54,7 @@ public class CocktailAndInterpolation extends AbstractSortAndSearch {
 //        return lowIndex + ((element - array[lowIndex]) * (highIndex - lowIndex)) / (array[highIndex] - array[lowIndex]);
     }
 
-    private void coctailSort(int[] array) {
+    private void cocktailSort(int[] array) {
         int n = array.length;
         int i, c = 0;
         do {

@@ -1,5 +1,11 @@
 package com.epam.homework_3.lists;
 
-public interface Sorted {
+import java.util.Comparator;
+
+public interface Sorted<T> {
+
     void sort();
+
+    void sort(Comparator<T> comp);
+
 }
