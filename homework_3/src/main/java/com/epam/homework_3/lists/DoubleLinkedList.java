@@ -44,8 +44,8 @@ public class DoubleLinkedList<T extends Comparable<? super T>> implements WeirdL
 
     private class JustIterator implements Iterator<T> {
 
-        int currentIndex;
-        Node<T> currentNode;
+        protected int currentIndex;
+        protected Node<T> currentNode;
 
         JustIterator() {
             this.currentIndex = 0;
@@ -266,6 +266,8 @@ public class DoubleLinkedList<T extends Comparable<? super T>> implements WeirdL
             first.previous = previous;
             previous.next = first;
         }
+        fillNullNode(node);
+        size--;
     }
 
     private void unlink(Node<T> node) {
