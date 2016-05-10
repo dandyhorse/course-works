@@ -281,21 +281,16 @@ public class DoubleLinkedList<T extends Comparable<? super T>> implements WeirdL
 
     @Override
     public void set(int index, T t) {
-        if (index < size() && index > 0) {
-            Node<T> node = node(index);
-            node.value = t;
-        } else {
-            throw new NoSuchElementException();
-        }
+        checkIndex(index);
+        Node<T> node = node(index);
+        node.value = t;
     }
 
     @Override
     public void clear() {
         for (Node<T> node = first; node != null; ) {
             Node<T> next = node.next;
-            node.value = null;
-            node.next = null;
-            node.value = null;
+            fillNullNode(node);
             node = next;
         }
         first = last = null;
