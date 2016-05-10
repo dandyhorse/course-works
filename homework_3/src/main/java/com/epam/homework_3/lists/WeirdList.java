@@ -26,6 +26,6 @@ public interface WeirdList<T> extends WeirdSorted<T>, Iterable<T>, Cloneable {
 
     int size();
 
-    <R extends Comparable<R>> DoubleLinkedList<R> map(WeirdFunction<? extends R, ? super T> function);
+    <R extends Comparable<? super R>> DoubleLinkedList<R> map(WeirdFunction<? extends R, ? super T> function);
 
 }

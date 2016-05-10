@@ -308,7 +308,7 @@ public class DoubleLinkedList<T extends Comparable<? super T>> implements WeirdL
     }
 
     @Override
-    public <R extends Comparable<R>> DoubleLinkedList<R> map(WeirdFunction<? extends R, ? super T> function) {
+    public <R extends Comparable<? super R>> DoubleLinkedList<R> map(WeirdFunction<? extends R, ? super T> function) {
         if (function == null)
             throw new NullPointerException();
         DoubleLinkedList<R> newList = new DoubleLinkedList<>();

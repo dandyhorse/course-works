@@ -2,9 +2,12 @@ package com.epam.homework_3.lists;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
+import java.util.Random;
 
 import static org.junit.Assert.*;
 
@@ -13,6 +16,7 @@ import static org.junit.Assert.*;
  */
 public class DoubleLinkedListTest {
 
+    private static final Logger logger = LoggerFactory.getLogger(DoubleLinkedListTest.class);
     private WeirdList<Integer> list;
     private Integer first = 2;
     private Integer last = 8;
@@ -22,9 +26,9 @@ public class DoubleLinkedListTest {
     public void setUp() throws Exception {
         list = new DoubleLinkedList<>();
         list.add(first);
-        list.add(1);
-        list.add(3);
-        list.add(7);
+        list.add(new Random().nextInt(20));
+        list.add(new Random().nextInt(20));
+        list.add(new Random().nextInt(20));
         list.add(last);
     }
 
@@ -37,49 +41,50 @@ public class DoubleLinkedListTest {
     public void add() throws Exception {
         list.add(element);
         assertTrue(list.size() == 6);
-        System.out.println(list);
         assertEquals(element, list.get(6));
+        logger.info("test add() - success\n{}. With adding {}", list, element);
     }
 
     @Test
     public void iterator() throws Exception {
+        int j = 0;
         for (Integer i : list) {
             assertNotNull(i);
-            System.out.printf("%d, ", i);
+            assertEquals(i, list.get(j++));
         }
+        logger.info("test iterator() - success");
     }
 
     @Test
     public void listIterator() throws Exception {
+        int j = list.size() - 1;
         ListIterator<Integer> listIterator = list.listIterator();
         assertFalse(listIterator.hasNext());
         while (listIterator.hasPrevious()) {
             Integer previous = listIterator.previous();
             assertNotNull(previous);
-            System.out.printf("%d, ", previous);
+            assertEquals(previous, list.get(j--));
         }
+        logger.info("test listIterator()) - success");
     }
 
     @Test
     public void addByIndex() throws Exception {
         list.add(3, element);
-        Integer integer = list.get(3);
-        assertEquals(integer, element);
-        System.out.println(integer);
+        Integer addedElement = list.get(3);
+        assertEquals(addedElement, element);
     }
 
     @Test
     public void getFirst() throws Exception {
         Integer first = list.getFirst();
         assertEquals(first, this.first);
-        System.out.println(first);
     }
 
     @Test
     public void getLast() throws Exception {
         Integer last = list.getLast();
         assertTrue(last.equals(this.last));
-        System.out.println(last);
     }
 
     @Test
@@ -93,26 +98,22 @@ public class DoubleLinkedListTest {
     @Test
     public void delete() throws Exception {
         list.set(3, element);
-        System.out.println(list);
         assertEquals(list.size(), 5);
         list.delete(element);
-        System.out.println(list);
         assertEquals(list.size(), 4);
-        Integer integer = list.get(3);
-        assertNotEquals(integer, element);
+        Integer notThatElement = list.get(3);
+        assertNotEquals(notThatElement, element);
     }
 
     @Test
     public void getLastByIndex() throws Exception {
         Integer last = list.get(5);
-        System.out.println(last);
         assertEquals(this.last, last);
     }
 
     @Test
     public void getFirstByIndex() throws Exception {
         Integer first = list.get(0);
-        System.out.println(first);
         assertEquals(this.first, first);
     }
 
@@ -124,19 +125,18 @@ public class DoubleLinkedListTest {
         }
         System.out.println(list);
         list.getFirst(); //NoSuchElementException
+
     }
 
 
     @Test
     public void deleteByIndex() throws Exception {
         list.set(3, element);
-        System.out.println(list);
         assertEquals(list.size(), 5);
         list.delete(3);
-        System.out.println(list);
         assertEquals(list.size(), 4);
-        Integer integer = list.get(3);
-        assertNotEquals(integer, element);
+        Integer notThatElement = list.get(3);
+        assertNotEquals(notThatElement, element);
     }
 
     @Test
@@ -177,6 +177,9 @@ public class DoubleLinkedListTest {
         WeirdFunction<String, Integer> wFunc = Object::toString;
         DoubleLinkedList<String> stringList = list.map(wFunc);
         assertEquals(stringList.getLast().getClass(), String.class);
+        assertEquals(stringList.getLast(), list.getLast().toString());
+        assertEquals(stringList.getFirst(), list.getFirst().toString());
+        assertEquals(stringList.size(), list.size());
     }
 
     @Test
