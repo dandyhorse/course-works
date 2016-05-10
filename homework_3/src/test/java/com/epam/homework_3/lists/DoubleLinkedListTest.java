@@ -157,7 +157,7 @@ public class DoubleLinkedListTest {
     public void sort() throws Exception {
         list.sort();
         for (int i = 0; i < list.size() - 1; i++) {
-            assertTrue(list.get(i) < list.get(i + 1));
+            assertTrue(list.get(i) <= list.get(i + 1));
         }
     }
 
