@@ -6,7 +6,7 @@ public class CocktailAndInterpolation extends AbstractSortAndSearch {
     public void sort(int[] array) {
         if ((array == null) || (array.length < 2))
             return;
-        coctailSort(array);
+        cocktailSort(array);
     }
 
     @Override
