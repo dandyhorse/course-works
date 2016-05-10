@@ -65,6 +65,11 @@ public class DoubleLinkedList<T extends Comparable<? super T>> implements WeirdL
             return result.value;
         }
 
+        @Override
+        public void remove() {
+            throw new UnsupportedOperationException("remove");
+        }
+
     }
 
     private class TwoWaysListIterator extends JustIterator implements ListIterator<T> {
@@ -95,11 +100,6 @@ public class DoubleLinkedList<T extends Comparable<? super T>> implements WeirdL
         @Override
         public int previousIndex() {
             throw new UnsupportedOperationException("previousIndex");
-        }
-
-        @Override
-        public void remove() {
-            throw new UnsupportedOperationException("remove");
         }
 
         @Override
@@ -312,11 +312,9 @@ public class DoubleLinkedList<T extends Comparable<? super T>> implements WeirdL
         if (function == null)
             throw new NullPointerException();
         DoubleLinkedList<R> newList = new DoubleLinkedList<>();
-        Node<T> node = this.first;
-        for (int i = 0; i < size(); i++) {
-            R r = function.apply(node.value);
+        for (T t : this) {
+            R r = function.apply(t);
             newList.add(r);
-            node = node.next;
         }
         return newList;
     }
