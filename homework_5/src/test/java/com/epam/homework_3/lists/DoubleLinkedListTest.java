@@ -6,13 +6,11 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ConcurrentModificationException;
 import java.util.Random;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by User on 09.05.2016.
- */
 public class DoubleLinkedListTest {
 
     private static final Logger logger = LoggerFactory.getLogger(DoubleLinkedListTest.class);
@@ -26,7 +24,7 @@ public class DoubleLinkedListTest {
     }
 
     @Test
-    public void map() throws Exception {
+    public void mapTest() throws Exception {
         DoubleLinkedList<String> stringList = list.map(Object::toString);
         assertEquals(stringList.getLast().getClass(), String.class);
         assertEquals(stringList.getLast(), list.getLast().toString());
@@ -34,4 +32,16 @@ public class DoubleLinkedListTest {
         assertEquals(stringList.size(), list.size());
     }
 
+    //    ConcurrentModification tests
+    @Test(expected = ConcurrentModificationException.class)
+    public void test() throws Exception {
+
+    }
+
+    //    ArrayIndexOutOfBoundsException tests
+
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    public void ttest() throws Exception {
+
+    }
 }
