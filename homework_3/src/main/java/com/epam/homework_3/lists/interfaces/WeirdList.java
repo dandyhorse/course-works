@@ -1,7 +1,5 @@
 package com.epam.homework_3.lists.interfaces;
 
-import com.epam.homework_3.lists.DoubleLinkedList;
-
 import java.util.ListIterator;
 
 public interface WeirdList<T> extends WeirdSorted<T>, Iterable<T>, Cloneable {
@@ -28,6 +26,6 @@ public interface WeirdList<T> extends WeirdSorted<T>, Iterable<T>, Cloneable {
 
     int size();
 
-    <R extends Comparable<? super R>> DoubleLinkedList<R> map(WeirdFunction<? extends R, ? super T> function);
+    <R extends Comparable<? super R>> WeirdList<R> map(WeirdFunction<? super T, ? extends R> function);
 
 }

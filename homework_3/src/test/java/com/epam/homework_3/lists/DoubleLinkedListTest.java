@@ -1,19 +1,18 @@
 package com.epam.homework_3.lists;
 
+import com.epam.homework_3.lists.interfaces.WeirdList;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ConcurrentModificationException;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 import java.util.Random;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by User on 09.05.2016.
- */
 public class DoubleLinkedListTest {
 
     private static final Logger logger = LoggerFactory.getLogger(DoubleLinkedListTest.class);
@@ -41,7 +40,7 @@ public class DoubleLinkedListTest {
     public void add() throws Exception {
         list.add(element);
         assertTrue(list.size() == 6);
-        assertEquals(element, list.get(6));
+        assertEquals(element, list.get(5));
         logger.info("test add() - success\n{}. With adding {}", list, element);
     }
 
@@ -90,9 +89,9 @@ public class DoubleLinkedListTest {
     @Test
     public void get() throws Exception {
         Integer integer_0 = list.get(0);
-        Integer integer_5 = list.get(5);
+        Integer integer_4 = list.get(4);
         assertEquals(integer_0, first);
-        assertEquals(integer_5, last);
+        assertEquals(integer_4, last);
     }
 
     @Test
@@ -107,7 +106,7 @@ public class DoubleLinkedListTest {
 
     @Test
     public void getLastByIndex() throws Exception {
-        Integer last = list.get(5);
+        Integer last = list.get(4);
         assertEquals(this.last, last);
     }
 
@@ -127,7 +126,6 @@ public class DoubleLinkedListTest {
         list.getFirst(); //NoSuchElementException
 
     }
-
 
     @Test
     public void deleteByIndex() throws Exception {
@@ -150,7 +148,7 @@ public class DoubleLinkedListTest {
     public void clear() throws Exception {
         list.clear();
         assertEquals(list.size(), 0);
-        assertNull(list.getFirst()); //NoSuchElementException
+        list.getFirst(); //NoSuchElementException
     }
 
     @Test
@@ -173,16 +171,6 @@ public class DoubleLinkedListTest {
     }
 
     @Test
-    public void map() throws Exception {
-        WeirdFunction<String, Integer> wFunc = Object::toString;
-        DoubleLinkedList<String> stringList = list.map(wFunc);
-        assertEquals(stringList.getLast().getClass(), String.class);
-        assertEquals(stringList.getLast(), list.getLast().toString());
-        assertEquals(stringList.getFirst(), list.getFirst().toString());
-        assertEquals(stringList.size(), list.size());
-    }
-
-    @Test
     public void isListSelfContained() throws Exception {
         DoubleLinkedList<Integer> dList = (DoubleLinkedList<Integer>) list;
         DoubleLinkedList.Node<Integer> firstNode = dList.node(0);
@@ -190,5 +178,35 @@ public class DoubleLinkedListTest {
 
         assertEquals(firstNode.value, lastNode.next.value);
         assertEquals(firstNode.previous.value, lastNode.value);
+    }
+
+    @Test
+    public void mapTest() throws Exception {
+        WeirdList<String> stringList = list.map(Object::toString);
+        assertEquals(stringList.getLast().getClass(), String.class);
+        assertEquals(stringList.getLast(), list.getLast().toString());
+        assertEquals(stringList.getFirst(), list.getFirst().toString());
+        assertEquals(stringList.size(), list.size());
+    }
+
+    //    ConcurrentModification tests
+    @Test(expected = ConcurrentModificationException.class)
+    public void modInForEach() throws Exception {
+        for (Integer i : list) {
+            System.out.println(i);
+            list.delete(0);
+        }
+    }
+
+    //    ArrayIndexOutOfBoundsException tests
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void indexLessThenZero() throws Exception {
+        list.delete(-1);
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void indexEqualSize() throws Exception {
+        list.get(list.size());
     }
 }

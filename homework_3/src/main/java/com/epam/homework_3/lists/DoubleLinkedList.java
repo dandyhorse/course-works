@@ -1,15 +1,16 @@
 package com.epam.homework_3.lists;
 
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.ListIterator;
-import java.util.NoSuchElementException;
+import com.epam.homework_3.lists.interfaces.WeirdFunction;
+import com.epam.homework_3.lists.interfaces.WeirdList;
+
+import java.util.*;
 
 public class DoubleLinkedList<T extends Comparable<? super T>> implements WeirdList<T> {
 
     private int size;
     private Node<T> last;
     private Node<T> first;
+    private int modCount;
 
     /**
      * It is not private only for test that DoubleLinkedList is self-contained
@@ -44,12 +45,13 @@ public class DoubleLinkedList<T extends Comparable<? super T>> implements WeirdL
 
     private class JustIterator implements Iterator<T> {
 
-        protected int currentIndex;
-        protected Node<T> currentNode;
+        int currentIndex = 0;
+        Node<T> currentNode;
+        int expectedModCount;
 
         JustIterator() {
-            this.currentIndex = 0;
             this.currentNode = node(currentIndex);
+            this.expectedModCount = modCount;
         }
 
         @Override
@@ -59,6 +61,7 @@ public class DoubleLinkedList<T extends Comparable<? super T>> implements WeirdL
 
         @Override
         public T next() {
+            checkModification();
             Node<T> result = this.currentNode;
             currentNode = currentNode.next;
             currentIndex++;
@@ -70,6 +73,10 @@ public class DoubleLinkedList<T extends Comparable<? super T>> implements WeirdL
             throw new UnsupportedOperationException("remove");
         }
 
+        void checkModification() {
+            if (expectedModCount != modCount)
+                throw new ConcurrentModificationException();
+        }
     }
 
     private class TwoWaysListIterator extends JustIterator implements ListIterator<T> {
@@ -81,11 +88,12 @@ public class DoubleLinkedList<T extends Comparable<? super T>> implements WeirdL
 
         @Override
         public boolean hasPrevious() {
-            return (currentIndex > 0);
+            return (currentIndex != 0);
         }
 
         @Override
         public T previous() {
+            checkModification();
             Node<T> result = currentNode;
             currentIndex--;
             currentNode = result.previous;
@@ -94,12 +102,12 @@ public class DoubleLinkedList<T extends Comparable<? super T>> implements WeirdL
 
         @Override
         public int nextIndex() {
-            throw new UnsupportedOperationException("nextIndex");
+            return currentIndex;
         }
 
         @Override
         public int previousIndex() {
-            throw new UnsupportedOperationException("previousIndex");
+            return currentIndex - 1;
         }
 
         @Override
@@ -126,6 +134,7 @@ public class DoubleLinkedList<T extends Comparable<? super T>> implements WeirdL
         last = newNode;
         first = newNode;
         size++;
+        modCount++;
     }
 
     private void linkLast(T t) {
@@ -135,6 +144,7 @@ public class DoubleLinkedList<T extends Comparable<? super T>> implements WeirdL
         last.next = newNode;
         first.previous = newNode;
         size++;
+        modCount++;
     }
 
     @Override
@@ -157,7 +167,7 @@ public class DoubleLinkedList<T extends Comparable<? super T>> implements WeirdL
         else
             previous.next = newNode;
         size++;
-
+        modCount++;
     }
 
     Node<T> node(int index) {
@@ -191,7 +201,7 @@ public class DoubleLinkedList<T extends Comparable<? super T>> implements WeirdL
     }
 
     private void checkIndex(int index) {
-        if (index > size() || index < 0) {
+        if (index >= size() || index < 0) {
             throw new IndexOutOfBoundsException("index is not between zero and size of list");
         }
     }
@@ -200,7 +210,6 @@ public class DoubleLinkedList<T extends Comparable<? super T>> implements WeirdL
     public T get(int index) {
         checkIndex(index);
         return node(index).value;
-
     }
 
     @Override
@@ -244,6 +253,7 @@ public class DoubleLinkedList<T extends Comparable<? super T>> implements WeirdL
         }
         fillNullNode(node);
         size--;
+        modCount++;
     }
 
     /**
@@ -253,6 +263,7 @@ public class DoubleLinkedList<T extends Comparable<? super T>> implements WeirdL
         node.value = null;
         node.previous = null;
         node.next = null;
+        modCount++;
     }
 
     private void unlinkLast() {
@@ -268,6 +279,7 @@ public class DoubleLinkedList<T extends Comparable<? super T>> implements WeirdL
         }
         fillNullNode(node);
         size--;
+        modCount++;
     }
 
     private void unlink(Node<T> node) {
@@ -277,6 +289,7 @@ public class DoubleLinkedList<T extends Comparable<? super T>> implements WeirdL
         next.previous = previous;
         fillNullNode(node);
         size--;
+        modCount++;
     }
 
     @Override
@@ -295,6 +308,7 @@ public class DoubleLinkedList<T extends Comparable<? super T>> implements WeirdL
         }
         first = last = null;
         size = 0;
+        modCount++;
     }
 
     @Override
@@ -303,7 +317,7 @@ public class DoubleLinkedList<T extends Comparable<? super T>> implements WeirdL
     }
 
     @Override
-    public <R extends Comparable<? super R>> DoubleLinkedList<R> map(WeirdFunction<? extends R, ? super T> function) {
+    public <R extends Comparable<? super R>> DoubleLinkedList<R> map(WeirdFunction<? super T, ? extends R> function) {
         if (function == null)
             throw new NullPointerException();
         DoubleLinkedList<R> newList = new DoubleLinkedList<>();
@@ -342,6 +356,7 @@ public class DoubleLinkedList<T extends Comparable<? super T>> implements WeirdL
             }
             c++;
         } while (n != 0 && c != size() - 2);
+        modCount++;
     }
 
     /**
@@ -383,6 +398,7 @@ public class DoubleLinkedList<T extends Comparable<? super T>> implements WeirdL
             }
             c++;
         } while (n != 0 && c != size() - 2);
+        modCount++;
     }
 
     @Override
