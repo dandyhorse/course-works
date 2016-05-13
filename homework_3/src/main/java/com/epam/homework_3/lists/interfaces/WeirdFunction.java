@@ -1,4 +1,4 @@
-package com.epam.homework_3.lists;
+package com.epam.homework_3.lists.interfaces;
 
 /**
  * Created by User on 09.05.2016.

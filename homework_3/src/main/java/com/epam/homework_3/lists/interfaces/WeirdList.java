@@ -1,4 +1,6 @@
-package com.epam.homework_3.lists;
+package com.epam.homework_3.lists.interfaces;
+
+import com.epam.homework_3.lists.DoubleLinkedList;
 
 import java.util.ListIterator;
 

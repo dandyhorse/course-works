@@ -1,4 +1,4 @@
-package com.epam.homework_3.lists;
+package com.epam.homework_3.lists.interfaces;
 
 import java.util.Comparator;
 
