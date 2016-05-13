@@ -191,10 +191,16 @@ public class DoubleLinkedListTest {
 
     //    ConcurrentModification tests
     @Test(expected = ConcurrentModificationException.class)
-    public void modInForEach() throws Exception {
+    public void deleteWhileForEach() throws Exception {
         for (Integer i : list) {
-            System.out.println(i);
             list.delete(0);
+        }
+    }
+
+    @Test(expected = ConcurrentModificationException.class)
+    public void addWhileForEach() throws Exception {
+        for (Integer i : list) {
+            list.add(555);
         }
     }
 
