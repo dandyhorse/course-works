@@ -28,13 +28,18 @@ public class CacheInjectorImpl implements Injector {
 
     private Consumer<Field> setCacheInto(Object toObject, ICache iCache) {
         return field -> {
-            field.setAccessible(true);
             try {
-                field.set(toObject, iCache);
+                if (field.isAccessible()) {
+                    field.set(toObject, iCache);
+                } else {
+                    field.setAccessible(true);
+                    field.set(toObject, iCache);
+                    field.setAccessible(false);
+
+                }
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
-            field.setAccessible(false);
         };
     }
 
