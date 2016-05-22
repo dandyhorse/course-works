@@ -5,12 +5,20 @@ import com.epam.homework_6_1.caches.interfaces.ICache;
 
 public class ParentConsumer extends SuperParentConsumer {
 
-    @InjectCache(name = "emptyCache")
-    private ICache emptyCache;
+    @InjectCache(name = "superCache")
+    private ICache parentCache;
 
     @InjectCache(name = "superCache")
     protected ICache cache;
 
     private String message = "example text";
+
+    public ICache getParentCache() {
+        return this.parentCache;
+    }
+
+    public ICache getCache() {
+        return this.cache;
+    }
 
 }

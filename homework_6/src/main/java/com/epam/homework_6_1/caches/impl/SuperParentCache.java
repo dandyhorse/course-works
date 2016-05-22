@@ -5,11 +5,11 @@ import com.epam.homework_6_1.caches.interfaces.ICache;
 
 import java.util.HashMap;
 
-@Cache(name = "emptyCache")
-public class EmptyCache implements ICache {
+@Cache(name = "superParentCache")
+public class SuperParentCache implements ICache {
     private HashMap<Integer, String> cache;
 
-    public EmptyCache() {
+    public SuperParentCache() {
         this.cache = new HashMap<>();
     }
 

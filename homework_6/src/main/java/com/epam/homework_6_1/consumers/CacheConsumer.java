@@ -10,4 +10,8 @@ public class CacheConsumer extends ParentConsumer {
 
     private Integer integer;
 
+    public ICache getCache() {
+        return this.cache;
+    }
+
 }

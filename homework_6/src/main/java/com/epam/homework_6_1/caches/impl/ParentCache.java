@@ -6,10 +6,10 @@ import com.epam.homework_6_1.caches.interfaces.ICache;
 import java.util.HashMap;
 
 @Cache(name = "superCache")
-public class SuperCache implements ICache {
+public class ParentCache implements ICache {
     private HashMap<Integer, String> cache;
 
-    public SuperCache() {
+    public ParentCache() {
         cache = new HashMap<>();
     }
 

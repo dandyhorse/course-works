@@ -1,10 +1,10 @@
 package com.epam.homework_6_1;
 
 import com.epam.homework_6_1.analyzers.CacheAnnotationAnalyzer;
-import com.epam.homework_6_1.caches.impl.EmptyCache;
+import com.epam.homework_6_1.caches.impl.SuperParentCache;
 import com.epam.homework_6_1.caches.CachePool;
 import com.epam.homework_6_1.caches.impl.SubCache;
-import com.epam.homework_6_1.caches.impl.SuperCache;
+import com.epam.homework_6_1.caches.impl.ParentCache;
 import com.epam.homework_6_1.caches.interfaces.ICache;
 import com.epam.homework_6_1.caches.interfaces.Pool;
 import com.epam.homework_6_1.consumers.CacheConsumer;
@@ -24,9 +24,9 @@ public class Runner {
     public static void run() {
         Pool<ICache> pool = CachePool.getInstance();
         //create caches
-        pool.addCache(EmptyCache::new, () -> CacheAnnotationAnalyzer.analyseCacheName(EmptyCache.class));
+        pool.addCache(SuperParentCache::new, () -> CacheAnnotationAnalyzer.analyseCacheName(SuperParentCache.class));
         pool.addCache(getCacheSupplier(), () -> CacheAnnotationAnalyzer.analyseCacheName(SubCache.class));
-        pool.addCache(SuperCache::new, () -> CacheAnnotationAnalyzer.analyseCacheName(SuperCache.class));
+        pool.addCache(ParentCache::new, () -> CacheAnnotationAnalyzer.analyseCacheName(ParentCache.class));
 
         //create consumers of a cache
         CacheConsumer consumer = new CacheConsumer();
@@ -34,7 +34,9 @@ public class Runner {
         //inject from Pool
         Injector injector = new CacheInjectorImpl();
         injector.inject(consumer);
-        System.out.println(consumer.getEmptyCache());
+
+        System.out.println(consumer.getSuperParentCache());
+        System.out.println(consumer.getParentCache());
         System.out.println(consumer.getCache());
     }
 

@@ -5,17 +5,17 @@ import com.epam.homework_6_1.caches.interfaces.ICache;
 
 public class SuperParentConsumer {
 
-    @InjectCache(name = "emptyCache")
-    private ICache emptyCache;
+    @InjectCache(name = "superParentCache")
+    public ICache superParentCache;
 
-    @InjectCache(name = "emptyCache")
-    public ICache cache;
+    @InjectCache(name = "superParentCache")
+    ICache cache;
 
-    public ICache getEmptyCache() {
-        return emptyCache;
+    public ICache getSuperParentCache() {
+        return this.superParentCache;
     }
 
     public ICache getCache() {
-        return cache;
+        return this.cache;
     }
 }
