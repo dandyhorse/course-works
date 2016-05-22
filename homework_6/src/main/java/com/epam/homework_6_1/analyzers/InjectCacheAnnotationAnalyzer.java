@@ -1,10 +1,12 @@
 package com.epam.homework_6_1.analyzers;
+/*if superclass has local/protected/public fields with the same field name
+that subclass has - should not to init superclass fields
+*/
 
 import com.epam.homework_6_1.caches.annotations.InjectCache;
 import com.epam.homework_6_1.exceptions.AnaliseException;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -48,10 +50,6 @@ public class InjectCacheAnnotationAnalyzer {
     }
 
     public static Set<Field> analyseInjectCacheFields(Object toObject, String annotationName) {
-        /*TODO
-        if superclass has local/protected/public fields with the same field name that subclass has
-         - don't init superclass fields
-         */
         Set<Field> allFieldsSet = new HashSet<>();
         setAllFieldsInMap(toObject, allFieldsSet);
         Stream<Field> fieldStream = allFieldsSet.stream().filter(field -> {
@@ -59,7 +57,6 @@ public class InjectCacheAnnotationAnalyzer {
             return (annotation != null) && (annotation.name().equals(annotationName));
         });
         return fieldStream.collect(Collectors.toSet());
-
     }
 
     private static void setAllFieldsInMap(Object toObject, Set<Field> map) {

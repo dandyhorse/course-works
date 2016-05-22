@@ -19,7 +19,6 @@ public class CacheInjectorImpl implements Injector {
             Optional<ICache> cache = fromPool.getCache(annotationName);
             cache.ifPresent(iCache -> injectCache(toObject, iCache, annotationName));
         });
-
     }
 
     private void injectCache(Object toObject, ICache iCache, String annotationName) {

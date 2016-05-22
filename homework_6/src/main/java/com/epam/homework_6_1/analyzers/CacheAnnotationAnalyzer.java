@@ -4,8 +4,6 @@ import com.epam.homework_6_1.caches.annotations.Cache;
 import com.epam.homework_6_1.caches.interfaces.ICache;
 import com.epam.homework_6_1.exceptions.AnaliseException;
 
-import java.util.NoSuchElementException;
-
 public class CacheAnnotationAnalyzer {
 
     public static String analyseCacheName(Class<? extends ICache> clazz) {

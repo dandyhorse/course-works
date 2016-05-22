@@ -5,7 +5,6 @@ import com.epam.homework_6_1.caches.interfaces.Pool;
 import com.epam.homework_6_1.exceptions.PoolException;
 
 import java.util.HashMap;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.function.Supplier;
 
