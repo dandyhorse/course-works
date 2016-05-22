@@ -1,6 +1,7 @@
 package com.epam.homework_6_1.analyzers;
 
 import com.epam.homework_6_1.consumers.CacheConsumer;
+import com.epam.homework_6_1.exceptions.AnaliseException;
 import org.junit.Test;
 
 import java.util.NoSuchElementException;
@@ -14,11 +15,11 @@ public class InjectCacheAnnotationAnalyzerTest {
     public void analyseInjectCacheNames() throws Exception {
         CacheConsumer consumer = new CacheConsumer();
         Set<String> nameSet = InjectCacheAnnotationAnalyzer.analyseInjectCacheNames(consumer);
-        assertNotNull(nameSet);
+        assertEquals(nameSet.size(), 3);
         System.out.println(nameSet);
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test(expected = AnaliseException.class)
     public void testNoAnnotatedFields() throws Exception {
         Object obj = new Object();
         InjectCacheAnnotationAnalyzer.analyseInjectCacheNames(obj);

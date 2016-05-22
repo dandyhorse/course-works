@@ -3,6 +3,7 @@ package com.epam.homework_6_1.caches;
 import com.epam.homework_6_1.caches.impl.SubCache;
 import com.epam.homework_6_1.caches.interfaces.ICache;
 import com.epam.homework_6_1.caches.interfaces.Pool;
+import com.epam.homework_6_1.exceptions.PoolException;
 import org.junit.Test;
 
 import java.util.NoSuchElementException;
@@ -20,7 +21,7 @@ public class CachePoolTest {
     public void addCache() throws Exception {
         try {
             cachePool.getCache(FIRST_TEST_NAME);
-        } catch (Exception e) {
+        } catch (PoolException e) {
             System.out.printf("proper exception: " + e.getMessage());
         }
         cachePool.addCache(SubCache::new, () -> FIRST_TEST_NAME);
@@ -37,7 +38,7 @@ public class CachePoolTest {
         assertEquals(cache.get().getClass(), SubCache.class);
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test(expected = PoolException.class)
     public void clearCaches() throws Exception {
         cachePool.addCache(SubCache::new, () -> FIRST_TEST_NAME);
         cachePool.addCache(SubCache::new, () -> SECOND_TEST_NAME);

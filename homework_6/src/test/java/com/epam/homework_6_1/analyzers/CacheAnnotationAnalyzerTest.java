@@ -2,6 +2,7 @@ package com.epam.homework_6_1.analyzers;
 
 import com.epam.homework_6_1.caches.annotations.Cache;
 import com.epam.homework_6_1.caches.interfaces.ICache;
+import com.epam.homework_6_1.exceptions.AnaliseException;
 import org.junit.Test;
 
 import java.util.NoSuchElementException;
@@ -61,13 +62,13 @@ public class CacheAnnotationAnalyzerTest {
         assertEquals(annotatedName, "test");
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = AnaliseException.class)
     public void testEmptyName() throws Exception {
         ICache cache = new EmptyNameCache();
         CacheAnnotationAnalyzer.analyseCacheName(cache.getClass());
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test(expected = AnaliseException.class)
     public void testAbsentAnnotation() throws Exception {
         ICache cache = new AbsentAnnotationCache();
         CacheAnnotationAnalyzer.analyseCacheName(cache.getClass());
