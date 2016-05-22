@@ -1,6 +1,7 @@
 package com.epam.homework_6_1.analyzers;
 
 import com.epam.homework_6_1.caches.annotations.InjectCache;
+import com.epam.homework_6_1.exceptions.AnaliseException;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -23,7 +24,7 @@ public class InjectCacheAnnotationAnalyzer {
 
     private static void checkSetOfNames(HashSet<String> injectCacheNames) {
         if (injectCacheNames.isEmpty()) {
-            throw new NoSuchElementException("There is no field that has at least one InjectCache annotation");
+            throw new AnaliseException("There is no field that has at least one InjectCache annotation");
         }
     }
 
@@ -40,7 +41,7 @@ public class InjectCacheAnnotationAnalyzer {
 
     private static void checkEmptyName(String name, Field field) {
         if (name == null || name.equals("")) {
-            throw new NullPointerException("At " + field.getName() +
+            throw new AnaliseException("At " + field.getName() +
                     "of " + field.getClass().getName() +
                     " declared " + InjectCache.class.getName() + " is empty");
         }
@@ -56,13 +57,9 @@ public class InjectCacheAnnotationAnalyzer {
         Stream<Field> fieldStream = allFieldsSet.stream().filter(field -> {
             InjectCache annotation = field.getDeclaredAnnotation(InjectCache.class);
             return (annotation != null) && (annotation.name().equals(annotationName));
-        }).filter(InjectCacheAnnotationAnalyzer::isExistFieldPrivate);
+        });
         return fieldStream.collect(Collectors.toSet());
 
-    }
-
-    private static boolean isExistFieldPrivate(Field field) {
-        return Modifier.isPrivate(field.getModifiers());
     }
 
     private static void setAllFieldsInMap(Object toObject, Set<Field> map) {

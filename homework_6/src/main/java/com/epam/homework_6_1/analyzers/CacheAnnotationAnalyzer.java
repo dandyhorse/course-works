@@ -2,6 +2,7 @@ package com.epam.homework_6_1.analyzers;
 
 import com.epam.homework_6_1.caches.annotations.Cache;
 import com.epam.homework_6_1.caches.interfaces.ICache;
+import com.epam.homework_6_1.exceptions.AnaliseException;
 
 import java.util.NoSuchElementException;
 
@@ -17,7 +18,7 @@ public class CacheAnnotationAnalyzer {
 
     private static void checkAbsentAnnotation(Class<? extends ICache> clazz, Cache cacheAnnotation) {
         if (cacheAnnotation == null) {
-            throw new NoSuchElementException(clazz.getSimpleName() +
+            throw new  AnaliseException(clazz.getSimpleName() +
                     ".class is not annotated with " +
                     Cache.class.getName());
         }
@@ -25,7 +26,7 @@ public class CacheAnnotationAnalyzer {
 
     private static void checkEmptyName(Class<? extends ICache> clazz, String name) {
         if (name == null || name.equals("")) {
-            throw new NullPointerException(clazz.getSimpleName() +
+            throw new AnaliseException(clazz.getSimpleName() +
                     ".class: name in annotation " +
                     Cache.class.getName() +
                     " is empty");

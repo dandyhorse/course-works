@@ -2,6 +2,7 @@ package com.epam.homework_6_1.caches;
 
 import com.epam.homework_6_1.caches.interfaces.ICache;
 import com.epam.homework_6_1.caches.interfaces.Pool;
+import com.epam.homework_6_1.exceptions.PoolException;
 
 import java.util.HashMap;
 import java.util.NoSuchElementException;
@@ -31,7 +32,7 @@ public class CachePool implements Pool<ICache> {
     /**
      * add with replacing
      *
-     * @param creationSup - creating function of ICache
+     * @param creationSup - function for creating ICache
      */
     @Override
     public void addCache(Supplier<ICache> creationSup, Supplier<String> getNameSup) {
@@ -56,7 +57,7 @@ public class CachePool implements Pool<ICache> {
                 postponedCaches.remove(name);
                 optionalCache = Optional.of(cache);
             } else {
-                throw new NoSuchElementException("element with name " + name + " was not found");
+                throw new PoolException("element with name " + name + " was not found");
             }
         }
         return optionalCache;
