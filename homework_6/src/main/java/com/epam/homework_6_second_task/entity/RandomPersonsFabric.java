@@ -1,4 +1,4 @@
-package com.epam.homework_6_2.entity;
+package com.epam.homework_6_second_task.entity;
 
 import java.util.Random;
 import java.util.function.Supplier;
