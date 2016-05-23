@@ -40,8 +40,8 @@ public class FunctionsUponStream {
     public static void printAverageAge(Stream<Person> personStream) {
         Stream<Person> stream = printStreamAndCopy(personStream, "printAverageAge()\nStream values:");
         IntSummaryStatistics statistic = stream.collect(Collectors.summarizingInt(Person::getAge));
-        int averageAge = (int) statistic.getAverage();
-        System.out.printf("average age of persons is: %d\n", averageAge);
+        double averageAge = statistic.getAverage();
+        System.out.printf("average age of persons is: %.1f\n", averageAge);
     }
 
     private static Stream<Person> printStreamAndCopy(Stream<Person> personStream, String title) {
