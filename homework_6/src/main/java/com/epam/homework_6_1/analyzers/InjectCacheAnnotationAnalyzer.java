@@ -51,7 +51,7 @@ public class InjectCacheAnnotationAnalyzer {
 
     public static Set<Field> analyseInjectCacheFields(Object toObject, String annotationName) {
         Set<Field> allFieldsSet = new HashSet<>();
-        setAllFieldsInMap(toObject, allFieldsSet);
+        setAllFieldsInSet(toObject.getClass(), allFieldsSet);
         Stream<Field> fieldStream = allFieldsSet.stream().filter(field -> {
             InjectCache annotation = field.getDeclaredAnnotation(InjectCache.class);
             return (annotation != null) && (annotation.name().equals(annotationName));
@@ -59,11 +59,10 @@ public class InjectCacheAnnotationAnalyzer {
         return fieldStream.collect(Collectors.toSet());
     }
 
-    private static void setAllFieldsInMap(Object toObject, Set<Field> map) {
-        Class<?> clazz = toObject.getClass();
+    private static void setAllFieldsInSet(Class<?> clazz, Set<Field> set) {
         for (; clazz != Object.class; clazz = clazz.getSuperclass()) {
             Field[] declaredFields = clazz.getDeclaredFields();
-            Collections.addAll(map, declaredFields);
+            Collections.addAll(set, declaredFields);
         }
     }
 

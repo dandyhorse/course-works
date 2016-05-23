@@ -1,8 +1,6 @@
 package com.epam.homework_6_1.exceptions;
 
-import java.util.NoSuchElementException;
-
-public class PoolException extends NoSuchElementException {
+public class PoolException extends RuntimeException {
 
     public PoolException(String message) {
         super(message);
