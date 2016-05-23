@@ -1,7 +1,7 @@
-package com.epam.homework_6_second_task;
+package com.epam.homework_6_2;
 
-import com.epam.homework_6_second_task.entity.EnumSex;
-import com.epam.homework_6_second_task.entity.Person;
+import com.epam.homework_6_2.entity.EnumSex;
+import com.epam.homework_6_2.entity.Person;
 
 import java.util.IntSummaryStatistics;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.epam.homework_6_second_task.entity;
+package com.epam.homework_6_2.entity;
 
 public class Person {
     private String name;

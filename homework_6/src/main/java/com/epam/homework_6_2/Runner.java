@@ -1,12 +1,12 @@
-package com.epam.homework_6_second_task;
+package com.epam.homework_6_2;
 
-import com.epam.homework_6_second_task.entity.Person;
-import com.epam.homework_6_second_task.entity.RandomPersonsFabric;
+import com.epam.homework_6_2.entity.Person;
+import com.epam.homework_6_2.entity.RandomPersonsFabric;
 
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
-import static com.epam.homework_6_second_task.FunctionsUponStream.*;
+import static com.epam.homework_6_2.FunctionsUponStream.*;
 
 public class Runner {
 
