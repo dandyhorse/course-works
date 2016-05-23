@@ -1,6 +1,7 @@
 package com.epam.homework_6_2;
 
 import com.epam.homework_6_2.entity.Person;
+import com.epam.homework_6_2.entity.RandomPersonsFabric;
 
 import java.util.function.Supplier;
 import java.util.stream.Stream;
