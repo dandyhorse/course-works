@@ -1,8 +1,5 @@
 package com.epam.homework_6_2.entity;
 
-import com.epam.homework_6_2.entity.EnumSex;
-import com.epam.homework_6_2.entity.Person;
-
 import java.util.Random;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
