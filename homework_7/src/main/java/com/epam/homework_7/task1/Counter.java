@@ -10,7 +10,7 @@ public class Counter {
         counter.increment();
     }
 
-    public Long getCounter() {
+    public Long getResult() {
         return counter.sumThenReset();
     }
 

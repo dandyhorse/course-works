@@ -22,8 +22,8 @@ public class Runner {
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
-        Long result = counter.getCounter();
-        System.out.println(counter);
+        Long result = counter.getResult();
+        System.out.println(result);
         service.shutdown();
         return result;
     }
