@@ -34,32 +34,39 @@ public class Runner {
 
 
     private void fillContent(MusicGuide guide) {
-        Artist artistOne = getArtistOne();
+        Artist artistOne = getArtistSixto();
         Artist artistTwo = getArtistTwo();
         guide.addArtist(artistOne);
         guide.addArtist(artistTwo);
     }
 
     private Artist getArtistTwo() {
-        Track track = new Track("Yellow Submarine", Duration.ofMinutes(3));
+        Track trackOne = new Track("Сияние", Duration.ofMinutes(2).plusSeconds(20));
+        Track trackTwo = new Track("Невыносимая легкость бытия", Duration.ofMinutes(14).plusSeconds(53));
         return Artist.newBuilder()
-                .setName("Beatles")
+                .setName("Гражданская Оборона")
                 .addAlbum(
                         Album.newBuilder()
-                                .setName("White")
-                                .setGenre("Pop")
-                                .addTrack(track)
+                                .setName("Зачем Снятся Сны")
+                                .setGenre("Рок")
+                                .addTrack(trackOne)
+                                .addTrack(trackOne)
                                 .build())
+                .addAlbum(Album.newBuilder()
+                        .setName("Солнцеворот")
+                        .setGenre("Рок")
+                        .addTrack(trackTwo)
+                        .build())
                 .build();
     }
 
-    private Artist getArtistOne() {
-        Track track = new Track("Sugar Man", Duration.ofMinutes(4).plusSeconds(15));
+    private Artist getArtistSixto() {
+        Track track = new Track("Sugar Man", Duration.ofMinutes(3).plusSeconds(45));
         return Artist.newBuilder()
-                .setName("Sixto")
+                .setName("Sixto Rodriguez")
                 .addAlbum(Album.newBuilder()
-                        .setName("Rodrigez")
-                        .setGenre("Folk")
+                        .setName("Cold Fact")
+                        .setGenre("Soul")
                         .addTrack(track)
                         .build())
                 .build();

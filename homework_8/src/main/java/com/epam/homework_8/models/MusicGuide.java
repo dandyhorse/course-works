@@ -31,8 +31,8 @@ public class MusicGuide {
 
     @Override
     public String toString() {
-        return "MusicGuide{" +
-                "\nartistList=" + artistList +
+        return "MusicGuide {" +
+                '\n' + artistList +
                 "\n}";
     }
 }

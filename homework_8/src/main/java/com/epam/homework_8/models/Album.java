@@ -62,10 +62,10 @@ public class Album {
 
     @Override
     public String toString() {
-        return "Album{" +
-                "\n\t\tname=" + name + ',' +
-                "\n\t\tgenre='" + genre + ',' +
-                "\n\t\t\ttrackList=" + trackList +
-                "\n\t\t}";
+        return "\tAlbum {" +
+                "\n\t\tname = " + name +
+                "\n\t\tgenre = " + genre +
+                '\n' + trackList +
+                "\n\t\t}\n";
     }
 }

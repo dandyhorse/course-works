@@ -53,9 +53,9 @@ public class Artist{
 
     @Override
     public String toString() {
-        return "Artist{" +
-                "\n\tname=" + name + ',' +
-                "\n\t\talbums=" + albums +
-                "\n\t}";
+        return "\tArtist {" +
+                "\n\tname = " + name +
+                "\n" + albums +
+                "\n\t}\n";
     }
 }
