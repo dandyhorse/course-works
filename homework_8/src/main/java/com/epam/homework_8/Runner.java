@@ -6,7 +6,7 @@ import com.epam.homework_8.models.MusicGuide;
 import com.epam.homework_8.models.Track;
 import com.epam.homework_8.ser_models.MusicGuideProxy;
 import com.epam.homework_8.serializers.Serializer;
-import com.epam.homework_8.serializers.SerializerMusicGuide;
+import com.epam.homework_8.serializers.SerializerMusicGuideStream;
 
 import java.time.Duration;
 import java.util.Optional;
@@ -21,7 +21,7 @@ public class Runner {
 
         MusicGuideProxy guideProxy = new MusicGuideProxy(guide);
 
-        Serializer<MusicGuideProxy> serial = new SerializerMusicGuide();
+        Serializer<MusicGuideProxy> serial = new SerializerMusicGuideStream();
         serial.serialize(outputFile, guideProxy);
 
         Optional<MusicGuideProxy> guideProxyOptional = serial.deserialize(outputFile);
@@ -54,7 +54,7 @@ public class Runner {
                                 .build())
                 .addAlbum(Album.newBuilder()
                         .setName("Солнцеворот")
-                        .setGenre("Рок")
+                        .setGenre("Психодел Панк Рок")
                         .addTrack(trackTwo)
                         .build())
                 .build();

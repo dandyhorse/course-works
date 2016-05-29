@@ -23,6 +23,7 @@ public class TrackProxy implements Externalizable {
         return modelTrack;
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void writeExternal(ObjectOutput out) throws IOException {
         String name = modelTrack.getName();
@@ -32,6 +33,7 @@ public class TrackProxy implements Externalizable {
         out.writeObject(duration);
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
         String name = (String) in.readObject();

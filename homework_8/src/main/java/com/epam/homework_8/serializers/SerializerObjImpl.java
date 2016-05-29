@@ -3,6 +3,7 @@ package com.epam.homework_8.serializers;
 import java.io.*;
 import java.util.Optional;
 
+@SuppressWarnings("unused")
 public class SerializerObjImpl<T extends Serializable> implements Serializer<T> {
 
     public Optional<T> deserialize(String destinationFile) {

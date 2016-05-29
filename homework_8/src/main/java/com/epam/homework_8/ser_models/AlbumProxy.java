@@ -24,6 +24,7 @@ public class AlbumProxy implements Externalizable {
         return modelAlbum;
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void writeExternal(ObjectOutput out) throws IOException {
         String name = modelAlbum.getName();
@@ -36,6 +37,7 @@ public class AlbumProxy implements Externalizable {
         out.writeObject(artistProxyList);
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
         String name = (String) in.readObject();
@@ -44,4 +46,5 @@ public class AlbumProxy implements Externalizable {
         List<Track> trackList = trackProxyList.stream().map(TrackProxy::getModelTrack).collect(Collectors.toList());
         modelAlbum = Album.newBuilder().addAllTrack(trackList).setName(name).setGenre(genre).build();
     }
+
 }

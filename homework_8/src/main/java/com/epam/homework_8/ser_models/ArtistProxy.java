@@ -24,6 +24,7 @@ public class ArtistProxy implements Externalizable {
         return modelArtist;
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void writeExternal(ObjectOutput out) throws IOException {
         String name = modelArtist.getName();
@@ -34,6 +35,7 @@ public class ArtistProxy implements Externalizable {
         out.writeObject(albumProxyList);
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
         String name = (String) in.readObject();
