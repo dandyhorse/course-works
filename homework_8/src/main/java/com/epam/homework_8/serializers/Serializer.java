@@ -7,6 +7,6 @@ public interface Serializer<T extends Serializable> {
 
     Optional<T> deserialize(String destinationFile);
 
-    void serialize(String sourceFile, T object);
+    void serialize(String sourceFile, T t);
 
 }

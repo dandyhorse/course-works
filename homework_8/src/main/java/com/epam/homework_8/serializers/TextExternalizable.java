@@ -2,10 +2,10 @@ package com.epam.homework_8.serializers;
 
 import java.io.*;
 
-public interface TextExternalizable {
+public interface TextExternalizable extends Serializable {
 
-    void writeExternal(Writer out) throws IOException;
+    void writeTextExternal(Writer out) throws IOException;
 
-    void readExternal(Reader in) throws IOException, ClassNotFoundException;
+    void readTextExternal(Reader in) throws IOException, ClassNotFoundException;
 
 }

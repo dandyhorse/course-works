@@ -22,12 +22,12 @@ public class SerializerObjImpl<T extends Serializable> implements Serializer<T> 
         return optional;
     }
 
-    public void serialize(String sourceFile, T object) {
+    public void serialize(String sourceFile, T t) {
         try (FileOutputStream os = new FileOutputStream(sourceFile);
              BufferedOutputStream bos = new BufferedOutputStream(os);
              ObjectOutputStream oos = new ObjectOutputStream(bos)) {
 
-            oos.writeObject(object);
+            oos.writeObject(t);
             oos.flush();
 
         } catch (IOException e) {
