@@ -6,41 +6,40 @@ import com.epam.homework_8.models.MusicGuide;
 import com.epam.homework_8.models.Track;
 import com.epam.homework_8.ser_models.MusicGuideProxy;
 import com.epam.homework_8.serializers.Serializer;
-import com.epam.homework_8.serializers.SerializerMusicGuideStream;
+import com.epam.homework_8.serializers.SerializerMusciGuideText;
 
 import java.time.Duration;
-import java.util.Optional;
 
 
 public class Runner {
 
     public void run() {
-        String outputFile = "music_guide.txt";
+        String outputFile = "music_guide.ser";
         MusicGuide guide = new MusicGuide();
         fillContent(guide);
 
         MusicGuideProxy guideProxy = new MusicGuideProxy(guide);
 
-        Serializer<MusicGuideProxy> serial = new SerializerMusicGuideStream();
+        Serializer<MusicGuideProxy> serial = new SerializerMusciGuideText();
         serial.serialize(outputFile, guideProxy);
 
-        Optional<MusicGuideProxy> guideProxyOptional = serial.deserialize(outputFile);
-        guideProxyOptional.ifPresent(musicGuideProxy -> {
-            MusicGuide model = musicGuideProxy.getModel();
-            System.out.println(model);
-        });
+//        Optional<MusicGuideProxy> guideProxyOptional = serial.deserialize(outputFile);
+//        guideProxyOptional.ifPresent(musicGuideProxy -> {
+//            MusicGuide model = musicGuideProxy.getModel();
+//            System.out.println(model);
+//        });
 
     }
 
 
     private void fillContent(MusicGuide guide) {
         Artist artistOne = getArtistSixto();
-        Artist artistTwo = getArtistTwo();
+        Artist artistTwo = getArtistGrob();
         guide.addArtist(artistOne);
         guide.addArtist(artistTwo);
     }
 
-    private Artist getArtistTwo() {
+    private Artist getArtistGrob() {
         Track trackOne = new Track("Сияние", Duration.ofMinutes(2).plusSeconds(20));
         Track trackTwo = new Track("Невыносимая легкость бытия", Duration.ofMinutes(14).plusSeconds(53));
         return Artist.newBuilder()
@@ -49,7 +48,6 @@ public class Runner {
                         Album.newBuilder()
                                 .setName("Зачем Снятся Сны")
                                 .setGenre("Рок")
-                                .addTrack(trackOne)
                                 .addTrack(trackOne)
                                 .build())
                 .addAlbum(Album.newBuilder()
