@@ -1,7 +1,6 @@
 package com.epam.homework_8.models;
 
 import java.time.Duration;
-import java.util.concurrent.TimeUnit;
 
 public class Track {
 

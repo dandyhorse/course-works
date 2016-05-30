@@ -4,8 +4,8 @@ import java.io.*;
 
 public interface TextExternalizable extends Serializable {
 
-    void writeTextExternal(Writer out) throws IOException;
+    void writeTextExternal(BufferedWriter out) throws IOException;
 
-    void readTextExternal(Reader in) throws IOException, ClassNotFoundException;
+    void readTextExternal(BufferedReader in) throws IOException;
 
 }

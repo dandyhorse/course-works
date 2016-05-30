@@ -15,7 +15,7 @@ public class SerializerMusicGuideText implements Serializer<MusicGuideEntity> {
 
             guideEntity.readTextExternal(bf);
 
-        } catch (IOException | ClassNotFoundException e) {
+        } catch (IOException e) {
             e.getMessage();
         }
         return guideEntity;

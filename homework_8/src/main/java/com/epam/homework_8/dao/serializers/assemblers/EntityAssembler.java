@@ -11,55 +11,49 @@ import com.epam.homework_8.models.Track;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public class EntityAssembler {
 
+    private Map<String, TrackEntity> uniqueTracks;
+
     public MusicGuideEntity newEntity(MusicGuide musicGuide) {
-        Map<String, TrackEntity> uniqueTracks = new HashMap<>();
-
-        MusicGuideEntity guideEntity = new MusicGuideEntity(musicGuide);
-
-        musicGuide.getAllArtists().forEach(artist -> bindArtist(uniqueTracks, guideEntity, artist));
-
+        uniqueTracks = new HashMap<>();
+        MusicGuideEntity guideEntity = new MusicGuideEntity();
+        musicGuide.getAllArtists().forEach(artist -> guideEntity.addArtistEntity(newEntity(artist)));
+        uniqueTracks = null;
         return guideEntity;
     }
 
-    private void bindArtist(Map<String, TrackEntity> uniqueTracks, MusicGuideEntity guideEntity, Artist artist) {
-        ArtistEntity artistEntity = newEntity(artist);
-        artist.getAlbums().forEach(album -> bindAlbum(uniqueTracks, artistEntity, album));
-        guideEntity.addArtistEntity(artistEntity);
+    private ArtistEntity newEntity(Artist artist) {
+        ArtistEntity artistEntity = new ArtistEntity(artist);
+        artist.getAlbums().forEach(album -> artistEntity.addAlbumEntity(newEntity(album)));
+        return artistEntity;
     }
 
-    private void bindAlbum(Map<String, TrackEntity> uniqueTracks, ArtistEntity artistEntity, Album album) {
-        AlbumEntity albumEntity = newEntity(album);
-        album.getTrackList().forEach(track -> bindUniqueTrack(uniqueTracks, albumEntity, track));
-        artistEntity.addAlbumEntity(albumEntity);
+    private AlbumEntity newEntity(Album album) {
+        AlbumEntity albumEntity = new AlbumEntity(album);
+        album.getTrackList().forEach(track ->
+                Optional.ofNullable(newUniqueEntity(track)).ifPresent(albumEntity::addTrackEntity));
+        return albumEntity;
     }
 
-    private void bindUniqueTrack(Map<String, TrackEntity> uniqueTracks, AlbumEntity albumEntity, Track track) {
+    private TrackEntity newUniqueEntity(Track track) {
         if (isTrackUnique(track, uniqueTracks)) {
             TrackEntity trackEntity = newEntity(track);
             uniqueTracks.put(track.getName(), trackEntity);
-            albumEntity.addTrackEntity(trackEntity);
+            return trackEntity;
         }
+        return null;
     }
 
-    private TrackEntity newEntity(Track track) {
+    public TrackEntity newEntity(Track track) {
         return new TrackEntity(track);
     }
 
     private boolean isTrackUnique(Track track, Map<String, TrackEntity> uniqueTracks) {
         TrackEntity trackEntity = uniqueTracks.get(track.getName());
-        return trackEntity == null || !trackEntity.getModel().getDuration().equals(track.getDuration());
+        return trackEntity == null || !trackEntity.getTrackDuration().equals(track.getDuration());
     }
-
-    private ArtistEntity newEntity(Artist artist) {
-        return new ArtistEntity(artist);
-    }
-
-    private AlbumEntity newEntity(Album album) {
-        return new AlbumEntity(album);
-    }
-
 
 }

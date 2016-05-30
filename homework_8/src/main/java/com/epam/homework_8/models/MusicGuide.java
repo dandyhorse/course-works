@@ -4,7 +4,6 @@ import com.sun.istack.internal.NotNull;
 
 import java.util.*;
 
-
 public class MusicGuide {
 
     private List<Artist> artistList;

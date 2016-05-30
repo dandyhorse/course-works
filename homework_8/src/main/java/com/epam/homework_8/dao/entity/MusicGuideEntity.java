@@ -1,37 +1,38 @@
 package com.epam.homework_8.dao.entity;
 
-import com.epam.homework_8.models.MusicGuide;
+import com.epam.homework_8.dao.serializers.Utils;
 import com.epam.homework_8.dao.serializers.interfaces.TextExternalizable;
+import com.epam.homework_8.validators.TagValidator;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class MusicGuideEntity implements TextExternalizable {
 
-    private transient MusicGuide modelMusicGuide;
     private transient List<ArtistEntity> artistEntities;
-
-    public MusicGuideEntity(MusicGuide modelMusicGuide) {
-        this();
-        this.modelMusicGuide = modelMusicGuide;
-    }
 
     public MusicGuideEntity() {
         artistEntities = new ArrayList<>();
-    }
-
-    public MusicGuide getModel() {
-        return modelMusicGuide;
     }
 
     public void addArtistEntity(ArtistEntity artistEntity) {
         artistEntities.add(artistEntity);
     }
 
+    public List<ArtistEntity> getArtistEntities() {
+        return artistEntities;
+    }
+
     @Override
-    public void writeTextExternal(Writer out) throws IOException {
+    public void writeTextExternal(BufferedWriter out) throws IOException {
         out.write("MusicGuide{");
+        writeArtists(out);
+        out.write("\n}");
+    }
+
+    private void writeArtists(BufferedWriter out) {
         artistEntities.forEach(artistEntity -> {
             try {
                 artistEntity.writeTextExternal(out);
@@ -39,13 +40,35 @@ public class MusicGuideEntity implements TextExternalizable {
                 e.printStackTrace();
             }
         });
-        out.write("\n}");
     }
 
     @Override
-    public void readTextExternal(Reader in) throws IOException, ClassNotFoundException {
-
+    public void readTextExternal(BufferedReader in) throws IOException {
+        String text = readerToStringBuilder(in);
+        TagValidator.validateMusicGuideTag(text);
+        String[] innerText = text.split("MusicGuide\\{");
+        //picked innerText[1] cause innerText[0] is empty String
+        String innerString = Utils.deleteLastBracket(innerText[1]);
+        readArtists(innerString);
     }
 
+    private String readerToStringBuilder(BufferedReader in) {
+        StringBuilder text = new StringBuilder();
+        in.lines().forEach(text::append);
+        return text.toString();
+    }
 
+    private void readArtists(String innerString) {
+        TagValidator.validateArtistTag(innerString);
+        Stream<String> artistStream = Stream.of(innerString.split("Artist\\{")).skip(1);
+        artistStream.forEach(s -> {
+            ArtistEntity artistEntity = new ArtistEntity();
+            try {
+                artistEntity.readTextExternal(Utils.stringToBuffer(s));
+            } catch (IOException e) {
+                e.getMessage();
+            }
+            artistEntities.add(artistEntity);
+        });
+    }
 }
