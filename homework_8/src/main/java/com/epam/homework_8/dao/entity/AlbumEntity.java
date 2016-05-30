@@ -29,7 +29,6 @@ public class AlbumEntity implements TextExternalizable {
         return modelAlbum;
     }
 
-
     @Override
     public void writeTextExternal(Writer out) throws IOException {
         String name = modelAlbum.getName();

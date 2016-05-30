@@ -1,14 +1,11 @@
 package com.epam.homework_8.dao.entity;
 
-import com.epam.homework_8.models.Artist;
 import com.epam.homework_8.models.MusicGuide;
 import com.epam.homework_8.dao.serializers.interfaces.TextExternalizable;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
-import java.util.stream.Collectors;
 
 public class MusicGuideEntity implements TextExternalizable {
 

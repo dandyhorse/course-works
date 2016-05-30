@@ -21,7 +21,6 @@ public class TrackEntity implements TextExternalizable {
         return modelTrack;
     }
 
-
     @Override
     public void writeTextExternal(Writer out) throws IOException {
         String name = modelTrack.getName();
