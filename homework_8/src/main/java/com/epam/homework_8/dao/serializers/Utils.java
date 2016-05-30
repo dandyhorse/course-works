@@ -12,6 +12,24 @@ public class Utils {
         return stringBuilder.toString();
     }
 
+    public static String deleteLastBracketInArtistTag(String s) {
+        StringBuilder stringBuilder = new StringBuilder(s);
+        int i = stringBuilder.lastIndexOf("}");
+        stringBuilder.deleteCharAt(i);
+        String string = stringBuilder.toString();
+        validateBrackets(string);
+        return string;
+    }
+
+    private static void validateBrackets(String string) {
+        int test = string.lastIndexOf("}");
+        String newString = string.substring(test, string.length()).trim();
+        if (!newString.equals("}")) {
+            //TODO custom exception
+            throw new RuntimeException();
+        }
+    }
+
     public static BufferedReader stringToBuffer(String s) {
         return new BufferedReader(new StringReader(s));
     }

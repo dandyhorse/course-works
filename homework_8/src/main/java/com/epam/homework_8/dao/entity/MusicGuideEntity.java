@@ -2,7 +2,7 @@ package com.epam.homework_8.dao.entity;
 
 import com.epam.homework_8.dao.serializers.Utils;
 import com.epam.homework_8.dao.serializers.interfaces.TextExternalizable;
-import com.epam.homework_8.validators.TagValidator;
+import com.epam.homework_8.dao.validators.TagValidator;
 
 import java.io.*;
 import java.util.ArrayList;

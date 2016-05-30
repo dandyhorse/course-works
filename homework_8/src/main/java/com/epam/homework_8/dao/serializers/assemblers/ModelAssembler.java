@@ -8,12 +8,12 @@ import com.epam.homework_8.models.Album;
 import com.epam.homework_8.models.Artist;
 import com.epam.homework_8.models.MusicGuide;
 import com.epam.homework_8.models.Track;
+import com.epam.homework_8.dao.validators.ModelValidator;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Consumer;
 
 public class ModelAssembler {
 
@@ -24,14 +24,18 @@ public class ModelAssembler {
         List<Artist> artists = new ArrayList<>();
         musicGuideEntity.getArtistEntities().forEach(artistEntity -> artists.add(newModel(artistEntity)));
         albumTrackMap = null;
-        return new MusicGuide(artists);
+        MusicGuide musicGuide = new MusicGuide(artists);
+        ModelValidator.validate(musicGuide);
+        return musicGuide;
     }
 
     private Artist newModel(ArtistEntity artistEntity) {
         Artist.Builder artistBuilder = Artist.newBuilder()
                 .setName(artistEntity.getArtistName());
         artistEntity.getAlbumEntities().forEach(albumEntity -> artistBuilder.addAlbum(newModel(albumEntity)));
-        return artistBuilder.build();
+        Artist artist = artistBuilder.build();
+        ModelValidator.validate(artist);
+        return artist;
     }
 
     private Album newModel(AlbumEntity albumEntity) {
@@ -48,7 +52,9 @@ public class ModelAssembler {
             albumTrackMap.put(nameAlbum, trackList);
             addTracksToAlbum(nameAlbum, albumBuilder);
         }
-        return albumBuilder.build();
+        Album album = albumBuilder.build();
+        ModelValidator.validate(album);
+        return album;
     }
 
     private void addTracksToAlbum(String nameAlbum, Album.Builder albumBuilder) {
@@ -57,7 +63,9 @@ public class ModelAssembler {
     }
 
     private Track newModel(TrackEntity trackEntity) {
-        return new Track(trackEntity.getTrackName(), trackEntity.getTrackDuration());
+        Track track = new Track(trackEntity.getTrackName(), trackEntity.getTrackDuration());
+        ModelValidator.validate(track);
+        return track;
     }
 
 }

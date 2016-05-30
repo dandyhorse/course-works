@@ -3,7 +3,7 @@ package com.epam.homework_8.dao.entity;
 import com.epam.homework_8.dao.serializers.Utils;
 import com.epam.homework_8.models.Artist;
 import com.epam.homework_8.dao.serializers.interfaces.TextExternalizable;
-import com.epam.homework_8.validators.TagValidator;
+import com.epam.homework_8.dao.validators.TagValidator;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -54,7 +54,7 @@ public class ArtistEntity implements TextExternalizable {
     public void readTextExternal(BufferedReader in) throws IOException {
         String stringArtist = in.readLine();
         artistName = getName(stringArtist);
-        String innerString = Utils.deleteLastBracket(stringArtist);
+        String innerString = Utils.deleteLastBracketInArtistTag(stringArtist);
         readAlbums(innerString);
     }
 

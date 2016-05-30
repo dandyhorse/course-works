@@ -6,6 +6,7 @@ import com.epam.homework_8.dao.serializers.interfaces.TextExternalizable;
 
 import java.io.*;
 import java.time.Duration;
+import java.time.format.DateTimeParseException;
 
 public class TrackEntity implements TextExternalizable {
 
@@ -38,7 +39,13 @@ public class TrackEntity implements TextExternalizable {
     @Override
     public void readTextExternal(BufferedReader in) throws IOException {
         String stringTrack = in.readLine();
-        String innerString = Utils.deleteLastBracket(stringTrack);
+        String innerString;
+        try {
+            innerString = Utils.deleteLastBracket(stringTrack);
+        } catch (StringIndexOutOfBoundsException e) {
+            //TODO custom exception
+            throw new RuntimeException(e);
+        }
         trackName = getName(innerString);
         trackDuration = getDuration(innerString);
     }

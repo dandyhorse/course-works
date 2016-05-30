@@ -3,7 +3,7 @@ package com.epam.homework_8.dao.entity;
 import com.epam.homework_8.dao.serializers.Utils;
 import com.epam.homework_8.models.Album;
 import com.epam.homework_8.dao.serializers.interfaces.TextExternalizable;
-import com.epam.homework_8.validators.TagValidator;
+import com.epam.homework_8.dao.validators.TagValidator;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -61,7 +61,13 @@ public class AlbumEntity implements TextExternalizable {
         String stringAlbum = in.readLine();
         nameAlbum = getName(stringAlbum);
         genreAlbum = getGenre(stringAlbum);
-        String innerString = Utils.deleteLastBracket(stringAlbum);
+        String innerString;
+        try {
+            innerString = Utils.deleteLastBracket(stringAlbum);
+        } catch (StringIndexOutOfBoundsException e) {
+            //TODO custom exception
+            throw new RuntimeException(e);
+        }
         readTracks(innerString);
     }
 
@@ -87,6 +93,7 @@ public class AlbumEntity implements TextExternalizable {
             Stream<String> trackStream = Stream.of(innerString.split("Track\\{")).skip(1);
             trackStream.forEach(trackString -> {
                 TrackEntity trackEntity = new TrackEntity();
+
                 try {
                     trackEntity.readTextExternal(Utils.stringToBuffer(trackString));
                 } catch (IOException e) {
