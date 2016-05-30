@@ -1,5 +1,6 @@
-package com.epam.homework_8.serializers;
+package com.epam.homework_8.dao.serializers;
 
+import com.epam.homework_8.dao.serializers.interfaces.Serializer;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -7,19 +8,18 @@ import org.junit.Test;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Optional;
 
 import static org.junit.Assert.*;
 
 
-public class SerializerObjImplTest {
+public class SerializerObjectImplTest {
     private String filePath;
-    private String objectForSer;
+    private String stringForSer;
 
     @Before
     public void setUp() throws Exception {
-        filePath = "test.txt";
-        objectForSer = "Fooooooooooooooo?";
+        filePath = "test.ser";
+        stringForSer = "Fooooooooooooooo?";
     }
 
     @After
@@ -29,20 +29,20 @@ public class SerializerObjImplTest {
 
     @Test
     public void readFromFile() throws Exception {
-        Serializer<String> serializer = new SerializerObjImpl<>();
-        serializer.serialize(filePath, objectForSer);
-        Optional<String> strFromFile = serializer.deserialize(filePath);
-        strFromFile.ifPresent(s -> assertEquals(objectForSer, s));
+        Serializer<String> serializer = new SerializerObjectImpl<>();
+        serializer.serialize(filePath, stringForSer);
+        String strFromFile = serializer.deserialize(filePath);
+        assertEquals(strFromFile, stringForSer);
     }
 
     @Test
     public void writeIntoFile() throws Exception {
-        Serializer<String> serializer = new SerializerObjImpl<>();
+        Serializer<String> serializer = new SerializerObjectImpl<>();
         Path path = Paths.get(filePath);
         Files.deleteIfExists(path);
         Files.createFile(path);
         long size = Files.size(path);
-        serializer.serialize(filePath, objectForSer);
+        serializer.serialize(filePath, stringForSer);
         long newSize = Files.size(path);
         assertNotEquals(size, newSize);
     }

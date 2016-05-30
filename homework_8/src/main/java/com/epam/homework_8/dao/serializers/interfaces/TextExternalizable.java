@@ -1,4 +1,4 @@
-package com.epam.homework_8.serializers;
+package com.epam.homework_8.dao.serializers.interfaces;
 
 import java.io.*;
 

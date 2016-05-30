@@ -1,61 +1,44 @@
 package com.epam.homework_8;
 
+import com.epam.homework_8.dao.Dao;
+import com.epam.homework_8.dao.DaoSerializer;
 import com.epam.homework_8.models.Album;
 import com.epam.homework_8.models.Artist;
 import com.epam.homework_8.models.MusicGuide;
 import com.epam.homework_8.models.Track;
-import com.epam.homework_8.ser_models.MusicGuideProxy;
-import com.epam.homework_8.serializers.Serializer;
-import com.epam.homework_8.serializers.SerializerMusciGuideText;
 
 import java.time.Duration;
-
 
 public class Runner {
 
     public void run() {
+
         String outputFile = "music_guide.ser";
+
+        //model
         MusicGuide guide = new MusicGuide();
         fillContent(guide);
 
-        MusicGuideProxy guideProxy = new MusicGuideProxy(guide);
+        //dao layer
+        Dao<MusicGuide> dao = new DaoSerializer(outputFile);
 
-        Serializer<MusicGuideProxy> serial = new SerializerMusciGuideText();
-        serial.serialize(outputFile, guideProxy);
+        //serialize
+        dao.save(guide);
 
-//        Optional<MusicGuideProxy> guideProxyOptional = serial.deserialize(outputFile);
-//        guideProxyOptional.ifPresent(musicGuideProxy -> {
-//            MusicGuide model = musicGuideProxy.getModel();
-//            System.out.println(model);
-//        });
+        //deserialize
+        MusicGuide guideFromFile = dao.get();
+
+        System.out.println(guideFromFile);
 
     }
-
 
     private void fillContent(MusicGuide guide) {
         Artist artistOne = getArtistSixto();
-        Artist artistTwo = getArtistGrob();
+        Artist artistTwo = getArtistBowie();
+        Artist artistThree = getArtistJimi();
         guide.addArtist(artistOne);
         guide.addArtist(artistTwo);
-    }
-
-    private Artist getArtistGrob() {
-        Track trackOne = new Track("Сияние", Duration.ofMinutes(2).plusSeconds(20));
-        Track trackTwo = new Track("Невыносимая легкость бытия", Duration.ofMinutes(14).plusSeconds(53));
-        return Artist.newBuilder()
-                .setName("Гражданская Оборона")
-                .addAlbum(
-                        Album.newBuilder()
-                                .setName("Зачем Снятся Сны")
-                                .setGenre("Рок")
-                                .addTrack(trackOne)
-                                .build())
-                .addAlbum(Album.newBuilder()
-                        .setName("Солнцеворот")
-                        .setGenre("Психодел Панк Рок")
-                        .addTrack(trackTwo)
-                        .build())
-                .build();
+        guide.addArtist(artistThree);
     }
 
     private Artist getArtistSixto() {
@@ -67,6 +50,47 @@ public class Runner {
                         .setGenre("Soul")
                         .addTrack(track)
                         .build())
+                .build();
+    }
+
+    private Artist getArtistBowie() {
+        Track track1 = new Track("Life on Mars", Duration.ofMinutes(3).plusSeconds(45));
+        Track track2 = new Track("The Man Who Sold the World", Duration.ofMinutes(3).plusSeconds(45));
+        return Artist.newBuilder()
+                .setName("David Bowie")
+                .addAlbum(Album.newBuilder()
+                        .setName("Heroes")
+                        .setGenre("Art Rock")
+                        .addTrack(track1)
+                        .addTrack(track2)
+                        .build())
+                .addAlbum(theSameAlbum())
+                .build();
+    }
+
+    private Album theSameAlbum() {
+        Track track1 = new Track("Chrono.Naut", Duration.ofMinutes(3).plusSeconds(45));
+        Track track2 = new Track("Funeralopolis", Duration.ofMinutes(3).plusSeconds(45));
+        return Album.newBuilder()
+                .setName("Eternal")
+                .setGenre("Doom metal")
+                .addTrack(track1)
+                .addTrack(track2)
+                .build();
+    }
+
+    private Artist getArtistJimi() {
+        Track track1 = new Track("Who Knows", Duration.ofMinutes(3).plusSeconds(45));
+        Track track2 = new Track(" Purple Haze", Duration.ofMinutes(5).plusSeconds(45));
+        return Artist.newBuilder()
+                .setName("Jimi Hendrix")
+                .addAlbum(Album.newBuilder()
+                        .setName("Band of Gypsys")
+                        .setGenre("Rock")
+                        .addTrack(track1)
+                        .addTrack(track2)
+                        .build())
+                .addAlbum(theSameAlbum())
                 .build();
     }
 }
