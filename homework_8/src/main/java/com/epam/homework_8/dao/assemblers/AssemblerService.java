@@ -1,4 +1,4 @@
-package com.epam.homework_8.dao.serializers.assemblers;
+package com.epam.homework_8.dao.assemblers;
 
 public class AssemblerService {
 

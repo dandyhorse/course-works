@@ -72,4 +72,5 @@ public class MusicGuideEntity implements TextExternalizable {
             artistEntities.add(artistEntity);
         });
     }
+
 }

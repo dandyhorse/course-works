@@ -1,6 +1,6 @@
 package com.epam.homework_8.dao;
 
-import com.epam.homework_8.dao.serializers.assemblers.AssemblerService;
+import com.epam.homework_8.dao.assemblers.AssemblerService;
 import com.epam.homework_8.models.MusicGuide;
 import com.epam.homework_8.dao.entity.MusicGuideEntity;
 import com.epam.homework_8.dao.serializers.interfaces.Serializer;
