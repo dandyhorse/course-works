@@ -1,12 +1,12 @@
 package com.epam.homework_8.dao.entity;
 
+import com.epam.homework_8.dao.exceptions.EntityException;
 import com.epam.homework_8.dao.serializers.Utils;
 import com.epam.homework_8.models.Track;
 import com.epam.homework_8.dao.serializers.interfaces.TextExternalizable;
 
 import java.io.*;
 import java.time.Duration;
-import java.time.format.DateTimeParseException;
 
 public class TrackEntity implements TextExternalizable {
 
@@ -43,8 +43,7 @@ public class TrackEntity implements TextExternalizable {
         try {
             innerString = Utils.deleteLastBracket(stringTrack);
         } catch (StringIndexOutOfBoundsException e) {
-            //TODO custom exception
-            throw new RuntimeException(e);
+            throw new EntityException("invalid tag Track{} in file", e);
         }
         trackName = getName(innerString);
         trackDuration = getDuration(innerString);
@@ -62,4 +61,5 @@ public class TrackEntity implements TextExternalizable {
         String substring = string.substring(start, end).replace("Name :", "");
         return substring.trim();
     }
+
 }

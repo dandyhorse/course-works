@@ -1,5 +1,6 @@
 package com.epam.homework_8.dao.entity;
 
+import com.epam.homework_8.dao.exceptions.EntityException;
 import com.epam.homework_8.dao.serializers.Utils;
 import com.epam.homework_8.dao.serializers.interfaces.TextExternalizable;
 import com.epam.homework_8.dao.validators.TagValidator;
@@ -37,7 +38,7 @@ public class MusicGuideEntity implements TextExternalizable {
             try {
                 artistEntity.writeTextExternal(out);
             } catch (IOException e) {
-                e.printStackTrace();
+                throw new EntityException("MusicGuide write crash", e);
             }
         });
     }
@@ -66,7 +67,7 @@ public class MusicGuideEntity implements TextExternalizable {
             try {
                 artistEntity.readTextExternal(Utils.stringToBuffer(s));
             } catch (IOException e) {
-                e.getMessage();
+                throw new EntityException("MusicGuide read crash", e);
             }
             artistEntities.add(artistEntity);
         });

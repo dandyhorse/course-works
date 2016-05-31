@@ -30,7 +30,7 @@ public class MusicGuide {
 
     @Override
     public String toString() {
-        return "MusicGuide {" +
+        return "ModelException {" +
                 '\n' + artistList +
                 "\n}";
     }

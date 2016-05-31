@@ -1,5 +1,7 @@
 package com.epam.homework_8.dao.serializers;
 
+import com.epam.homework_8.dao.exceptions.EntityException;
+
 import java.io.BufferedReader;
 import java.io.StringReader;
 
@@ -25,8 +27,7 @@ public class Utils {
         int test = string.lastIndexOf("}");
         String newString = string.substring(test, string.length()).trim();
         if (!newString.equals("}")) {
-            //TODO custom exception
-            throw new RuntimeException();
+            throw new EntityException("invalid tag Artist{} in file");
         }
     }
 

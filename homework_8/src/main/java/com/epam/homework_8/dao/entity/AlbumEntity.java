@@ -1,5 +1,6 @@
 package com.epam.homework_8.dao.entity;
 
+import com.epam.homework_8.dao.exceptions.EntityException;
 import com.epam.homework_8.dao.serializers.Utils;
 import com.epam.homework_8.models.Album;
 import com.epam.homework_8.dao.serializers.interfaces.TextExternalizable;
@@ -50,7 +51,7 @@ public class AlbumEntity implements TextExternalizable {
             try {
                 trackEntity.writeTextExternal(out);
             } catch (IOException e) {
-                e.printStackTrace();
+                throw new EntityException("AlbumEntity write crash", e);
             }
         });
         out.write("\n\t\t}");
@@ -65,8 +66,7 @@ public class AlbumEntity implements TextExternalizable {
         try {
             innerString = Utils.deleteLastBracket(stringAlbum);
         } catch (StringIndexOutOfBoundsException e) {
-            //TODO custom exception
-            throw new RuntimeException(e);
+            throw new EntityException("invalid tag Album{} in file", e);
         }
         readTracks(innerString);
     }
@@ -93,11 +93,10 @@ public class AlbumEntity implements TextExternalizable {
             Stream<String> trackStream = Stream.of(innerString.split("Track\\{")).skip(1);
             trackStream.forEach(trackString -> {
                 TrackEntity trackEntity = new TrackEntity();
-
                 try {
                     trackEntity.readTextExternal(Utils.stringToBuffer(trackString));
                 } catch (IOException e) {
-                    e.getMessage();
+                    throw new EntityException("AlbumEntity read crash", e);
                 }
                 trackEntities.add(trackEntity);
             });

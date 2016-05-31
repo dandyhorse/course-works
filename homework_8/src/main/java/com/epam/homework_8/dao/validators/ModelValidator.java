@@ -1,6 +1,7 @@
 package com.epam.homework_8.dao.validators;
 
 
+import com.epam.homework_8.dao.exceptions.ModelException;
 import com.epam.homework_8.models.Album;
 import com.epam.homework_8.models.Artist;
 import com.epam.homework_8.models.MusicGuide;
@@ -15,7 +16,7 @@ public class ModelValidator {
         List<Artist> allArtists = musicGuide.getAllArtists();
         boolean result = allArtists != null && allArtists.size() > 0;
         if (!result) {
-            throw new RuntimeException();
+            throw new ModelException("invalid MusicGuide");
         }
     }
 
@@ -24,7 +25,7 @@ public class ModelValidator {
         boolean result = name != null && !name.equals("");
         result &= artist.getAlbums().size() > 0;
         if (!result) {
-            throw new RuntimeException();
+            throw new ModelException("invalid Artist");
         }
     }
 
@@ -36,7 +37,7 @@ public class ModelValidator {
         result &= genre != null && !genre.equals("");
         result &= size > 0;
         if (!result) {
-            throw new RuntimeException();
+            throw new ModelException("invalid Album");
         }
     }
 
@@ -46,7 +47,7 @@ public class ModelValidator {
         boolean result = name != null && !name.equals("");
         result &= duration != null && duration.getSeconds() > 0;
         if (!result) {
-            throw new RuntimeException();
+            throw new ModelException("invalid Track");
         }
     }
 

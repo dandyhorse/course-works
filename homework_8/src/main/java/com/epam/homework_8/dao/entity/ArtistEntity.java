@@ -1,5 +1,6 @@
 package com.epam.homework_8.dao.entity;
 
+import com.epam.homework_8.dao.exceptions.EntityException;
 import com.epam.homework_8.dao.serializers.Utils;
 import com.epam.homework_8.models.Artist;
 import com.epam.homework_8.dao.serializers.interfaces.TextExternalizable;
@@ -44,7 +45,7 @@ public class ArtistEntity implements TextExternalizable {
             try {
                 albumEntity.writeTextExternal(out);
             } catch (IOException e) {
-                e.printStackTrace();
+                throw new EntityException("ArtistEntity write crash", e);
             }
         });
         out.write("\n\t}");
@@ -66,7 +67,7 @@ public class ArtistEntity implements TextExternalizable {
             try {
                 albumEntity.readTextExternal(Utils.stringToBuffer(albumString));
             } catch (IOException e) {
-                e.getMessage();
+                throw new EntityException("ArtistEntity read crash", e);
             }
             albumEntities.add(albumEntity);
         });

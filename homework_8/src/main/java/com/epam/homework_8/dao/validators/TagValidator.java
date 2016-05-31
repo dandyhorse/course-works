@@ -1,5 +1,7 @@
 package com.epam.homework_8.dao.validators;
 
+import com.epam.homework_8.dao.exceptions.EntityException;
+
 import java.util.regex.Pattern;
 
 public class TagValidator {
@@ -14,8 +16,7 @@ public class TagValidator {
         StringBuilder stringBuilder = new StringBuilder(text);
         String artistPattern = ".*(Artist)+(\\{)(.*)(\\})(.*)";
         if (!Pattern.matches(artistPattern, stringBuilder)) {
-            //TODO custom exception
-            throw new RuntimeException();
+            throw new EntityException("invalid Artist{} tag in file");
         }
     }
 
@@ -23,8 +24,7 @@ public class TagValidator {
         StringBuilder stringBuilder = new StringBuilder(text);
         String musicGuidePattern = "(MusicGuide)(\\{)(.*)(\\})";
         if (!Pattern.matches(musicGuidePattern, stringBuilder)) {
-            //TODO custom exception
-            throw new RuntimeException();
+            throw new EntityException("invalid MusicGuide{} tag  in file");
         }
     }
 
@@ -32,8 +32,7 @@ public class TagValidator {
         StringBuilder stringBuilder = new StringBuilder(string);
         String artistPattern = ".*(Album)+(\\{)(.*)(\\})(.*)";
         if (!Pattern.matches(artistPattern, stringBuilder)) {
-            //TODO custom exception
-            throw new RuntimeException();
+            throw new EntityException("invalid Album{} tag in file");
         }
     }
 }
