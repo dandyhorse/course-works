@@ -17,6 +17,12 @@ public class AlbumEntity implements TextExternalizable {
     private transient String genreAlbum;
     private transient List<TrackEntity> trackEntities;
 
+    private static final transient String albumTag = TagAttributes.ALBUM_TAG;
+    private static final transient String nameTag = TagAttributes.NAME_TAG;
+    private static final transient String genreTag = TagAttributes.GENRE_TAG;
+    private static final transient String trackTag = TagAttributes.TRACK_TAG;
+
+
     public AlbumEntity(Album modelAlbum) {
         this();
         this.nameAlbum = modelAlbum.getName();
@@ -45,8 +51,8 @@ public class AlbumEntity implements TextExternalizable {
 
     @Override
     public void writeTextExternal(BufferedWriter out) throws IOException {
-        out.write("\n\t\tAlbum{");
-        out.write(String.format("\tName : %s\n\t\t\t\tGenre : %s", nameAlbum, genreAlbum));
+        out.write(Utils.getFormatTag("\n\t\t%s{", albumTag));
+        out.write(Utils.getFormatTag("\t%s : %s\n\t\t\t\t%s : %s", nameTag, nameAlbum, genreTag, genreAlbum));
         trackEntities.forEach(trackEntity -> {
             try {
                 trackEntity.writeTextExternal(out);
@@ -72,35 +78,35 @@ public class AlbumEntity implements TextExternalizable {
     }
 
     private String getGenre(String string) {
-        int start = string.indexOf("Genre :");
-        int end = string.indexOf("Track{");
+        String emptySpace = " ";
+        int start = string.indexOf(Utils.getFormatTag("%s :", genreTag));
+        int end = string.indexOf(Utils.getFormatTag("%s{", trackTag));
         if (end == -1) {
-            end = string.lastIndexOf(" ");
+            end = string.lastIndexOf(emptySpace);
         }
-        String substring = string.substring(start, end).replace("Genre :", "");
+        String substring = string.substring(start, end).replace(Utils.getFormatTag("%s :", genreTag), "");
         return substring.trim();
     }
 
     private String getName(String string) {
-        int start = string.indexOf("Name :");
-        int end = string.indexOf("Genre");
+        int start = string.indexOf(Utils.getFormatTag("%s :", nameTag));
+        int end = string.indexOf(Utils.getFormatTag("%s :", genreTag));
         String substring = string.substring(start, end).replace("Name :", "");
         return substring.trim();
     }
 
     private void readTracks(String innerString) {
-        if (TagValidator.validateTrackTag(innerString)) {
-            Stream<String> trackStream = Stream.of(innerString.split("Track\\{")).skip(1);
-            trackStream.forEach(trackString -> {
-                TrackEntity trackEntity = new TrackEntity();
-                try {
-                    trackEntity.readTextExternal(Utils.stringToBuffer(trackString));
-                } catch (IOException e) {
-                    throw new EntityException("AlbumEntity read crash", e);
-                }
-                trackEntities.add(trackEntity);
-            });
-        }
+        TagValidator.validateTrackTag(innerString);
+        Stream<String> trackStream = Stream.of(innerString.split(trackTag + "\\{")).skip(1);
+        trackStream.forEach(trackString -> {
+            TrackEntity trackEntity = new TrackEntity();
+            try {
+                trackEntity.readTextExternal(Utils.stringToBuffer(trackString));
+            } catch (IOException e) {
+                throw new EntityException("AlbumEntity read crash", e);
+            }
+            trackEntities.add(trackEntity);
+        });
     }
 
 }

@@ -31,6 +31,10 @@ public class Utils {
         }
     }
 
+    public static String getFormatTag(String format, String... tag) {
+        return String.format(format, tag);
+    }
+
     public static BufferedReader stringToBuffer(String s) {
         return new BufferedReader(new StringReader(s));
     }

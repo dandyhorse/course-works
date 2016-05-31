@@ -1,6 +1,7 @@
 package com.epam.homework_8.dao.serializers;
 
 import com.epam.homework_8.dao.entity.MusicGuideEntity;
+import com.epam.homework_8.dao.exceptions.SerializerException;
 import com.epam.homework_8.dao.serializers.interfaces.Serializer;
 
 import java.io.*;
@@ -16,7 +17,7 @@ public class SerializerMusicGuideText implements Serializer<MusicGuideEntity> {
             guideEntity.readTextExternal(bf);
 
         } catch (IOException e) {
-            e.getMessage();
+            throw new SerializerException("Read exception", e);
         }
         return guideEntity;
     }
@@ -30,7 +31,7 @@ public class SerializerMusicGuideText implements Serializer<MusicGuideEntity> {
             bf.flush();
 
         } catch (IOException e) {
-            e.getMessage();
+            throw new SerializerException("Write exception", e);
         }
     }
 

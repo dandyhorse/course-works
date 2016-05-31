@@ -4,16 +4,15 @@ import com.epam.homework_8.dao.assemblers.AssemblerService;
 import com.epam.homework_8.models.MusicGuide;
 import com.epam.homework_8.dao.entity.MusicGuideEntity;
 import com.epam.homework_8.dao.serializers.interfaces.Serializer;
-import com.epam.homework_8.dao.serializers.SerializerMusicGuideText;
 
 public class DaoSerializer implements Dao<MusicGuide> {
 
     private String outputFile;
     private Serializer<MusicGuideEntity> serializer;
 
-    public DaoSerializer(String outputFile) {
+    public DaoSerializer(String outputFile, Serializer<MusicGuideEntity> serializer) {
         this.outputFile = outputFile;
-        serializer = new SerializerMusicGuideText();
+        this.serializer = serializer;
     }
 
     public void save(MusicGuide musicGuide) {

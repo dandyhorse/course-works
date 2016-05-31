@@ -5,6 +5,7 @@ import com.epam.homework_8.dao.serializers.Utils;
 import com.epam.homework_8.models.Artist;
 import com.epam.homework_8.dao.serializers.interfaces.TextExternalizable;
 import com.epam.homework_8.dao.validators.TagValidator;
+import org.omg.IOP.TAG_ALTERNATE_IIOP_ADDRESS;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -15,6 +16,10 @@ public class ArtistEntity implements TextExternalizable {
 
     private transient String artistName;
     private transient List<AlbumEntity> albumEntities;
+
+    private static final transient String albumTag = TagAttributes.ALBUM_TAG;
+    private static final transient String nameTag = TagAttributes.NAME_TAG;
+    private static final transient String artistTag = TagAttributes.ARTIST_TAG;
 
     public ArtistEntity(Artist modelArtist) {
         this();
@@ -39,8 +44,8 @@ public class ArtistEntity implements TextExternalizable {
 
     @Override
     public void writeTextExternal(BufferedWriter out) throws IOException {
-        out.write("\n\tArtist{");
-        out.write(String.format("\tName : %s", artistName));
+        out.write(Utils.getFormatTag("\n\t%s{", artistTag));
+        out.write(Utils.getFormatTag("\t%s : %s", nameTag, artistName));
         albumEntities.forEach(albumEntity -> {
             try {
                 albumEntity.writeTextExternal(out);
@@ -61,7 +66,7 @@ public class ArtistEntity implements TextExternalizable {
 
     private void readAlbums(String innerString) {
         TagValidator.validateAlbumTag(innerString);
-        Stream<String> albumStream = Stream.of(innerString.split("Album\\{")).skip(1);
+        Stream<String> albumStream = Stream.of(innerString.split(albumTag + "\\{")).skip(1);
         albumStream.forEach(albumString -> {
             AlbumEntity albumEntity = new AlbumEntity();
             try {
@@ -74,9 +79,10 @@ public class ArtistEntity implements TextExternalizable {
     }
 
     private String getName(String string) {
-        int start = string.indexOf("Name :");
-        int end = string.indexOf("Album{");
-        String substring = string.substring(start, end).replace("Name :", "");
+        String tag = Utils.getFormatTag("%s :", nameTag);
+        int start = string.indexOf(tag);
+        int end = string.indexOf(Utils.getFormatTag("%s{", albumTag));
+        String substring = string.substring(start, end).replace(tag, "");
         return substring.trim();
     }
 

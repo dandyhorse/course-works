@@ -52,6 +52,7 @@ public class TagValidator {
 
     private static boolean validateCommon(String text, String tag) {
         StringBuilder stringBuilder = new StringBuilder(text);
+        String musicGuidePattern = "(MusicGuide)(\\{)(.*)(\\})";
         return Pattern.matches(tag, stringBuilder);
     }
 

@@ -15,18 +15,14 @@ public class ModelValidator {
     public static void validate(MusicGuide musicGuide) {
         List<Artist> allArtists = musicGuide.getAllArtists();
         boolean result = allArtists != null && allArtists.size() > 0;
-        if (!result) {
-            throw new ModelException("invalid MusicGuide");
-        }
+        isException(result, "invalid MusicGuide");
     }
 
     public static void validate(Artist artist) {
         String name = artist.getName();
         boolean result = name != null && !name.equals("");
         result &= artist.getAlbums().size() > 0;
-        if (!result) {
-            throw new ModelException("invalid Artist");
-        }
+        isException(result, "invalid Artist");
     }
 
     public static void validate(Album album) {
@@ -36,8 +32,13 @@ public class ModelValidator {
         boolean result = name != null && !name.equals("");
         result &= genre != null && !genre.equals("");
         result &= size > 0;
+        String message = "invalid Album";
+        isException(result, message);
+    }
+
+    private static void isException(boolean result, String message) {
         if (!result) {
-            throw new ModelException("invalid Album");
+            throw new ModelException(message);
         }
     }
 
@@ -46,9 +47,7 @@ public class ModelValidator {
         Duration duration = track.getDuration();
         boolean result = name != null && !name.equals("");
         result &= duration != null && duration.getSeconds() > 0;
-        if (!result) {
-            throw new ModelException("invalid Track");
-        }
+        isException(result, "invalid Track");
     }
 
 }

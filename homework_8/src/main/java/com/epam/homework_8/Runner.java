@@ -2,6 +2,10 @@ package com.epam.homework_8;
 
 import com.epam.homework_8.dao.Dao;
 import com.epam.homework_8.dao.DaoSerializer;
+import com.epam.homework_8.dao.entity.MusicGuideEntity;
+import com.epam.homework_8.dao.serializers.SerializerMusicGuideText;
+import com.epam.homework_8.dao.serializers.SerializerObjectImpl;
+import com.epam.homework_8.dao.serializers.interfaces.Serializer;
 import com.epam.homework_8.models.Album;
 import com.epam.homework_8.models.Artist;
 import com.epam.homework_8.models.MusicGuide;
@@ -13,23 +17,35 @@ public class Runner {
 
     public void run() {
 
-        String outputFile = "music_guide.ser";
+        objectSerialization();
 
+        MusicGuideSerialization();
+
+    }
+
+    private void MusicGuideSerialization() {
+        String outputFile = "music_guide.ser";
         //model
         MusicGuide guide = new MusicGuide();
         fillContent(guide);
-
         //dao layer
-        Dao<MusicGuide> dao = new DaoSerializer(outputFile);
-
+        Serializer<MusicGuideEntity> serializer = new SerializerMusicGuideText();
+        Dao<MusicGuide> dao = new DaoSerializer(outputFile, serializer);
         //serialize
         dao.save(guide);
-
         //deserialize
         MusicGuide guideFromFile = dao.get();
 
         System.out.println(guideFromFile);
+    }
 
+    private void objectSerialization() {
+        String outputFileForStringSer = "string.ser";
+        String s = System.getProperties().toString();
+        Serializer<String> objectSer = new SerializerObjectImpl<>();
+        objectSer.serialize(outputFileForStringSer, s);
+        String deserializedString = objectSer.deserialize(outputFileForStringSer);
+        System.out.println(deserializedString);
     }
 
     private void fillContent(MusicGuide guide) {

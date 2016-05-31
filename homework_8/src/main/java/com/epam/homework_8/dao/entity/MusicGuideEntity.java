@@ -14,6 +14,9 @@ public class MusicGuideEntity implements TextExternalizable {
 
     private transient List<ArtistEntity> artistEntities;
 
+    private static final transient String musicGuideTag = TagAttributes.MUSIC_GUIDE_TAG;
+    private static final transient String artistTag = TagAttributes.ARTIST_TAG;
+
     public MusicGuideEntity() {
         artistEntities = new ArrayList<>();
     }
@@ -28,7 +31,7 @@ public class MusicGuideEntity implements TextExternalizable {
 
     @Override
     public void writeTextExternal(BufferedWriter out) throws IOException {
-        out.write("MusicGuide{");
+        out.write(Utils.getFormatTag("%s{", musicGuideTag));
         writeArtists(out);
         out.write("\n}");
     }
@@ -47,7 +50,7 @@ public class MusicGuideEntity implements TextExternalizable {
     public void readTextExternal(BufferedReader in) throws IOException {
         String text = readerToStringBuilder(in);
         TagValidator.validateMusicGuideTag(text);
-        String[] innerText = text.split("MusicGuide\\{");
+        String[] innerText = text.split(musicGuideTag + "\\{");
         //picked innerText[1] cause innerText[0] is empty String
         String innerString = Utils.deleteLastBracket(innerText[1]);
         readArtists(innerString);
@@ -61,7 +64,7 @@ public class MusicGuideEntity implements TextExternalizable {
 
     private void readArtists(String innerString) {
         TagValidator.validateArtistTag(innerString);
-        Stream<String> artistStream = Stream.of(innerString.split("Artist\\{")).skip(1);
+        Stream<String> artistStream = Stream.of(innerString.split(artistTag + "\\{")).skip(1);
         artistStream.forEach(s -> {
             ArtistEntity artistEntity = new ArtistEntity();
             try {
