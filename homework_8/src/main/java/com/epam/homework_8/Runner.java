@@ -1,7 +1,7 @@
 package com.epam.homework_8;
 
 import com.epam.homework_8.dao.Dao;
-import com.epam.homework_8.dao.DaoSerializer;
+import com.epam.homework_8.dao.DaoMusicGuideSerializer;
 import com.epam.homework_8.dao.entity.MusicGuideEntity;
 import com.epam.homework_8.dao.serializers.SerializerMusicGuideText;
 import com.epam.homework_8.dao.serializers.SerializerObjectImpl;
@@ -28,7 +28,7 @@ public class Runner {
     }
 
     private void serialization(MusicGuide guide, String outputFile, Serializer<MusicGuideEntity> serializer) {
-        Dao<MusicGuide> dao = new DaoSerializer(outputFile, serializer);
+        Dao<MusicGuide> dao = new DaoMusicGuideSerializer(outputFile, serializer);
         dao.save(guide);
         MusicGuide guideFromFile = dao.get();
         System.out.println(guideFromFile);
