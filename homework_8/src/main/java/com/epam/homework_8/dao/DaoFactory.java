@@ -1,4 +1,4 @@
-package com.epam.homework_8.dao.validators;
+package com.epam.homework_8.dao;
 
 import com.epam.homework_8.dao.Dao;
 import com.epam.homework_8.dao.DaoMusicGuideSerializer;

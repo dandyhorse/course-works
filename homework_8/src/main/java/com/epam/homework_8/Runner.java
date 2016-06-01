@@ -1,7 +1,7 @@
 package com.epam.homework_8;
 
 import com.epam.homework_8.dao.Dao;
-import com.epam.homework_8.dao.validators.DaoFactory;
+import com.epam.homework_8.dao.DaoFactory;
 import com.epam.homework_8.models.Album;
 import com.epam.homework_8.models.Artist;
 import com.epam.homework_8.models.MusicGuide;
