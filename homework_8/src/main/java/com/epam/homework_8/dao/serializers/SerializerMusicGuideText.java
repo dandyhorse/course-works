@@ -3,6 +3,7 @@ package com.epam.homework_8.dao.serializers;
 import com.epam.homework_8.dao.entity.MusicGuideEntity;
 import com.epam.homework_8.dao.exceptions.SerializerException;
 import com.epam.homework_8.dao.serializers.interfaces.Serializer;
+import com.epam.homework_8.dao.validators.TagValidator;
 
 import java.io.*;
 

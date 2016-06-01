@@ -1,7 +1,8 @@
 package com.epam.homework_8.dao.entity;
 
+import com.epam.homework_8.dao.entity.tags.Tags;
 import com.epam.homework_8.dao.exceptions.EntityException;
-import com.epam.homework_8.dao.serializers.Utils;
+import com.epam.homework_8.dao.entity.tags.Utils;
 import com.epam.homework_8.models.Track;
 import com.epam.homework_8.dao.serializers.interfaces.TextExternalizable;
 
@@ -13,9 +14,9 @@ public class TrackEntity implements TextExternalizable {
     private transient String trackName;
     private transient Duration trackDuration;
 
-    private static final transient String trackTag = TagAttributes.TRACK_TAG;
-    private static final transient String nameTag = TagAttributes.NAME_TAG;
-    private static final transient String durationTag = TagAttributes.DURATION_TAG;
+    private static final transient String trackTag = Tags.TRACK_TAG;
+    private static final transient String nameTag = Tags.NAME_ATTR;
+    private static final transient String durationTag = Tags.DURATION_ATTR;
 
     public TrackEntity(Track modelTrack) {
         this.trackName = modelTrack.getName();

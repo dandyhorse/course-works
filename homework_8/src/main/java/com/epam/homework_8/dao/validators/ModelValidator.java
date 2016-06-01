@@ -1,6 +1,5 @@
 package com.epam.homework_8.dao.validators;
 
-
 import com.epam.homework_8.dao.exceptions.ModelException;
 import com.epam.homework_8.models.Album;
 import com.epam.homework_8.models.Artist;

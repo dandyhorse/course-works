@@ -1,7 +1,8 @@
 package com.epam.homework_8.dao.entity;
 
+import com.epam.homework_8.dao.entity.tags.Tags;
 import com.epam.homework_8.dao.exceptions.EntityException;
-import com.epam.homework_8.dao.serializers.Utils;
+import com.epam.homework_8.dao.entity.tags.Utils;
 import com.epam.homework_8.dao.serializers.interfaces.TextExternalizable;
 import com.epam.homework_8.dao.validators.TagValidator;
 
@@ -14,8 +15,8 @@ public class MusicGuideEntity implements TextExternalizable {
 
     private transient List<ArtistEntity> artistEntities;
 
-    private static final transient String musicGuideTag = TagAttributes.MUSIC_GUIDE_TAG;
-    private static final transient String artistTag = TagAttributes.ARTIST_TAG;
+    private static final transient String musicGuideTag = Tags.MUSIC_GUIDE_TAG;
+    private static final transient String artistTag = Tags.ARTIST_TAG;
 
     public MusicGuideEntity() {
         artistEntities = new ArrayList<>();
@@ -48,18 +49,11 @@ public class MusicGuideEntity implements TextExternalizable {
 
     @Override
     public void readTextExternal(BufferedReader in) throws IOException {
-        String text = readerToStringBuilder(in);
+        String text = Utils.readerToString(in);
         TagValidator.validateMusicGuideTag(text);
         String[] innerText = text.split(musicGuideTag + "\\{");
-        //picked innerText[1] cause innerText[0] is empty String
         String innerString = Utils.deleteLastBracket(innerText[1]);
         readArtists(innerString);
-    }
-
-    private String readerToStringBuilder(BufferedReader in) {
-        StringBuilder text = new StringBuilder();
-        in.lines().forEach(text::append);
-        return text.toString();
     }
 
     private void readArtists(String innerString) {

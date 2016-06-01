@@ -1,7 +1,8 @@
 package com.epam.homework_8.dao.entity;
 
+import com.epam.homework_8.dao.entity.tags.Tags;
 import com.epam.homework_8.dao.exceptions.EntityException;
-import com.epam.homework_8.dao.serializers.Utils;
+import com.epam.homework_8.dao.entity.tags.Utils;
 import com.epam.homework_8.models.Album;
 import com.epam.homework_8.dao.serializers.interfaces.TextExternalizable;
 import com.epam.homework_8.dao.validators.TagValidator;
@@ -16,12 +17,6 @@ public class AlbumEntity implements TextExternalizable {
     private transient String nameAlbum;
     private transient String genreAlbum;
     private transient List<TrackEntity> trackEntities;
-
-    private static final transient String albumTag = TagAttributes.ALBUM_TAG;
-    private static final transient String nameTag = TagAttributes.NAME_TAG;
-    private static final transient String genreTag = TagAttributes.GENRE_TAG;
-    private static final transient String trackTag = TagAttributes.TRACK_TAG;
-
 
     public AlbumEntity(Album modelAlbum) {
         this();
@@ -51,8 +46,8 @@ public class AlbumEntity implements TextExternalizable {
 
     @Override
     public void writeTextExternal(BufferedWriter out) throws IOException {
-        out.write(Utils.getFormatTag("\n\t\t%s{", albumTag));
-        out.write(Utils.getFormatTag("\t%s : %s\n\t\t\t\t%s : %s", nameTag, nameAlbum, genreTag, genreAlbum));
+        out.write(Utils.getFormatTag("\n\t\t%s{", Tags.ALBUM_TAG));
+        out.write(Utils.getFormatTag("\t%s : %s\n\t\t\t\t%s : %s", Tags.NAME_ATTR, nameAlbum, Tags.GENRE_ATTR, genreAlbum));
         trackEntities.forEach(trackEntity -> {
             try {
                 trackEntity.writeTextExternal(out);
@@ -68,36 +63,42 @@ public class AlbumEntity implements TextExternalizable {
         String stringAlbum = in.readLine();
         nameAlbum = getName(stringAlbum);
         genreAlbum = getGenre(stringAlbum);
-        String innerString;
-        try {
-            innerString = Utils.deleteLastBracket(stringAlbum);
-        } catch (StringIndexOutOfBoundsException e) {
-            throw new EntityException("invalid tag Album{} in file", e);
-        }
+        String innerString = properProcessText(stringAlbum);
         readTracks(innerString);
     }
 
-    private String getGenre(String string) {
-        String emptySpace = " ";
-        int start = string.indexOf(Utils.getFormatTag("%s :", genreTag));
-        int end = string.indexOf(Utils.getFormatTag("%s{", trackTag));
-        if (end == -1) {
-            end = string.lastIndexOf(emptySpace);
+    private String properProcessText(String stringAlbum) {
+        String innerString;
+        try {
+            innerString = Utils.deleteLastBracket(stringAlbum);
+            innerString = Utils.deleteAttributeFromInnerString(innerString, Tags.NAME_ATTR, nameAlbum);
+            innerString = Utils.deleteAttributeFromInnerString(innerString, Tags.GENRE_ATTR, genreAlbum);
+        } catch (StringIndexOutOfBoundsException e) {
+            throw new EntityException("invalid tag Album{} in file", e);
         }
-        String substring = string.substring(start, end).replace(Utils.getFormatTag("%s :", genreTag), "");
+        return innerString;
+    }
+
+    private String getGenre(String string) {
+        int start = string.indexOf(Utils.getFormatTag("%s :", Tags.GENRE_ATTR));
+        int end = string.indexOf(Utils.getFormatTag("%s{", Tags.NAME_ATTR));
+        if (end == -1) {
+            end = string.indexOf("}");
+        }
+        String substring = string.substring(start, end).replace(Utils.getFormatTag("%s :", Tags.GENRE_ATTR), "");
         return substring.trim();
     }
 
     private String getName(String string) {
-        int start = string.indexOf(Utils.getFormatTag("%s :", nameTag));
-        int end = string.indexOf(Utils.getFormatTag("%s :", genreTag));
+        int start = string.indexOf(Utils.getFormatTag("%s :", Tags.GENRE_ATTR));
+        int end = string.indexOf(Utils.getFormatTag("%s :", Tags.GENRE_ATTR));
         String substring = string.substring(start, end).replace("Name :", "");
         return substring.trim();
     }
 
     private void readTracks(String innerString) {
         TagValidator.validateTrackTag(innerString);
-        Stream<String> trackStream = Stream.of(innerString.split(trackTag + "\\{")).skip(1);
+        Stream<String> trackStream = Stream.of(innerString.split(Tags.TRACK_TAG + "\\{")).skip(1);
         trackStream.forEach(trackString -> {
             TrackEntity trackEntity = new TrackEntity();
             try {

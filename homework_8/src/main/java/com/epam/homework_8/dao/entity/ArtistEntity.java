@@ -1,11 +1,11 @@
 package com.epam.homework_8.dao.entity;
 
+import com.epam.homework_8.dao.entity.tags.Tags;
 import com.epam.homework_8.dao.exceptions.EntityException;
-import com.epam.homework_8.dao.serializers.Utils;
+import com.epam.homework_8.dao.entity.tags.Utils;
 import com.epam.homework_8.models.Artist;
 import com.epam.homework_8.dao.serializers.interfaces.TextExternalizable;
 import com.epam.homework_8.dao.validators.TagValidator;
-import org.omg.IOP.TAG_ALTERNATE_IIOP_ADDRESS;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -17,9 +17,9 @@ public class ArtistEntity implements TextExternalizable {
     private transient String artistName;
     private transient List<AlbumEntity> albumEntities;
 
-    private static final transient String albumTag = TagAttributes.ALBUM_TAG;
-    private static final transient String nameTag = TagAttributes.NAME_TAG;
-    private static final transient String artistTag = TagAttributes.ARTIST_TAG;
+    private static final transient String albumTag = Tags.ALBUM_TAG;
+    private static final transient String artistTag = Tags.ARTIST_TAG;
+    private static final transient String nameAttr = Tags.NAME_ATTR;
 
     public ArtistEntity(Artist modelArtist) {
         this();
@@ -45,7 +45,7 @@ public class ArtistEntity implements TextExternalizable {
     @Override
     public void writeTextExternal(BufferedWriter out) throws IOException {
         out.write(Utils.getFormatTag("\n\t%s{", artistTag));
-        out.write(Utils.getFormatTag("\t%s : %s", nameTag, artistName));
+        out.write(Utils.getFormatTag("\t%s : %s", nameAttr, artistName));
         albumEntities.forEach(albumEntity -> {
             try {
                 albumEntity.writeTextExternal(out);
@@ -61,7 +61,8 @@ public class ArtistEntity implements TextExternalizable {
         String stringArtist = in.readLine();
         artistName = getName(stringArtist);
         String innerString = Utils.deleteLastBracketInArtistTag(stringArtist);
-        readAlbums(innerString);
+        String s = Utils.deleteAttributeFromInnerString(innerString, nameAttr, artistName);
+        readAlbums(s);
     }
 
     private void readAlbums(String innerString) {
@@ -79,7 +80,7 @@ public class ArtistEntity implements TextExternalizable {
     }
 
     private String getName(String string) {
-        String tag = Utils.getFormatTag("%s :", nameTag);
+        String tag = Utils.getFormatTag("%s :", nameAttr);
         int start = string.indexOf(tag);
         int end = string.indexOf(Utils.getFormatTag("%s{", albumTag));
         String substring = string.substring(start, end).replace(tag, "");
