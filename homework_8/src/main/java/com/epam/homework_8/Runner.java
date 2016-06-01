@@ -17,35 +17,21 @@ public class Runner {
 
     public void run() {
 
-        objectSerialization();
-
-        MusicGuideSerialization();
-
-    }
-
-    private void MusicGuideSerialization() {
-        String outputFile = "music_guide.ser";
         //model
         MusicGuide guide = new MusicGuide();
         fillContent(guide);
-        //dao layer
-        Serializer<MusicGuideEntity> serializer = new SerializerMusicGuideText();
-        Dao<MusicGuide> dao = new DaoSerializer(outputFile, serializer);
-        //serialize
-        dao.save(guide);
-        //deserialize
-        MusicGuide guideFromFile = dao.get();
 
-        System.out.println(guideFromFile);
+        serialization(guide, "music_guide.txt", new SerializerMusicGuideText());
+
+        serialization(guide, "music_guide.ser", new SerializerObjectImpl<>());
+
     }
 
-    private void objectSerialization() {
-        String outputFileForStringSer = "system_properties.ser";
-        String s = System.getProperties().toString();
-        Serializer<String> objectSer = new SerializerObjectImpl<>();
-        objectSer.serialize(outputFileForStringSer, s);
-        String deserializedString = objectSer.deserialize(outputFileForStringSer);
-        System.out.println(deserializedString);
+    private void serialization(MusicGuide guide, String outputFile, Serializer<MusicGuideEntity> serializer) {
+        Dao<MusicGuide> dao = new DaoSerializer(outputFile, serializer);
+        dao.save(guide);
+        MusicGuide guideFromFile = dao.get();
+        System.out.println(guideFromFile);
     }
 
     private void fillContent(MusicGuide guide) {

@@ -9,7 +9,7 @@ import com.epam.homework_8.dao.serializers.interfaces.TextExternalizable;
 import java.io.*;
 import java.time.Duration;
 
-public class TrackEntity implements TextExternalizable {
+public class TrackEntity implements TextExternalizable, Externalizable {
 
     private transient String trackName;
     private transient Duration trackDuration;
@@ -65,6 +65,18 @@ public class TrackEntity implements TextExternalizable {
         int end = string.indexOf(Utils.formatTag("%s :", Tags.DURATION_ATTR));
         String substring = string.substring(start, end).replace(Utils.formatTag("%s :", Tags.NAME_ATTR), "");
         return substring.trim();
+    }
+
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeObject(trackName);
+        out.writeObject(trackDuration);
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        trackName = (String) in.readObject();
+        trackDuration = (Duration) in.readObject();
     }
 
 }

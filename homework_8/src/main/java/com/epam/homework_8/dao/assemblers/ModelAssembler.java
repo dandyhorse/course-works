@@ -39,10 +39,10 @@ public class ModelAssembler {
     }
 
     private Album newModel(AlbumEntity albumEntity) {
-        String nameAlbum = albumEntity.getNameAlbum();
+        String nameAlbum = albumEntity.getAlbumName();
         Album.Builder albumBuilder = Album.newBuilder()
                 .setName(nameAlbum)
-                .setGenre(albumEntity.getGenreAlbum());
+                .setGenre(albumEntity.getAlbumGenre());
 
         if (albumTrackMap.containsKey(nameAlbum)) {
             addTracksToAlbum(nameAlbum, albumBuilder);

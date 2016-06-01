@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class ArtistEntity implements TextExternalizable {
+public class ArtistEntity implements TextExternalizable, Externalizable {
 
     private transient String artistName;
     private transient List<AlbumEntity> albumEntities;
@@ -83,5 +83,16 @@ public class ArtistEntity implements TextExternalizable {
         return substring.trim();
     }
 
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeObject(artistName);
+        out.writeObject(albumEntities);
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        artistName = (String) in.readObject();
+        albumEntities = (List<AlbumEntity>) in.readObject();
+    }
 }
 

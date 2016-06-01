@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class MusicGuideEntity implements TextExternalizable {
+public class MusicGuideEntity implements TextExternalizable, Externalizable {
 
     private transient List<ArtistEntity> artistEntities;
 
@@ -67,4 +67,13 @@ public class MusicGuideEntity implements TextExternalizable {
         });
     }
 
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeObject(artistEntities);
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        artistEntities = (List<ArtistEntity>) in.readObject();
+    }
 }
