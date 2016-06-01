@@ -80,8 +80,9 @@ public class AlbumEntity implements TextExternalizable {
     }
 
     private String getGenre(String string) {
+        System.out.println(string);
         int start = string.indexOf(Utils.getFormatTag("%s :", Tags.GENRE_ATTR));
-        int end = string.indexOf(Utils.getFormatTag("%s{", Tags.NAME_ATTR));
+        int end = string.indexOf(Utils.getFormatTag("%s{", Tags.TRACK_TAG));
         if (end == -1) {
             end = string.indexOf("}");
         }
@@ -90,7 +91,7 @@ public class AlbumEntity implements TextExternalizable {
     }
 
     private String getName(String string) {
-        int start = string.indexOf(Utils.getFormatTag("%s :", Tags.GENRE_ATTR));
+        int start = string.indexOf(Utils.getFormatTag("%s :", Tags.NAME_ATTR));
         int end = string.indexOf(Utils.getFormatTag("%s :", Tags.GENRE_ATTR));
         String substring = string.substring(start, end).replace("Name :", "");
         return substring.trim();

@@ -32,7 +32,7 @@ public class Runner {
         Serializer<MusicGuideEntity> serializer = new SerializerMusicGuideText();
         Dao<MusicGuide> dao = new DaoSerializer(outputFile, serializer);
         //serialize
-        dao.save(guide);
+//        dao.save(guide);
         //deserialize
         MusicGuide guideFromFile = dao.get();
 

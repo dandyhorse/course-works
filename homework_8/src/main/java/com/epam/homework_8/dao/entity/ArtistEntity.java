@@ -17,10 +17,6 @@ public class ArtistEntity implements TextExternalizable {
     private transient String artistName;
     private transient List<AlbumEntity> albumEntities;
 
-    private static final transient String albumTag = Tags.ALBUM_TAG;
-    private static final transient String artistTag = Tags.ARTIST_TAG;
-    private static final transient String nameAttr = Tags.NAME_ATTR;
-
     public ArtistEntity(Artist modelArtist) {
         this();
         this.artistName = modelArtist.getName();
@@ -44,8 +40,8 @@ public class ArtistEntity implements TextExternalizable {
 
     @Override
     public void writeTextExternal(BufferedWriter out) throws IOException {
-        out.write(Utils.getFormatTag("\n\t%s{", artistTag));
-        out.write(Utils.getFormatTag("\t%s : %s", nameAttr, artistName));
+        out.write(Utils.getFormatTag("\n\t%s{", Tags.ARTIST_TAG));
+        out.write(Utils.getFormatTag("\t%s : %s", Tags.NAME_ATTR, artistName));
         albumEntities.forEach(albumEntity -> {
             try {
                 albumEntity.writeTextExternal(out);
@@ -61,13 +57,13 @@ public class ArtistEntity implements TextExternalizable {
         String stringArtist = in.readLine();
         artistName = getName(stringArtist);
         String innerString = Utils.deleteLastBracketInArtistTag(stringArtist);
-        String s = Utils.deleteAttributeFromInnerString(innerString, nameAttr, artistName);
+        String s = Utils.deleteAttributeFromInnerString(innerString, Tags.NAME_ATTR, artistName);
         readAlbums(s);
     }
 
     private void readAlbums(String innerString) {
         TagValidator.validateAlbumTag(innerString);
-        Stream<String> albumStream = Stream.of(innerString.split(albumTag + "\\{")).skip(1);
+        Stream<String> albumStream = Stream.of(innerString.split(Tags.ALBUM_TAG + "\\{")).skip(1);
         albumStream.forEach(albumString -> {
             AlbumEntity albumEntity = new AlbumEntity();
             try {
@@ -80,9 +76,9 @@ public class ArtistEntity implements TextExternalizable {
     }
 
     private String getName(String string) {
-        String tag = Utils.getFormatTag("%s :", nameAttr);
+        String tag = Utils.getFormatTag("%s :", Tags.NAME_ATTR);
         int start = string.indexOf(tag);
-        int end = string.indexOf(Utils.getFormatTag("%s{", albumTag));
+        int end = string.indexOf(Utils.getFormatTag("%s{", Tags.ALBUM_TAG));
         String substring = string.substring(start, end).replace(tag, "");
         return substring.trim();
     }

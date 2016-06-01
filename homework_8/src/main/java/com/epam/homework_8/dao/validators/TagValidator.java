@@ -57,7 +57,6 @@ public class TagValidator {
     }
 
     private static void deepValidationTag(String text, String excludePattern) {
-        System.out.println(text);
         Stream<String> stringStream = Stream.of(text
                 .replaceAll(excludePattern, "")
                 .split("\\W"));
