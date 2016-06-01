@@ -1,4 +1,4 @@
-package com.epam.homework_8.dao.serializers;
+package com.epam.homework_8.dao.entity.tags;
 
 import com.epam.homework_8.dao.exceptions.EntityException;
 
@@ -8,8 +8,8 @@ import java.io.StringReader;
 public class Utils {
 
     public static String deleteLastBracket(String s) {
+        int i = s.lastIndexOf("}");
         StringBuilder stringBuilder = new StringBuilder(s);
-        int i = stringBuilder.lastIndexOf("}");
         stringBuilder.deleteCharAt(i);
         return stringBuilder.toString();
     }
@@ -23,6 +23,10 @@ public class Utils {
         return string;
     }
 
+    public static String deleteAttributeFromInnerString(String innerString, String attribute, String value) {
+        return innerString.replaceAll(Utils.getFormatTag("%s : %s", attribute, value), "");
+    }
+
     private static void validateBrackets(String string) {
         int test = string.lastIndexOf("}");
         String newString = string.substring(test, string.length()).trim();
@@ -33,6 +37,12 @@ public class Utils {
 
     public static String getFormatTag(String format, String... tag) {
         return String.format(format, tag);
+    }
+
+    public static String readerToString(BufferedReader in) {
+        StringBuilder text = new StringBuilder();
+        in.lines().forEach(text::append);
+        return text.toString();
     }
 
     public static BufferedReader stringToBuffer(String s) {
