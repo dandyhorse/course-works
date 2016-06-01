@@ -24,7 +24,7 @@ public class Runner {
     }
 
     private void serialization(MusicGuide guide, String outputFile, String string) {
-        Dao<MusicGuide> dao = DaoFactory.getDaoSerializer(outputFile, string);
+        Dao<MusicGuide> dao = DaoFactory.getFileSerializer(outputFile, string);
         dao.save(guide);
         MusicGuide guideFromFile = dao.get();
         System.out.println(guideFromFile);

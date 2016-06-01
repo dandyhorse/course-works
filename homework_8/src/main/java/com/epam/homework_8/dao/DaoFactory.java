@@ -1,7 +1,5 @@
 package com.epam.homework_8.dao;
 
-import com.epam.homework_8.dao.Dao;
-import com.epam.homework_8.dao.DaoMusicGuideSerializer;
 import com.epam.homework_8.dao.entity.MusicGuideEntity;
 import com.epam.homework_8.dao.exceptions.SerializerException;
 import com.epam.homework_8.dao.serializers.SerializerMusicGuideText;
@@ -11,7 +9,7 @@ import com.epam.homework_8.models.MusicGuide;
 
 public class DaoFactory {
 
-    public static Dao<MusicGuide> getDaoSerializer(String outputFile, String string) {
+    public static Dao<MusicGuide> getFileSerializer(String outputFile, String string) {
         Serializer<MusicGuideEntity> serializer = null;
         switch (string) {
             case "binary":
