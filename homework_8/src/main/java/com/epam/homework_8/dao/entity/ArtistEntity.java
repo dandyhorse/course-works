@@ -40,8 +40,8 @@ public class ArtistEntity implements TextExternalizable {
 
     @Override
     public void writeTextExternal(BufferedWriter out) throws IOException {
-        out.write(Utils.getFormatTag("\n\t%s{", Tags.ARTIST_TAG));
-        out.write(Utils.getFormatTag("\t%s : %s", Tags.NAME_ATTR, artistName));
+        out.write(Utils.formatTag("\n\t%s{", Tags.ARTIST_TAG));
+        out.write(Utils.formatTag("\t%s : %s", Tags.NAME_ATTR, artistName));
         albumEntities.forEach(albumEntity -> {
             try {
                 albumEntity.writeTextExternal(out);
@@ -57,7 +57,7 @@ public class ArtistEntity implements TextExternalizable {
         String stringArtist = in.readLine();
         artistName = getName(stringArtist);
         String innerString = Utils.deleteLastBracketInArtistTag(stringArtist);
-        String s = Utils.deleteAttributeFromInnerString(innerString, Tags.NAME_ATTR, artistName);
+        String s = Utils.deleteAttributeFrom(innerString, Tags.NAME_ATTR, artistName);
         readAlbums(s);
     }
 
@@ -67,7 +67,7 @@ public class ArtistEntity implements TextExternalizable {
         albumStream.forEach(albumString -> {
             AlbumEntity albumEntity = new AlbumEntity();
             try {
-                albumEntity.readTextExternal(Utils.stringToBuffer(albumString));
+                albumEntity.readTextExternal(Utils.stringToBufferReader(albumString));
             } catch (IOException e) {
                 throw new EntityException("ArtistEntity read crash", e);
             }
@@ -76,9 +76,9 @@ public class ArtistEntity implements TextExternalizable {
     }
 
     private String getName(String string) {
-        String tag = Utils.getFormatTag("%s :", Tags.NAME_ATTR);
+        String tag = Utils.formatTag("%s :", Tags.NAME_ATTR);
         int start = string.indexOf(tag);
-        int end = string.indexOf(Utils.getFormatTag("%s{", Tags.ALBUM_TAG));
+        int end = string.indexOf(Utils.formatTag("%s{", Tags.ALBUM_TAG));
         String substring = string.substring(start, end).replace(tag, "");
         return substring.trim();
     }

@@ -32,7 +32,7 @@ public class Runner {
         Serializer<MusicGuideEntity> serializer = new SerializerMusicGuideText();
         Dao<MusicGuide> dao = new DaoSerializer(outputFile, serializer);
         //serialize
-//        dao.save(guide);
+        dao.save(guide);
         //deserialize
         MusicGuide guideFromFile = dao.get();
 
@@ -40,7 +40,7 @@ public class Runner {
     }
 
     private void objectSerialization() {
-        String outputFileForStringSer = "string.ser";
+        String outputFileForStringSer = "system_properties.ser";
         String s = System.getProperties().toString();
         Serializer<String> objectSer = new SerializerObjectImpl<>();
         objectSer.serialize(outputFileForStringSer, s);

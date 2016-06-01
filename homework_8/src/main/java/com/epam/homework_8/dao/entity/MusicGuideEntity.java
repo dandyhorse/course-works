@@ -29,7 +29,7 @@ public class MusicGuideEntity implements TextExternalizable {
 
     @Override
     public void writeTextExternal(BufferedWriter out) throws IOException {
-        out.write(Utils.getFormatTag("%s{", Tags.MUSIC_GUIDE_TAG));
+        out.write(Utils.formatTag("%s{", Tags.MUSIC_GUIDE_TAG));
         writeArtists(out);
         out.write("\n}");
     }
@@ -59,7 +59,7 @@ public class MusicGuideEntity implements TextExternalizable {
         artistStream.forEach(s -> {
             ArtistEntity artistEntity = new ArtistEntity();
             try {
-                artistEntity.readTextExternal(Utils.stringToBuffer(s));
+                artistEntity.readTextExternal(Utils.stringToBufferReader(s));
             } catch (IOException e) {
                 throw new EntityException("MusicGuide read crash", e);
             }

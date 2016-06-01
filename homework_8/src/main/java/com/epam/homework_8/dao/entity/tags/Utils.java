@@ -23,8 +23,8 @@ public class Utils {
         return string;
     }
 
-    public static String deleteAttributeFromInnerString(String innerString, String attribute, String value) {
-        return innerString.replaceAll(Utils.getFormatTag("%s : %s", attribute, value), "");
+    public static String deleteAttributeFrom(String innerString, String attribute, String value) {
+        return innerString.replaceAll(Utils.formatTag("%s : %s", attribute, value), "");
     }
 
     private static void validateBrackets(String string) {
@@ -35,7 +35,7 @@ public class Utils {
         }
     }
 
-    public static String getFormatTag(String format, String... tag) {
+    public static String formatTag(String format, String... tag) {
         return String.format(format, tag);
     }
 
@@ -45,7 +45,7 @@ public class Utils {
         return text.toString();
     }
 
-    public static BufferedReader stringToBuffer(String s) {
+    public static BufferedReader stringToBufferReader(String s) {
         return new BufferedReader(new StringReader(s));
     }
 

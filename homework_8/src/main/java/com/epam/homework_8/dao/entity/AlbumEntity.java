@@ -46,8 +46,8 @@ public class AlbumEntity implements TextExternalizable {
 
     @Override
     public void writeTextExternal(BufferedWriter out) throws IOException {
-        out.write(Utils.getFormatTag("\n\t\t%s{", Tags.ALBUM_TAG));
-        out.write(Utils.getFormatTag("\t%s : %s\n\t\t\t\t%s : %s", Tags.NAME_ATTR, nameAlbum, Tags.GENRE_ATTR, genreAlbum));
+        out.write(Utils.formatTag("\n\t\t%s{", Tags.ALBUM_TAG));
+        out.write(Utils.formatTag("\t%s : %s\n\t\t\t\t%s : %s", Tags.NAME_ATTR, nameAlbum, Tags.GENRE_ATTR, genreAlbum));
         trackEntities.forEach(trackEntity -> {
             try {
                 trackEntity.writeTextExternal(out);
@@ -71,8 +71,8 @@ public class AlbumEntity implements TextExternalizable {
         String innerString;
         try {
             innerString = Utils.deleteLastBracket(stringAlbum);
-            innerString = Utils.deleteAttributeFromInnerString(innerString, Tags.NAME_ATTR, nameAlbum);
-            innerString = Utils.deleteAttributeFromInnerString(innerString, Tags.GENRE_ATTR, genreAlbum);
+            innerString = Utils.deleteAttributeFrom(innerString, Tags.NAME_ATTR, nameAlbum);
+            innerString = Utils.deleteAttributeFrom(innerString, Tags.GENRE_ATTR, genreAlbum);
         } catch (StringIndexOutOfBoundsException e) {
             throw new EntityException("invalid tag Album{} in file", e);
         }
@@ -80,19 +80,18 @@ public class AlbumEntity implements TextExternalizable {
     }
 
     private String getGenre(String string) {
-        System.out.println(string);
-        int start = string.indexOf(Utils.getFormatTag("%s :", Tags.GENRE_ATTR));
-        int end = string.indexOf(Utils.getFormatTag("%s{", Tags.TRACK_TAG));
+        int start = string.indexOf(Utils.formatTag("%s :", Tags.GENRE_ATTR));
+        int end = string.indexOf(Utils.formatTag("%s{", Tags.TRACK_TAG));
         if (end == -1) {
             end = string.indexOf("}");
         }
-        String substring = string.substring(start, end).replace(Utils.getFormatTag("%s :", Tags.GENRE_ATTR), "");
+        String substring = string.substring(start, end).replace(Utils.formatTag("%s :", Tags.GENRE_ATTR), "");
         return substring.trim();
     }
 
     private String getName(String string) {
-        int start = string.indexOf(Utils.getFormatTag("%s :", Tags.NAME_ATTR));
-        int end = string.indexOf(Utils.getFormatTag("%s :", Tags.GENRE_ATTR));
+        int start = string.indexOf(Utils.formatTag("%s :", Tags.NAME_ATTR));
+        int end = string.indexOf(Utils.formatTag("%s :", Tags.GENRE_ATTR));
         String substring = string.substring(start, end).replace("Name :", "");
         return substring.trim();
     }
@@ -103,7 +102,7 @@ public class AlbumEntity implements TextExternalizable {
         trackStream.forEach(trackString -> {
             TrackEntity trackEntity = new TrackEntity();
             try {
-                trackEntity.readTextExternal(Utils.stringToBuffer(trackString));
+                trackEntity.readTextExternal(Utils.stringToBufferReader(trackString));
             } catch (IOException e) {
                 throw new EntityException("AlbumEntity read crash", e);
             }

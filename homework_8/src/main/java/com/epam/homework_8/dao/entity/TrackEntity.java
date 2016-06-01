@@ -32,8 +32,8 @@ public class TrackEntity implements TextExternalizable {
 
     @Override
     public void writeTextExternal(BufferedWriter out) throws IOException {
-        out.write(Utils.getFormatTag("\n\t\t\t%s{", Tags.TRACK_TAG));
-        out.write(Utils.getFormatTag("\t%s : %s\n\t\t\t\t\t%s : %s", Tags.NAME_ATTR, trackName, Tags.DURATION_ATTR, trackDuration.toString()));
+        out.write(Utils.formatTag("\n\t\t\t%s{", Tags.TRACK_TAG));
+        out.write(Utils.formatTag("\t%s : %s\n\t\t\t\t\t%s : %s", Tags.NAME_ATTR, trackName, Tags.DURATION_ATTR, trackDuration.toString()));
         out.write("\n\t\t\t}");
     }
 
@@ -55,15 +55,15 @@ public class TrackEntity implements TextExternalizable {
     }
 
     private Duration getDuration(String string) {
-        int start = string.indexOf(Utils.getFormatTag("%s :", Tags.DURATION_ATTR));
-        String durString = string.substring(start, string.length()).replace(Utils.getFormatTag("%s :", Tags.DURATION_ATTR), "").trim();
+        int start = string.indexOf(Utils.formatTag("%s :", Tags.DURATION_ATTR));
+        String durString = string.substring(start, string.length()).replace(Utils.formatTag("%s :", Tags.DURATION_ATTR), "").trim();
         return Duration.parse(durString);
     }
 
     private String getName(String string) {
-        int start = string.indexOf(Utils.getFormatTag("%s :", Tags.NAME_ATTR));
-        int end = string.indexOf(Utils.getFormatTag("%s :", Tags.DURATION_ATTR));
-        String substring = string.substring(start, end).replace(Utils.getFormatTag("%s :", Tags.NAME_ATTR), "");
+        int start = string.indexOf(Utils.formatTag("%s :", Tags.NAME_ATTR));
+        int end = string.indexOf(Utils.formatTag("%s :", Tags.DURATION_ATTR));
+        String substring = string.substring(start, end).replace(Utils.formatTag("%s :", Tags.NAME_ATTR), "");
         return substring.trim();
     }
 
