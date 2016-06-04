@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.epam.com/musicGuide"
+        xmlns:g="http://www.epam.com/musicGuide"
+        elementFormDefault="qualified">
+
+    <element name="guide" type="g:ArtistList"/>
+    <element name="artist" type="g:Artist"/>
+    <element name="album" type="g:Album"/>
+    <element name="track" type="g:Track"/>
+    <element name="albums" type="g:AlbumList"/>
+
+    <complexType name="ArtistList">
+        <sequence>
+            <element name="artist" type="g:Artist" minOccurs="1" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="Artist">
+        <sequence>
+            <element name="albums" type="g:AlbumList" minOccurs="1"/>
+        </sequence>
+        <attribute name="id" type="unsignedLong" use="required"/>
+        <attribute name="name" type="string" use="required"/>
+    </complexType>
+
+    <complexType name="AlbumList">
+        <sequence minOccurs="1" maxOccurs="unbounded">
+            <element name="album" type="g:Album"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="Album">
+        <sequence>
+            <element name="track" type="g:Track" minOccurs="1" maxOccurs="unbounded"/>
+        </sequence>
+        <attribute name="id" type="unsignedLong" use="required"/>
+        <attribute name="name" type="string" use="required"/>
+        <attribute name="genre" type="string" use="required"/>
+    </complexType>
+
+    <complexType name="Track">
+        <attribute name="id" type="unsignedLong" use="required"/>
+        <attribute name="name" type="string" use="required"/>
+        <attribute name="duration" type="duration" use="required"/>
+    </complexType>
+
+
+</schema>
