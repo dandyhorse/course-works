@@ -125,8 +125,10 @@ public class ArtistDao implements Dao<Artist> {
         ModelValidator.validate(artist);
         Artist artistFromXml = getById(artist.getId());
         marshalling(musicGuide -> {
-            int i = musicGuide.getAllArtists().indexOf(artistFromXml);
-            musicGuide.getAllArtists().add(i, artist);
+            List<Artist> allArtists = musicGuide.getAllArtists();
+            int i = allArtists.indexOf(artistFromXml);
+            allArtists.remove(i);
+            allArtists.add(i, artist);
         });
         return true;
     }
@@ -135,7 +137,7 @@ public class ArtistDao implements Dao<Artist> {
         ModelValidator.validate(artist);
         Long id = artist.getId();
         Artist artistInXml = getById(id);
-        return !artistInXml.equals(artist);
+        return artistInXml.equals(artist);
     }
 
 }
