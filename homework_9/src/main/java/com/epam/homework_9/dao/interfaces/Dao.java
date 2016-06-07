@@ -10,8 +10,8 @@ public interface Dao<T> {
 
     void add(T t);
 
-    void delete(T t);
+    boolean delete(T t);
 
-    void update(T t);
+    boolean update(T t);
 
 }

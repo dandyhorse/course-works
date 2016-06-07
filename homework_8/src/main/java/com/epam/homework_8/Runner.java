@@ -13,7 +13,6 @@ public class Runner {
 
     public void run() {
 
-        //model
         MusicGuide guide = new MusicGuide();
         fillContent(guide);
 

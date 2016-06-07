@@ -10,7 +10,7 @@ import com.epam.homework_8.models.MusicGuide;
 public class DaoFactory {
 
     public static Dao<MusicGuide> getFileSerializer(String outputFile, String string) {
-        Serializer<MusicGuideEntity> serializer = null;
+        Serializer<MusicGuideEntity> serializer;
         switch (string) {
             case "binary":
                 serializer = new SerializerObjectImpl<>();
