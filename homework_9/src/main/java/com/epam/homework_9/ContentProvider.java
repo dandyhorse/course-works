@@ -11,8 +11,6 @@ import java.time.Duration;
 
 public class ContentProvider {
 
-    private Logger logger = LogManager.getLogger("com.epam.homework_9.fullOutLog");
-
     public static void fillContent(MusicGuide guide) {
         Artist artistOne = getArtistSixto();
         Artist artistTwo = getArtistBowie();
