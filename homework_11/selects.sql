@@ -1,8 +1,8 @@
---названия и местоположения всех команд
+п»ї--РЅР°Р·РІР°РЅРёСЏ Рё РјРµСЃС‚РѕРїРѕР»РѕР¶РµРЅРёСЏ РІСЃРµС… РєРѕРјР°РЅРґ
 SELECT title, city 
 FROM teams;
 
---зарплата всех игроков команды
+--Р·Р°СЂРїР»Р°С‚Р° РІСЃРµС… РёРіСЂРѕРєРѕРІ РєРѕРјР°РЅРґС‹
 SELECT title "team title", SUM(b.fee) "all expenses"
 FROM teams t 
 LEFT JOIN players p 
@@ -11,7 +11,7 @@ LEFT JOIN biography b
 ON p.id = b.Id_player
 GROUP BY title;
 
---отобразить всех русских игроков в бд
+--РѕС‚РѕР±СЂР°Р·РёС‚СЊ РІСЃРµС… СЂСѓСЃСЃРєРёС… РёРіСЂРѕРєРѕРІ РІ Р±Рґ
 SELECT 
 first_name, last_name 
 FROM players p
@@ -20,7 +20,7 @@ ON p.id = b.id_player
 WHERE b.country = 'RUS';
 
 
---средний рост и вес игрков команд
+--СЃСЂРµРґРЅРёР№ СЂРѕСЃС‚ Рё РІРµСЃ РёРіСЂРєРѕРІ РєРѕРјР°РЅРґ
 SELECT 
 title "team title", 
 round(AVG(b.weight), 2) "average weight", 
@@ -32,7 +32,7 @@ LEFT JOIN biography b
 ON p.id = b.Id_player
 GROUP BY title;
 
---получить количество игроков в каждой команде
+--РїРѕР»СѓС‡РёС‚СЊ РєРѕР»РёС‡РµСЃС‚РІРѕ РёРіСЂРѕРєРѕРІ РІ РєР°Р¶РґРѕР№ РєРѕРјР°РЅРґРµ
 SELECT 
 title "team title",
 COUNT(p)

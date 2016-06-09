@@ -1,4 +1,4 @@
-BEGIN;
+﻿BEGIN;
 CREATE TABLE "teams" (
   id SERIAL PRIMARY KEY,
   title   TEXT,
