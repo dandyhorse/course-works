@@ -1,6 +1,6 @@
 package com.epam.homework_9.models;
 
-import com.epam.homework_9.dao.xml.adapters.JaxbDurationStringAdapter;
+import com.epam.homework_9.dao.impl.xml.utils.adapters.JaxbDurationStringAdapter;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
