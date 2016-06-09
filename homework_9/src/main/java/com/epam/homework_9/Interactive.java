@@ -17,6 +17,7 @@ public class Interactive {
     public Long getAllTrackTime(Long artistId) {
         Artist artist = artistDao.getById(artistId);
         RuntimeException exc = new RuntimeException("can't calculate time from tracks");
+        logger.info("getting all tracks time of" + artist.getName());
         return artist.getAlbums()
                 .stream()
                 .map(album -> album.getTrackList()
@@ -29,4 +30,5 @@ public class Interactive {
                 .reduce((aLong, aLong2) -> aLong + aLong2)
                 .orElseThrow(() -> exc);
     }
+
 }
