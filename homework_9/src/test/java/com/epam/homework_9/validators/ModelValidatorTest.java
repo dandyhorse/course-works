@@ -1,13 +1,11 @@
 package com.epam.homework_9.validators;
 
-import com.epam.homework_9.ContentProvider;
+import com.epam.homework_9.models.utils.ContentProvider;
 import com.epam.homework_9.dao.exceptions.ModelException;
 import com.epam.homework_9.models.Album;
 import com.epam.homework_9.models.Artist;
 import com.epam.homework_9.models.MusicGuide;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class ModelValidatorTest {
 
