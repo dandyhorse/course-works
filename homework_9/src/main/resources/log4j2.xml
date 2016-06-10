@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration name="testConfiguration" status="ERROR" strict="true" schema="Log4J-V2.0.xsd">
+<configuration name="testConfiguration" status="ERROR" strict="true" schema="Log4J-V2.0.xsd">
 
-    <Appenders>
-        <RollingFile name="FILE" filename="log/test.log"
+    <appenders>
+        <rollingFile name="FILE" filename="log/test.log"
                      filepattern="${logPath}/$${date:MM-dd-yyyy HH:mm:ss}-test.log">
-            <PatternLayout pattern="$${date:MM-dd-yyyy HH:mm:ss} [%t] %-5p %c{1}:%L - %msg%n"/>
-            <Policies>
-                <SizeBasedTriggeringPolicy size="100 MB"/>
-            </Policies>
-            <DefaultRolloverStrategy max="20"/>
-        </RollingFile>
+            <patternLayout pattern="$${date:MM-dd-yyyy HH:mm:ss} [%t] %-5p %c{1}:%L - %msg%n"/>
+            <policies>
+                <sizeBasedTriggeringPolicy size="100 MB"/>
+            </policies>
+            <defaultRolloverStrategy max="20"/>
+        </rollingFile>
 
-        <Console name="STDOUT" target="SYSTEM_OUT">
-            <PatternLayout pattern="$${date:HH:mm:ss} %t %-5p %c{1} line:%L (%F:%L) message - %msg%n"/>
-        </Console>
+        <console name="STDOUT" target="SYSTEM_OUT">
+            <patternLayout pattern="$${date:HH:mm:ss} %t %-5p %c{1} line:%L (%F:%L) message - %msg%n"/>
+        </console>
 
-        <Console name="STDERR" target="SYSTEM_ERR">
-            <PatternLayout pattern="$${date:HH:mm:ss} %t %-5p %c{1} line:%L (%F:%L) message - %msg%n"/>
-        </Console>
+        <console name="STDERR" target="SYSTEM_ERR">
+            <patternLayout pattern="$${date:HH:mm:ss} %t %-5p %c{1} line:%L (%F:%L) message - %msg%n"/>
+        </console>
 
-    </Appenders>
+    </appenders>
 
-    <Loggers>
-        <Logger name="com.epam.homework_9.console" level="INFO" additivity="false">
-            <AppenderRef ref="STDOUT"/>
-        </Logger>
+    <loggers>
+        <logger name="com.epam.homework_9.console" level="INFO" additivity="false">
+            <appenderRef ref="STDOUT"/>
+        </logger>
 
-        <Logger name="com.epam.homework_9.file" level="INFO" additivity="false">
-            <AppenderRef ref="FILE"/>
-        </Logger>
+        <logger name="com.epam.homework_9.file" level="INFO" additivity="false">
+            <appenderRef ref="FILE"/>
+        </logger>
 
-        <Logger name="com.epam.homework_9.fullErrLog" level="ERROR" additivity="false">
-            <AppenderRef ref="FILE"/>
-            <AppenderRef ref="STDERR"/>
-        </Logger>
+        <logger name="com.epam.homework_9.fullErrLog" level="ERROR" additivity="false">
+            <appenderRef ref="FILE"/>
+            <appenderRef ref="STDERR"/>
+        </logger>
 
-        <Logger name="com.epam.homework_9.fullOutLog" level="ERROR" additivity="false">
-            <AppenderRef ref="FILE"/>
-            <AppenderRef ref="STDOUT"/>
-        </Logger>
+        <logger name="com.epam.homework_9.fullOutLog" level="ERROR" additivity="false">
+            <appenderRef ref="FILE"/>
+            <appenderRef ref="STDOUT"/>
+        </logger>
 
-        <Root level="ERROR">
-            <AppenderRef ref="STDOUT"/>
-            <AppenderRef ref="FILE"/>
-        </Root>
-    </Loggers>
+        <root level="ERROR">
+            <appenderRef ref="STDOUT"/>
+            <appenderRef ref="FILE"/>
+        </root>
+    </loggers>
 
-</Configuration>
+</configuration>

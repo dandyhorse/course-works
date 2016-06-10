@@ -71,7 +71,7 @@ public class ArtistHandler extends DefaultHandler {
                 break;
             }
         }
-        logger.debug("start " + qName + " " + localName);
+        logger.trace("start " + qName + " " + localName);
     }
 
     @Override
@@ -84,12 +84,12 @@ public class ArtistHandler extends DefaultHandler {
                 }
             }
         }
-        logger.debug("end of " + qName + " " + localName);
+        logger.trace("end of " + qName + " " + localName);
     }
 
     @Override
     public void endDocument() throws SAXException {
         artist = Artist.newBuilder().name(artistName).id(idForFind).addAllAlbum(albumList).build();
-        logger.debug("out from document and create" + Artist.class);
+        logger.debug("xml is parsed, creating " + Artist.class);
     }
 }
