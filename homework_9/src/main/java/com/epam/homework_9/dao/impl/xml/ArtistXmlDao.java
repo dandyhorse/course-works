@@ -3,7 +3,7 @@ package com.epam.homework_9.dao.impl.xml;
 import com.epam.homework_9.dao.exceptions.DaoException;
 import com.epam.homework_9.dao.interfaces.Dao;
 import com.epam.homework_9.dao.impl.xml.utils.saxhandlers.ArtistHandler;
-import com.epam.homework_9.dao.impl.xml.utils.saxhandlers.CountArtistsHandler;
+import com.epam.homework_9.dao.impl.xml.utils.saxhandlers.ArtistsIdHandler;
 import com.epam.homework_9.models.Album;
 import com.epam.homework_9.models.Artist;
 import com.epam.homework_9.models.MusicGuide;
@@ -66,9 +66,9 @@ public class ArtistXmlDao implements Dao<Artist> {
     @Override
     public List<Artist> getAll() {
         logger.debug("getAll method");
-        CountArtistsHandler countHandler = new CountArtistsHandler();
+        ArtistsIdHandler countHandler = new ArtistsIdHandler();
         parse(countHandler);
-        Set<Long> idSet = countHandler.getCount();
+        Set<Long> idSet = countHandler.getIds();
         List<Artist> artists = new ArrayList<>();
         idSet.forEach(aLong -> artists.add(getById(aLong)));
         return artists;

@@ -8,15 +8,15 @@ import org.xml.sax.helpers.DefaultHandler;
 import java.util.HashSet;
 import java.util.Set;
 
-public class CountArtistsHandler extends DefaultHandler {
+public class ArtistsIdHandler extends DefaultHandler {
 
     private Set<Long> idSet;
 
-    public CountArtistsHandler() {
+    public ArtistsIdHandler() {
         this.idSet = new HashSet<>();
     }
 
-    public Set<Long> getCount() {
+    public Set<Long> getIds() {
         return idSet;
     }
 
