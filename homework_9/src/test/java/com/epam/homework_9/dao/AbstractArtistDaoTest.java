@@ -6,9 +6,13 @@ import com.epam.homework_9.dao.interfaces.Dao;
 import com.epam.homework_9.models.Album;
 import com.epam.homework_9.models.Artist;
 import com.epam.homework_9.models.Track;
+import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,34 +21,46 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
-public class AbstractArtistDaoTest {
 
-    protected Dao<Artist> dao;
+public abstract class AbstractArtistDaoTest {
+
+    private Dao<Artist> dao;
     private long testID = 100L;
+    private Artist testArtist;
+
+    public abstract Dao<Artist> getDao();
+
+    @Before
+    public void setUpArtist() {
+        dao = getDao();
+        testArtist = getTestArtist();
+        dao.add(testArtist);
+    }
 
     @Test
     public void getAll() throws Exception {
+        Artist testArtist2 = Artist.newBuilder().id(101L).name("test101").addAlbum(ContentProvider.getAddictiveAlbum()).build();
+
+        dao.add(testArtist2);
         List<Artist> artistList = dao.getAll();
         assertThat(artistList.size(), is(not(0)));
-        assertThat(artistList, everyItem(is(not(nullValue(null)))));
+        assertThat(artistList.retainAll(Arrays.asList(testArtist, testArtist2)), is(true));
+        dao.delete(testArtist);
+        dao.delete(testArtist2);
     }
 
     @Test
     public void getById() throws Exception {
-        Artist artist = getTestArtist();
-        dao.add(artist);
         Artist addedArtist = dao.getById(testID);
-        assertThat(artist.getName(), is(addedArtist.getName()));
+        assertThat(testArtist, equalTo(addedArtist));
         dao.delete(addedArtist);
     }
 
     @Test
     public void add() throws Exception {
-        Artist artist = getTestArtist();
-        dao.add(artist);
         Artist addedArtist = dao.getById(testID);
-        assertThat(artist, is(addedArtist));
-        assertThat(artist.getAlbums(), everyItem(is(not(nullValue(null)))));
+        assertThat(testArtist, is(addedArtist));
+        assertThat(testArtist.getAlbums(), everyItem(is(not(nullValue(null)))));
         dao.delete(addedArtist);
     }
 
@@ -63,29 +79,26 @@ public class AbstractArtistDaoTest {
 
     @Test(expected = ModelException.class)
     public void delete() throws Exception {
-        Artist artist = getTestArtist();
-        dao.add(artist);
-        dao.delete(artist);
-        dao.getById(artist.getId());
+        dao.delete(testArtist);
+        dao.getById(testArtist.getId());
     }
 
     @Test
     public void update() throws Exception {
-        Artist artist = getTestArtist();
-        dao.add(artist);
-
-        List<Album> originalAlbums = artist.getAlbums().stream().collect(Collectors.toList());
+        List<Album> originalAlbums = testArtist.getAlbums().stream().collect(Collectors.toList());
         //forward update
-        artist.getAlbums().add(ContentProvider.getAddictiveAlbum());
-        assertThat(dao.update(artist), is(true));
+        testArtist.getAlbums().add(ContentProvider.getAddictiveAlbum());
+        assertThat(dao.update(testArtist), is(true));
         Artist addedArtist = dao.getById(testID);
-        assertThat(artist, is(addedArtist));
+        assertThat(testArtist, is(addedArtist));
 
         //back update
-        artist.getAlbums().clear();
-        artist.getAlbums().addAll(originalAlbums);
-        assertThat(dao.update(artist), is(true));
+        testArtist.getAlbums().clear();
+        testArtist.getAlbums().addAll(originalAlbums);
+        assertThat(dao.update(testArtist), is(true));
 
-        dao.delete(artist);
+        dao.delete(testArtist);
     }
+
+
 }
