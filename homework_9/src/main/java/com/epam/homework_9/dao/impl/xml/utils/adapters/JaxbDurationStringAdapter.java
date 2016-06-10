@@ -1,4 +1,4 @@
-package com.epam.homework_9.dao.xml.adapters;
+package com.epam.homework_9.dao.impl.xml.utils.adapters;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 import java.time.Duration;

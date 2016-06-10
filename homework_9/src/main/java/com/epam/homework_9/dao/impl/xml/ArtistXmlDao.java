@@ -1,4 +1,4 @@
-package com.epam.homework_9.dao;
+package com.epam.homework_9.dao.impl.xml;
 
 import com.epam.homework_9.dao.exceptions.DaoException;
 import com.epam.homework_9.dao.interfaces.Dao;
@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class ArtistDao implements Dao<Artist> {
+public class ArtistXmlDao implements Dao<Artist> {
 
     private static final Logger logger = LogManager.getLogger("com.epam.homework_9.fullOutLog");
     private final String xmlPath;
@@ -36,8 +36,8 @@ public class ArtistDao implements Dao<Artist> {
     private Marshaller marshaller;
     private Unmarshaller unmarshaller;
 
-    public ArtistDao(String xmlPath, SAXParserFactory factory) {
-        logger.info("initialization - " + ArtistDao.class);
+    public ArtistXmlDao(String xmlPath, SAXParserFactory factory) {
+        logger.info("initialization - " + ArtistXmlDao.class);
         this.xmlPath = xmlPath;
         try {
             parser = factory.newSAXParser();

@@ -1,6 +1,6 @@
-package com.epam.homework_9.dao.xml.saxhandlers;
+package com.epam.homework_9.dao.impl.xml.utils.saxhandlers;
 
-import com.epam.homework_9.dao.xml.Tags;
+import com.epam.homework_9.dao.impl.xml.utils.Tags;
 import com.epam.homework_9.models.Album;
 import com.epam.homework_9.models.Artist;
 import com.epam.homework_9.models.Track;
