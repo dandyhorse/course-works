@@ -8,7 +8,7 @@
     <artifactId>homework_9</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <name>Home Work 9 - XML</name>
+    <name>Home Work 9 - XML and Database</name>
 
     <developers>
         <developer>
@@ -54,6 +54,13 @@
             <artifactId>junit</artifactId>
             <version>${junit.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>9.4.1208.jre7</version>
+        </dependency>
+
     </dependencies>
 
 </project>
