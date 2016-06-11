@@ -6,14 +6,13 @@ CREATE TABLE "tracks" (
 );
 
 CREATE TABLE "artists" (
-  id         BIGSERIAL PRIMARY KEY,
-  first_name TEXT   NOT NULL,
-  last_name  TEXT   NOT NULL
+  id          BIGSERIAL PRIMARY KEY,
+  name TEXT   NOT NULL
 );
 CREATE TABLE "albums" (
-  id    BIGSERIAL PRIMARY KEY,
-  name  TEXT        NOT NULL,
-  genre VARCHAR(30) NOT NULL
+  id     BIGSERIAL PRIMARY KEY,
+  title  TEXT        NOT NULL,
+  genre  VARCHAR(30) NOT NULL
 );
 CREATE TABLE "adjoining_artist_album" (
   id_artist BIGINT,

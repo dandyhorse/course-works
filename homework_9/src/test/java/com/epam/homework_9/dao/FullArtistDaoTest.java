@@ -1,28 +1,24 @@
 package com.epam.homework_9.dao;
 
-import com.epam.homework_9.models.utils.ContentProvider;
 import com.epam.homework_9.dao.exceptions.ModelException;
 import com.epam.homework_9.dao.interfaces.Dao;
 import com.epam.homework_9.models.Album;
 import com.epam.homework_9.models.Artist;
 import com.epam.homework_9.models.Track;
+import com.epam.homework_9.utils.ContentProvider;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.time.Duration;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 
-public abstract class AbstractArtistDaoTest {
+public abstract class FullArtistDaoTest {
 
     private Dao<Artist> dao;
     private long testID = 100L;
@@ -69,7 +65,7 @@ public abstract class AbstractArtistDaoTest {
                 .id(testID)
                 .name("test-artist")
                 .addAlbum(Album.newBuilder()
-                        .name("test-album")
+                        .title("test-album")
                         .genre("test-genre")
                         .id(1L)
                         .addTrack(new Track(1L, "test-track", Duration.ofSeconds(1)))
@@ -80,6 +76,7 @@ public abstract class AbstractArtistDaoTest {
     @Test(expected = ModelException.class)
     public void delete() throws Exception {
         dao.delete(testArtist);
+
         dao.getById(testArtist.getId());
     }
 

@@ -1,23 +1,19 @@
 package com.epam.homework_9.dao.impl.db;
 
+import com.epam.homework_9.dao.FullArtistDaoTest;
 import com.epam.homework_9.dao.interfaces.Dao;
-import com.epam.homework_9.models.Artist;
-import com.epam.homework_9.models.utils.ContentProvider;
-import com.epam.homework_9.dao.AbstractArtistDaoTest;
 import com.epam.homework_9.dao.interfaces.DaoFactory;
-import com.epam.homework_9.models.MusicGuide;
+import com.epam.homework_9.models.Artist;
 import org.junit.BeforeClass;
 
-
-public class ArtistDBDaoTest extends AbstractArtistDaoTest {
+public class ArtistDBDaoTest extends FullArtistDaoTest {
 
     private static final String propertyPath = "src/main/resources/db.properties";
-    private static DaoFactory dbFactory = new ArtistPostgresFactory();
+    private static DaoFactory dbFactory;
 
     @BeforeClass
     public static void setUpClass() throws Exception {
-        MusicGuide guide = new MusicGuide();
-        ContentProvider.fillContent(guide);
+        dbFactory = new ArtistPostgresFactory();
     }
 
     @Override

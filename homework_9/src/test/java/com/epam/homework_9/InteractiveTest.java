@@ -4,7 +4,7 @@ import com.epam.homework_9.dao.impl.xml.ArtistXmlFactory;
 import com.epam.homework_9.dao.interfaces.Dao;
 import com.epam.homework_9.dao.interfaces.DaoFactory;
 import com.epam.homework_9.models.Artist;
-import com.epam.homework_9.models.utils.ContentProvider;
+import com.epam.homework_9.utils.ContentProvider;
 import com.epam.homework_9.models.MusicGuide;
 import org.junit.Test;
 

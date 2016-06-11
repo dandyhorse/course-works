@@ -1,6 +1,6 @@
 package com.epam.homework_9.validators;
 
-import com.epam.homework_9.models.utils.ContentProvider;
+import com.epam.homework_9.utils.ContentProvider;
 import com.epam.homework_9.dao.exceptions.ModelException;
 import com.epam.homework_9.models.Album;
 import com.epam.homework_9.models.Artist;
@@ -22,7 +22,7 @@ public class ModelValidatorTest {
         musicGuide.addArtist(Artist.newBuilder()
                 .name("123")
                 .addAlbum(Album.newBuilder()
-                        .name("123")
+                        .title("123")
                         .build())
                 .build());
         ModelValidator.validate(musicGuide);

@@ -22,26 +22,31 @@ public class ArtistPostgresFactory extends DaoFactory {
         try {
             Class.forName("org.postgresql.Driver").newInstance();
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
-            logger.error("");
+            logger.error("postgres driver exc");
             throw new DaoException("", e);
         }
     }
 
     @Override
     public Dao<Artist> newDao(String propertyPath) {
-        return new ArtistDBDao(getPostgresDBConnection(propertyPath));
+        Connection connection = getPostgresDBConnection(propertyPath);
+        return new ArtistDBDao(connection);
     }
 
-    private static Connection getPostgresDBConnection(String config) {
+    public Connection getPostgresDBConnection(String config) {
+        Properties properties = new Properties();
         try {
-            Properties properties = new Properties();
             properties.load(new FileReader(config));
+        } catch (NullPointerException | IOException e) {
+            logger.warn("Generate connection with default properties. " + e.getMessage());
+        }
+        try {
             String url = properties.getProperty("url", "jdbc:postgresql://localhost:5555/guide_db");
             String name = properties.getProperty("name", "postgres");
             String pass = properties.getProperty("password", "555");
             return DriverManager.getConnection(url, name, pass);
-        } catch (SQLException | IOException e) {
-            logger.error("");
+        } catch (SQLException e) {
+            logger.error("sql exc");
             throw new DaoException("", e);
         }
     }

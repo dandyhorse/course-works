@@ -1,23 +1,19 @@
 package com.epam.homework_9.dao.impl.xml;
 
+import com.epam.homework_9.dao.FullArtistDaoTest;
 import com.epam.homework_9.dao.interfaces.Dao;
-import com.epam.homework_9.models.Artist;
-import com.epam.homework_9.models.utils.ContentProvider;
-import com.epam.homework_9.dao.AbstractArtistDaoTest;
 import com.epam.homework_9.dao.interfaces.DaoFactory;
-import com.epam.homework_9.models.MusicGuide;
-import org.junit.Before;
+import com.epam.homework_9.models.Artist;
 import org.junit.BeforeClass;
 
-public class ArtistXmlDaoTest extends AbstractArtistDaoTest {
+public class ArtistXmlDaoTest extends FullArtistDaoTest {
 
     private static final String outputFile = "src/main/resources/music_guide-test.xml";
-    private static DaoFactory xmlFactory = new ArtistXmlFactory();
+    private static DaoFactory xmlFactory;
 
     @BeforeClass
     public static void setUpClass() throws Exception {
-        MusicGuide guide = new MusicGuide();
-        ContentProvider.fillContent(guide);
+        xmlFactory = new ArtistXmlFactory();
     }
 
     @Override

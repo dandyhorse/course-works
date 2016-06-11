@@ -8,11 +8,11 @@
     <artifactId>homework_9</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <name>Home Work 9 - XML and Database</name>
+    <title>Home Work 9 - XML and Database</title>
 
     <developers>
         <developer>
-            <name>Solovev Anton</name>
+            <title>Solovev Anton</title>
         </developer>
     </developers>
 
