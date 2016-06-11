@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <music:guide xmlns:music="http://www.epam.com/musicGuide">
     <music:artist id="1" name="Sixto Rodriguez">
-        <music:album id="1" name="Cold Fact" genre="Soul">
-            <music:track id="1" name="Sugar Man" duration="PT3M45S"/>
+        <music:album id="1" title="Cold Fact" genre="Soul">
+            <music:track id="1" title="Sugar Man" duration="PT3M45S"/>
         </music:album>
     </music:artist>
     <music:artist id="2" name="David Bowie">
-        <music:album id="1" name="Heroes" genre="Art Rock">
-            <music:track id="1" name="Life on Mars" duration="PT3M45S"/>
-            <music:track id="2" name="The Man Who Sold the World" duration="PT3M45S"/>
+        <music:album id="1" title="Heroes" genre="Art Rock">
+            <music:track id="1" title="Life on Mars" duration="PT3M45S"/>
+            <music:track id="2" title="The Man Who Sold the World" duration="PT3M45S"/>
         </music:album>
     </music:artist>
     <music:artist id="3" name="Jimi Hendrix">
-        <music:album id="1" name="Band of Gypsys" genre="Rock">
-            <music:track id="1" name="Who Knows" duration="PT3M45S"/>
-            <music:track id="2" name=" Purple Haze" duration="PT5M45S"/>
+        <music:album id="1" title="Band of Gypsys" genre="Rock">
+            <music:track id="1" title="Who Knows" duration="PT3M45S"/>
+            <music:track id="2" title=" Purple Haze" duration="PT5M45S"/>
         </music:album>
     </music:artist>
 </music:guide>

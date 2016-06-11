@@ -1,11 +1,9 @@
-package com.epam.homework_9.models.utils;
+package com.epam.homework_9.utils;
 
 import com.epam.homework_9.models.Album;
 import com.epam.homework_9.models.Artist;
 import com.epam.homework_9.models.MusicGuide;
 import com.epam.homework_9.models.Track;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.time.Duration;
 
@@ -26,7 +24,7 @@ public class ContentProvider {
                 .name("Sixto Rodriguez")
                 .id(1L)
                 .addAlbum(Album.newBuilder()
-                        .name("Cold Fact")
+                        .title("Cold Fact")
                         .genre("Soul")
                         .id(1L)
                         .addTrack(track)
@@ -41,7 +39,7 @@ public class ContentProvider {
                 .name("David Bowie")
                 .id(2L)
                 .addAlbum(Album.newBuilder()
-                        .name("Heroes")
+                        .title("Heroes")
                         .genre("Art Rock")
                         .addTrack(track1)
                         .addTrack(track2)
@@ -54,7 +52,7 @@ public class ContentProvider {
         Track track1 = new Track(3L, "Chrono.Naut", Duration.ofMinutes(3).plusSeconds(45));
         Track track2 = new Track(4L, "Funeralopolis", Duration.ofMinutes(3).plusSeconds(45));
         return Album.newBuilder()
-                .name("Eternal")
+                .title("Eternal")
                 .genre("Doom metal")
                 .addTrack(track1)
                 .addTrack(track2)
@@ -69,7 +67,7 @@ public class ContentProvider {
                 .name("Jimi Hendrix")
                 .id(1L)
                 .addAlbum(Album.newBuilder()
-                        .name("Band of Gypsys")
+                        .title("Band of Gypsys")
                         .genre("Rock")
                         .addTrack(track1)
                         .addTrack(track2)

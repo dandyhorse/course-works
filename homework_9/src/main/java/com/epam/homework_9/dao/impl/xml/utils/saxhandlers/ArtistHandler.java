@@ -41,8 +41,8 @@ public class ArtistHandler extends DefaultHandler {
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
         switch (qName) {
             case Tags.PREFIX + ":" + Tags.ARTIST_TAG: {
-                if (attributes.getValue("id").trim().equals(String.valueOf(idForFind))) {
-                    artistName = attributes.getValue("name");
+                if (attributes.getValue(Tags.ARTIST_ID).trim().equals(String.valueOf(idForFind))) {
+                    artistName = attributes.getValue(Tags.ARTIST_NAME);
                     isArtist = true;
                 } else {
                     isArtist = false;
@@ -51,21 +51,21 @@ public class ArtistHandler extends DefaultHandler {
             }
             case Tags.PREFIX + ":" + Tags.ALBUM_TAG: {
                 if (isArtist) {
-                    String id = attributes.getValue("id");
-                    String name = attributes.getValue("name");
-                    String genre = attributes.getValue("genre");
+                    String id = attributes.getValue(Tags.ALBUM_ID);
+                    String name = attributes.getValue(Tags.ALBUM_TITLE);
+                    String genre = attributes.getValue(Tags.ALBUM_GENRE);
                     albums.put(albumCount, Album.newBuilder()
                             .genre(genre)
-                            .name(name)
+                            .title(name)
                             .id(Long.parseLong(id)));
                 }
                 break;
             }
             case Tags.PREFIX + ":" + Tags.TRACK_TAG: {
                 if (isArtist) {
-                    String id = attributes.getValue("id");
-                    String name = attributes.getValue("name");
-                    String duration = attributes.getValue("duration");
+                    String id = attributes.getValue(Tags.TRACK_ID);
+                    String name = attributes.getValue(Tags.TRACK_TITLE);
+                    String duration = attributes.getValue(Tags.TRACK_DURATION);
                     albums.get(albumCount).addTrack(new Track(Long.parseLong(id), name, Duration.parse(duration)));
                 }
                 break;

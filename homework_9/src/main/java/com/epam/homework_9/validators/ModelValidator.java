@@ -32,9 +32,9 @@ public class ModelValidator {
 
     public static void validate(Album album) {
         String genre = album.getGenre();
-        String name = album.getName();
+        String title = album.getTitle();
         int size = album.getTrackList().size();
-        boolean result = name != null && !name.equals("");
+        boolean result = title != null && !title.equals("");
         result &= genre != null && !genre.equals("");
         result &= size > 0;
         String message = "invalid Album";
@@ -50,9 +50,9 @@ public class ModelValidator {
     }
 
     public static void validate(Track track) {
-        String name = track.getName();
+        String title = track.getTitle();
         Duration duration = track.getDuration();
-        boolean result = name != null && !name.equals("");
+        boolean result = title != null && !title.equals("");
         result &= duration != null && duration.getSeconds() > 0;
         isException(result, "invalid Track");
     }
