@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration name="testConfiguration" status="ERROR" strict="true" schema="Log4J-V2.0.xsd">
-
     <appenders>
-        <rollingFile name="FILE" filename="log/test.log"
-                     filepattern="${logPath}/$${date:MM-dd-yyyy HH:mm:ss}-test.log">
+        <rollingFile name="FILE"
+                     fileName="logs/default.log"
+                     filePattern="./logs/${date:yyyy-MM}/default-%d{yyyy-MM-dd}-%i.log">
             <patternLayout pattern="$${date:MM-dd-yyyy HH:mm:ss} [%t] %-5p %c{1}:%L - %msg%n"/>
             <policies>
-                <sizeBasedTriggeringPolicy size="100 MB"/>
+                <TimeBasedTriggeringPolicy interval="6" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="1 MB"/>
             </policies>
             <defaultRolloverStrategy max="20"/>
         </rollingFile>

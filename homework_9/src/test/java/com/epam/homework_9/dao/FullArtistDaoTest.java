@@ -6,10 +6,8 @@ import com.epam.homework_9.models.Album;
 import com.epam.homework_9.models.Artist;
 import com.epam.homework_9.utils.ContentProvider;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,8 +36,8 @@ public abstract class FullArtistDaoTest {
         Artist testArtist2 = null;
         try {
             testArtist2 = Artist.newBuilder()
-                    .id(testID + 2L).name("test-artist2")
-                    .addAlbum(ContentProvider.getAddictiveAlbum(testID + 2L))
+                    .id(testID + 5L).name("test-artist2")
+                    .addAlbum(ContentProvider.getAddictiveAlbum(testID + 5L))
                     .build();
             dao.add(testArtist2);
             List<Artist> artistList = dao.getAll();

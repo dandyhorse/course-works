@@ -1,0 +1,841 @@
+06-13-2016 13:54:18 [main] INFO  fullOutLog:42 - initialization - class com.epam.homework_9.dao.impl.xml.ArtistXmlDao
+06-13-2016 13:54:18 [main] DEBUG fullOutLog:46 - start init JAXB
+06-13-2016 13:54:18 [main] DEBUG fullOutLog:50 - successful initialization
+06-13-2016 13:54:18 [main] DEBUG fullOutLog:80 - getAll method
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:guide 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:guide 
+06-13-2016 13:54:18 [main] DEBUG fullOutLog:93 - xml is parsed, creating class com.epam.homework_9.models.Artist
+06-13-2016 13:54:18 [main] DEBUG fullOutLog:25 - getting all tracks time of Sixto Rodriguez
+06-13-2016 13:54:18 [main] DEBUG fullOutLog:80 - getAll method
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:guide 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:guide 
+06-13-2016 13:54:18 [main] DEBUG fullOutLog:93 - xml is parsed, creating class com.epam.homework_9.models.Artist
+06-13-2016 13:54:18 [main] INFO  fullOutLog:42 - initialization - class com.epam.homework_9.dao.impl.xml.ArtistXmlDao
+06-13-2016 13:54:18 [main] DEBUG fullOutLog:46 - start init JAXB
+06-13-2016 13:54:18 [main] DEBUG fullOutLog:50 - successful initialization
+06-13-2016 13:54:18 [main] DEBUG fullOutLog:69 - getAll method
+06-13-2016 13:54:18 [main] DEBUG fullOutLog:80 - getAll method
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:guide 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:guide 
+06-13-2016 13:54:18 [main] DEBUG fullOutLog:93 - xml is parsed, creating class com.epam.homework_9.models.Artist
+06-13-2016 13:54:18 [main] DEBUG fullOutLog:80 - getAll method
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:guide 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:guide 
+06-13-2016 13:54:18 [main] DEBUG fullOutLog:93 - xml is parsed, creating class com.epam.homework_9.models.Artist
+06-13-2016 13:54:18 [main] DEBUG fullOutLog:80 - getAll method
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:guide 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:18 [main] TRACE fullOutLog:87 - end of music:guide 
+06-13-2016 13:54:18 [main] DEBUG fullOutLog:93 - xml is parsed, creating class com.epam.homework_9.models.Artist
+06-13-2016 13:54:18 [main] DEBUG fullOutLog:18 - executing INSERT INTO artists(id,name) VALUES(?,?)
+06-13-2016 13:54:18 [main] ERROR fullOutLog:306 - exception message: ОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "artists_pkey"
+  Подробности: Ключ "(id)=(1)" уже существует.
+ next exception: null
+06-13-2016 13:54:18 [main] DEBUG fullOutLog:18 - executing INSERT INTO artists(id,name) VALUES(?,?)
+06-13-2016 13:54:18 [main] DEBUG fullOutLog:26 - butch executing INSERT INTO albums(id,title,genre) VALUES(?,?,?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:26 - butch executing INSERT INTO tracks(id,title,duration) VALUES(?,?,?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:26 - butch executing INSERT INTO adjoining_artist_album(id_artist,id_album) VALUES(?,?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:26 - butch executing INSERT INTO adjoining_album_track(id_album,id_track) VALUES(?,?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:18 - executing DELETE FROM artists WHERE id=?
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:26 - butch executing DELETE FROM albums WHERE id=?
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:26 - butch executing DELETE FROM tracks WHERE id=?
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:50 - start executing SELECT * FROM artists WHERE id=?
+06-13-2016 13:54:19 [main] ERROR fullOutLog:71 - getting Artist by id:250. ResultSet not positioned properly, perhaps you need to call next., null
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:18 - executing INSERT INTO artists(id,name) VALUES(?,?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:26 - butch executing INSERT INTO albums(id,title,genre) VALUES(?,?,?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:26 - butch executing INSERT INTO tracks(id,title,duration) VALUES(?,?,?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:26 - butch executing INSERT INTO adjoining_artist_album(id_artist,id_album) VALUES(?,?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:26 - butch executing INSERT INTO adjoining_album_track(id_album,id_track) VALUES(?,?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:18 - executing INSERT INTO artists(id,name) VALUES(?,?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:26 - butch executing INSERT INTO albums(id,title,genre) VALUES(?,?,?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:26 - butch executing INSERT INTO tracks(id,title,duration) VALUES(?,?,?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:26 - butch executing INSERT INTO adjoining_artist_album(id_artist,id_album) VALUES(?,?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:26 - butch executing INSERT INTO adjoining_album_track(id_album,id_track) VALUES(?,?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:50 - start executing SELECT * FROM artists
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:50 - start executing SELECT * FROM albums WHERE id IN( SELECT id_album FROM adjoining_artist_album WHERE id_artist=?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:50 - start executing SELECT * FROM tracks WHERE id IN( SELECT id_track FROM adjoining_album_track WHERE id_album=?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:50 - start executing SELECT * FROM albums WHERE id IN( SELECT id_album FROM adjoining_artist_album WHERE id_artist=?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:50 - start executing SELECT * FROM tracks WHERE id IN( SELECT id_track FROM adjoining_album_track WHERE id_album=?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:50 - start executing SELECT * FROM albums WHERE id IN( SELECT id_album FROM adjoining_artist_album WHERE id_artist=?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:50 - start executing SELECT * FROM tracks WHERE id IN( SELECT id_track FROM adjoining_album_track WHERE id_album=?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:50 - start executing SELECT * FROM albums WHERE id IN( SELECT id_album FROM adjoining_artist_album WHERE id_artist=?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:50 - start executing SELECT * FROM tracks WHERE id IN( SELECT id_track FROM adjoining_album_track WHERE id_album=?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:50 - start executing SELECT * FROM albums WHERE id IN( SELECT id_album FROM adjoining_artist_album WHERE id_artist=?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:50 - start executing SELECT * FROM tracks WHERE id IN( SELECT id_track FROM adjoining_album_track WHERE id_album=?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:18 - executing DELETE FROM artists WHERE id=?
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:26 - butch executing DELETE FROM albums WHERE id=?
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:26 - butch executing DELETE FROM tracks WHERE id=?
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:18 - executing DELETE FROM artists WHERE id=?
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:26 - butch executing DELETE FROM albums WHERE id=?
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:26 - butch executing DELETE FROM tracks WHERE id=?
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:18 - executing INSERT INTO artists(id,name) VALUES(?,?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:26 - butch executing INSERT INTO albums(id,title,genre) VALUES(?,?,?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:26 - butch executing INSERT INTO tracks(id,title,duration) VALUES(?,?,?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:26 - butch executing INSERT INTO adjoining_artist_album(id_artist,id_album) VALUES(?,?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:26 - butch executing INSERT INTO adjoining_album_track(id_album,id_track) VALUES(?,?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:42 - function executing {CALL upsert_table_artist(?,?)}
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:34 - function executing {CALL upsert_table_album(?,?,?)}
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:34 - function executing {CALL upsert_table_track(?,?,?)}
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:26 - butch executing INSERT INTO adjoining_artist_album(id_artist,id_album) VALUES(?,?) ON CONFLICT(id_artist,id_album) DO UPDATE SET(id_album) = (?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:26 - butch executing INSERT INTO adjoining_album_track(id_album,id_track) VALUES(?,?) ON CONFLICT(id_album,id_track) DO UPDATE SET(id_track) = (?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:50 - start executing SELECT * FROM artists WHERE id=?
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:50 - start executing SELECT * FROM albums WHERE id IN( SELECT id_album FROM adjoining_artist_album WHERE id_artist=?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:50 - start executing SELECT * FROM tracks WHERE id IN( SELECT id_track FROM adjoining_album_track WHERE id_album=?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:50 - start executing SELECT * FROM tracks WHERE id IN( SELECT id_track FROM adjoining_album_track WHERE id_album=?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:42 - function executing {CALL upsert_table_artist(?,?)}
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:34 - function executing {CALL upsert_table_album(?,?,?)}
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:34 - function executing {CALL upsert_table_track(?,?,?)}
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:26 - butch executing INSERT INTO adjoining_artist_album(id_artist,id_album) VALUES(?,?) ON CONFLICT(id_artist,id_album) DO UPDATE SET(id_album) = (?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:26 - butch executing INSERT INTO adjoining_album_track(id_album,id_track) VALUES(?,?) ON CONFLICT(id_album,id_track) DO UPDATE SET(id_track) = (?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:18 - executing DELETE FROM artists WHERE id=?
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:26 - butch executing DELETE FROM albums WHERE id=?
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:26 - butch executing DELETE FROM tracks WHERE id=?
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:18 - executing INSERT INTO artists(id,name) VALUES(?,?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:26 - butch executing INSERT INTO albums(id,title,genre) VALUES(?,?,?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:26 - butch executing INSERT INTO tracks(id,title,duration) VALUES(?,?,?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:26 - butch executing INSERT INTO adjoining_artist_album(id_artist,id_album) VALUES(?,?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:26 - butch executing INSERT INTO adjoining_album_track(id_album,id_track) VALUES(?,?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:50 - start executing SELECT * FROM artists WHERE id=?
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:50 - start executing SELECT * FROM albums WHERE id IN( SELECT id_album FROM adjoining_artist_album WHERE id_artist=?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:50 - start executing SELECT * FROM tracks WHERE id IN( SELECT id_track FROM adjoining_album_track WHERE id_album=?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:18 - executing DELETE FROM artists WHERE id=?
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:26 - butch executing DELETE FROM albums WHERE id=?
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:26 - butch executing DELETE FROM tracks WHERE id=?
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:18 - executing INSERT INTO artists(id,name) VALUES(?,?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:26 - butch executing INSERT INTO albums(id,title,genre) VALUES(?,?,?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:26 - butch executing INSERT INTO tracks(id,title,duration) VALUES(?,?,?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:26 - butch executing INSERT INTO adjoining_artist_album(id_artist,id_album) VALUES(?,?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:26 - butch executing INSERT INTO adjoining_album_track(id_album,id_track) VALUES(?,?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:50 - start executing SELECT * FROM artists WHERE id=?
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:50 - start executing SELECT * FROM albums WHERE id IN( SELECT id_album FROM adjoining_artist_album WHERE id_artist=?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:50 - start executing SELECT * FROM tracks WHERE id IN( SELECT id_track FROM adjoining_album_track WHERE id_album=?)
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:18 - executing DELETE FROM artists WHERE id=?
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:26 - butch executing DELETE FROM albums WHERE id=?
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:26 - butch executing DELETE FROM tracks WHERE id=?
+06-13-2016 13:54:19 [main] INFO  fullOutLog:42 - initialization - class com.epam.homework_9.dao.impl.xml.ArtistXmlDao
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:46 - start init JAXB
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:50 - successful initialization
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:80 - getAll method
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:guide 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:guide 
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:93 - xml is parsed, creating class com.epam.homework_9.models.Artist
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:80 - getAll method
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:guide 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:guide 
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:93 - xml is parsed, creating class com.epam.homework_9.models.Artist
+06-13-2016 13:54:19 [main] ERROR fullErrLog:50 - validate is fallen because of invalid Artist
+06-13-2016 13:54:19 [main] INFO  fullOutLog:42 - initialization - class com.epam.homework_9.dao.impl.xml.ArtistXmlDao
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:46 - start init JAXB
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:50 - successful initialization
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:69 - getAll method
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:80 - getAll method
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:guide 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:guide 
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:93 - xml is parsed, creating class com.epam.homework_9.models.Artist
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:80 - getAll method
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:guide 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:guide 
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:93 - xml is parsed, creating class com.epam.homework_9.models.Artist
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:80 - getAll method
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:guide 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:guide 
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:93 - xml is parsed, creating class com.epam.homework_9.models.Artist
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:80 - getAll method
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:guide 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:guide 
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:93 - xml is parsed, creating class com.epam.homework_9.models.Artist
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:80 - getAll method
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:guide 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:guide 
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:93 - xml is parsed, creating class com.epam.homework_9.models.Artist
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:80 - getAll method
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:guide 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:guide 
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:93 - xml is parsed, creating class com.epam.homework_9.models.Artist
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:80 - getAll method
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:guide 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:19 [main] TRACE fullOutLog:87 - end of music:guide 
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:93 - xml is parsed, creating class com.epam.homework_9.models.Artist
+06-13-2016 13:54:19 [main] INFO  fullOutLog:42 - initialization - class com.epam.homework_9.dao.impl.xml.ArtistXmlDao
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:46 - start init JAXB
+06-13-2016 13:54:19 [main] DEBUG fullOutLog:50 - successful initialization
+06-13-2016 13:54:20 [main] DEBUG fullOutLog:80 - getAll method
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:guide 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:guide 
+06-13-2016 13:54:20 [main] DEBUG fullOutLog:93 - xml is parsed, creating class com.epam.homework_9.models.Artist
+06-13-2016 13:54:20 [main] DEBUG fullOutLog:80 - getAll method
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:guide 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:guide 
+06-13-2016 13:54:20 [main] DEBUG fullOutLog:93 - xml is parsed, creating class com.epam.homework_9.models.Artist
+06-13-2016 13:54:20 [main] DEBUG fullOutLog:80 - getAll method
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:guide 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:guide 
+06-13-2016 13:54:20 [main] DEBUG fullOutLog:93 - xml is parsed, creating class com.epam.homework_9.models.Artist
+06-13-2016 13:54:20 [main] DEBUG fullOutLog:80 - getAll method
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:guide 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:guide 
+06-13-2016 13:54:20 [main] DEBUG fullOutLog:93 - xml is parsed, creating class com.epam.homework_9.models.Artist
+06-13-2016 13:54:20 [main] INFO  fullOutLog:42 - initialization - class com.epam.homework_9.dao.impl.xml.ArtistXmlDao
+06-13-2016 13:54:20 [main] DEBUG fullOutLog:46 - start init JAXB
+06-13-2016 13:54:20 [main] DEBUG fullOutLog:50 - successful initialization
+06-13-2016 13:54:20 [main] DEBUG fullOutLog:80 - getAll method
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:guide 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:guide 
+06-13-2016 13:54:20 [main] DEBUG fullOutLog:93 - xml is parsed, creating class com.epam.homework_9.models.Artist
+06-13-2016 13:54:20 [main] DEBUG fullOutLog:80 - getAll method
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:guide 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:guide 
+06-13-2016 13:54:20 [main] DEBUG fullOutLog:93 - xml is parsed, creating class com.epam.homework_9.models.Artist
+06-13-2016 13:54:20 [main] INFO  fullOutLog:42 - initialization - class com.epam.homework_9.dao.impl.xml.ArtistXmlDao
+06-13-2016 13:54:20 [main] DEBUG fullOutLog:46 - start init JAXB
+06-13-2016 13:54:20 [main] DEBUG fullOutLog:50 - successful initialization
+06-13-2016 13:54:20 [main] DEBUG fullOutLog:80 - getAll method
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:guide 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:guide 
+06-13-2016 13:54:20 [main] DEBUG fullOutLog:93 - xml is parsed, creating class com.epam.homework_9.models.Artist
+06-13-2016 13:54:20 [main] DEBUG fullOutLog:80 - getAll method
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:guide 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:74 - start music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:track 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:album 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:artist 
+06-13-2016 13:54:20 [main] TRACE fullOutLog:87 - end of music:guide 
+06-13-2016 13:54:20 [main] DEBUG fullOutLog:93 - xml is parsed, creating class com.epam.homework_9.models.Artist
+06-13-2016 13:54:20 [main] ERROR fullErrLog:50 - validate is fallen because of invalid Album

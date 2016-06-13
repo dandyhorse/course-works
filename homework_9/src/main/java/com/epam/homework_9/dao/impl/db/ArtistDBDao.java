@@ -31,7 +31,6 @@ public class ArtistDBDao implements Dao<Artist>, AutoCloseable {
     private Connection connection;
     private AlbumDBDao albumDBDao;
 
-
     public ArtistDBDao(Connection connection) {
         this.connection = connection;
         this.albumDBDao = new AlbumDBDao(connection);
@@ -117,36 +116,6 @@ public class ArtistDBDao implements Dao<Artist>, AutoCloseable {
             insertTracks(trackList);
             insertAdjoiningTables(artist, albumList);
         });
-    }
-
-    private void validate(Artist artist) {
-        try {
-            ModelValidator.validate(artist);
-        } catch (ModelException e) {
-            logger.error("validation error of artist: " + artist.getId() + artist.getName());
-            throw new DaoException("validation error", e);
-        }
-    }
-
-    private void commonDataActions(Procedure procedure) {
-        try {
-            boolean isAutoCommit = connection.getAutoCommit();
-            connection.setAutoCommit(false);
-            procedure.act();
-            connection.commit();
-            if (isAutoCommit) {
-                connection.setAutoCommit(true);
-            }
-        } catch (SQLException e) {
-            try {
-                connection.rollback();
-            } catch (SQLException e1) {
-                logger.error("can't rollback because - " + e1.getMessage());
-            }
-            logger.error("exception message: " + e.getMessage() +
-                    "\n next exception: " + e.getNextException());
-            throw new DaoException(e);
-        }
     }
 
     private void insertArtist(Artist artist) throws SQLException {
@@ -307,6 +276,36 @@ public class ArtistDBDao implements Dao<Artist>, AutoCloseable {
         if (connection != null) {
             connection.close();
             connection = null;
+        }
+    }
+
+    private void validate(Artist artist) {
+        try {
+            ModelValidator.validate(artist);
+        } catch (ModelException e) {
+            logger.error("validation error of artist: " + artist.getId() + artist.getName());
+            throw new DaoException("validation error", e);
+        }
+    }
+
+    private void commonDataActions(Procedure procedure) {
+        try {
+            boolean isAutoCommit = connection.getAutoCommit();
+            connection.setAutoCommit(false);
+            procedure.act();
+            connection.commit();
+            if (isAutoCommit) {
+                connection.setAutoCommit(true);
+            }
+        } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException e1) {
+                logger.error("can't rollback because - " + e1.getMessage());
+            }
+            logger.error("exception message: " + e.getMessage() +
+                    "\n next exception: " + e.getNextException());
+            throw new DaoException(e);
         }
     }
 
