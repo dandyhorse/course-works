@@ -3,7 +3,6 @@ package com.epam.homework_9.models;
 import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Comparator;
 import java.util.List;
 
 @XmlType(name = "artist", namespace = "http://www.epam.com/musicGuide")

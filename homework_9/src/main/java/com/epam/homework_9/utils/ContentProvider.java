@@ -10,23 +10,23 @@ import java.time.Duration;
 public class ContentProvider {
 
     public static void fillContent(MusicGuide guide) {
-        Artist artistOne = getArtistSixto();
-        Artist artistTwo = getArtistBowie();
-        Artist artistThree = getArtistJimi();
+        Artist artistOne = getArtistSixto(1L);
+        Artist artistTwo = getArtistBowie(2L);
+        Artist artistThree = getArtistJimi(3L);
         guide.addArtist(artistOne);
         guide.addArtist(artistTwo);
         guide.addArtist(artistThree);
     }
 
-    public static Artist getArtistSixto() {
-        Track track = new Track(1L, "Sugar Man", Duration.ofMinutes(3).plusSeconds(45));
+    public static Artist getArtistSixto(Long id) {
+        Track track = new Track(id, "Sugar Man", Duration.ofMinutes(3).plusSeconds(45));
         return Artist.newBuilder()
                 .name("Sixto Rodriguez")
-                .id(1L)
+                .id(id)
                 .addAlbum(Album.newBuilder()
                         .title("Cold Fact")
                         .genre("Soul")
-                        .id(1L)
+                        .id(id)
                         .addTrack(track)
                         .build())
                 .build();
@@ -45,18 +45,18 @@ public class ContentProvider {
                 .build();
     }
 
-    public static Artist getArtistBowie() {
-        Track track1 = new Track(1L, "Life on Mars", Duration.ofMinutes(3).plusSeconds(50));
-        Track track2 = new Track(2L, "The Man Who Sold the World", Duration.ofMinutes(5).plusSeconds(47));
+    public static Artist getArtistBowie(Long id) {
+        Track track1 = new Track(id, "Life on Mars", Duration.ofMinutes(3).plusSeconds(50));
+        Track track2 = new Track(id + 1L, "The Man Who Sold the World", Duration.ofMinutes(5).plusSeconds(47));
         return Artist.newBuilder()
                 .name("David Bowie")
-                .id(2L)
+                .id(id)
                 .addAlbum(Album.newBuilder()
+                        .id(id)
                         .title("Heroes")
                         .genre("Art Rock")
                         .addTrack(track1)
                         .addTrack(track2)
-                        .id(1L)
                         .build())
                 .build();
     }
@@ -69,22 +69,22 @@ public class ContentProvider {
                 .genre("Doom metal")
                 .addTrack(track1)
                 .addTrack(track2)
-                .id(id + 4L)
+                .id(id + 1L)
                 .build();
     }
 
-    public static Artist getArtistJimi() {
-        Track track1 = new Track(1L, "Who Knows", Duration.ofMinutes(4).plusSeconds(15));
-        Track track2 = new Track(2L, " Purple Haze", Duration.ofMinutes(5).plusSeconds(25));
+    public static Artist getArtistJimi(Long id) {
+        Track track1 = new Track(id, "Who Knows", Duration.ofMinutes(4).plusSeconds(15));
+        Track track2 = new Track(id + 1L, " Purple Haze", Duration.ofMinutes(5).plusSeconds(25));
         return Artist.newBuilder()
                 .name("Jimi Hendrix")
-                .id(1L)
+                .id(id)
                 .addAlbum(Album.newBuilder()
                         .title("Band of Gypsys")
                         .genre("Rock")
                         .addTrack(track1)
                         .addTrack(track2)
-                        .id(1L)
+                        .id(id + 2L)
                         .build())
                 .build();
     }

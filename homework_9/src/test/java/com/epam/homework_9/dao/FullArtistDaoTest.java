@@ -1,32 +1,28 @@
 package com.epam.homework_9.dao;
 
 import com.epam.homework_9.dao.exceptions.DaoException;
-import com.epam.homework_9.dao.exceptions.ModelException;
 import com.epam.homework_9.dao.interfaces.Dao;
 import com.epam.homework_9.models.Album;
 import com.epam.homework_9.models.Artist;
-import com.epam.homework_9.models.Track;
 import com.epam.homework_9.utils.ContentProvider;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import java.time.Duration;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 
-
 public abstract class FullArtistDaoTest {
 
     private Dao<Artist> dao;
-    private long testID = 150L;
+    private long testID = 250L;
     private Artist testArtist;
 
-    //    id_album=100
     public abstract Dao<Artist> getDao();
 
     @Before
@@ -36,23 +32,25 @@ public abstract class FullArtistDaoTest {
         dao.add(testArtist);
     }
 
+
     @Test
     public void getAll() throws Exception {
         Artist testArtist2 = null;
         try {
             testArtist2 = Artist.newBuilder()
-                    .id(101L).name("test101")
-                    .addAlbum(ContentProvider.getAddictiveAlbum(testID + 1L))
+                    .id(testID + 2L).name("test-artist2")
+                    .addAlbum(ContentProvider.getAddictiveAlbum(testID + 2L))
                     .build();
             dao.add(testArtist2);
             List<Artist> artistList = dao.getAll();
             assertThat(artistList.size(), is(not(0)));
-            assertThat(artistList.retainAll(Arrays.asList(testArtist, testArtist2)), is(true));
+            assertThat(artistList.retainAll(Collections.singletonList(testArtist2)), is(true));
         } finally {
             dao.delete(testArtist);
             dao.delete(testArtist2);
         }
     }
+
 
     @Test
     public void getById() throws Exception {
@@ -65,6 +63,7 @@ public abstract class FullArtistDaoTest {
         }
     }
 
+
     @Test
     public void add() throws Exception {
         Artist addedArtist = null;
@@ -76,6 +75,7 @@ public abstract class FullArtistDaoTest {
             dao.delete(addedArtist);
         }
     }
+
 
     @Test(expected = DaoException.class)
     public void delete() throws Exception {

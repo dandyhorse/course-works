@@ -17,15 +17,15 @@ CREATE TABLE "albums" (
 CREATE TABLE "adjoining_artist_album" (
   id_artist BIGINT,
   id_album  BIGINT,
-  CONSTRAINT c_artist FOREIGN KEY (id_artist) REFERENCES "artists" (id),
-  CONSTRAINT c_album FOREIGN KEY (id_album) REFERENCES "albums" (id),
+  CONSTRAINT c_artist FOREIGN KEY (id_artist) REFERENCES "artists" (id) ON UPDATE CASCADE ON DELETE CASCADE,
+  CONSTRAINT c_album FOREIGN KEY (id_album) REFERENCES "albums" (id) ON UPDATE CASCADE ON DELETE CASCADE,
   UNIQUE (id_artist, id_album)
 );
 CREATE TABLE "adjoining_album_track" (
   id_album BIGINT,
   id_track BIGINT,
-  CONSTRAINT c_album FOREIGN KEY (id_album) REFERENCES "albums" (id),
-  CONSTRAINT c_track FOREIGN KEY (id_track) REFERENCES "tracks" (id),
+  CONSTRAINT c_album FOREIGN KEY (id_album) REFERENCES "albums" (id) ON UPDATE CASCADE ON DELETE CASCADE,
+  CONSTRAINT c_track FOREIGN KEY (id_track) REFERENCES "tracks" (id) ON UPDATE CASCADE ON DELETE CASCADE,
   UNIQUE (id_album, id_track)
 );
 CREATE OR REPLACE FUNCTION upsert_table_artist(argId BIGINT, argName TEXT)

@@ -133,6 +133,7 @@ public class ArtistDBDao implements Dao<Artist>, AutoCloseable {
             boolean isAutoCommit = connection.getAutoCommit();
             connection.setAutoCommit(false);
             procedure.act();
+            connection.commit();
             if (isAutoCommit) {
                 connection.setAutoCommit(true);
             }
@@ -202,7 +203,6 @@ public class ArtistDBDao implements Dao<Artist>, AutoCloseable {
         validate(artist);
         commonDataActions(() -> {
             List<Album> albumList = artist.getAlbums();
-            deleteAdjoiningTables(artist.getId(), albumList.stream().mapToLong(Album::getId));
             deleteArtist(artist.getId());
             deleteAlbums(albumList.stream().map(Album::getId).collect(Collectors.toList()));
             deleteTracks(albumList.stream()
@@ -236,22 +236,10 @@ public class ArtistDBDao implements Dao<Artist>, AutoCloseable {
         });
     }
 
-    private void deleteAdjoiningTables(Long artistId, LongStream albumIdStream) throws SQLException {
-        List<Long> albumIds = albumIdStream.boxed().collect(Collectors.toList());
-        new Executor(connection).executeUpdate(SqlQueries.DELETE_ADJ_ARTIST_ALBUM, s -> s.setLong(1, artistId));
-        new Executor(connection).executeBatchUpdate(SqlQueries.DELETE_ADJ_ALBUM_TRACK, s -> {
-            for (Long id : albumIds) {
-                s.setLong(1, id);
-                s.addBatch();
-            }
-        });
-    }
-
     @Override
     public boolean update(Artist artist) {
         validate(artist);
         commonDataActions(() -> {
-            disableAdjoiningConstraints();
             List<Album> albumList = artist.getAlbums();
             updateArtist(artist);
             updateAlbums(albumList);
@@ -259,7 +247,6 @@ public class ArtistDBDao implements Dao<Artist>, AutoCloseable {
                     .flatMap(album -> album.getTrackList().stream())
                     .collect(Collectors.toList()));
             updateAdjoiningTables(artist, artist.getAlbums());
-            enableAdjoiningConstraints();
         });
         return true;
     }
@@ -284,20 +271,6 @@ public class ArtistDBDao implements Dao<Artist>, AutoCloseable {
                 }
             }
         });
-    }
-
-    private void enableAdjoiningConstraints() throws SQLException {
-        new Executor(connection).executeQuery(SqlQueries.ALTER_ADJ_ARTIST_CONSTRAINTS);
-        new Executor(connection).executeQuery(SqlQueries.ALTER_ADJ_ALBUM_IN_ARTISTS_CONSTRAINTS);
-        new Executor(connection).executeQuery(SqlQueries.ALTER_ADJ_ALBUM_IN_TRACKS_CONSTRAINTS);
-        new Executor(connection).executeQuery(SqlQueries.ALTER_ADJ_TRACK_CONSTRAINTS);
-    }
-
-    private void disableAdjoiningConstraints() throws SQLException {
-        new Executor(connection).executeQuery(SqlQueries.DROP_ADJ_ARTIST_CONSTRAINTS);
-        new Executor(connection).executeQuery(SqlQueries.DROP_ADJ_ALBUM_IN_ARTISTS_CONSTRAINTS);
-        new Executor(connection).executeQuery(SqlQueries.DROP_ADJ_ALBUM_IN_TRACKS_CONSTRAINTS);
-        new Executor(connection).executeQuery(SqlQueries.DROP_ADJ_TRACK_CONSTRAINTS);
     }
 
     private void updateArtist(Artist artist) throws SQLException {
