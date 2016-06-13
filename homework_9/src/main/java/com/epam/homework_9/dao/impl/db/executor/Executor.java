@@ -58,10 +58,4 @@ public class Executor {
         return value;
     }
 
-    public void executeQuery(String query) throws SQLException {
-        logger.debug("start executing " + query);
-        Statement statement = connection.createStatement();
-        statement.execute(query);
-        statement.close();
-    }
 }
