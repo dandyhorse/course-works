@@ -21,6 +21,9 @@ public class SqlQueries {
     public static final String SELECT_ALBUMS_FROM_ARTIST =
             getStringSelectFromAdj(ALBUMS_TABLE, ALBUM_ID, ADJ_ALBUM_ID, ADJ_ARTIST_ALBUM_TABLE, ADJ_ARTIST_ID);
 
+    //selects all
+    public static final java.lang.String SELECT_ALL_ARTISTS = "SELECT * FROM " + ARTISTS_TABLE;
+
     //inserts
     public static final String INSERT_ARTIST = getStringInsert(ARTISTS_TABLE, ARTIST_ID, ARTIST_NAME);
     public static final String INSERT_ALBUM = getStringInsert(ALBUMS_TABLE, ALBUM_ID, ALBUM_TITLE, ALBUM_GENRE);
@@ -40,15 +43,9 @@ public class SqlQueries {
     public static final String UPDATE_ALBUM = getStringUpdate(ALBUMS_TABLE, ALBUM_ID, ALBUM_TITLE, ALBUM_GENRE);
     public static final String UPDATE_TRACK = getStringUpdate(TRACKS_TABLE, TRACK_ID, TRACK_TITLE, TRACK_DURATION);
 
+    //update with conflict
     public static final String INSERT_WITH_CONFLICT_ADJ_ALBUM_TRACK = getStringInsertOnConflict(ADJ_ALBUM_TRACK_TABLE, ADJ_ALBUM_ID, ADJ_TRACK_ID);
     public static final String INSERT_WITH_CONFLICT_ADJ_ARTIST_ALBUM = getStringInsertOnConflict(ADJ_ARTIST_ALBUM_TABLE, ADJ_ARTIST_ID, ADJ_ALBUM_ID);
-
-    private static String getStringInsertOnConflict(String table, String firstId, String secondId) {
-        return String.format("INSERT INTO %1$s(%2$s,%3$s) " +
-                "VALUES(?,?) " +
-                "ON CONFLICT(%2$s,%3$s) DO " +
-                "UPDATE SET(%3$s) = (?)", table, firstId, secondId);
-    }
 
     //drop constrains
     public static final String DROP_ADJ_ARTIST_CONSTRAINTS = getStringDropConstraints(ADJ_ARTIST_ALBUM_TABLE, ARTIST_CONSTRAINT);
@@ -70,6 +67,13 @@ public class SqlQueries {
     public static final String CALL_ARTIST_FUNCTION = "{CALL upsert_table_artist(?,?)}";
     public static final String CALL_ALBUM_FUNCTION = "{CALL upsert_table_album(?,?,?)}";
     public static final String CALL_TRACK_FUNCTION = "{CALL upsert_table_track(?,?,?)}";
+
+    private static String getStringInsertOnConflict(String table, String firstId, String secondId) {
+        return String.format("INSERT INTO %1$s(%2$s,%3$s) " +
+                "VALUES(?,?) " +
+                "ON CONFLICT(%2$s,%3$s) DO " +
+                "UPDATE SET(%3$s) = (?)", table, firstId, secondId);
+    }
 
     private static String getStringAlterConstraints(String table, String adjoiningId, String refTable, String refId, String constraintName) {
         return "ALTER TABLE " + table +

@@ -22,8 +22,8 @@ public class ArtistPostgresFactory extends DaoFactory {
         try {
             Class.forName("org.postgresql.Driver").newInstance();
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
-            logger.error("postgres driver exc");
-            throw new DaoException("", e);
+            logger.error("postgres driver initialization. " + e.getMessage());
+            throw new DaoException("postgres driver initialization error", e);
         }
     }
 
@@ -46,8 +46,8 @@ public class ArtistPostgresFactory extends DaoFactory {
             String pass = properties.getProperty("password", "555");
             return DriverManager.getConnection(url, name, pass);
         } catch (SQLException e) {
-            logger.error("sql exc");
-            throw new DaoException("", e);
+            logger.error("getting connection from Driver Manager\n" + e.getNextException());
+            throw new DaoException("error getting connection", e);
         }
     }
 

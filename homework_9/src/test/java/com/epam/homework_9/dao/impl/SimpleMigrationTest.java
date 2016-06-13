@@ -33,7 +33,6 @@ public class SimpleMigrationTest {
         dbDao = dbFactory.newDao("src/main/resources/db.properties");
     }
 
-    @Ignore
     @Test
     public void migrate() throws Exception {
         Migration migration = new SimpleMigration();

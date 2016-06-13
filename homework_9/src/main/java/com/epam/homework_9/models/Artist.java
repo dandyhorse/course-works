@@ -3,6 +3,7 @@ package com.epam.homework_9.models;
 import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 
 @XmlType(name = "artist", namespace = "http://www.epam.com/musicGuide")
@@ -61,6 +62,7 @@ public class Artist {
         }
 
         public Artist build() {
+            Artist.this.getAlbums().sort((o1, o2) -> Math.toIntExact(o1.getId() - o2.getId()));
             return Artist.this;
         }
 
@@ -79,9 +81,7 @@ public class Artist {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Artist artist = (Artist) o;
-
         if (!id.equals(artist.id)) return false;
         if (!name.equals(artist.name)) return false;
         return albums.equals(artist.albums);

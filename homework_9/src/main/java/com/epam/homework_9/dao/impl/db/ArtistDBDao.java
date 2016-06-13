@@ -16,6 +16,7 @@ import org.apache.logging.log4j.Logger;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -38,7 +39,24 @@ public class ArtistDBDao implements Dao<Artist>, AutoCloseable {
 
     @Override
     public List<Artist> getAll() {
-        return null;
+        try {
+            List<Artist> artistList = new Executor(connection).executeQuery(SqlQueries.SELECT_ALL_ARTISTS, statement -> {
+            }, result -> {
+                List<Artist> list = new ArrayList<>();
+                while (result.next()) {
+                    long id = result.getLong("id");
+                    String name = result.getString("name");
+                    Set<Album> albumSet = selectAlbums(id);
+                    list.add(Artist.newBuilder().id(id).name(name).addAllAlbum(albumSet).build());
+                }
+                return list;
+            });
+            artistList.forEach(this::validate);
+            return artistList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DaoException(e);
+        }
     }
 
     @Override
@@ -51,7 +69,7 @@ public class ArtistDBDao implements Dao<Artist>, AutoCloseable {
             validate(artist);
             return artist;
         } catch (SQLException e) {
-            logger.error(String.format("%s, %s", e.getMessage(), e.getNextException()));
+            logger.error(String.format("getting Artist by id:%d. %s, %s", id, e.getMessage(), e.getNextException()));
             throw new DaoException("select error with ", e);
         }
     }
@@ -124,7 +142,7 @@ public class ArtistDBDao implements Dao<Artist>, AutoCloseable {
             } catch (SQLException e1) {
                 logger.error("can't rollback because - " + e1.getMessage());
             }
-            logger.error("error with exception message: " + e.getMessage() +
+            logger.error("exception message: " + e.getMessage() +
                     "\n next exception: " + e.getNextException());
             throw new DaoException(e);
         }

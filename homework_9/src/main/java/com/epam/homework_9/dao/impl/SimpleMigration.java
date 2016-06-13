@@ -14,7 +14,7 @@ public class SimpleMigration implements Migration {
             List<T> list = fromDao.getAll();
             list.forEach(toDao::add);
         } else {
-            throw new DaoException("both Dao's link to the same dao");
+            throw new DaoException("both dao's link to the same dao");
         }
     }
 

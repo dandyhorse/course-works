@@ -23,7 +23,7 @@ import static org.junit.Assert.assertThat;
 public abstract class FullArtistDaoTest {
 
     private Dao<Artist> dao;
-    private long testID = 90L;
+    private long testID = 150L;
     private Artist testArtist;
 
     //    id_album=100
@@ -36,7 +36,6 @@ public abstract class FullArtistDaoTest {
         dao.add(testArtist);
     }
 
-    @Ignore
     @Test
     public void getAll() throws Exception {
         Artist testArtist2 = null;

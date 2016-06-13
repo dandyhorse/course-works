@@ -37,9 +37,7 @@ public class MusicGuide {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         MusicGuide that = (MusicGuide) o;
-
         return artistList != null ? artistList.equals(that.artistList) : that.artistList == null;
 
     }

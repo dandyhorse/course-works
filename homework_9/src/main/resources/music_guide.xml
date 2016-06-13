@@ -8,23 +8,23 @@
         </album>
     </artist>
     <artist id="2" name="David Bowie">
-        <album id="1" title="Heroes" genre="Art Rock">
-            <track id="1" title="Life on Mars" duration="PT3M45S"/>
-            <track id="2" title="The Man Who Sold the World" duration="PT3M45S"/>
+        <album id="2" title="Heroes" genre="Art Rock">
+            <track id="2" title="Life on Mars" duration="PT3M45S"/>
+            <track id="3" title="The Man Who Sold the World" duration="PT3M45S"/>
         </album>
-        <album id="2" title="Eternal" genre="Doom metal">
-            <track id="3" title="Chrono.Naut" duration="PT3M45S"/>
-            <track id="4" title="Funeralopolis" duration="PT3M45S"/>
+        <album id="3" title="Eternal" genre="Doom metal">
+            <track id="4" title="Chrono.Naut" duration="PT3M45S"/>
+            <track id="5" title="Funeralopolis" duration="PT3M45S"/>
         </album>
     </artist>
     <artist id="3" name="Jimi Hendrix">
-        <album id="1" title="Band of Gypsys" genre="Rock">
-            <track id="1" title="Who Knows" duration="PT3M45S"/>
-            <track id="2" title=" Purple Haze" duration="PT5M45S"/>
+        <album id="4" title="Band of Gypsys" genre="Rock">
+            <track id="6" title="Who Knows" duration="PT3M45S"/>
+            <track id="7" title=" Purple Haze" duration="PT5M45S"/>
         </album>
-        <album id="2" title="Eternal" genre="Doom metal">
-            <track id="3" title="Chrono.Naut" duration="PT3M45S"/>
-            <track id="4" title="Funeralopolis" duration="PT3M45S"/>
+        <album id="5" title="Eternal" genre="Doom metal">
+            <track id="8" title="Chrono.Naut" duration="PT3M45S"/>
+            <track id="9" title="Funeralopolis" duration="PT3M45S"/>
         </album>
     </artist>
 

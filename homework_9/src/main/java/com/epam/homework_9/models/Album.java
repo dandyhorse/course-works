@@ -83,9 +83,7 @@ public class Album {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Album album = (Album) o;
-
         if (id != null ? !id.equals(album.id) : album.id != null) return false;
         if (title != null ? !title.equals(album.title) : album.title != null) return false;
         if (genre != null ? !genre.equals(album.genre) : album.genre != null) return false;

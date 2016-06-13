@@ -46,9 +46,7 @@ public class Track {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Track track = (Track) o;
-
         if (id != null ? !id.equals(track.id) : track.id != null) return false;
         if (title != null ? !title.equals(track.title) : track.title != null) return false;
         return duration != null ? duration.equals(track.duration) : track.duration == null;

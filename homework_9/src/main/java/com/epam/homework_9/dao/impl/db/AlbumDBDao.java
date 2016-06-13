@@ -43,7 +43,7 @@ class AlbumDBDao implements Dao<Album> {
             );
         } catch (SQLException e) {
             logger.error(String.format("%s, %s", e.getMessage(), e.getSQLState()));
-            throw new DaoException("", e);
+            throw new DaoException("error getting Album By Id:" + id, e);
         }
     }
 

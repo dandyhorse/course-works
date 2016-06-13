@@ -40,7 +40,7 @@
             <appenderRef ref="STDOUT"/>
         </logger>
 
-        <root level="ERROR">
+        <root level="INFO">
             <appenderRef ref="STDOUT"/>
             <appenderRef ref="FILE"/>
         </root>
