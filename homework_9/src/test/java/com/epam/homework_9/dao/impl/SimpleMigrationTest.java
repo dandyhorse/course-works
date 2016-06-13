@@ -8,6 +8,7 @@ import com.epam.homework_9.dao.interfaces.Migration;
 import com.epam.homework_9.models.Artist;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -32,6 +33,7 @@ public class SimpleMigrationTest {
         dbDao = dbFactory.newDao("src/main/resources/db.properties");
     }
 
+    @Ignore
     @Test
     public void migrate() throws Exception {
         Migration migration = new SimpleMigration();

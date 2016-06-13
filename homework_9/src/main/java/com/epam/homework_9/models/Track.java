@@ -66,6 +66,7 @@ public class Track {
     @Override
     public String toString() {
         return "\t\tTrack {" +
+                "\n\t\t\tid = " + id +
                 "\n\t\t\ttitle = " + title +
                 "\n\t\t\tduration = " + duration +
                 "\n\t\t\t}\n";

@@ -1,6 +1,7 @@
 package com.epam.homework_9.dao.impl.xml;
 
 import com.epam.homework_9.dao.exceptions.DaoException;
+import com.epam.homework_9.dao.exceptions.ModelException;
 import com.epam.homework_9.dao.interfaces.Dao;
 import com.epam.homework_9.dao.impl.xml.utils.saxhandlers.ArtistHandler;
 import com.epam.homework_9.dao.impl.xml.utils.saxhandlers.ArtistsIdHandler;
@@ -80,7 +81,11 @@ public class ArtistXmlDao implements Dao<Artist> {
         ArtistHandler handler = new ArtistHandler(id);
         parse(handler);
         Artist artist = handler.get();
-        ModelValidator.validate(artist);
+        try {
+            ModelValidator.validate(artist);
+        } catch (ModelException e) {
+            throw new DaoException(e);
+        }
         return artist;
     }
 
@@ -95,7 +100,11 @@ public class ArtistXmlDao implements Dao<Artist> {
 
     @Override
     public void add(Artist artist) {
-        ModelValidator.validate(artist);
+        try {
+            ModelValidator.validate(artist);
+        } catch (ModelException e) {
+            throw new DaoException(e);
+        }
         marshalling(musicGuide -> musicGuide.addArtist(artist));
     }
 
@@ -121,7 +130,11 @@ public class ArtistXmlDao implements Dao<Artist> {
 
     @Override
     public boolean update(Artist artist) {
-        ModelValidator.validate(artist);
+        try {
+            ModelValidator.validate(artist);
+        } catch (ModelException e) {
+            throw new DaoException(e);
+        }
         Artist artistFromXml = getById(artist.getId());
         marshalling(musicGuide -> {
             List<Artist> allArtists = musicGuide.getAllArtists();
@@ -133,7 +146,11 @@ public class ArtistXmlDao implements Dao<Artist> {
     }
 
     private boolean checkArtist(Artist artist) {
-        ModelValidator.validate(artist);
+        try {
+            ModelValidator.validate(artist);
+        } catch (ModelException e) {
+            throw new DaoException(e);
+        }
         Long id = artist.getId();
         Artist artistInXml = getById(id);
         return artistInXml.equals(artist);

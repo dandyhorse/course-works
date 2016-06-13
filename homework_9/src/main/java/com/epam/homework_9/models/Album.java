@@ -3,6 +3,7 @@ package com.epam.homework_9.models;
 import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 
 @XmlType(name = "album", namespace = "http://www.epam.com/musicGuide")
@@ -73,6 +74,7 @@ public class Album {
         }
 
         public Album build() {
+            Album.this.getTrackList().sort((o2, o1) -> Math.toIntExact(o1.getId() - o2.getId()));
             return Album.this;
         }
     }
@@ -103,6 +105,7 @@ public class Album {
     @Override
     public String toString() {
         return "\tAlbum {" +
+                "\n\t\tid = " + id +
                 "\n\t\ttitle = " + title +
                 "\n\t\tgenre = " + genre +
                 '\n' + trackList +

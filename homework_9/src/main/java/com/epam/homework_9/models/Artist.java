@@ -69,6 +69,7 @@ public class Artist {
     @Override
     public String toString() {
         return "\tArtist {" +
+                "\n\tid = " + id +
                 "\n\ttitle = " + name +
                 "\n" + albums +
                 "\n\t}\n";

@@ -15,22 +15,24 @@ public class ModelValidator {
 
     private static Logger logger = LogManager.getLogger("com.epam.homework_9.fullErrLog");
 
-    public static void validate(MusicGuide musicGuide) {
+    public static void validate(MusicGuide musicGuide) throws ModelException {
         List<Artist> allArtists = musicGuide.getAllArtists();
         boolean result = allArtists != null && allArtists.size() > 0;
         isException(result, "invalid MusicGuide");
-        allArtists.forEach(ModelValidator::validate);
+        for (Artist artist : allArtists)
+            ModelValidator.validate(artist);
     }
 
-    public static void validate(Artist artist) {
+    public static void validate(Artist artist) throws ModelException {
         String name = artist.getName();
         boolean result = name != null && !name.equals("");
         result &= artist.getAlbums().size() > 0;
         isException(result, "invalid Artist");
-        artist.getAlbums().forEach(ModelValidator::validate);
+        for (Album album : artist.getAlbums())
+            ModelValidator.validate(album);
     }
 
-    public static void validate(Album album) {
+    public static void validate(Album album) throws ModelException {
         String genre = album.getGenre();
         String title = album.getTitle();
         int size = album.getTrackList().size();
@@ -39,17 +41,18 @@ public class ModelValidator {
         result &= size > 0;
         String message = "invalid Album";
         isException(result, message);
-        album.getTrackList().forEach(ModelValidator::validate);
+        for (Track track : album.getTrackList())
+            ModelValidator.validate(track);
     }
 
-    private static void isException(boolean result, String message) {
+    private static void isException(boolean result, String message) throws ModelException {
         if (!result) {
             logger.error("validate is fallen because of " + message);
             throw new ModelException(message);
         }
     }
 
-    public static void validate(Track track) {
+    public static void validate(Track track) throws ModelException {
         String title = track.getTitle();
         Duration duration = track.getDuration();
         boolean result = title != null && !title.equals("");

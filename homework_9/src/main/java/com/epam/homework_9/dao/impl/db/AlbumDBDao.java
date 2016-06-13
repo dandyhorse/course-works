@@ -30,7 +30,7 @@ class AlbumDBDao implements Dao<Album> {
 
     @Override
     public List<Album> getAll() {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -77,16 +77,16 @@ class AlbumDBDao implements Dao<Album> {
 
     @Override
     public void add(Album album) {
-
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public boolean delete(Album album) {
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public boolean update(Album album) {
-        return false;
+        throw new UnsupportedOperationException();
     }
 }
