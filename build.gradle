@@ -39,6 +39,10 @@ repositories {
     jcenter()
 }
 
+task cleanAll(dependsOn: clean, type: Delete) {
+    delete pathToWebResource + 'node_modules', pathToWebResource + 'built', pathToWebResource + 'etc', 'out'
+}
+
 task npmInstall(type: NpmTask, overwrite: true) {
     args = ['install', '--prefix', pathToWebResource]
 }
