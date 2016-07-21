@@ -11,6 +11,8 @@ version '1.0-SNAPSHOT'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
+def pathToWebResource = "${project.projectDir}/src/main/webapp/static/"
+
 node {
     // Version of node to use.
     version = '4.4.7'
@@ -29,15 +31,13 @@ node {
     workDir = file("${project.buildDir}/nodejs")
 
     // Set the work directory where node_modules should be located
-    nodeModulesDir = file("${project.projectDir}src/main/resources/static")
+    nodeModulesDir = file(pathToWebResource)
 }
 
 repositories {
     mavenCentral()
     jcenter()
 }
-
-def pathToWebResource = "${project.projectDir}/src/main/webapp/static/"
 
 task npmInstall(type: NpmTask, overwrite: true) {
     args = ['install', '--prefix', pathToWebResource]
@@ -53,6 +53,10 @@ task watch(type: NpmTask) {
 
 task createBuiltFolder << {
     new File(pathToWebResource + "built").mkdir()
+}
+
+task shrinkWrap(type: NpmTask) {
+    args = ['shrinkwrap', '--prefix', pathToWebResource]
 }
 
 npmInstall.dependsOn(createBuiltFolder)
