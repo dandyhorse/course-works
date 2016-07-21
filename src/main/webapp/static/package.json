@@ -1,26 +1,36 @@
 {
-  "name": "frontend",
+  "engines": {
+    "node": "^4.4.7",
+    "npm": "^2.15.8"
+  },
+  "name": "webapp",
   "version": "1.0.0",
   "description": "frontend part of memorina game project",
-  "main": "index.js",
   "scripts": {
     "build": "browserify js/app.js -o built/build.js",
     "watch": ""
   },
   "author": "Solovev Anton",
-  "license": "ISC",
   "dependencies": {
     "react": "^15.2.1",
     "react-dom": "^15.2.1"
   },
   "devDependencies": {
+    "babel-preset-react": "^6.11.1",
+    "babelify": "^7.3.0",
     "browserify": "^13.0.1",
-    "reactify": "^1.1.1",
     "watchify": "^3.7.0"
   },
   "browserify": {
     "transform": [
-      "reactify"
+      [
+        "babelify",
+        {
+          "presets": [
+            "react"
+          ]
+        }
+      ]
     ]
   }
 }

@@ -11,6 +11,8 @@ version '1.0-SNAPSHOT'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
+def pathToWebResource = "${project.projectDir}/src/main/webapp/static/"
+
 node {
     // Version of node to use.
     version = '4.4.7'
@@ -18,6 +20,7 @@ node {
     // Version of npm to use.
     npmVersion = '2.15.8'
 
+    npmCommand = 'npm'
     // Base URL for fetching node distributions.
     distBaseUrl = 'https://nodejs.org/dist'
 
@@ -29,7 +32,7 @@ node {
     workDir = file("${project.buildDir}/nodejs")
 
     // Set the work directory where node_modules should be located
-    nodeModulesDir = file("${project.projectDir}src/main/resources/static")
+    nodeModulesDir = file(pathToWebResource)
 }
 
 repositories {
@@ -37,27 +40,35 @@ repositories {
     jcenter()
 }
 
-def pathToWebResource = "${project.projectDir}/src/main/webapp/static/"
 
-task npmInstall(type: NpmTask, overwrite: true) {
-    args = ['install', '--prefix', pathToWebResource]
-}
-
-task buildNpmWeb(dependsOn: 'npmInstall', type: NpmTask) {
-    args = ['run', 'build', '--prefix', pathToWebResource]
-}
-
-task watch(type: NpmTask) {
-    args = ['run', 'watch', '--prefix', pathToWebResource]
-}
 
 task createBuiltFolder << {
     new File(pathToWebResource + "built").mkdir()
 }
 
-npmInstall.dependsOn(createBuiltFolder)
+task cleanAll(dependsOn: clean, type: Delete) {
+    delete pathToWebResource + 'node_modules', pathToWebResource + 'built', pathToWebResource + 'etc', 'out'
+}
 
-build.dependsOn(buildNpmWeb)
+task npmInstall(dependsOn: [createBuiltFolder, npmSetup], type: NpmTask, overwrite: true) {
+    args = ['install', '--prefix', pathToWebResource]
+}
+
+task buildNpm(dependsOn: 'npmInstall', type: NpmTask) {
+    args = ['run', 'build', '--prefix', pathToWebResource]
+}
+
+task watchNpm(type: NpmTask) {
+    args = ['run', 'watch', '--prefix', pathToWebResource]
+}
+
+war {
+    dependsOn(buildNpm)
+    exclude(pathToWebResource)
+    include(pathToWebResource + 'built')
+}
+
+
 
 dependencies {
     compile group: 'org.springframework', name: 'spring-context', version: '4.3.1.RELEASE'
