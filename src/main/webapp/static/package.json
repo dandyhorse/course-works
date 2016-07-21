@@ -1,0 +1,26 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "frontend part of memorina game project",
+  "main": "index.js",
+  "scripts": {
+    "build": "browserify js/app.js -o built/build.js",
+    "watch": ""
+  },
+  "author": "Solovev Anton",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^15.2.1",
+    "react-dom": "^15.2.1"
+  },
+  "devDependencies": {
+    "browserify": "^13.0.1",
+    "reactify": "^1.1.1",
+    "watchify": "^3.7.0"
+  },
+  "browserify": {
+    "transform": [
+      "reactify"
+    ]
+  }
+}

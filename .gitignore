@@ -1,3 +1,8 @@
 /build
+/out
 /.idea
 /.gradle
+/npm-debug.log
+/src/main/webapp/static/node_modules
+/src/main/webapp/static/etc
+/src/main/webapp/static/built
