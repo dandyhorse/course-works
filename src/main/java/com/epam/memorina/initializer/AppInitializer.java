@@ -20,10 +20,10 @@ public class AppInitializer implements WebApplicationInitializer {
     private static final String MAPPING_URL = "/";
 
     @Override
-    public void onStartup(ServletContext servletContext) throws ServletException {
+    public void onStartup(ServletContext container) throws ServletException {
         WebApplicationContext context = getContext();
-        servletContext.addListener(new ContextLoaderListener(context));
-        ServletRegistration.Dynamic dispatcher = servletContext.addServlet("DispatcherServlet", new DispatcherServlet(context));
+        container.addListener(new ContextLoaderListener(context));
+        ServletRegistration.Dynamic dispatcher = container.addServlet("DispatcherServlet", new DispatcherServlet(context));
         dispatcher.setLoadOnStartup(1);
         dispatcher.addMapping(MAPPING_URL);
     }

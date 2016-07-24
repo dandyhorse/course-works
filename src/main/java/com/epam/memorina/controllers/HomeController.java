@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @since 20.07.2016.
  */
 @Controller
-public class HelloWorldController {
+public class HomeController {
 
-    @RequestMapping(value = "/hello", method = RequestMethod.GET)
-    public String helloWorld() {
+    @RequestMapping(value = {"/", "/home"}, method = RequestMethod.GET)
+    public String home() {
         return "index";
     }
 

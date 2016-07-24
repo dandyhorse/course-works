@@ -3,6 +3,13 @@ plugins {
     id 'war'
     id "org.akhikhl.gretty" version "1.2.4"
     id "com.moowork.node" version "0.13"
+
+    id 'com.gradle.build-scan' version '1.0'
+}
+
+buildScan {
+    licenseAgreementUrl = 'https://gradle.com/terms-of-service'
+    licenseAgree = 'yes'
 }
 
 group 'com.epam.memorina'
@@ -11,7 +18,7 @@ version '1.0-SNAPSHOT'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-def pathToWebResource = "${project.projectDir}/src/main/webapp/static/"
+def pathToWebResources = "${project.projectDir}/src/main/webapp/static/"
 
 node {
     // Version of node to use.
@@ -26,13 +33,14 @@ node {
 
     // If true, it will download node using above parameters.
     // If false, it will try to use globally installed node.
+    //TODO поменять перед deploy
     download = true
 
     // Set the work directory for unpacking node
-    workDir = file("${project.buildDir}/nodejs")
+    workDir = file("$buildDir/nodejs")
 
     // Set the work directory where node_modules should be located
-    nodeModulesDir = file(pathToWebResource)
+    nodeModulesDir = file(pathToWebResources)
 }
 
 repositories {
@@ -40,35 +48,36 @@ repositories {
     jcenter()
 }
 
-
-
-task createBuiltFolder << {
-    new File(pathToWebResource + "built").mkdir()
+task createBuiltFolder {
+    new File(pathToWebResources + "built").mkdir()
+    new File(pathToWebResources + "built/js").mkdir()
+    new File(pathToWebResources + "built/css").mkdir()
 }
 
 task cleanAll(dependsOn: clean, type: Delete) {
-    delete pathToWebResource + 'node_modules', pathToWebResource + 'built', pathToWebResource + 'etc', 'out'
+    delete pathToWebResources + 'node_modules',
+            pathToWebResources + 'built',
+            pathToWebResources + 'etc',
+            'out'
 }
 
-task npmInstall(dependsOn: [createBuiltFolder, npmSetup], type: NpmTask, overwrite: true) {
-    args = ['install', '--prefix', pathToWebResource]
+task npmInstall(dependsOn: [/*createBuiltFolder,*/ npmSetup], type: NpmTask, overwrite: true) {
+    args = ['install', '--prefix', pathToWebResources]
 }
 
-task buildNpm(dependsOn: 'npmInstall', type: NpmTask) {
-    args = ['run', 'build', '--prefix', pathToWebResource]
+task npmRunBuild(dependsOn: 'npmInstall', type: NpmTask) {
+    args = ['run', 'build', '--prefix', pathToWebResources]
 }
 
-task watchNpm(type: NpmTask) {
-    args = ['run', 'watch', '--prefix', pathToWebResource]
+build.dependsOn npmRunBuild
+
+gretty {
+    port = 8080
+    contextPath = '/memorina'
+    webappCopy { CopySpec copySpec ->
+        exclude '**/node_modules/**', '**/etc/', 'static/js/', '**/package.json'
+    }
 }
-
-war {
-    dependsOn(buildNpm)
-    exclude(pathToWebResource)
-    include(pathToWebResource + 'built')
-}
-
-
 
 dependencies {
     compile group: 'org.springframework', name: 'spring-context', version: '4.3.1.RELEASE'

@@ -7,15 +7,18 @@
   "version": "1.0.0",
   "description": "frontend part of memorina game project",
   "scripts": {
-    "build": "browserify js/app.js -o built/build.js",
-    "watch": ""
+    "build": "browserify js/app.js -o built/js/build.js",
+    "watch": "",
+    "test": ""
   },
   "author": "Solovev Anton",
   "dependencies": {
     "react": "^15.2.1",
-    "react-dom": "^15.2.1"
+    "react-dom": "^15.2.1",
+    "react-router": "^2.6.0"
   },
   "devDependencies": {
+    "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.11.1",
     "babelify": "^7.3.0",
     "browserify": "^13.0.1",
@@ -27,6 +30,7 @@
         "babelify",
         {
           "presets": [
+            "es2015",
             "react"
           ]
         }
