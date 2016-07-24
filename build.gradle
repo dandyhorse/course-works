@@ -34,7 +34,7 @@ node {
     // If true, it will download node using above parameters.
     // If false, it will try to use globally installed node.
     //TODO поменять перед deploy
-    download = true
+    download = false
 
     // Set the work directory for unpacking node
     workDir = file("$buildDir/nodejs")
@@ -61,7 +61,7 @@ task cleanAll(dependsOn: clean, type: Delete) {
             'out'
 }
 
-task npmInstall(dependsOn: [/*createBuiltFolder,*/ npmSetup], type: NpmTask, overwrite: true) {
+task npmInstall(dependsOn: [createBuiltFolder, npmSetup], type: NpmTask, overwrite: true) {
     args = ['install', '--prefix', pathToWebResources]
 }
 
