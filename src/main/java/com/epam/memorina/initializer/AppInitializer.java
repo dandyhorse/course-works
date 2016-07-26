@@ -33,5 +33,4 @@ public class AppInitializer implements WebApplicationInitializer {
         context.setConfigLocation(CONFIG_LOCATION);
         return context;
     }
-
 }

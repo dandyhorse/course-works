@@ -22,7 +22,7 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
     @Bean
     public ViewResolver viewResolver() {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-        viewResolver.setPrefix("/WEB-INF/templates/");
+        viewResolver.setPrefix("/static/");
         viewResolver.setSuffix(".html");
         viewResolver.setExposeContextBeansAsAttributes(true);
         return viewResolver;
@@ -33,4 +33,8 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
         configurer.enable();
     }
 
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/resources/**").addResourceLocations("/static/built/");
+    }
 }

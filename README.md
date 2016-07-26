@@ -1,19 +1,17 @@
 # Memorina Game
 
-#### Build project
+
+#### Build and setup project
 
 Windows
 ```
 gradlew.bat build
-gradlew.bat appRunWar -q
+gradlew.bat appRun -q
 ```
 Linux/Mac
 ```
 ./gradlew build
-./gradlew appRunWar -q
+./gradlew appRun -q
 ```
 
-#### Open link
-```
-http://localhost:8080/memorina/
-```
+Next open link <http://localhost:8080/memorina/>

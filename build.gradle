@@ -3,20 +3,12 @@ plugins {
     id 'war'
     id "org.akhikhl.gretty" version "1.2.4"
     id "com.moowork.node" version "0.13"
-
-    id 'com.gradle.build-scan' version '1.0'
-}
-
-buildScan {
-    licenseAgreementUrl = 'https://gradle.com/terms-of-service'
-    licenseAgree = 'yes'
 }
 
 group 'com.epam.memorina'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = targetCompatibility = 1.8
 
 def pathToWebResources = "${project.projectDir}/src/main/webapp/static/"
 
@@ -25,7 +17,7 @@ node {
     version = '4.4.7'
 
     // Version of npm to use.
-    npmVersion = '2.15.8'
+    npmVersion = '3.10.5'
 
     npmCommand = 'npm'
     // Base URL for fetching node distributions.
@@ -33,8 +25,8 @@ node {
 
     // If true, it will download node using above parameters.
     // If false, it will try to use globally installed node.
-    //TODO поменять перед deploy
-    download = false
+    //TODO false -> true when deploy
+    download = true
 
     // Set the work directory for unpacking node
     workDir = file("$buildDir/nodejs")
@@ -69,13 +61,22 @@ task npmRunBuild(dependsOn: 'npmInstall', type: NpmTask) {
     args = ['run', 'build', '--prefix', pathToWebResources]
 }
 
-build.dependsOn npmRunBuild
+task copyCssToBuilt(type: Copy) {
+    shouldRunAfter createBuiltFolder
+    from pathToWebResources + 'src/css/'
+    into pathToWebResources + 'built/css'
+    include '*.css'
+}
+
+build.dependsOn npmRunBuild, copyCssToBuilt
 
 gretty {
     port = 8080
     contextPath = '/memorina'
+    //TODO 'hard' -> 'soft' when deploy
+    inplaceMode = 'hard'
     webappCopy { CopySpec copySpec ->
-        exclude '**/node_modules/**', '**/etc/', 'static/js/', '**/package.json'
+        exclude '**/node_modules/**', '**/etc/', '**/src/', '**/package.json', '**/webpack.config.js'
     }
 }
 
