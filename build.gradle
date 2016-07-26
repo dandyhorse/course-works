@@ -41,12 +41,14 @@ repositories {
 }
 
 task createBuiltFolder {
+    group = 'memorina'
     new File(pathToWebResources + "built").mkdir()
     new File(pathToWebResources + "built/js").mkdir()
     new File(pathToWebResources + "built/css").mkdir()
 }
 
 task cleanAll(dependsOn: clean, type: Delete) {
+    group = 'memorina'
     delete pathToWebResources + 'node_modules',
             pathToWebResources + 'built',
             pathToWebResources + 'etc',
@@ -54,21 +56,22 @@ task cleanAll(dependsOn: clean, type: Delete) {
 }
 
 task npmInstall(dependsOn: [createBuiltFolder, npmSetup], type: NpmTask, overwrite: true) {
+    group = 'memorina'
     args = ['install', '--prefix', pathToWebResources]
 }
 
 task npmRunBuild(dependsOn: 'npmInstall', type: NpmTask) {
+    group = 'memorina'
     args = ['run', 'build', '--prefix', pathToWebResources]
 }
 
 task copyCssToBuilt(type: Copy) {
+    group = 'memorina'
     shouldRunAfter createBuiltFolder
     from pathToWebResources + 'src/css/'
     into pathToWebResources + 'built/css'
     include '*.css'
 }
-
-build.dependsOn npmRunBuild, copyCssToBuilt
 
 gretty {
     port = 8080
@@ -80,10 +83,16 @@ gretty {
     }
 }
 
+//build.dependsOn npmRunBuild, copyCssToBuilt
+
 dependencies {
     compile group: 'org.springframework', name: 'spring-context', version: '4.3.1.RELEASE'
     compile group: 'org.springframework', name: 'spring-webmvc', version: '4.3.1.RELEASE'
     compile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
+    runtime group: 'com.fasterxml.jackson.jaxrs', name: 'jackson-jaxrs-json-provider', version: '2.8.1'
+
+    compile group: 'javax.el', name: 'javax.el-api', version: '3.0.0'
+
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
