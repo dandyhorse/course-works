@@ -1,5 +1,8 @@
 package com.epam.memorina.initializer;
 
+import com.epam.memorina.configs.SpringJpaConfig;
+import com.epam.memorina.configs.SpringWebConfig;
+import org.springframework.context.annotation.Import;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.WebApplicationContext;
@@ -14,9 +17,10 @@ import javax.servlet.ServletRegistration;
  * @author Solovev Anton
  * @since 21.07.2016.
  */
+@Import(SpringJpaConfig.class)
 public class AppInitializer implements WebApplicationInitializer {
 
-    private static final String CONFIG_LOCATION = "com.epam.memorina.config";
+    private static final Class MAIN_CONFIG_CLASS = SpringWebConfig.class;
     private static final String MAPPING_URL = "/";
 
     @Override
@@ -30,7 +34,8 @@ public class AppInitializer implements WebApplicationInitializer {
 
     private AnnotationConfigWebApplicationContext getContext() {
         AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
-        context.setConfigLocation(CONFIG_LOCATION);
+        context.register(MAIN_CONFIG_CLASS);
         return context;
     }
+
 }

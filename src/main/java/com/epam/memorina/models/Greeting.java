@@ -1,4 +1,4 @@
-package com.epam.memorina.model;
+package com.epam.memorina.models;
 
 /**
  * @author Solovev Anton

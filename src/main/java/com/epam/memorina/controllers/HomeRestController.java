@@ -1,6 +1,6 @@
 package com.epam.memorina.controllers;
 
-import com.epam.memorina.model.Greeting;
+import com.epam.memorina.models.Greeting;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;

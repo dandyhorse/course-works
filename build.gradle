@@ -8,6 +8,11 @@ plugins {
 group 'com.epam.memorina'
 version '1.0-SNAPSHOT'
 
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
 sourceCompatibility = targetCompatibility = 1.8
 
 def pathToWebResources = "${project.projectDir}/src/main/webapp/static/"
@@ -33,11 +38,6 @@ node {
 
     // Set the work directory where node_modules should be located
     nodeModulesDir = file(pathToWebResources)
-}
-
-repositories {
-    mavenCentral()
-    jcenter()
 }
 
 task createBuiltFolder {
@@ -88,11 +88,17 @@ gretty {
 dependencies {
     compile group: 'org.springframework', name: 'spring-context', version: '4.3.1.RELEASE'
     compile group: 'org.springframework', name: 'spring-webmvc', version: '4.3.1.RELEASE'
-    compile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
-    runtime group: 'com.fasterxml.jackson.jaxrs', name: 'jackson-jaxrs-json-provider', version: '2.8.1'
+    compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '1.10.2.RELEASE'
 
+    compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.1.0.Final'
+    compile group: 'org.hibernate', name: 'hibernate-core', version: '5.1.0.Final'
+    compile group: 'com.h2database', name: 'h2', version: '1.4.192'
+
+    compile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
+    compile group: 'com.fasterxml.jackson.jaxrs', name: 'jackson-jaxrs-json-provider', version: '2.8.1'
     compile group: 'javax.el', name: 'javax.el-api', version: '3.0.0'
 
+    testCompile group: 'org.springframework', name: 'spring-test', version: '4.3.2.RELEASE'
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 

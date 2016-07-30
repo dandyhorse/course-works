@@ -1,8 +1,9 @@
-package com.epam.memorina.config;
+package com.epam.memorina.configs;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
@@ -19,7 +20,8 @@ import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan({"com.epam.memorina.controllers"})
+@Import(SpringJpaConfig.class)
+@ComponentScan({"com.epam.memorina.controllers", "com.epam.memorina.services"})
 public class SpringWebConfig extends WebMvcConfigurerAdapter {
 
     @Bean
@@ -27,7 +29,6 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
         viewResolver.setPrefix("/static/");
         viewResolver.setSuffix(".html");
-        viewResolver.setExposeContextBeansAsAttributes(true);
         return viewResolver;
     }
 
@@ -40,7 +41,6 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
     public View jsonViewResolver() {
         return new MappingJackson2JsonView();
     }
-
 
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
