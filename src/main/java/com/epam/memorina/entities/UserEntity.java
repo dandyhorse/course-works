@@ -18,8 +18,6 @@ public class UserEntity extends AbstractPersistable<Long> {
     @Basic
     @Column(name = "password", nullable = false)
     private String password;
-    @PrimaryKeyJoinColumn
-    @JoinTable(name = "games_statistic")
     @OneToOne(targetEntity = GameStatisticEntity.class, cascade = CascadeType.ALL)
     private GameStatisticEntity gameStatistic;
 

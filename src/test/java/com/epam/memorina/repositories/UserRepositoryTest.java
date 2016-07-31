@@ -1,7 +1,9 @@
 package com.epam.memorina.repositories;
 
 import com.epam.memorina.configs.SpringJpaConfig;
+import com.epam.memorina.entities.GameStatisticEntity;
 import com.epam.memorina.entities.UserEntity;
+import com.epam.memorina.models.User;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,6 +17,8 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.atLeastOnce;
+import static org.mockito.Mockito.verify;
 
 /**
  * @author Solovev Anton
@@ -69,5 +73,13 @@ public class UserRepositoryTest {
     public void existsTest() throws Exception {
         boolean exists = repository.existsBy(CARTER_NAME);
         assertThat(exists, is(true));
+    }
+
+    @Test
+    public void deepSaveTest() throws Exception {
+        GameStatisticEntity statistic = new GameStatisticEntity(13, 1234L);
+        UserEntity entity = new UserEntity("username", "password", statistic);
+        UserEntity saved = repository.save(entity);
+        assertThat(saved, is(entity));
     }
 }
