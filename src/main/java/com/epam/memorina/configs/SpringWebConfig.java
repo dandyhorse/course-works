@@ -20,12 +20,12 @@ import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
  */
 @Configuration
 @EnableWebMvc
-@Import(SpringJpaConfig.class)
-@ComponentScan({"com.epam.memorina.controllers", "com.epam.memorina.services"})
+@Import({SpringServiceConfig.class, SpringJpaConfig.class, SpringAsmConfig.class})
+@ComponentScan("com.epam.memorina.controllers")
 public class SpringWebConfig extends WebMvcConfigurerAdapter {
 
     @Bean
-    public ViewResolver defaultViewResolver() {
+    public ViewResolver internalViewResolver() {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
         viewResolver.setPrefix("/static/");
         viewResolver.setSuffix(".html");
