@@ -65,9 +65,15 @@ public class DefaultUserServiceTest {
 
         boolean isValidUser = userService.validUser(spiedUser);
 
-//        assertTrue(isValidUser, is(TrueValue));
+        assertThat(isValidUser, is(true));
         verify(spiedUser, atLeastOnce()).getPassword();
     }
 
 
+    @Test
+    public void saveTest() throws Exception {
+        User user = new User();
+        userService.save(user);
+        verify(mockedRepository, atLeastOnce()).save(assembler.newEntity(user));
+    }
 }

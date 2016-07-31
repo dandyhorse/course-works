@@ -2,13 +2,17 @@ package com.epam.memorina.services;
 
 import com.epam.memorina.assemblers.Assembler;
 import com.epam.memorina.entities.UserEntity;
+import com.epam.memorina.exceptions.ServiceException;
 import com.epam.memorina.models.User;
 import com.epam.memorina.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 /**
@@ -16,7 +20,7 @@ import java.util.stream.Collectors;
  * @since 30.07.2016.
  */
 @Service
-@Transactional
+@Transactional(propagation = Propagation.REQUIRED)
 public class DefaultUserService {
 
     private UserRepository userRepository;
@@ -38,7 +42,15 @@ public class DefaultUserService {
 
     public void save(User user) {
         UserEntity userEntity = newEntity(user);
-        userRepository.save(userEntity);
+        insideException(() -> userRepository.save(userEntity));
+    }
+
+    private <T> T insideException(Supplier<T> function) {
+        try {
+            return function.get();
+        } catch (DataAccessException exception) {
+            throw new ServiceException(exception.getMessage(), exception);
+        }
     }
 
     public User loadByName(String username) {
