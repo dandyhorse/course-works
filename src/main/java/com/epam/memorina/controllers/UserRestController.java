@@ -1,6 +1,7 @@
 package com.epam.memorina.controllers;
 
-import com.epam.memorina.entities.UserEntity;
+import com.epam.memorina.models.GameStatistic;
+import com.epam.memorina.models.User;
 import com.epam.memorina.services.DefaultUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,17 +19,23 @@ import java.util.List;
 @RequestMapping(value = "/users")
 public class UserRestController {
 
-    @Autowired
     private DefaultUserService service;
 
+    @Autowired
+    public UserRestController(DefaultUserService service) {
+        this.service = service;
+    }
+
     @RequestMapping(method = RequestMethod.GET)
-    public List<UserEntity> userGet() {
-        return service.loadUsers();
+    public List<User> getUser() {
+        return service.loadAll();
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public void userPost(@RequestParam(value = "name") String name) {
-        service.saveUser(new UserEntity(name));
+    public void createUser(@RequestParam(value = "name") String name,
+                           @RequestParam(value = "password", defaultValue = "default") String pass) {
+        User user = new User(name, pass, new GameStatistic());
+        service.save(user);
     }
 
 
