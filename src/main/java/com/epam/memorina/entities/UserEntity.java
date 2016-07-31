@@ -14,23 +14,48 @@ public class UserEntity extends AbstractPersistable<Long> {
 
     @Basic
     @Column(name = "name", nullable = false, unique = true)
-    private String name;
+    private String username;
+    @Basic
+    @Column(name = "password", nullable = false)
+    private String password;
+    @PrimaryKeyJoinColumn
+    @JoinTable(name = "games_statistic")
+    @OneToOne(targetEntity = GameStatisticEntity.class, cascade = CascadeType.ALL)
+    private GameStatisticEntity gameStatistic;
 
     public UserEntity() {
         super();
     }
 
-    public UserEntity(String name) {
+    public UserEntity(String username, String password, GameStatisticEntity gameStatistic) {
         super();
-        this.name = name;
+        this.username = username;
+        this.password = password;
+        this.gameStatistic = gameStatistic;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String userName) {
+        this.username = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public GameStatisticEntity getGameStatistic() {
+        return gameStatistic;
+    }
+
+    public void setGameStatistic(GameStatisticEntity gameStatistic) {
+        this.gameStatistic = gameStatistic;
     }
 
 }
