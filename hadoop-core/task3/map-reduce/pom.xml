@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.epam.training.hadoop</groupId>
-    <artifactId>hw2-map-reduce</artifactId>
+    <artifactId>hw3-map-reduce</artifactId>
     <version>1.0</version>
 
     <repositories>

@@ -1,6 +1,6 @@
 package com.epam.training.hadoop.hw3;
 
-import com.epam.training.hadoop.hw3.utils.BytesInfo;
+import com.epam.training.hadoop.hw3.utils.WritableInfo;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;
 import org.apache.hadoop.fs.Path;
@@ -30,13 +30,12 @@ public class Main extends Configured implements Tool {
         job.setOutputFormatClass(TextOutputFormat.class);
 
         job.setMapOutputKeyClass(Text.class);
-        job.setMapOutputValueClass(BytesInfo.class);
+        job.setMapOutputValueClass(WritableInfo.class);
 
         job.setOutputKeyClass(Text.class);
-        job.setOutputValueClass(BytesInfo.class);
+        job.setOutputValueClass(WritableInfo.class);
 
         job.setMapperClass(Map.class);
-        job.setCombinerClass(Combiner.class);
         job.setReducerClass(Reduce.class);
         job.setNumReduceTasks(1);
 
@@ -51,8 +50,6 @@ public class Main extends Configured implements Tool {
         Configuration conf = new Configuration();
         conf.set("fs.default.name", baseUrl);
         conf.set("mapreduce.textoutputformat.separatorText", ",");
-        //        "-Dmapreduce.compress.map.output=true"
-        //        "-Dmapreduce.map.output.compression.codec=org.apache.hadoop.io.compress.GzipCodec"
         int result = ToolRunner.run(conf, new Main(), args);
         System.exit(result);
     }
