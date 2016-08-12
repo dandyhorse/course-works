@@ -13,7 +13,9 @@ import java.util.concurrent.atomic.LongAdder;
  * @author Anton_Solovev
  * @since 8/12/2016.
  */
-public class Reduce extends Reducer<Text, BytesInfo, Text, Text> {
+public class Combiner extends Reducer<Text, BytesInfo, Text, BytesInfo> {
+
+    private static final Long defaultSumOfBytes = 0L;
     private LongAdder counter = new LongAdder();
     private CommonSumReducer reducer = new CommonSumReducer();
 
@@ -21,10 +23,10 @@ public class Reduce extends Reducer<Text, BytesInfo, Text, Text> {
     protected void reduce(Text key, Iterable<BytesInfo> values, Context context)
             throws IOException, InterruptedException {
         Optional<Long> sumOfBytesOpt = reducer.reduceToSumOfBytes(values, counter);
-        Long sum = sumOfBytesOpt.orElse(0L);
-        Long avg = (sum / counter.sumThenReset());
-        String str = String.format(",%d,%d", avg, sum);
-        context.write(key, new Text(str));
+        BytesInfo bytesInfo = new BytesInfo(
+                sumOfBytesOpt.orElse(defaultSumOfBytes),
+                counter.sumThenReset());
+        context.write(key, bytesInfo);
     }
 
 
