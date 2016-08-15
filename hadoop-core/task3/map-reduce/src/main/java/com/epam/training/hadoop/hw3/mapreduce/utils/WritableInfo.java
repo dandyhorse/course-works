@@ -1,4 +1,4 @@
-package com.epam.training.hadoop.hw3.utils;
+package com.epam.training.hadoop.hw3.mapreduce.utils;
 
 import org.apache.hadoop.io.Writable;
 
@@ -31,20 +31,15 @@ public class WritableInfo implements Writable {
         return byteInfo.getBytes();
     }
 
-    public String getBrowserName() {
+    public String getBrowsersName() {
         return browserInfo.getBrowserName();
-    }
-
-    public long getBrowserCount() {
-        return browserInfo.getBrowserCount();
     }
 
     @Override
     public void write(DataOutput out) throws IOException {
         out.writeLong(getBytes());
         out.writeLong(getCountOfRequestsByIp());
-        out.writeUTF(getBrowserName());
-        out.writeLong(getBrowserCount());
+        out.writeUTF(getBrowsersName());
     }
 
     @Override
@@ -53,10 +48,27 @@ public class WritableInfo implements Writable {
         Long countOfRequestsByIp = in.readLong();
 
         String browserName = in.readUTF();
-        Long browserCount = in.readLong();
 
         byteInfo = new BytesInfo(bytes, countOfRequestsByIp);
-        browserInfo = new BrowserInfo(browserName, browserCount);
+        browserInfo = new BrowserInfo(browserName);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        WritableInfo that = (WritableInfo) o;
+
+        if (!byteInfo.equals(that.byteInfo)) return false;
+        return browserInfo.equals(that.browserInfo);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = byteInfo.hashCode();
+        result = 31 * result + browserInfo.hashCode();
+        return result;
+    }
 }

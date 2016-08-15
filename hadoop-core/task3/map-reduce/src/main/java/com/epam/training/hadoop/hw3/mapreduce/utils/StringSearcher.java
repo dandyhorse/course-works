@@ -1,4 +1,4 @@
-package com.epam.training.hadoop.hw3.utils;
+package com.epam.training.hadoop.hw3.mapreduce.utils;
 
 import java.util.StringTokenizer;
 import java.util.regex.Matcher;

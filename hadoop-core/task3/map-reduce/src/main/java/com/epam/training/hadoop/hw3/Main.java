@@ -1,10 +1,13 @@
 package com.epam.training.hadoop.hw3;
 
-import com.epam.training.hadoop.hw3.utils.WritableInfo;
+import com.epam.training.hadoop.hw3.mapreduce.MapStatistic;
+import com.epam.training.hadoop.hw3.mapreduce.ReduceStatistic;
+import com.epam.training.hadoop.hw3.mapreduce.utils.WritableInfo;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.Text;
+import org.apache.hadoop.io.compress.SnappyCodec;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
@@ -35,18 +38,24 @@ public class Main extends Configured implements Tool {
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(WritableInfo.class);
 
-        job.setMapperClass(Map.class);
-        job.setReducerClass(Reduce.class);
+        job.setMapperClass(MapStatistic.class);
+        job.setReducerClass(ReduceStatistic.class);
         job.setNumReduceTasks(1);
 
         FileInputFormat.addInputPath(job, new Path(args[0]));
         FileOutputFormat.setOutputPath(job, new Path(args[1]));
+        FileOutputFormat.setCompressOutput(job, true);
+        FileOutputFormat.setOutputCompressorClass(job, SnappyCodec.class);
         return job.waitForCompletion(true) ? 1 : 0;
     }
 
     private static final String baseUrl = "hdfs://sandbox.hortonworks.com";
 
     public static void main(String[] args) throws Exception {
+        if (args.length < 2) {
+            System.err.println(" Usage: Main < input path > < output path > < params >");
+            System.exit(-1);
+        }
         Configuration conf = new Configuration();
         conf.set("fs.default.name", baseUrl);
         conf.set("mapreduce.textoutputformat.separatorText", ",");
