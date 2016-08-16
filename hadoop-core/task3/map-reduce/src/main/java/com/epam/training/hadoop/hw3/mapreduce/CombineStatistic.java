@@ -8,29 +8,23 @@ import org.apache.hadoop.mapreduce.Reducer;
 import java.io.IOException;
 import java.util.Optional;
 import java.util.concurrent.atomic.LongAdder;
-import java.util.stream.Stream;
 
 /**
  * @author Anton_Solovev
- * @since 8/12/2016.
+ * @since 8/16/2016.
  */
-public class ReduceStatistic extends Reducer<Text, WritableInfo, Text, Text> {
-
+public class CombineStatistic extends Reducer<Text, WritableInfo, Text, WritableInfo> {
 
     @Override
     protected void reduce(Text key, Iterable<WritableInfo> values, Context context)
             throws IOException, InterruptedException {
 
-        LongAdder ipCounter = new LongAdder();
         CommonReducer reducer = new CommonReducer();
+        LongAdder ipCounter = new LongAdder();
         Optional<Long> reducedBytes = reducer.reduceStream(values, ipCounter);
 
-        Long byteSum = reducedBytes.orElseThrow(() -> new RuntimeException("cannot reduce to a number. bytes optional stream is null"));
-        Long byteAvg = (byteSum / ipCounter.sumThenReset());
-
-        String str = String.format(",%d,%d", byteAvg, byteSum);
-        context.write(key, new Text(str));
+        WritableInfo info = new WritableInfo(reducedBytes.orElse(0L), ipCounter.sumThenReset());
+        context.write(key, info);
     }
-
 
 }

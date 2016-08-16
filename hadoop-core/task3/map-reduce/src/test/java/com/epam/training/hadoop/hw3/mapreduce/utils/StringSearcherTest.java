@@ -1,6 +1,5 @@
 package com.epam.training.hadoop.hw3.mapreduce.utils;
 
-import com.epam.training.hadoop.hw3.mapreduce.mapreduce.utils.StringSearcher;
 import org.junit.Before;
 import org.junit.Test;
 

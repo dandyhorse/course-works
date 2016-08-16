@@ -12,45 +12,35 @@ import java.io.IOException;
  */
 public class WritableInfo implements Writable {
 
-    private BytesInfo byteInfo;
-    private BrowserInfo browserInfo;
+    private Long bytes;
+    private Long countOfRequestsByIp;
 
     public WritableInfo() {
     }
 
-    public WritableInfo(BytesInfo byteInfo, BrowserInfo browserInfo) {
-        this.byteInfo = byteInfo;
-        this.browserInfo = browserInfo;
-    }
-
-    public Long getCountOfRequestsByIp() {
-        return byteInfo.getCountOfRequestsByIp();
+    public WritableInfo(Long bytes, Long countOfRequestsByIp) {
+        this.bytes = bytes;
+        this.countOfRequestsByIp = countOfRequestsByIp;
     }
 
     public Long getBytes() {
-        return byteInfo.getBytes();
+        return bytes;
     }
 
-    public String getBrowsersName() {
-        return browserInfo.getBrowserName();
+    public Long getCountOfRequestsByIp() {
+        return countOfRequestsByIp;
     }
 
     @Override
     public void write(DataOutput out) throws IOException {
         out.writeLong(getBytes());
         out.writeLong(getCountOfRequestsByIp());
-        out.writeUTF(getBrowsersName());
     }
 
     @Override
     public void readFields(DataInput in) throws IOException {
-        Long bytes = in.readLong();
-        Long countOfRequestsByIp = in.readLong();
-
-        String browserName = in.readUTF();
-
-        byteInfo = new BytesInfo(bytes, countOfRequestsByIp);
-        browserInfo = new BrowserInfo(browserName);
+        this.bytes = in.readLong();
+        this.countOfRequestsByIp = in.readLong();
     }
 
     @Override
@@ -60,15 +50,14 @@ public class WritableInfo implements Writable {
 
         WritableInfo that = (WritableInfo) o;
 
-        if (!byteInfo.equals(that.byteInfo)) return false;
-        return browserInfo.equals(that.browserInfo);
-
+        if (bytes != null ? !bytes.equals(that.bytes) : that.bytes != null) return false;
+        return countOfRequestsByIp != null ? countOfRequestsByIp.equals(that.countOfRequestsByIp) : that.countOfRequestsByIp == null;
     }
 
     @Override
     public int hashCode() {
-        int result = byteInfo.hashCode();
-        result = 31 * result + browserInfo.hashCode();
+        int result = bytes != null ? bytes.hashCode() : 0;
+        result = 31 * result + (countOfRequestsByIp != null ? countOfRequestsByIp.hashCode() : 0);
         return result;
     }
 }

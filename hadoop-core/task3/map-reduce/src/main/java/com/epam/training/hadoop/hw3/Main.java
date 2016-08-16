@@ -1,5 +1,6 @@
 package com.epam.training.hadoop.hw3;
 
+import com.epam.training.hadoop.hw3.mapreduce.CombineStatistic;
 import com.epam.training.hadoop.hw3.mapreduce.MapStatistic;
 import com.epam.training.hadoop.hw3.mapreduce.ReduceStatistic;
 import com.epam.training.hadoop.hw3.mapreduce.utils.WritableInfo;
@@ -40,7 +41,7 @@ public class Main extends Configured implements Tool {
 
         job.setMapperClass(MapStatistic.class);
         job.setReducerClass(ReduceStatistic.class);
-        job.setNumReduceTasks(1);
+        job.setCombinerClass(CombineStatistic.class);
 
         FileInputFormat.addInputPath(job, new Path(args[0]));
         FileOutputFormat.setOutputPath(job, new Path(args[1]));
@@ -52,8 +53,8 @@ public class Main extends Configured implements Tool {
     private static final String baseUrl = "hdfs://sandbox.hortonworks.com";
 
     public static void main(String[] args) throws Exception {
-        if (args.length < 2) {
-            System.err.println(" Usage: Main < input path > < output path > < params >");
+        if (args.length != 2) {
+            System.err.println(" Usage: Main < input path > < output path >");
             System.exit(-1);
         }
         Configuration conf = new Configuration();

@@ -1,7 +1,5 @@
 package com.epam.training.hadoop.hw3.mapreduce;
 
-import com.epam.training.hadoop.hw3.mapreduce.utils.BrowserInfo;
-import com.epam.training.hadoop.hw3.mapreduce.utils.BytesInfo;
 import com.epam.training.hadoop.hw3.mapreduce.utils.WritableInfo;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
@@ -27,8 +25,6 @@ public class MRTest {
     private MapDriver<LongWritable, Text, Text, WritableInfo> mapDriver;
     private ReduceDriver<Text, WritableInfo, Text, Text> reduceDriver;
     private MapReduceDriver<LongWritable, Text, Text, WritableInfo, Text, Text> mapReduceDriver;
-    private BytesInfo byteInfo;
-    private BrowserInfo browserInfo;
     private Text key;
 
     @Before
@@ -46,22 +42,21 @@ public class MRTest {
         mapReduceDriver.setMapper(mapper);
         mapReduceDriver.setReducer(reducer);
 
-        byteInfo = new BytesInfo(Long.decode(TEST_BYTES), 1L);
-        browserInfo = new BrowserInfo(TEST_BROWSER_NAME);
         key = new Text(TEST_IP);
     }
 
     @Test
     public void testMap() throws Exception {
         mapDriver.withInput(new LongWritable(1), new Text(TEST_LINE));
-        mapDriver.withOutput(key, new WritableInfo(byteInfo, browserInfo));
+        mapDriver.withOutput(key, new WritableInfo(Long.decode(TEST_BYTES), 1L));
         mapDriver.runTest();
     }
 
     @Test
     public void testReduce() throws Exception {
-        reduceDriver.withInput(key, Collections.singletonList(new WritableInfo(byteInfo, browserInfo)));
-        reduceDriver.withOutput(key, new Text(String.format(",%d,%d", byteInfo.getBytes(), byteInfo.getBytes())));
+        WritableInfo info = new WritableInfo(Long.decode(TEST_BYTES), 1L);
+        reduceDriver.withInput(key, Collections.singletonList(info));
+        reduceDriver.withOutput(key, new Text(String.format(",%d,%d", info.getBytes(), info.getBytes())));
         reduceDriver.runTest();
     }
 

@@ -1,11 +1,10 @@
 package com.epam.training.hadoop.hw3.mapreduce;
 
-import com.epam.training.hadoop.hw3.mapreduce.utils.BytesInfo;
 import com.epam.training.hadoop.hw3.mapreduce.utils.StringSearcher;
 import com.epam.training.hadoop.hw3.mapreduce.utils.WritableInfo;
-import com.epam.training.hadoop.hw3.mapreduce.utils.BrowserInfo;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Counter;
 import org.apache.hadoop.mapreduce.Mapper;
 
 import java.io.IOException;
@@ -22,12 +21,10 @@ public class MapStatistic extends Mapper<LongWritable, Text, Text, WritableInfo>
         StringSearcher searcher = new StringSearcher(value.toString());
         String ip = searcher.getIp();
         Long bytes = Long.decode(searcher.getBytes());
-        String browser = searcher.getBrowserName();
-
-        BytesInfo byteInfo = new BytesInfo(bytes, 1L);
-        BrowserInfo browserInfo = new BrowserInfo(browser);
-
-        WritableInfo info = new WritableInfo(byteInfo, browserInfo);
+        String browserName = searcher.getBrowserName();
+        Counter counter = context.getCounter("browsers", browserName);
+        counter.increment(1L);
+        WritableInfo info = new WritableInfo(bytes, 1L);
         context.write(new Text(ip), info);
     }
 }
