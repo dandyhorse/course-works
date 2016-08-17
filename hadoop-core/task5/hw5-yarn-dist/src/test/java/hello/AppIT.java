@@ -25,7 +25,7 @@ public class AppIT extends AbstractBootYarnClusterTests {
 	public void testApp() throws Exception {
 		String[] args = new String[] {
 				"--spring.yarn.client.files[0]=file:target/hw5-yarn-dist/hw5-yarn-container-0.1.0.jar",
-				"--spring.yarn.client.files[1]=file:tadminarget/hw5-yarn-dist/hw5-yarn-appmaster-0.1.0.jar" };
+				"--spring.yarn.client.files[1]=file:target/hw5-yarn-dist/hw5-yarn-appmaster-0.1.0.jar" };
 		ApplicationInfo info = submitApplicationAndWait(ClientApplication.class, args);
 		assertThat(info.getYarnApplicationState(), is(YarnApplicationState.FINISHED));
 

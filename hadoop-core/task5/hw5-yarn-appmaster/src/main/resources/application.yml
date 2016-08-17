@@ -1,7 +1,7 @@
 spring:
     hadoop:
-        fsUri: hdfs://sandbox.hortonworks.com:8020
-        resourceManagerHost: sandbox.hortonworks.com
+        fsUri: hdfs://localhost:8020
+        resourceManagerHost: localhost
     yarn:
         appName: hw5-yarn
         applicationDir: /app/hw5-yarn/
