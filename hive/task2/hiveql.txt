@@ -1,0 +1,12 @@
+0. dataset from hw1
+
+1. Find all carriers who cancelled
+
+SELECT fl.UniqueCarrier, sum(fl.cancelled) AS canceled_fl,
+concat_ws(",", collect_set(ap.city))
+FROM flights as fl
+JOIN airports as ap
+    ON fl.origin = translate(ap.iata, '\"', '')
+HAVING canceled_fl > 1
+GROUP BY fl.uniquecarrier
+SORT BY canceled_fl desc;

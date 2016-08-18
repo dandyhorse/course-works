@@ -1,0 +1,71 @@
+1. Loading
+
+CREATE TABLE flights (
+  year String, month String, dayofmonth String, dayofweek String, 
+  deptime String, crsdeptime String, arrtime String, crsarrTime String, 
+  uniquecarrier String, 
+  flightNum String, tailnum String, 
+  actualelapsedtime String, crselapsedtime String, airtime String, 
+  arrdelay String, depdelay String, 
+  origin String, dest String, distance String, 
+  taxiIn String, taxiOut String, 
+  cancelled String, cancellationcode String, 
+  diverted String, 
+  carrierdelay String, weatherdelay String, nasdelay String, 
+  securitydelay String, lateaircraftdelay String) 
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' STORED AS TEXTFILE;
+
+CREATE TABLE airports (
+iata String, 
+airport String, 
+city String, 
+state String, 
+country String, 
+lat String, 
+long String) 
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' STORED AS TEXTFILE;
+
+LOAD DATA INPATH '/training/hive_dataset/2007.csv' OVERWRITE INTO TABLE flights;
+LOAD DATA INPATH '/training/hive_dataset/airports.csv' OVERWRITE INTO TABLE airports;
+
+2. Counting
+
+SELECT fl.uniquecarrier, count(*) AS load FROM flights fl
+GROUP BY fl.uniquecarrier
+SORT BY load DESC;
+
+3. Total number of flights 
+
+SELECT count(*) FROM flights AS fl
+    JOIN airports ap1
+       ON (fl.origin = translate(ap1.iata, '\"', ''))
+    JOIN airports ap2
+       ON (fl.dest = translate(ap2.iata, '\"', ''))
+WHERE (ap1.city = '"New York"' OR ap2.city = '"New York"')
+AND fl.month = 6;
+
+4. Five most busy airports
+
+SELECT us_aps.iadata, count(*) AS load FROM (
+  SELECT fl.origin AS iadata FROM flights fl
+      JOIN airports AS ap ON (fl.dest = ap.iata)
+       WHERE fl.month >= 6 AND fl.month >=1
+       AND fl.month <= 8 AND fl.month <=31
+       AND ap.country='USA'
+  union all
+  SELECT fl.dest AS iadata FROM flights fl
+  join airports AS ap ON (fl.dest = ap.iata)
+       WHERE fl.month >= 6 AND fl.month >=1
+       AND fl.month <= 8 AND fl.month <=31
+       AND ap.country='USA'
+) AS us_aps
+GROUP BY us_aps.iadata
+SORT BY load desc
+LIMIT 5;
+
+5. Find the carrier
+
+SELECT fl.uniquecarrier, count(*) AS load FROM flights AS fl
+GROUP BY fl.uniquecarrier
+SORT BY load DESC
+LIMIT 1;

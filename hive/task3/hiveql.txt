@@ -1,0 +1,59 @@
+0. dataset from hadoop_hw4
+
+1. Custom UDF 
+
+CREATE TABLE web_user_log(
+bid_id  String,
+web_Timestamp String,
+log_type String,
+ipinyou_id String,
+user_agent String,
+ip String,
+Region String,
+city String,
+ad_exchange String,
+domain String,
+url String,
+anonymous_url_id String,
+ad_slot_id String,
+ad_slot_width String,
+ad_slot_height String,
+ad_slot_visibility String,
+ad_slot_format String,
+ad_slot_floor_price  String,
+creative_id String,
+bidding_price String,
+paying_price String,
+key_page_url  String,
+advertiser_id String,
+user_tags String)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '\u0009' STORED AS TEXTFILE;
+
+load data local inpath '/media/sf_share/log_sample.txt' overwrite into table web_user_log_sample;
+
+LOCATION '/media/sf_share/log_sample.txt';
+
+select user_agent from web_user_log;
+
+add jar /media/sf_share/udf/target/hive-udf-1.0.jar;
+
+CREATE TEMPORARY FUNCTION ua_mapper as 'com.epam.bd.training.UserAgentParserUDTF';
+
+2. Use data from you UDF 
+
+select ua_mapper(wuls.user_agent) from web_user_log_sample as wuls;
+
+select * from (
+              select *, rank() over (partition by stat.city order by stat.web_load desc) as city_rank
+                from (
+                      select wuls.city, ua_param, ua_value, count(*) as web_load
+                        from web_user_log_sample as wuls
+                        lateral view explode(ua_mapper(wuls.user_agent)) dummy as ua_param, ua_value
+                      group by wuls.city, ua_param, ua_value
+                     ) as stat
+                order by stat.web_load desc, stat.city
+               ) as out_stat
+where out_stat.city_rank <= 2
+limit 20;
+
+
