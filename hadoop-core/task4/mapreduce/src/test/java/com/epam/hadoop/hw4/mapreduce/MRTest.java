@@ -79,8 +79,9 @@ public class MRTest {
         reduceDriver.runTest();
     }
 
-    @Ignore
+
     @Test
+    @Ignore
     public void mapReduceTest() throws Exception {
         mapReduceDriver.setKeyGroupingComparator(new CustomGroupComparator());
         mapReduceDriver.addCacheFile(new URI("file:///" + pathCacheCities));

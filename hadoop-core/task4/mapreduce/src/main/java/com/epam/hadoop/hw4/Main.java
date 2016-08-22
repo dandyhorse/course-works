@@ -39,10 +39,13 @@ public class Main extends Configured implements Tool {
 
         job.setMapperClass(PriceMapper.class);
         job.setReducerClass(PriceReducer.class);
+
         job.setPartitionerClass(OSPartitioner.class);
         job.setGroupingComparatorClass(CustomGroupComparator.class);
+        job.setSortComparatorClass(CustomSortComparator.class);
+        job.setNumReduceTasks(6);
 
-//        FileInputFormat.setInputDirRecursive(job, true);
+        FileInputFormat.setInputDirRecursive(job, true);
         FileInputFormat.addInputPath(job, new Path(args[0]));
         FileOutputFormat.setOutputPath(job, new Path(args[1]));
 
@@ -50,7 +53,6 @@ public class Main extends Configured implements Tool {
         job.addCacheFile(new URI(baseUrl + args[3]));
         return job.waitForCompletion(true) ? 1 : 0;
     }
-
 
     public static void main(String[] args) throws Exception {
         if (args.length != 4) {
