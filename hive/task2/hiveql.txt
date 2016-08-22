@@ -4,9 +4,12 @@
 
 SELECT fl.UniqueCarrier, sum(fl.cancelled) AS canceled_fl,
 concat_ws(",", collect_set(ap.city))
-FROM flights as fl
-JOIN airports as ap
-    ON fl.origin = translate(ap.iata, '\"', '')
-HAVING canceled_fl > 1
+FROM flights AS fl
+JOIN airports AS ap
+    ON (fl.origin = ap.iata)
+WHERE fl.year = 2007
 GROUP BY fl.uniquecarrier
-SORT BY canceled_fl desc;
+HAVING canceled_fl > 1
+SORT BY canceled_fl DESC;
+
+4 mapreduce jobs
