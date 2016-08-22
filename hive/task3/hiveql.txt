@@ -1,0 +1,40 @@
+0. dataset from hadoop_hw4
+
+1.  
+CREATE TABLE web_user_log_orc(
+bid_id  String,
+web_timestamp String,
+log_type String,
+ipinyou_id String,
+user_agent String,
+ip String,
+Region String,
+city String,
+ad_exchange String,
+domain String,
+url String,
+anonymous_url_id String,
+ad_slot_id String,
+ad_slot_width String,
+ad_slot_height String,
+ad_slot_visibility String,
+ad_slot_format String,
+ad_slot_floor_price  String,
+creative_id String,
+bidding_price String,
+paying_price String,
+key_page_url  String,
+advertiser_id String,
+user_tags String)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '\u0009'
+STORED AS ORC
+tblproperties("orc.compress"="SNAPPY");
+
+// sample
+LOAD DATA INPATH '/training/dataset/imp' OVERWRITE INTO TABLE web_user_log_orc;
+
+ADD JAR /media/sf_share/udf/target/hw3-udf-1.0.jar;
+
+CREATE TEMPORARY FUNCTION parseUA AS 'com.epam.hive.hw3.CustomUserAgentParser';
+
+SELECT parseUA() from ... ;
