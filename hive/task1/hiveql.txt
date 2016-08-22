@@ -38,10 +38,10 @@ SORT BY load DESC;
 
 SELECT count(*) FROM flights AS fl
     JOIN airports ap1
-       ON (fl.origin = translate(ap1.iata, '\"', ''))
+       ON (fl.origin = ap1.iata)
     JOIN airports ap2
-       ON (fl.dest = translate(ap2.iata, '\"', ''))
-WHERE (ap1.city = '"New York"' OR ap2.city = '"New York"')
+       ON (fl.dest = ap2.iata)
+WHERE (ap1.city = "New York" OR ap2.city = "New York")
 AND fl.month = 6;
 
 4. Five most busy airports
@@ -49,14 +49,14 @@ AND fl.month = 6;
 SELECT us_aps.iadata, count(*) AS load FROM (
   SELECT fl.origin AS iadata FROM flights fl
       JOIN airports AS ap ON (fl.dest = ap.iata)
-       WHERE fl.month >= 6 AND fl.month >=1
-       AND fl.month <= 8 AND fl.month <=31
+       WHERE (fl.month <= 8 AND fl.dayofmonth <= 31)
+       AND (fl.month >=6 AND fl.dayofmonth >=1)
        AND ap.country='USA'
   union all
   SELECT fl.dest AS iadata FROM flights fl
-  join airports AS ap ON (fl.dest = ap.iata)
-       WHERE fl.month >= 6 AND fl.month >=1
-       AND fl.month <= 8 AND fl.month <=31
+  JOIN airports AS ap ON (fl.dest = ap.iata)
+       WHERE (fl.month <= 8 AND fl.dayofmonth <= 31)
+       AND (fl.month >=6 AND fl.dayofmonth >=1)
        AND ap.country='USA'
 ) AS us_aps
 GROUP BY us_aps.iadata
