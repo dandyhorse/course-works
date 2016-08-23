@@ -12,4 +12,4 @@ GROUP BY fl.uniquecarrier
 HAVING canceled_fl > 1
 SORT BY canceled_fl DESC;
 
-4 mapreduce jobs
+1 mapreduce jobs

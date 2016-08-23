@@ -1,14 +1,14 @@
 0. dataset from hadoop_hw4
 
 1.  
-CREATE TABLE web_user_log_orc(
+CREATE TABLE web_user_log(
 bid_id  String,
 web_timestamp String,
 log_type String,
 ipinyou_id String,
 user_agent String,
 ip String,
-Region String,
+region String,
 city String,
 ad_exchange String,
 domain String,
@@ -27,14 +27,34 @@ key_page_url  String,
 advertiser_id String,
 user_tags String)
 ROW FORMAT DELIMITED FIELDS TERMINATED BY '\u0009'
-STORED AS ORC
-tblproperties("orc.compress"="SNAPPY");
+STORED AS TEXTFILE;
 
-// sample
-LOAD DATA INPATH '/training/dataset/imp' OVERWRITE INTO TABLE web_user_log_orc;
+LOAD DATA INPATH '/training/dataset/imp' OVERWRITE INTO TABLE web_user_log;
 
-ADD JAR /media/sf_share/udf/target/hw3-udf-1.0.jar;
+ADD JAR /media/sf_share/hw3-udf-1.0-jar-with-dependencies.jar;
 
 CREATE TEMPORARY FUNCTION parseUA AS 'com.epam.hive.hw3.CustomUserAgentParser';
 
-SELECT parseUA() from ... ;
+2.
+SELECT * FROM (
+              SELECT *, rank() over (PARTITION BY stat.city ORDER BY stat.web_load DESC) as city_rank
+                FROM (
+                      SELECT log.city, ua_key, ua_value, count(*) AS web_load
+                        FROM web_user_log AS log
+                        LATERAL VIEW explode(parseUA(log.user_agent)) dummy AS ua_key, ua_value
+                      WHERE ua_key IN ('Device','OS_name','UA_name')
+                      GROUP BY log.city, ua_key, ua_value
+                     ) AS stat
+                SORT BY stat.web_load DESC, stat.city
+               ) AS out_stat
+WHERE out_stat.city_rank <= 2;
+
+
+
+aux.
+SELECT parseUA(log.user_agent) FROM web_user_log AS log LIMIT 5;
+SELECT explode(parseUA(log.user_agent)) FROM web_user_log AS log LIMIT 5;
+SELECT log.city, ua_key, ua_value, count(*) AS load
+FROM web_user_log AS log 
+LATERAL VIEW explode(parseUA(log.user_agent)) dummy AS ua_key, ua_value
+GROUP BY log.city, ua_key, ua_value;

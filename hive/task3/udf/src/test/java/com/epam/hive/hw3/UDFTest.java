@@ -10,7 +10,9 @@ import org.junit.Test;
 
 import java.util.Map;
 
+import static com.epam.hive.hw3.CustomUserAgentParser.UA_TYPE;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -20,12 +22,11 @@ import static org.junit.Assert.assertThat;
 public class UDFTest {
 
     private static final String BROWSER_TYPE = "Browser (mobile)";
-    private static final String UNKNOWN_BROWSER_TYPE = "unknown";
+    private static final String UNKNOWN = "unknown";
     private static final String USER_AGENT_STRING =
             "Mozilla/5.0 (iPad; CPU OS 5_0_1 like Mac OS X) " +
                     "AppleWebKit/534.46 (KHTML, like Gecko) " +
                     "MQQBrowser/3.3 Mobile/9A405 Safari/7534.48.3";
-    private static final String UA_TYPE = "UA Type";
 
     private StandardMapObjectInspector resultInspector;
     private CustomUserAgentParser udf;
@@ -47,12 +48,20 @@ public class UDFTest {
     }
 
     @Test
-    public void UserAgentUnparsedTest() throws Exception {
+    public void parseUserAgentWhenUnparsedTest() throws Exception {
         Object resultObject = udf.evaluate(new GenericUDF.DeferredJavaObject[]{
-                new GenericUDF.DeferredJavaObject("Murka/9.0 Zabiaka-Mobile")
+                new GenericUDF.DeferredJavaObject("82b75d7c372451c7bf5f4c5d931de808\t20131025072900250\t1\tD32IGADXcK9\tMozil/5.0")
         });
         Map<String, String> map = (Map<String, String>) resultObject;
-        assertThat(UNKNOWN_BROWSER_TYPE, is(resultInspector.getMapValueElement(map, UA_TYPE)));
+        assertThat(resultInspector.getMapValueElement(map, UA_TYPE), is(UNKNOWN));
     }
 
+    @Test
+    public void parseUserAgentWhenNullTest() throws Exception {
+        Object resultObject = udf.evaluate(new GenericUDF.DeferredJavaObject[]{
+                new GenericUDF.DeferredJavaObject(null)
+        });
+        Map<String, String> map = (Map<String, String>) resultObject;
+        assertThat(resultInspector.getMapValueElement(map, UA_TYPE), is(nullValue()));
+    }
 }

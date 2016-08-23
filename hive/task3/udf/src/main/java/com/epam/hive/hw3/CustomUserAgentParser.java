@@ -11,6 +11,7 @@ import org.apache.hadoop.hive.serde2.objectinspector.ObjectInspectorFactory;
 import org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectInspectorFactory;
 import org.apache.hadoop.hive.serde2.objectinspector.primitive.StringObjectInspector;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,12 +20,13 @@ import java.util.Map;
  * @since 8/22/2016.
  */
 public class CustomUserAgentParser extends GenericUDF {
+    StringObjectInspector userAgentString;
 
-    private static final String UA_TYPE = "UA Type";
-    private static final String UA_NAME = "UA name";
-    private static final String UA_VERSION = "UA version";
+    public static final String UA_TYPE = "UA_Type";
+    private static final String UA_NAME = "UA_name";
+    private static final String UA_VERSION = "UA_version";
     private static final String DEVICE = "Device";
-    private static final String OS_NAME = "OS name";
+    private static final String OS_NAME = "OS_name";
 
     @Override
     public ObjectInspector initialize(ObjectInspector[] objectInspectors) throws UDFArgumentException {
@@ -35,15 +37,24 @@ public class CustomUserAgentParser extends GenericUDF {
         if (!(inspector instanceof StringObjectInspector)) {
             throw new UDFArgumentTypeException(0, "arg should be String");
         }
+        userAgentString = (StringObjectInspector) inspector;
         return ObjectInspectorFactory.getStandardMapObjectInspector(
                 PrimitiveObjectInspectorFactory.javaStringObjectInspector,
-                        PrimitiveObjectInspectorFactory.javaStringObjectInspector);
+                PrimitiveObjectInspectorFactory.javaStringObjectInspector);
     }
-
 
     @Override
     public Object evaluate(DeferredObject[] deferredObjects) throws HiveException {
-        UserAgent userAgentParser = new UserAgent(deferredObjects[0].get().toString());
+        String s = userAgentString.getPrimitiveJavaObject(deferredObjects[0].get());
+        if (s != null) {
+            return evaluate(s);
+        } else {
+            return Collections.emptyMap();
+        }
+    }
+
+    private Object evaluate(String s) {
+        UserAgent userAgentParser = new UserAgent(s);
         Browser browser = userAgentParser.getBrowser();
         Version browserVer = userAgentParser.getBrowserVersion();
         OperatingSystem os = userAgentParser.getOperatingSystem();
