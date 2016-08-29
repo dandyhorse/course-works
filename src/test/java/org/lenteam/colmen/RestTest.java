@@ -32,9 +32,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class RestTest {
 
     @Autowired
-    private WebApplicationContext wac;
-
-    @Autowired
     private MockMvc mvc;
 
     @MockBean
