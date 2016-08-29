@@ -2,7 +2,6 @@ package org.lenteam.colmen.controllers;
 
 import org.lenteam.colmen.entites.PersonEntity;
 import org.lenteam.colmen.services.DefaultService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
