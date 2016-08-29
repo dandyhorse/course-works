@@ -21,8 +21,8 @@ release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
-### Example user template template
 ### Example user template
+logs/
 
 # IntelliJ project files
 .idea
