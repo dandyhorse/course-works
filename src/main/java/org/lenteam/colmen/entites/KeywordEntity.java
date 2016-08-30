@@ -3,6 +3,7 @@ package org.lenteam.colmen.entites;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "Keywords")
 public class KeywordEntity {
 
     @Id
@@ -14,8 +15,12 @@ public class KeywordEntity {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "person_id")
+    @JoinColumn(name = "persons_id")
     private PersonEntity person;
+
+    public KeywordEntity() {
+        //no args constructor
+    }
 
     public Long getId() {
         return id;
@@ -41,7 +46,4 @@ public class KeywordEntity {
         this.person = person;
     }
 
-    public KeywordEntity() {
-        //no args constructor
-    }
 }
