@@ -1,13 +1,15 @@
 package org.lenteam.colmen.entites;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author Anton_Solovev
  * @since 8/21/2016
  */
 @Entity
+@Table(name = "Persons")
 public class PersonEntity {
 
     @Id
@@ -18,8 +20,15 @@ public class PersonEntity {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "role")
-    private List<Keyword> keywords;
+    @OneToMany(mappedBy = "person")
+    private Set<KeywordEntity> keywords = new HashSet<>();
+
+    @OneToMany(mappedBy = "person")
+    private Set<PersonPageRank> ranks = new HashSet<>();
+
+    public PersonEntity() {
+        //no args constructor
+    }
 
     public Long getId() {
         return id;
@@ -37,15 +46,19 @@ public class PersonEntity {
         this.name = name;
     }
 
-    public List<Keyword> getKeywords() {
+    public Set<KeywordEntity> getKeywords() {
         return keywords;
     }
 
-    public void setKeywords(List<Keyword> keywords) {
+    public void setKeywords(Set<KeywordEntity> keywords) {
         this.keywords = keywords;
     }
 
-    public PersonEntity() {
-        //no args constructor
+    public Set<PersonPageRank> getRanks() {
+        return ranks;
+    }
+
+    public void setRanks(Set<PersonPageRank> ranks) {
+        this.ranks = ranks;
     }
 }
