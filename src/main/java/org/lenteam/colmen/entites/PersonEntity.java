@@ -1,31 +1,51 @@
 package org.lenteam.colmen.entites;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * @author Anton_Solovev
  * @since 8/21/2016
  */
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
 public class PersonEntity {
 
     @Id
-    @Column
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Basic
-    @Column
+
+    @Column(name = "name")
     private String name;
 
-    public PersonEntity(String name) {
+    @OneToMany(mappedBy = "role")
+    private List<KeywordEntity> keywords;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
         this.name = name;
+    }
+
+    public List<KeywordEntity> getKeywords() {
+        return keywords;
+    }
+
+    public void setKeywords(List<KeywordEntity> keywords) {
+        this.keywords = keywords;
+    }
+
+    public PersonEntity() {
+        //no args constructor
     }
 }
