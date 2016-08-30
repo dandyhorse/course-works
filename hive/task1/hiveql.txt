@@ -4,11 +4,11 @@ CREATE TABLE flights (
   year String, month String, dayofmonth String, dayofweek String, 
   deptime String, crsdeptime String, arrtime String, crsarrTime String, 
   uniquecarrier String, 
-  flightNum String, tailnum String, 
+  flightnum String, tailnum String, 
   actualelapsedtime String, crselapsedtime String, airtime String, 
   arrdelay String, depdelay String, 
   origin String, dest String, distance String, 
-  taxiIn String, taxiOut String, 
+  taxiin String, taxiOut String, 
   cancelled String, cancellationcode String, 
   diverted String, 
   carrierdelay String, weatherdelay String, nasdelay String, 
@@ -54,7 +54,7 @@ SELECT us_aps.iadata, count(*) AS load FROM (
        AND ap.country='USA'
   union all
   SELECT fl.dest AS iadata FROM flights fl
-  JOIN airports AS ap ON (fl.dest = ap.iata)
+  JOIN airports AS ap ON (fl.origin = ap.iata)
        WHERE (fl.month <= 8 AND fl.dayofmonth <= 31)
        AND (fl.month >=6 AND fl.dayofmonth >=1)
        AND ap.country='USA'
