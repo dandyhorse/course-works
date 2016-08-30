@@ -24,7 +24,7 @@ public class PersonEntity {
     private Set<KeywordEntity> keywords = new HashSet<>();
 
     @OneToMany(mappedBy = "person")
-    private Set<PersonPageRank> ranks = new HashSet<>();
+    private Set<PersonPageRankEntity> ranks = new HashSet<>();
 
     public PersonEntity() {
         //no args constructor
@@ -54,11 +54,11 @@ public class PersonEntity {
         this.keywords = keywords;
     }
 
-    public Set<PersonPageRank> getRanks() {
+    public Set<PersonPageRankEntity> getRanks() {
         return ranks;
     }
 
-    public void setRanks(Set<PersonPageRank> ranks) {
+    public void setRanks(Set<PersonPageRankEntity> ranks) {
         this.ranks = ranks;
     }
 }
