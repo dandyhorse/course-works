@@ -1,11 +1,12 @@
 package org.lenteam.colmen.entites;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "Pages")
+@Table(name = "pages")
 public class PageEntity {
 
     @Id
@@ -17,20 +18,20 @@ public class PageEntity {
     private String url;
 
     @Column(name = "foundDateTime")
-    private String foundDateTime;
+    private Date foundDateTime;
 
     @Column(name = "lastScanDate")
-    private String lastScanDate;
+    private Date lastScanDate;
 
     @ManyToOne
     @JoinColumn(name = "sites_id")
     private SiteEntity site;
 
     @OneToMany(mappedBy = "page")
-    private Set<PersonPageRankEntity> ranks = new HashSet<>();
+    private Set<PersonPageRankEntity> ranks;
 
     public PageEntity() {
-        //no args constructor
+        ranks = new HashSet<>();
     }
 
     public Long getId() {
@@ -49,19 +50,19 @@ public class PageEntity {
         this.url = url;
     }
 
-    public String getFoundDateTime() {
+    public Date getFoundDateTime() {
         return foundDateTime;
     }
 
-    public void setFoundDateTime(String foundDateTime) {
+    public void setFoundDateTime(Date foundDateTime) {
         this.foundDateTime = foundDateTime;
     }
 
-    public String getLastScanDate() {
+    public Date getLastScanDate() {
         return lastScanDate;
     }
 
-    public void setLastScanDate(String lastScanDate) {
+    public void setLastScanDate(Date lastScanDate) {
         this.lastScanDate = lastScanDate;
     }
 

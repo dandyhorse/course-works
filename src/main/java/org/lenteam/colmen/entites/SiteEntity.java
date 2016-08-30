@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "Sites")
+@Table(name = "sites")
 public class SiteEntity {
 
     @Id
@@ -17,10 +17,10 @@ public class SiteEntity {
     private String name;
 
     @OneToMany(mappedBy = "site")
-    private Set<PageEntity> pages = new HashSet<>();
+    private Set<PageEntity> pages;
 
     public SiteEntity() {
-        //no args constructor
+        pages = new HashSet<>();
     }
 
     public Long getId() {

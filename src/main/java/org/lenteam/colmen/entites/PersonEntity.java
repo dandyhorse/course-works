@@ -9,7 +9,7 @@ import java.util.Set;
  * @since 8/21/2016
  */
 @Entity
-@Table(name = "Persons")
+@Table(name = "persons")
 public class PersonEntity {
 
     @Id
@@ -21,13 +21,20 @@ public class PersonEntity {
     private String name;
 
     @OneToMany(mappedBy = "person")
-    private Set<KeywordEntity> keywords = new HashSet<>();
+    private Set<KeywordEntity> keywords;
 
     @OneToMany(mappedBy = "person")
-    private Set<PersonPageRankEntity> ranks = new HashSet<>();
+    private Set<PersonPageRankEntity> ranks;
 
     public PersonEntity() {
-        //no args constructor
+        keywords = new HashSet<>();
+        ranks = new HashSet<>();
+    }
+
+    public PersonEntity(String name) {
+        this.name = name;
+        keywords = new HashSet<>();
+        ranks = new HashSet<>();
     }
 
     public Long getId() {

@@ -3,7 +3,7 @@ package org.lenteam.colmen.entites;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Keywords")
+@Table(name = "keywords")
 public class KeywordEntity {
 
     @Id

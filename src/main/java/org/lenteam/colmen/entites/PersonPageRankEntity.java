@@ -3,8 +3,13 @@ package org.lenteam.colmen.entites;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "PersonPageRankEntity")
+@Table(name = "personPageRank")
 public class PersonPageRankEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
 
     @Column(name = "rank")
     private Long rank;
@@ -19,6 +24,14 @@ public class PersonPageRankEntity {
 
     public PersonPageRankEntity() {
         //no args constructor
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getRank() {
