@@ -19,7 +19,7 @@ public class PersonEntity {
     private String name;
 
     @OneToMany(mappedBy = "role")
-    private List<KeywordEntity> keywords;
+    private List<Keyword> keywords;
 
     public Long getId() {
         return id;
@@ -37,11 +37,11 @@ public class PersonEntity {
         this.name = name;
     }
 
-    public List<KeywordEntity> getKeywords() {
+    public List<Keyword> getKeywords() {
         return keywords;
     }
 
-    public void setKeywords(List<KeywordEntity> keywords) {
+    public void setKeywords(List<Keyword> keywords) {
         this.keywords = keywords;
     }
 
