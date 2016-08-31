@@ -8,6 +8,8 @@ import org.springframework.boot.SpringBootConfiguration;
  * <p>
  * Любые допольнительные конфигурации могут быть в этом классе или папке configs.
  * </p>
+ *
+ * this class will be deleted
  */
 @SpringBootConfiguration
 public class CustomConfig {

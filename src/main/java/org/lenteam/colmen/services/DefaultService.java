@@ -1,6 +1,6 @@
 package org.lenteam.colmen.services;
 
-import org.lenteam.colmen.entites.PersonEntity;
+import org.lenteam.colmen.entities.PersonEntity;
 import org.lenteam.colmen.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 /**
  * @author Anton_Solovev
  * @since 8/21/2016
+ *
+ * this class will be deleted
  */
 @Component
 public class DefaultService {

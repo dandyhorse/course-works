@@ -3,7 +3,7 @@ package org.lenteam.colmen;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.lenteam.colmen.controllers.DefaultRestController;
-import org.lenteam.colmen.entites.PersonEntity;
+import org.lenteam.colmen.entities.PersonEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;

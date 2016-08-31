@@ -1,9 +1,9 @@
-package org.lenteam.colmen.entites;
+package org.lenteam.colmen.entities;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "personPageRank")
+@Table(name = "person_page_rank")
 public class PersonPageRankEntity {
 
     @Id
@@ -12,14 +12,14 @@ public class PersonPageRankEntity {
     private Long id;
 
     @Column(name = "rank")
-    private Long rank;
+    private Integer rank;
 
     @ManyToOne
-    @JoinColumn(name = "persons_id")
+    @JoinColumn(name = "person_id")
     private PersonEntity person;
 
     @ManyToOne
-    @JoinColumn(name = "pages_id")
+    @JoinColumn(name = "page_id")
     private PageEntity page;
 
     public PersonPageRankEntity() {
@@ -34,11 +34,11 @@ public class PersonPageRankEntity {
         this.id = id;
     }
 
-    public Long getRank() {
+    public Integer getRank() {
         return rank;
     }
 
-    public void setRank(Long rank) {
+    public void setRank(Integer rank) {
         this.rank = rank;
     }
 
