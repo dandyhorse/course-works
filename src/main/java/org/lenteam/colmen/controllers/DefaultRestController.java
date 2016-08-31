@@ -1,6 +1,6 @@
 package org.lenteam.colmen.controllers;
 
-import org.lenteam.colmen.entites.PersonEntity;
+import org.lenteam.colmen.entities.PersonEntity;
 import org.lenteam.colmen.services.DefaultService;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +13,8 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 /**
  * @author Anton_Solovev
  * @since 8/20/2016
+ *
+ * this class will be deleted
  */
 @RestController
 @RequestMapping("/default")

@@ -1,4 +1,4 @@
-package org.lenteam.colmen.entites;
+package org.lenteam.colmen.entities;
 
 import javax.persistence.*;
 import java.util.HashSet;

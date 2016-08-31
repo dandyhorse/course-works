@@ -1,4 +1,4 @@
-package org.lenteam.colmen.entites;
+package org.lenteam.colmen.entities;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -17,14 +17,14 @@ public class PageEntity {
     @Column(name = "url")
     private String url;
 
-    @Column(name = "foundDateTime")
+    @Column(name = "found_date_time")
     private Date foundDateTime;
 
-    @Column(name = "lastScanDate")
+    @Column(name = "last_scan_date")
     private Date lastScanDate;
 
     @ManyToOne
-    @JoinColumn(name = "sites_id")
+    @JoinColumn(name = "site_id")
     private SiteEntity site;
 
     @OneToMany(mappedBy = "page")

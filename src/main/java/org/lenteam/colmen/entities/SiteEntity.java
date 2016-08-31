@@ -1,10 +1,12 @@
-package org.lenteam.colmen.entites;
+package org.lenteam.colmen.entities;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "keywords")
-public class KeywordEntity {
+@Table(name = "sites")
+public class SiteEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,12 +16,11 @@ public class KeywordEntity {
     @Column(name = "name")
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "persons_id")
-    private PersonEntity person;
+    @OneToMany(mappedBy = "site")
+    private Set<PageEntity> pages;
 
-    public KeywordEntity() {
-        //no args constructor
+    public SiteEntity() {
+        pages = new HashSet<>();
     }
 
     public Long getId() {
@@ -38,12 +39,11 @@ public class KeywordEntity {
         this.name = name;
     }
 
-    public PersonEntity getPerson() {
-        return person;
+    public Set<PageEntity> getPages() {
+        return pages;
     }
 
-    public void setPerson(PersonEntity person) {
-        this.person = person;
+    public void setPages(Set<PageEntity> pages) {
+        this.pages = pages;
     }
-
 }
