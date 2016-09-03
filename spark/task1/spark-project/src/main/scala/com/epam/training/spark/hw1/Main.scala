@@ -8,21 +8,20 @@ import org.apache.spark.{SparkConf, SparkContext}
   */
 object Main {
 
-  val baseUrl = "hdfs://sandbox.hortonworks.com"
-
   def main(args: Array[String]): Unit = {
-    val conf = new SparkConf().setAppName("training 1").setMaster("local")
+    val conf = new SparkConf().setAppName("training1")
     val sc = new SparkContext(conf)
+    sc.addJar("http://central.maven.org/maven2/eu/bitwalker/UserAgentUtils/1.20/UserAgentUtils-1.20.jar")
     val job = new SparkStatistic(sc)
     if (args.length != 2) {
-      System.err.println(" Usage: Main < input path > < output path >")
+      Console.err.println(" Usage: Main < input path > < output path >")
       System.exit(-1)
     }
-    val rdd = sc.textFile(baseUrl + args(0))
+    val rdd = sc.textFile(args(0))
     val result = job.compute(rdd)
     val out = result.sortBy[Long](f => f._3, ascending = false, 1)
-    out.saveAsTextFile(baseUrl + args(1))
-    out.take(5).foreach(println)
+    out.saveAsTextFile(args(1))
+    Console.print(out.take(5).mkString("top 5 is:", ", ", ""))
     sc.stop()
   }
 

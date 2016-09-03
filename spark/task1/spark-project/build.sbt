@@ -1,7 +1,8 @@
+
 name := "spark-project"
 version := "0.0.1"
 
-scalaVersion := "2.11.8"
+scalaVersion := "2.10.6"
 
 publishMavenStyle := true
 
@@ -24,7 +25,4 @@ libraryDependencies ++= Seq(
   _.excludeAll(ExclusionRule(organization = "org.mortbay.jetty"))
 )
 
-
-//javaOptions += "-XX:MaxMetaspaceSize=512m"
 autoScalaLibrary := false
-mainClass in Compile := Some("com.epam.training.spark.hw1.Main")

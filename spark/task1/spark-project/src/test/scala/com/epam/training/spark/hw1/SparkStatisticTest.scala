@@ -16,11 +16,11 @@ class SparkStatisticTest extends FlatSpec with Matchers with SharedSparkContext 
       "ip2 - - [24/Apr/2011:04:14:36 -0400] \"GET /~strabal/grease/photo9/927-5.jpg HTTP/1.1\" 200 42011 \"-\" \"Mozilla/5.0 (compatible; YandexImages/3.0; +http://yandex.com/bots)\"\n" +
       "ip1 - - [24/Apr/2011:04:18:54 -0400] \"GET /~strabal/grease/photo1/T97-4.jpg HTTP/1.1\" 200 6244 \"-\" \"Mozilla/5.0 (compatible; YandexImages/3.0; +http://yandex.com/bots)\""
 
-  behavior of "Rdd "
+  behavior of "Rdd"
 
-  it should "be computing and be as csv" in {
+  it should "be computing and written as csv" in {
     val rdd = sc.parallelize(inputText.split("\n"))
-    val statistic = new SparkStatistic
+    val statistic = new SparkStatistic(sc)
     val computedRDD: RDD[(String, Long, Long)] = statistic.compute(rdd)
     //        40028 + 6244 = 46272, 46272 / 2 = 23136
     val expected = sc.parallelize(

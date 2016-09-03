@@ -4,10 +4,8 @@ import java.util.StringTokenizer
 import java.util.regex.Pattern
 
 import eu.bitwalker.useragentutils.UserAgent
-import org.apache.spark.{Accumulator, SparkContext}
+import org.apache.spark.SparkContext
 import org.apache.spark.rdd.RDD
-
-import scala.collection.mutable
 
 /**
   * @author Anton_Solovev 
@@ -17,23 +15,18 @@ class SparkStatistic(sc: SparkContext) extends Serializable {
 
   private val BYTE_PATTERN = "((?:\\s[\\d]{3})\\s(?:[0-9])*)"
   private val CODE_OFFSET = 5
-  private val accumulatorMap = new mutable.HashMap[String, Accumulator[Long]]()
+  private val browserCounter = new BrowserCounter(sc)
 
   def compute(rdd: RDD[String]): RDD[(String, Long, Long)] = {
     val mapReduced = rdd
       .flatMap(s => {
-        val browser = new UserAgent(s).getBrowser.getName
-        val NNbroser = if (browser != null) browser else "undefined"
-
-        accumulatorMap.get(browser) match {
-          case 
-          case None => accumulatorMap.put()
-        }
-
-          Map(parseIp(s) -> (parseByte(s), 1))
+        val browser = new UserAgent(s).getBrowser.getManufacturer.getName
+        browserCounter.accumulate(browser)
+        Map((parseIp(s), (parseByte(s), 1)))
       })
       .reduceByKey((l, r) => (l._1 + r._1, l._2 + r._2))
-    val computed = mapReduced.flatMap((obj) => Map(obj._1 -> (obj._2._1 / obj._2._2, obj._2._1)))
+    val computed = mapReduced.flatMap((obj) => Map((obj._1, (obj._2._1 / obj._2._2, obj._2._1))))
+    browserCounter.print
     computed.map(obj => (obj._1, obj._2._1, obj._2._2))
   }
 
@@ -56,4 +49,6 @@ class SparkStatistic(sc: SparkContext) extends Serializable {
   }
 
 }
+
+
 
