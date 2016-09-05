@@ -9,7 +9,10 @@ import org.apache.spark.{SparkConf, SparkContext}
 object Main {
 
   def main(args: Array[String]): Unit = {
-    val conf = new SparkConf().setAppName("training1")
+    val conf = new SparkConf()
+      .setAppName("training1")
+      .setMaster("local[*]")
+
     val sc = new SparkContext(conf)
     sc.addJar("http://central.maven.org/maven2/eu/bitwalker/UserAgentUtils/1.20/UserAgentUtils-1.20.jar")
     val job = new SparkStatistic(sc)
@@ -21,7 +24,8 @@ object Main {
     val result = job.compute(rdd)
     val out = result.sortBy[Long](f => f._3, ascending = false, 1)
     out.saveAsTextFile(args(1))
-    Console.print(out.take(5).mkString("top 5 is:", ", ", ""))
+    Console.print(out.take(5).mkString("top 5 is:", ", ", "\n"))
+    job.printAccumulators()
     sc.stop()
   }
 

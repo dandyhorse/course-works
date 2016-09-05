@@ -26,8 +26,11 @@ class SparkStatistic(sc: SparkContext) extends Serializable {
       })
       .reduceByKey((l, r) => (l._1 + r._1, l._2 + r._2))
     val computed = mapReduced.flatMap((obj) => Map((obj._1, (obj._2._1 / obj._2._2, obj._2._1))))
-    browserCounter.print
     computed.map(obj => (obj._1, obj._2._1, obj._2._2))
+  }
+
+  def printAccumulators(): Unit = {
+    browserCounter.print()
   }
 
   private def parseByte(s: String): Long = {

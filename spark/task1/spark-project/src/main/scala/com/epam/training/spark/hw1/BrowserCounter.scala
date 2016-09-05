@@ -1,5 +1,6 @@
 package com.epam.training.spark.hw1
 
+import eu.bitwalker.useragentutils.Manufacturer
 import org.apache.spark.SparkContext
 
 /**
@@ -9,9 +10,9 @@ import org.apache.spark.SparkContext
 class BrowserCounter(sc: SparkContext) extends Serializable {
 
   private object Browser extends Serializable {
-    val MOZILLA = "MOZILLA"
-    val MICROSOFT = "MICROSOFT"
-    val OTHER = "OTHER"
+    val MOZILLA = Manufacturer.MOZILLA.getName
+    val MICROSOFT = Manufacturer.MICROSOFT.getName
+    val OTHER = Manufacturer.OTHER.getName
   }
 
   private val accumulatorMap = Map(
