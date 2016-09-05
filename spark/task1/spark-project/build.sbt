@@ -26,3 +26,6 @@ libraryDependencies ++= Seq(
 )
 
 autoScalaLibrary := false
+
+mainClass in assembly := Some("com.epam.training.spark.hw1.Main")
+assemblyJarName in assembly := "spark-hw1.jar"
