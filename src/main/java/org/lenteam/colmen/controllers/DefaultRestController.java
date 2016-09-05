@@ -27,14 +27,9 @@ public class DefaultRestController {
     }
 
     @RequestMapping(path = "/{id}", method = GET)
-    public PersonEntity getDefaultPerson(@PathVariable Long id) {
-        return service.findOne(id);
-    }
+    public PersonEntity getDefaultPerson(@PathVariable Long id) { return service.findOne(id);}
 
     @RequestMapping(path = "/{name}", method = POST)
-    public void addDefaultPerson(@RequestParam(defaultValue = "King Kong")
-                                         String name) {
-        service.saveWithName(name);
-    }
+    public void addDefaultPerson(@RequestParam(defaultValue = "King Kong") String name) { service.saveWithName(name);}
 
 }
