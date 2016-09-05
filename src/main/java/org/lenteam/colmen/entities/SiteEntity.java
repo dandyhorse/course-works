@@ -16,12 +16,6 @@ public class SiteEntity {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "site")
-    private Set<PageEntity> pages;
-
-    public SiteEntity() {
-        pages = new HashSet<>();
-    }
 
     public Long getId() {
         return id;
@@ -37,13 +31,5 @@ public class SiteEntity {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Set<PageEntity> getPages() {
-        return pages;
-    }
-
-    public void setPages(Set<PageEntity> pages) {
-        this.pages = pages;
     }
 }
