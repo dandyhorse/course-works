@@ -1,14 +1,7 @@
 package org.lenteam.colmen.controllers;
 
-import org.lenteam.colmen.entities.PersonEntity;
 import org.lenteam.colmen.services.DefaultService;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author Anton_Solovev
@@ -17,19 +10,14 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
  * this class will be deleted
  */
 @RestController
-@RequestMapping("/default")
+@RequestMapping("")
 public class DefaultRestController {
-
-    private DefaultService service;
-
+    DefaultService service;
     public DefaultRestController(DefaultService service) {
         this.service = service;
     }
 
-    @RequestMapping(path = "/{id}", method = GET)
-    public PersonEntity getDefaultPerson(@PathVariable Long id) { return service.findOne(id);}
-
-    @RequestMapping(path = "/{name}", method = POST)
-    public void addDefaultPerson(@RequestParam(defaultValue = "King Kong") String name) { service.saveWithName(name);}
+    //@RequestMapping(path = "/{name}", method = POST)
+    //public void addDefaultPerson(@RequestParam(defaultValue = "King Kong") String name) { service.saveWithName(name);}
 
 }

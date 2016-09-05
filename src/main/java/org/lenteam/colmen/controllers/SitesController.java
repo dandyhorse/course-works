@@ -1,15 +1,11 @@
 package org.lenteam.colmen.controllers;
 
 import org.lenteam.colmen.entities.SiteEntity;
-import org.lenteam.colmen.services.DefaultService;
-import org.lenteam.colmen.services.SitesService;
+import org.lenteam.colmen.services.CommonUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Hashtable;
+import org.springframework.web.bind.annotation.*;
+import java.util.HashMap;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
@@ -22,13 +18,16 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 public class SitesController {
 // получает список сайтов Запрос: GET /sites
     @Autowired
-    private SitesService sitesService;
+    private CommonUserService userService;
 
-    public SitesController (SitesService sitesService) {
-        this.sitesService = sitesService;
-    }
+    public SitesController (CommonUserService userService) { this.userService = userService; }
 
     @RequestMapping(path = "", method = GET, headers = "Accept=application/json", produces = {"application/json"})
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public Hashtable<Long, SiteEntity> getAll(){ return sitesService.getAll();}
+    public Iterable<SiteEntity> getAll(){ return userService.getAllSites();}
+
+
+    @RequestMapping(method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    public void addSite(@RequestParam(defaultValue = "mail.ru") String name) { userService.saveWithName(name);}
 }
