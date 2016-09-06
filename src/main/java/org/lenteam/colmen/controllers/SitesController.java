@@ -16,12 +16,13 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @RestController
 @RequestMapping("/sites")
 public class SitesController {
-// получает список всех сайтов Запрос: GET /sites
+
     @Autowired
     private CommonUserService userService;
 
     public SitesController (CommonUserService userService) { this.userService = userService; }
 
+    // получает список всех сайтов Запрос: GET /sites
     @RequestMapping(method = GET, headers = "Accept=application/json", produces = {"application/json"})
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Iterable<SiteEntity> getAll(){ return userService.getAllSites();}
@@ -29,5 +30,10 @@ public class SitesController {
     // добавляет сайт методом POST
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public void addSite(@RequestParam(defaultValue = "mail.ru") String name) { userService.saveWithName(name);}
+    public void addSite(@RequestParam(defaultValue = "mail.ru") String name) { userService.saveSite(name);}
+
+    // удаляет сайт методом DEELETE
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteSite(@PathVariable("id") Long id) {userService.deleteSite(id);}
 }

@@ -69,9 +69,6 @@ public class DefaultService implements CommonUserService {
     }
 
     @Override
-    public Iterable<SiteEntity> saveWithName(String name) {return null; }
-
-    @Override
     public Iterable<PersonEntity> savePerson (String name) {return null;}
 
     @Override
@@ -82,6 +79,18 @@ public class DefaultService implements CommonUserService {
 
     @Override
     public Iterable<KeywordEntity> saveKeyword(String name, Long id) { return null; }
+
+    @Override
+    public Iterable<PersonEntity> deletePerson(Long id) { return null; }
+
+    @Override
+    public Iterable<SiteEntity> saveSite(String name) { return null; }
+
+    @Override
+    public Iterable<SiteEntity> deleteSite(Long id) { return null; }
+
+    @Override
+    public Iterable<KeywordEntity> deleteKeyword(Long id) { return null; }
 
     public PersonEntity getPerson(Long id) {
         if (persons.containsKey(id))

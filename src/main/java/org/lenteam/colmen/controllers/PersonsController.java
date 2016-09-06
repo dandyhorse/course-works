@@ -39,6 +39,11 @@ public class PersonsController {
     // добавляет имя методом POST
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public void addPerson(@RequestParam(defaultValue = "Melone") String name) { service.savePerson(name);}
+    public void addPerson(@RequestParam String name) { service.savePerson(name);}
+
+    // удаляет персону методом DEELETE
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deletePerson(@PathVariable("id") Long id) {service.deletePerson(id);}
 
 }

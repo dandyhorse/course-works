@@ -12,12 +12,15 @@ public interface CommonUserService {
 
     Iterable<PersonEntity> getAllPersons();
     Iterable<PersonEntity> savePerson(String name);
+    Iterable<PersonEntity> deletePerson(Long id);
     Iterable<SiteEntity> getAllSites();
-    Iterable<SiteEntity> saveWithName(String name);
+    Iterable<SiteEntity> saveSite(String name);
+    Iterable<SiteEntity> deleteSite(Long id);
     Iterable<PersonEntity> getPersonsOnSite(SiteEntity site);
     Iterable<KeywordEntity> getKeysByPerson(PersonEntity id);
     Iterable<KeywordEntity> getAllKeys();
     Iterable<KeywordEntity> saveKeyword(String name, Long id);
+    Iterable<KeywordEntity> deleteKeyword(Long id);
     DailyStatistic getPersonStatisticOnSite(PersonEntity person, SiteEntity site);
 
 }
