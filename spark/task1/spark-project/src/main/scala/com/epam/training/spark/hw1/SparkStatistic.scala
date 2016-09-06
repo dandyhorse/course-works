@@ -8,7 +8,7 @@ import org.apache.spark.SparkContext
 import org.apache.spark.rdd.RDD
 
 /**
-  * @author Anton_Solovev 
+  * @author Anton_Solovev
   * @since 9/1/2016.
   */
 class SparkStatistic(sc: SparkContext) extends Serializable {
@@ -26,7 +26,9 @@ class SparkStatistic(sc: SparkContext) extends Serializable {
       })
       .reduceByKey((l, r) => (l._1 + r._1, l._2 + r._2))
     val computed = mapReduced.flatMap((obj) => Map((obj._1, (obj._2._1 / obj._2._2, obj._2._1))))
-    computed.map(obj => (obj._1, obj._2._1, obj._2._2))
+    computed
+      .map(obj => (obj._1, obj._2._1, obj._2._2))
+      .sortBy[Long](f => f._3, ascending = false, 1)
   }
 
   def printAccumulators(): Unit = {
@@ -52,6 +54,3 @@ class SparkStatistic(sc: SparkContext) extends Serializable {
   }
 
 }
-
-
-

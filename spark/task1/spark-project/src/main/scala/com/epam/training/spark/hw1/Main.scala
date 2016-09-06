@@ -3,7 +3,7 @@ package com.epam.training.spark.hw1
 import org.apache.spark.{SparkConf, SparkContext}
 
 /**
-  * @author Anton_Solovev 
+  * @author Anton_Solovev
   * @since 9/1/2016.
   */
 object Main {
@@ -22,9 +22,8 @@ object Main {
     }
     val rdd = sc.textFile(args(0))
     val result = job.compute(rdd)
-    val out = result.sortBy[Long](f => f._3, ascending = false, 1)
-    out.saveAsTextFile(args(1))
-    Console.print(out.take(5).mkString("top 5 is:", ", ", "\n"))
+    result.saveAsTextFile(args(1))
+    Console.print(result.take(5).mkString("top 5 is:", ", ", "\n"))
     job.printAccumulators()
     sc.stop()
   }
