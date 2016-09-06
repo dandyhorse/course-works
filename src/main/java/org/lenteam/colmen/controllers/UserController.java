@@ -20,10 +20,11 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @RestController
 
-public class StatController {
+public class UserController {
 
     @Autowired
     CommonUserService service;
+
 
 
 }

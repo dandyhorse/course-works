@@ -23,5 +23,6 @@ public interface CommonUserService {
     Iterable<KeywordEntity> deleteKeyword(Long id);
     DailyStatistic getPersonStatisticOnSite(PersonEntity person, SiteEntity site);
 
+
 }
 

@@ -3,6 +3,7 @@ package org.lenteam.colmen.controllers;
 import org.lenteam.colmen.entities.DemoPersonEntity;
 import org.lenteam.colmen.entities.PersonEntity;
 import org.lenteam.colmen.entities.SiteEntity;
+import org.lenteam.colmen.models.DailyStatistic;
 import org.lenteam.colmen.services.CommonUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,6 +36,16 @@ public class PersonsController {
     @RequestMapping(path = "/stat/persons/onsite/{id}", method = GET, headers = "Accept=application/json", produces = {"application/json"})
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Iterable<PersonEntity> getPersonsOnSite(SiteEntity id) { return service.getPersonsOnSite(id); }
+
+    //Запрос: GET /stat/persons/daily/{person_id}?site_id={id}&from_date={date1}&to_date={date2},
+    // получить ежедневную статистику
+    @RequestMapping(path = "/stat/persons/daily/{person_id}/{id}/{from_date}/{to_date}",
+            method = GET, headers = "Accept=application/json", produces = {"application/json"})
+
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public DailyStatistic getPersonsOnSite(PersonEntity name, SiteEntity id) {
+        return service.getPersonStatisticOnSite(name, id);
+    }
 
     // добавляет имя методом POST
     @RequestMapping(method = RequestMethod.POST)
