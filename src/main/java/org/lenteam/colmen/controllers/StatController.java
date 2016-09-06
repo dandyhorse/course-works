@@ -1,6 +1,7 @@
 package org.lenteam.colmen.controllers;
 
 import org.lenteam.colmen.entities.PersonEntity;
+import org.lenteam.colmen.entities.SiteEntity;
 import org.lenteam.colmen.services.CommonUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,19 +17,13 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 /**
  * Created by Mickey on 05.09.2016.
  */
-/*
-демо контроллер для тренировки
- */
+
 @RestController
-@RequestMapping("/stat")
+
 public class StatController {
 
     @Autowired
     CommonUserService service;
 
-    public StatController (CommonUserService service) { this.service = service; }
 
-    @RequestMapping(path = "/persons/onsite/{id}", method = GET, headers = "Accept=application/json", produces = {"application/json"})
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public Iterable<PersonEntity> getall(Long id) { return service.getPersons(id); }
 }

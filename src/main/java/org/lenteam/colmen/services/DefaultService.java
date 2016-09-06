@@ -1,5 +1,6 @@
 package org.lenteam.colmen.services;
 
+import org.lenteam.colmen.entities.KeywordEntity;
 import org.lenteam.colmen.entities.PersonEntity;
 import org.lenteam.colmen.entities.SiteEntity;
 import org.lenteam.colmen.models.DailyStatistic;
@@ -40,31 +41,6 @@ public class DefaultService implements CommonUserService {
         persons.put(3L, p);
     }
 
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
-    }
-
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        return super.clone();
-    }
-
-    @Override
-    public String toString() {
-        return super.toString();
-    }
-
-    @Override
-    protected void finalize() throws Throwable {
-        super.finalize();
-    }
-
     @Autowired
     private PersonRepository repository;
 
@@ -76,9 +52,6 @@ public class DefaultService implements CommonUserService {
     public Iterable<PersonEntity> getAllPersons() {
         return null;
     }
-
-    @Override
-    public Iterable<PersonEntity> getPersons(Long id) { return null;}
 
     @Override
     public Iterable<SiteEntity> getAllSites() {
@@ -100,6 +73,15 @@ public class DefaultService implements CommonUserService {
 
     @Override
     public Iterable<PersonEntity> savePerson (String name) {return null;}
+
+    @Override
+    public Iterable<KeywordEntity> getKeysByPerson(PersonEntity id) { return null; }
+
+    @Override
+    public Iterable<KeywordEntity> getAllKeys() { return null; }
+
+    @Override
+    public Iterable<KeywordEntity> saveKeyword(String name, Long id) { return null; }
 
     public PersonEntity getPerson(Long id) {
         if (persons.containsKey(id))

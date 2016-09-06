@@ -22,7 +22,7 @@ public class SitesController {
 
     public SitesController (CommonUserService userService) { this.userService = userService; }
 
-    @RequestMapping(path = "", method = GET, headers = "Accept=application/json", produces = {"application/json"})
+    @RequestMapping(method = GET, headers = "Accept=application/json", produces = {"application/json"})
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Iterable<SiteEntity> getAll(){ return userService.getAllSites();}
 
