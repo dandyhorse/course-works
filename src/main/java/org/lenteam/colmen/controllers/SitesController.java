@@ -16,7 +16,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @RestController
 @RequestMapping("/sites")
 public class SitesController {
-// получает список сайтов Запрос: GET /sites
+// получает список всех сайтов Запрос: GET /sites
     @Autowired
     private CommonUserService userService;
 
@@ -26,7 +26,7 @@ public class SitesController {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Iterable<SiteEntity> getAll(){ return userService.getAllSites();}
 
-
+    // добавляет сайт методом POST
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public void addSite(@RequestParam(defaultValue = "mail.ru") String name) { userService.saveWithName(name);}

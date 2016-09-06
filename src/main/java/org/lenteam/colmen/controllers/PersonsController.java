@@ -31,6 +31,7 @@ public class PersonsController {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Iterable<PersonEntity> getAll() { return service.getAllPersons();  }
 
+    // добавляет имя методом POST
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public void addPerson(@RequestParam(defaultValue = "Melone") String name) { service.savePerson(name);}

@@ -78,6 +78,9 @@ public class DefaultService implements CommonUserService {
     }
 
     @Override
+    public Iterable<PersonEntity> getPersons(Long id) { return null;}
+
+    @Override
     public Iterable<SiteEntity> getAllSites() {
         return null;
     }
@@ -91,6 +94,12 @@ public class DefaultService implements CommonUserService {
     public DailyStatistic getPersonStatisticOnSite(PersonEntity person, SiteEntity site) {
         return null;
     }
+
+    @Override
+    public Iterable<SiteEntity> saveWithName(String name) {return null; }
+
+    @Override
+    public Iterable<PersonEntity> savePerson (String name) {return null;}
 
     public PersonEntity getPerson(Long id) {
         if (persons.containsKey(id))
