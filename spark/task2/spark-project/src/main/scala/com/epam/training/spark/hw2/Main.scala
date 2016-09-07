@@ -1,6 +1,7 @@
 package com.epam.training.spark.hw2
 
 import org.apache.spark.sql.SQLContext
+import org.apache.spark.sql.hive.HiveContext
 import org.apache.spark.{SparkConf, SparkContext}
 
 /**
@@ -11,12 +12,13 @@ object Main {
 
   def main(args: Array[String]): Unit = {
     val conf = new SparkConf()
-      .setMaster("local")
-      .setAppName("training-2")
+      .setAppName("training 1")
+      .setMaster("local[*]")
     val sc = new SparkContext(conf)
     val sqlContext = new SQLContext(sc)
-    val task = new ComputingQueries(sqlContext)
-    task.justLoadData()
+    val hiveContext = new HiveContext(sc)
+    val task = new ComputingQueries(sqlContext, hiveContext)
+    task.loadData()
     task.totalNumberOfFlights()
     task.flightsServedInJun()
     task.findFiveAirports()
