@@ -9,15 +9,15 @@ import java.util.Map;
  */
 public class DailyStatistic {
 
-    private Map<LocalDate, String> pagesByDate;
+    private Map<LocalDate, Long> pagesByDate;
     private Long totalPages;
 
-    public DailyStatistic(Map<LocalDate, String> pagesByDate, Long totalPages) {
+    public DailyStatistic(Map<LocalDate, Long> pagesByDate, Long totalPages) {
         this.pagesByDate = pagesByDate;
         this.totalPages = totalPages;
     }
 
-    public Map<LocalDate, String> getPagesByDate() {
+    public Map<LocalDate, Long> getPagesByDate() {
         return pagesByDate;
     }
 
