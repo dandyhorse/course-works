@@ -46,4 +46,25 @@ public class SiteEntity {
     public void setPages(Set<PageEntity> pages) {
         this.pages = pages;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        SiteEntity that = (SiteEntity) o;
+
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        return pages != null ? pages.equals(that.pages) : that.pages == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (pages != null ? pages.hashCode() : 0);
+        return result;
+    }
 }
