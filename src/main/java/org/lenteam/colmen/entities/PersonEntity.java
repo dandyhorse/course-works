@@ -1,15 +1,20 @@
 package org.lenteam.colmen.entities;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
  * @author Anton_Solovev
+ * @author Rinat
  * @since 8/21/2016
  */
+
 @Entity
 @Table(name = "persons")
+@JsonAutoDetect
 public class PersonEntity {
 
     @Id
@@ -20,18 +25,17 @@ public class PersonEntity {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "person")
+    @OneToMany(targetEntity = KeywordEntity.class, fetch = FetchType.EAGER)
     private Set<KeywordEntity> keywords;
 
-    @OneToMany(mappedBy = "person")
+    @OneToMany(targetEntity = PersonPageRankEntity.class, fetch = FetchType.EAGER)
     private Set<PersonPageRankEntity> ranks;
 
     public PersonEntity() {
-        keywords = new HashSet<>();
-        ranks = new HashSet<>();
     }
 
-    public PersonEntity(String name) {
+    public PersonEntity(Long id, String name) {
+        this.id = id;
         this.name = name;
         keywords = new HashSet<>();
         ranks = new HashSet<>();

@@ -4,6 +4,9 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * @author Rinat
+ */
 @Entity
 @Table(name = "sites")
 public class SiteEntity {
@@ -16,7 +19,7 @@ public class SiteEntity {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "site")
+    @OneToMany(targetEntity = PageEntity.class, fetch = FetchType.EAGER)
     private Set<PageEntity> pages;
 
     public SiteEntity() {
@@ -57,7 +60,6 @@ public class SiteEntity {
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         return pages != null ? pages.equals(that.pages) : that.pages == null;
-
     }
 
     @Override

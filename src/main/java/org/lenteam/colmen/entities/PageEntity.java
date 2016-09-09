@@ -5,6 +5,9 @@ import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * @author Rinat
+ */
 @Entity
 @Table(name = "pages")
 public class PageEntity {
@@ -23,11 +26,11 @@ public class PageEntity {
     @Column(name = "last_scan_date")
     private Date lastScanDate;
 
-    @ManyToOne
+    @ManyToOne(targetEntity = SiteEntity.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "site_id")
     private SiteEntity site;
 
-    @OneToMany(mappedBy = "page")
+    @OneToMany(targetEntity = PersonPageRankEntity.class, fetch = FetchType.EAGER)
     private Set<PersonPageRankEntity> ranks;
 
     public PageEntity() {

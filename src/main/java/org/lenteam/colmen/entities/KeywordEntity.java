@@ -2,6 +2,9 @@ package org.lenteam.colmen.entities;
 
 import javax.persistence.*;
 
+/**
+ * @author Rinat
+ */
 @Entity
 @Table(name = "keywords")
 public class KeywordEntity {
@@ -14,7 +17,7 @@ public class KeywordEntity {
     @Column(name = "name")
     private String name;
 
-    @ManyToOne
+    @ManyToOne(targetEntity = PersonEntity.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "person_id")
     private PersonEntity person;
 

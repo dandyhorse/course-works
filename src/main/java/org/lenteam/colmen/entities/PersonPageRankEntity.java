@@ -2,6 +2,9 @@ package org.lenteam.colmen.entities;
 
 import javax.persistence.*;
 
+/**
+ * @author Rinat
+ */
 @Entity
 @Table(name = "person_page_rank")
 public class PersonPageRankEntity {
@@ -14,11 +17,11 @@ public class PersonPageRankEntity {
     @Column(name = "rank")
     private Integer rank;
 
-    @ManyToOne
+    @ManyToOne(targetEntity = PersonEntity.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "person_id")
     private PersonEntity person;
 
-    @ManyToOne
+    @ManyToOne(targetEntity = PageEntity.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "page_id")
     private PageEntity page;
 

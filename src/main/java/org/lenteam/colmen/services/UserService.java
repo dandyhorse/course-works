@@ -8,14 +8,23 @@ import org.lenteam.colmen.models.DailyStatistic;
 import org.lenteam.colmen.models.PageStatistic;
 import org.lenteam.colmen.repositories.PersonRepository;
 import org.lenteam.colmen.repositories.SiteRepository;
+import org.lenteam.colmen.services.interfaces.CommonUserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * @author Rinat
+ */
+@Component
 public class UserService implements CommonUserService {
 
-    PersonRepository personRepository;
-    SiteRepository siteRepository;
+    @Autowired
+    private PersonRepository personRepository;
+    @Autowired
+    private SiteRepository siteRepository;
 
     @Override
     public Iterable<PersonEntity> getAllPersons() {
@@ -28,7 +37,8 @@ public class UserService implements CommonUserService {
     }
 
     @Override
-    public Iterable<PersonEntity> getPersonsOnSite(SiteEntity site) {
+    public Iterable<PersonEntity> getPersonsOnSite(Long siteId) {
+        SiteEntity site = siteRepository.findOne(siteId);
         Set<PersonEntity> persons = new HashSet<>();
 
         Set<PageEntity> pages = site.getPages();
@@ -42,7 +52,9 @@ public class UserService implements CommonUserService {
     }
 
     @Override
-    public DailyStatistic getPersonStatisticOnSite(PersonEntity person, SiteEntity site) {
+    public DailyStatistic getPersonStatisticOnSite(Long personId, Long siteId) {
+        SiteEntity site = siteRepository.findOne(siteId);
+        PersonEntity person = personRepository.findOne(personId);
 
         Set<PageStatistic> pageStatistics = new HashSet<>();
 
