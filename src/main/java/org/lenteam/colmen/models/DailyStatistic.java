@@ -8,13 +8,11 @@ public class DailyStatistic {
 
     private String personName;
     private String siteName;
-    private Long personRank;
-    private Iterable<Page> pagesOnSite;
+    private Iterable<PageStatistic> pagesOnSite;
 
-    public DailyStatistic(String personName, String siteName, Long personRank, Iterable<Page> pagesOnSite) {
+    public DailyStatistic(String personName, String siteName, Iterable<PageStatistic> pagesOnSite) {
         this.personName = personName;
         this.siteName = siteName;
-        this.personRank = personRank;
         this.pagesOnSite = pagesOnSite;
     }
 
@@ -34,19 +32,11 @@ public class DailyStatistic {
         this.siteName = siteName;
     }
 
-    public Long getPersonRank() {
-        return personRank;
-    }
-
-    public void setPersonRank(Long personRank) {
-        this.personRank = personRank;
-    }
-
-    public Iterable<Page> getPagesOnSite() {
+    public Iterable<PageStatistic> getPagesOnSite() {
         return pagesOnSite;
     }
 
-    public void setPagesOnSite(Iterable<Page> pagesOnSite) {
+    public void setPagesOnSite(Iterable<PageStatistic> pagesOnSite) {
         this.pagesOnSite = pagesOnSite;
     }
 
@@ -59,7 +49,6 @@ public class DailyStatistic {
 
         if (personName != null ? !personName.equals(that.personName) : that.personName != null) return false;
         if (siteName != null ? !siteName.equals(that.siteName) : that.siteName != null) return false;
-        if (personRank != null ? !personRank.equals(that.personRank) : that.personRank != null) return false;
         return pagesOnSite != null ? pagesOnSite.equals(that.pagesOnSite) : that.pagesOnSite == null;
 
     }
@@ -68,7 +57,6 @@ public class DailyStatistic {
     public int hashCode() {
         int result = personName != null ? personName.hashCode() : 0;
         result = 31 * result + (siteName != null ? siteName.hashCode() : 0);
-        result = 31 * result + (personRank != null ? personRank.hashCode() : 0);
         result = 31 * result + (pagesOnSite != null ? pagesOnSite.hashCode() : 0);
         return result;
     }

@@ -1,15 +1,17 @@
 package org.lenteam.colmen.models;
 
-import java.time.LocalDate;
+import java.sql.Date;
 
-public class Page {
+public class PageStatistic {
 
     private String url;
-    private LocalDate lastScanDate;
+    private Date lastScanDate;
+    private Integer personRank;
 
-    public Page(String url, LocalDate lastScanDate) {
+    public PageStatistic(String url, Date lastScanDate, Integer personRank) {
         this.url = url;
         this.lastScanDate = lastScanDate;
+        this.personRank = personRank;
     }
 
     public String getUrl() {
@@ -20,12 +22,20 @@ public class Page {
         this.url = url;
     }
 
-    public LocalDate getLastScanDate() {
+    public Date getLastScanDate() {
         return lastScanDate;
     }
 
-    public void setLastScanDate(LocalDate lastScanDate) {
+    public void setLastScanDate(Date lastScanDate) {
         this.lastScanDate = lastScanDate;
+    }
+
+    public Integer getPersonRank() {
+        return personRank;
+    }
+
+    public void setPersonRank(Integer personRank) {
+        this.personRank = personRank;
     }
 
     @Override
@@ -33,10 +43,11 @@ public class Page {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Page page = (Page) o;
+        PageStatistic that = (PageStatistic) o;
 
-        if (url != null ? !url.equals(page.url) : page.url != null) return false;
-        return lastScanDate != null ? lastScanDate.equals(page.lastScanDate) : page.lastScanDate == null;
+        if (url != null ? !url.equals(that.url) : that.url != null) return false;
+        if (lastScanDate != null ? !lastScanDate.equals(that.lastScanDate) : that.lastScanDate != null) return false;
+        return personRank != null ? personRank.equals(that.personRank) : that.personRank == null;
 
     }
 
@@ -44,6 +55,7 @@ public class Page {
     public int hashCode() {
         int result = url != null ? url.hashCode() : 0;
         result = 31 * result + (lastScanDate != null ? lastScanDate.hashCode() : 0);
+        result = 31 * result + (personRank != null ? personRank.hashCode() : 0);
         return result;
     }
 }
