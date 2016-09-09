@@ -5,6 +5,7 @@ import org.lenteam.colmen.entities.PersonEntity;
 import org.lenteam.colmen.entities.PersonPageRankEntity;
 import org.lenteam.colmen.entities.SiteEntity;
 import org.lenteam.colmen.models.DailyStatistic;
+import org.lenteam.colmen.models.PageStatistic;
 import org.lenteam.colmen.repositories.PersonRepository;
 import org.lenteam.colmen.repositories.SiteRepository;
 
@@ -42,6 +43,22 @@ public class UserService implements CommonUserService {
 
     @Override
     public DailyStatistic getPersonStatisticOnSite(PersonEntity person, SiteEntity site) {
-        return null;
+
+        Set<PageStatistic> pageStatistics = new HashSet<>();
+
+        Set<PageEntity> sitePages = site.getPages(); //получаем все страницы, которые находятся на сайте
+
+        Set<PersonPageRankEntity> personRanks = person.getRanks(); //получаем рейтинги личности на всех страницах
+
+        for (PersonPageRankEntity personPageRankEntity : personRanks) {
+            PageEntity pageOnPersonRank = personPageRankEntity.getPage(); //получаем страницу для каждого рейтинга
+
+            // если страница принадлежит сайту, записываем ее в статистику
+            if (sitePages.contains(pageOnPersonRank)) {
+                pageStatistics.add(new PageStatistic(
+                        pageOnPersonRank.getUrl(), pageOnPersonRank.getLastScanDate(), personPageRankEntity.getRank()));
+            }
+        }
+        return new DailyStatistic(person.getName(), site.getName(), pageStatistics);
     }
 }
