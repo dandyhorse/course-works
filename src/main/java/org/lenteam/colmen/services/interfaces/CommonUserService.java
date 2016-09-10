@@ -1,8 +1,9 @@
 package org.lenteam.colmen.services.interfaces;
 
-import org.lenteam.colmen.entities.PersonEntity;
-import org.lenteam.colmen.entities.SiteEntity;
 import org.lenteam.colmen.models.DailyStatistic;
+import org.lenteam.colmen.models.Person;
+import org.lenteam.colmen.models.Site;
+import org.lenteam.colmen.models.StatisticPerson;
 
 /**
  * @author Anton_Solovev
@@ -10,11 +11,11 @@ import org.lenteam.colmen.models.DailyStatistic;
  */
 public interface CommonUserService {
 
-    Iterable<PersonEntity> getAllPersons();
+    Iterable<Person> getAllPersons();
 
-    Iterable<SiteEntity> getAllSites();
+    Iterable<Site> getAllSites();
 
-    Iterable<PersonEntity> getPersonsOnSite(Long site);
+    Iterable<StatisticPerson> getPersonsOnSite(Long site);
 
     DailyStatistic getPersonStatisticOnSite(Long personId, Long siteId);
 

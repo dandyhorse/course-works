@@ -30,24 +30,21 @@
 
 **Получить ежедневную статистику для конкретной персоны по сайту:**
 ```
-Запрос: GET /stat/persons/daily/{person_id}/{site_id}/{from_date/{to_date}
+Запрос: GET /stat/persons/daily/{person_id}/{site_id}/
 
     person_id : Long- идентификатор персоны
     site_id  : Long - идентификатор сайта
-    first_date : Date (или String) - идентификатор дата начала периода
-    last_date  : Date (или String) - идентификатор дата конца периода
     
 	Без указания дат, вернет статистику за последние 30 дней.
 	Формат даты: dd.mm.YYYY
 
 Результат:
     [
+        "personName":"Putin",
+        "siteName":"mail.ru",
         "pagesByDays":[
-            {"date":"01.08.2016", "pages":"2"},
-            {"date":"02.08.2016", "pages":"0"},
-            {"date":"03.08.2016", "pages":"1"},
-            {"date":"04.08.2016", "pages":"3"},
-            {"date":"05.08.2016", "pages":"0"}
+            {"url":"mail.ru/example","lastScanDate":"01.08.2016", "rank":"2"},
+            {"url":"mail.ru/test","lastScanDate":"02.08.2016", "rank":"0"}
         ],
         "totalPages":"6"
     ]
@@ -97,6 +94,11 @@
 Запрос: POST /sites
 Параметры: name
     name : String - имя сайта
+
+Пример:
+  {
+       "name":"mail.ru"
+  }
 ```
 
 **Добавить персону:**
@@ -104,6 +106,10 @@
 Запрос: POST /persons
 Параметры: name
     name : String - имя персоны
+Пример:
+    {
+        "name":"putin"
+    }
 ```
 
 **Добавить ключевое слово:**
@@ -112,6 +118,11 @@
 Параметры: key, person_id
     key : String    - ключевое слово
 	person_id : Long - идентификатор персоны
+Пример:
+    {
+        "key":"putina"
+        "person_id":"12"
+    }
 ```
 
 **Удалить сайт:**

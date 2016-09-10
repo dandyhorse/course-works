@@ -1,0 +1,37 @@
+package org.lenteam.colmen.services.assembler;
+
+import org.lenteam.colmen.entities.PersonEntity;
+import org.lenteam.colmen.entities.PersonPageRankEntity;
+import org.lenteam.colmen.models.StatisticPerson;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+/**
+ * @author Anton_Solovev
+ * @since 9/10/2016
+ */
+@Component
+public class StatisticPersonAssembler implements Assembler<StatisticPerson, PersonEntity> {
+    @Override
+    public StatisticPerson newModel(PersonEntity entity) {
+        Integer fullRank = entity.getRanks().stream()
+                .map(PersonPageRankEntity::getRank)
+                .reduce(0, (i1, i2) -> i1 + i2);
+        return new StatisticPerson(entity.getId(), entity.getName(), fullRank);
+    }
+
+    @Override
+    public PersonEntity newEntity(StatisticPerson model) {
+        return null;
+    }
+
+    @Override
+    public Iterable<StatisticPerson> newModelList(Iterable<PersonEntity> entityList) {
+        List<PersonEntity> list = (List<PersonEntity>) entityList;
+        Stream<StatisticPerson> stream = list.stream().map(this::newModel);
+        return stream.collect(Collectors.toList());
+    }
+}

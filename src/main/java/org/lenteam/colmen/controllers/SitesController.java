@@ -1,11 +1,11 @@
 package org.lenteam.colmen.controllers;
 
 import org.lenteam.colmen.entities.SiteEntity;
+import org.lenteam.colmen.models.Site;
 import org.lenteam.colmen.services.interfaces.CommonAdminService;
 import org.lenteam.colmen.services.interfaces.CommonUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,26 +24,20 @@ public class SitesController {
     @Autowired
     private CommonAdminService adminService;
 
-    public SitesController() {
-    }
-
-    public SitesController(CommonUserService userService) {
+    public SitesController(CommonUserService userService, CommonAdminService adminService) {
         this.userService = userService;
-    }
-
-    public SitesController(CommonAdminService adminService) {
         this.adminService = adminService;
     }
 
     // получает список всех сайтов Запрос: GET /sites
-    @RequestMapping(method = GET, headers = "Accept=application/json", produces = {"application/json"})
+    @RequestMapping(method = GET, produces = {"application/json"})
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public Iterable<SiteEntity> getAll() {
+    public Iterable<Site> getAll() {
         return userService.getAllSites();
     }
 
     // добавляет сайт методом POST
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST, headers = "Accept=application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public void addSite(@RequestBody ModelMap model) {
         String name = (String) model.get("name");

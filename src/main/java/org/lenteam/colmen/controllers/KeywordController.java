@@ -1,10 +1,9 @@
 package org.lenteam.colmen.controllers;
 
-import org.lenteam.colmen.entities.KeywordEntity;
+import org.lenteam.colmen.models.Keyword;
 import org.lenteam.colmen.services.interfaces.CommonAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,14 +26,14 @@ public class KeywordController {
     }
 
     //Запрос: GET keyword/person_id,  person_id - идентификатор персоны, выводит список ключевых слов
-    @RequestMapping(path = "/{id}", method = GET, headers = "Accept=application/json", produces = {"application/json"})
+    @RequestMapping(path = "/{id}", method = GET, produces = {"application/json"})
     @ResponseStatus(HttpStatus.FOUND)
-    public Iterable<KeywordEntity> getKeysByPerson(@PathVariable Long id) {
+    public Iterable<Keyword> getKeysByPerson(@PathVariable Long id) {
         return adminService.getKeysByPerson(id);
     }
 
     // добавляет имя методом POST
-    @RequestMapping(value = "/{key}/{personId}", method = RequestMethod.POST)
+    @RequestMapping(value = "/{key}/{personId}", method = RequestMethod.POST, headers = "Accept=application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public void addKeyword(@RequestBody ModelMap model) {
         String key = (String) model.get("key");

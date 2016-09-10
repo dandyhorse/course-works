@@ -1,8 +1,8 @@
 package org.lenteam.colmen.services.interfaces;
 
-import org.lenteam.colmen.entities.KeywordEntity;
-import org.lenteam.colmen.entities.PersonEntity;
-import org.lenteam.colmen.entities.SiteEntity;
+import org.lenteam.colmen.models.Keyword;
+import org.lenteam.colmen.models.StatisticPerson;
+import org.lenteam.colmen.models.Site;
 
 /**
  * @author Anton_Solovev
@@ -11,18 +11,18 @@ import org.lenteam.colmen.entities.SiteEntity;
  */
 public interface CommonAdminService {
 
-    Iterable<PersonEntity> savePerson(String name);
+    Iterable<StatisticPerson> savePerson(String name);
 
-    Iterable<PersonEntity> deletePerson(Long id);
+    Iterable<StatisticPerson> deletePerson(Long id);
 
-    Iterable<SiteEntity> saveSite(String name);
+    Iterable<Site> saveSite(String name);
 
-    Iterable<SiteEntity> deleteSite(Long id);
+    Iterable<Site> deleteSite(Long id);
 
-    Iterable<KeywordEntity> getKeysByPerson(Long id);
+    Iterable<Keyword> getKeysByPerson(Long id);
 
-    Iterable<KeywordEntity> saveKeyword(String keyword, Long personId);
+    Iterable<Keyword> saveKeyword(String keyword, Long personId);
 
-    Iterable<KeywordEntity> deleteKeyword(Long id);
+    Iterable<Keyword> deleteKeyword(Long id);
 
 }

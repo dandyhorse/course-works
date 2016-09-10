@@ -1,6 +1,6 @@
 package org.lenteam.colmen.controllers;
 
-import org.lenteam.colmen.entities.PersonEntity;
+import org.lenteam.colmen.models.Person;
 import org.lenteam.colmen.services.interfaces.CommonAdminService;
 import org.lenteam.colmen.services.interfaces.CommonUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,26 +23,20 @@ public class PersonsController {
     @Autowired
     private CommonAdminService adminService;
 
-    public PersonsController() {
-    }
-
-    public PersonsController(CommonUserService service) {
+    public PersonsController(CommonUserService service, CommonAdminService adminService) {
         this.service = service;
-    }
-
-    public PersonsController(CommonAdminService adminService) {
         this.adminService = adminService;
     }
 
     //Запрос: GET /persons выводит весь список
-    @RequestMapping(method = GET, headers = "Accept=application/json", produces = {"application/json"})
+    @RequestMapping(method = GET, produces = {"application/json"})
     @ResponseStatus(HttpStatus.FOUND)
-    public Iterable<PersonEntity> getAllPersons() {
+    public Iterable<Person> getAllPersons() {
         return service.getAllPersons();
     }
 
     // добавляет имя методом POST
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST, headers = "Accept=application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public void addPerson(@RequestBody ModelMap model) {
         String name = (String) model.get("name");
@@ -51,7 +45,7 @@ public class PersonsController {
 
     // удаляет персону методом DEELETE
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseStatus(HttpStatus.OK)
     public void deletePerson(@PathVariable Long id) {
         adminService.deletePerson(id);
     }
