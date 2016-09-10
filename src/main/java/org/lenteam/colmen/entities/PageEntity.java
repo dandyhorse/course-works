@@ -11,29 +11,33 @@ import java.util.Set;
  * @author Rinat
  */
 @Entity
-@Table(name = "pages")
+@Table(name = "Pages")
 @EqualsAndHashCode
 public class PageEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "ID")
     private Long id;
 
-    @Column(name = "url")
+    @Column(name = "Url")
     private String url;
 
-    @Column(name = "found_date_time")
+    @Column(name = "FoundDateTime")
     private Date foundDateTime;
 
-    @Column(name = "last_scan_date")
+    @Column(name = "LastScanDate")
     private Date lastScanDate;
 
     @ManyToOne(targetEntity = SiteEntity.class, fetch = FetchType.EAGER)
-    @JoinColumn(name = "site_id")
+    @JoinColumn(name = "SiteID")
     private SiteEntity site;
 
     @OneToMany(targetEntity = PersonPageRankEntity.class, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "PersonPageRank",
+            joinColumns = @JoinColumn(referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(referencedColumnName = "PageID"))
     private Set<PersonPageRankEntity> ranks;
 
     public PageEntity() {

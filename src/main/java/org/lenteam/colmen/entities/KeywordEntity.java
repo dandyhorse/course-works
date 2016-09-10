@@ -8,20 +8,20 @@ import javax.persistence.*;
  * @author Rinat
  */
 @Entity
-@Table(name = "keywords")
+@Table(name = "Keywords")
 @EqualsAndHashCode
 public class KeywordEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "ID")
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "Name")
     private String name;
 
     @ManyToOne(targetEntity = PersonEntity.class, fetch = FetchType.EAGER)
-    @JoinColumn(name = "person_id")
+    @JoinColumn(name = "personID")
     private PersonEntity person;
 
     public KeywordEntity() {

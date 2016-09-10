@@ -8,24 +8,24 @@ import javax.persistence.*;
  * @author Rinat
  */
 @Entity
-@Table(name = "person_page_rank")
+@Table(name = "PersonPageRank")
 @EqualsAndHashCode
 public class PersonPageRankEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "ID")
     private Long id;
 
-    @Column(name = "rank")
+    @Column(name = "Rank")
     private Integer rank;
 
     @ManyToOne(targetEntity = PersonEntity.class, fetch = FetchType.EAGER)
-    @JoinColumn(name = "person_id")
+    @JoinColumn(referencedColumnName = "PersonID")
     private PersonEntity person;
 
     @ManyToOne(targetEntity = PageEntity.class, fetch = FetchType.EAGER)
-    @JoinColumn(name = "page_id")
+    @JoinColumn(referencedColumnName = "PageID")
     private PageEntity page;
 
     public PersonPageRankEntity() {

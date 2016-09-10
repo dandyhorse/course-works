@@ -1,6 +1,5 @@
 package org.lenteam.colmen.entities;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
@@ -14,22 +13,30 @@ import java.util.Set;
  */
 
 @Entity
-@Table(name = "persons")
+@Table(name = "Persons")
 @EqualsAndHashCode
 public class PersonEntity {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "Name")
     private String name;
 
     @OneToMany(targetEntity = KeywordEntity.class, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "Keywords",
+            joinColumns = @JoinColumn(name = "ID"),
+            inverseJoinColumns = @JoinColumn(name = "PersonID"))
     private Set<KeywordEntity> keywords;
 
     @OneToMany(targetEntity = PersonPageRankEntity.class, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "PersonPageRank",
+            joinColumns = @JoinColumn(referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(referencedColumnName = "PersonID"))
     private Set<PersonPageRankEntity> ranks;
 
     public PersonEntity() {
