@@ -1,6 +1,6 @@
 package org.lenteam.colmen.repositories;
 
-import org.lenteam.colmen.entites.PersonEntity;
+import org.lenteam.colmen.entities.PersonEntity;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
  * @since 8/20/2016
  */
 @Repository
-public interface PersonRepository extends CrudRepository<PersonEntity, Long> {
+public interface PersonRepository extends CrudRepository<PersonEntity, Integer> {
 }
