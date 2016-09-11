@@ -4,6 +4,8 @@ import org.lenteam.colmen.entities.KeywordEntity;
 import org.lenteam.colmen.models.Keyword;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 /**
  * @author Anton_Solovev
  * @since 9/10/2016
@@ -21,7 +23,9 @@ public class KeywordAssembler implements Assembler<Keyword, KeywordEntity> {
     }
 
     @Override
-    public Iterable<Keyword> newModelList(Iterable<KeywordEntity> entityList) {
+    public Iterable<Keyword> newModelList(List<KeywordEntity> entityList) {
         return null;
     }
+
+
 }

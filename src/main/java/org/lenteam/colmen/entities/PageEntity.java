@@ -12,7 +12,6 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "Pages")
-@EqualsAndHashCode
 public class PageEntity {
 
     @Id
@@ -29,15 +28,11 @@ public class PageEntity {
     @Column(name = "LastScanDate")
     private Date lastScanDate;
 
-    @ManyToOne(targetEntity = SiteEntity.class, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "SiteID")
     private SiteEntity site;
 
-    @OneToMany(targetEntity = PersonPageRankEntity.class, fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "PersonPageRank",
-            joinColumns = @JoinColumn(referencedColumnName = "ID"),
-            inverseJoinColumns = @JoinColumn(referencedColumnName = "PageID"))
+    @OneToMany(mappedBy = "page", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     private Set<PersonPageRankEntity> ranks;
 
     public PageEntity() {
@@ -92,4 +87,29 @@ public class PageEntity {
         this.ranks = ranks;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        PageEntity that = (PageEntity) o;
+
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (url != null ? !url.equals(that.url) : that.url != null) return false;
+        if (foundDateTime != null ? !foundDateTime.equals(that.foundDateTime) : that.foundDateTime != null)
+            return false;
+        if (lastScanDate != null ? !lastScanDate.equals(that.lastScanDate) : that.lastScanDate != null) return false;
+        return site != null ? site.equals(that.site) : that.site == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (url != null ? url.hashCode() : 0);
+        result = 31 * result + (foundDateTime != null ? foundDateTime.hashCode() : 0);
+        result = 31 * result + (lastScanDate != null ? lastScanDate.hashCode() : 0);
+        result = 31 * result + (site != null ? site.hashCode() : 0);
+        return result;
+    }
 }

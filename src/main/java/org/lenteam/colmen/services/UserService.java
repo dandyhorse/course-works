@@ -12,8 +12,7 @@ import org.lenteam.colmen.services.interfaces.CommonUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -59,7 +58,7 @@ public class UserService implements CommonUserService {
                     .map(PersonPageRankEntity::getPerson)
                     .collect(Collectors.toList()));
         }
-        return statisticPersonAssembler.newModelList(persons);
+        return statisticPersonAssembler.newModelList(new ArrayList<>(persons));
     }
 
     @Override

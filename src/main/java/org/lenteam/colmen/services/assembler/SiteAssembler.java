@@ -26,10 +26,10 @@ public class SiteAssembler implements Assembler<Site, SiteEntity> {
     }
 
     @Override
-    public Iterable<Site> newModelList(Iterable<SiteEntity> entityList) {
-        List<SiteEntity> list = (List<SiteEntity>) entityList;
-        Stream<Site> stream = list.stream().map(this::newModel);
+    public Iterable<Site> newModelList(List<SiteEntity> entityList) {
+        Stream<Site> stream = entityList.stream().map(this::newModel);
         return stream.collect(Collectors.toList());
     }
+
 
 }

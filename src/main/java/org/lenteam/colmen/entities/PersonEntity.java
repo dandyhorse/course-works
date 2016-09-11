@@ -14,7 +14,6 @@ import java.util.Set;
 
 @Entity
 @Table(name = "Persons")
-@EqualsAndHashCode
 public class PersonEntity {
 
     @Id
@@ -25,18 +24,10 @@ public class PersonEntity {
     @Column(name = "Name")
     private String name;
 
-    @OneToMany(targetEntity = KeywordEntity.class, fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "Keywords",
-            joinColumns = @JoinColumn(name = "ID"),
-            inverseJoinColumns = @JoinColumn(name = "PersonID"))
+    @OneToMany(mappedBy = "person", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     private Set<KeywordEntity> keywords;
 
-    @OneToMany(targetEntity = PersonPageRankEntity.class, fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "PersonPageRank",
-            joinColumns = @JoinColumn(referencedColumnName = "ID"),
-            inverseJoinColumns = @JoinColumn(referencedColumnName = "PersonID"))
+    @OneToMany(mappedBy = "person", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     private Set<PersonPageRankEntity> ranks;
 
     public PersonEntity() {
@@ -81,4 +72,22 @@ public class PersonEntity {
         this.ranks = ranks;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        PersonEntity that = (PersonEntity) o;
+
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        return name != null ? name.equals(that.name) : that.name == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        return result;
+    }
 }

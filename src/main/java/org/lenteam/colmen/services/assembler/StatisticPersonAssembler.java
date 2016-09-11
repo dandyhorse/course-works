@@ -29,9 +29,9 @@ public class StatisticPersonAssembler implements Assembler<StatisticPerson, Pers
     }
 
     @Override
-    public Iterable<StatisticPerson> newModelList(Iterable<PersonEntity> entityList) {
-        List<PersonEntity> list = (List<PersonEntity>) entityList;
-        Stream<StatisticPerson> stream = list.stream().map(this::newModel);
+    public Iterable<StatisticPerson> newModelList(List<PersonEntity> entityList) {
+        Stream<StatisticPerson> stream = entityList.stream().map(this::newModel);
         return stream.collect(Collectors.toList());
     }
+
 }

@@ -25,7 +25,7 @@ public class KeywordController {
         this.adminService = adminService;
     }
 
-    //Запрос: GET keyword/person_id,  person_id - идентификатор персоны, выводит список ключевых слов
+    //Запрос: GET keyword/{person_id},  person_id - идентификатор персоны, выводит список ключевых слов
     @RequestMapping(path = "/{id}", method = GET, produces = {"application/json"})
     @ResponseStatus(HttpStatus.FOUND)
     public Iterable<Keyword> getKeysByPerson(@PathVariable Long id) {

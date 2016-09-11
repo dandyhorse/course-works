@@ -25,9 +25,10 @@ public class PersonAssembler implements Assembler<Person, PersonEntity> {
     }
 
     @Override
-    public Iterable<Person> newModelList(Iterable<PersonEntity> entityList) {
-        List<PersonEntity> list = (List<PersonEntity>) entityList;
-        Stream<Person> stream = list.stream().map(this::newModel);
+    public Iterable<Person> newModelList(List<PersonEntity> entityList) {
+        Stream<Person> stream = entityList.stream().map(this::newModel);
         return stream.collect(Collectors.toList());
     }
+
+
 }
