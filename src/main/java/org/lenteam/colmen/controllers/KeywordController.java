@@ -28,7 +28,7 @@ public class KeywordController {
     //Запрос: GET keyword/{person_id},  person_id - идентификатор персоны, выводит список ключевых слов
     @RequestMapping(path = "/{id}", method = GET, produces = {"application/json"})
     @ResponseStatus(HttpStatus.FOUND)
-    public Iterable<Keyword> getKeysByPerson(@PathVariable Long id) {
+    public Iterable<Keyword> getKeysByPerson(@PathVariable Integer id) {
         return adminService.getKeysByPerson(id);
     }
 
@@ -37,14 +37,14 @@ public class KeywordController {
     @ResponseStatus(HttpStatus.CREATED)
     public void addKeyword(@RequestBody ModelMap model) {
         String key = (String) model.get("key");
-        Long personId = (Long) model.get("person_id");
+        Integer personId = (Integer) model.get("person_id");
         adminService.saveKeyword(key, personId);
     }
 
     // удаляет персону методом DEELETE
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
-    public void deleteKeyword(@PathVariable Long id) {
+    public void deleteKeyword(@PathVariable Integer id) {
         adminService.deleteKeyword(id);
     }
 

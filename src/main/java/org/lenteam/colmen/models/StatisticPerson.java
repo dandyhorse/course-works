@@ -11,7 +11,7 @@ public class StatisticPerson extends Person {
 
     private Integer rank;
 
-    public StatisticPerson(Long id, String name, Integer rank) {
+    public StatisticPerson(Integer id, String name, Integer rank) {
         super(id, name);
         this.rank = rank;
     }

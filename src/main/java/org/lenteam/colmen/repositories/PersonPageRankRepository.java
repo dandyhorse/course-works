@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
  * @author Rinat
  */
 @Repository
-public interface PersonPageRankRepository extends CrudRepository<PersonPageRankEntity, Long> {
+public interface PersonPageRankRepository extends CrudRepository<PersonPageRankEntity, Integer> {
 }

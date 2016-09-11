@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
  * @author Rinat
  */
 @Repository
-public interface PageRepository extends CrudRepository<PageEntity, Long> {
+public interface PageRepository extends CrudRepository<PageEntity, Integer> {
 }

@@ -1,7 +1,5 @@
 package org.lenteam.colmen.entities;
 
-import lombok.EqualsAndHashCode;
-
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.HashSet;
@@ -17,7 +15,8 @@ public class PageEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private Long id;
+
+    private Integer id;
 
     @Column(name = "Url")
     private String url;
@@ -28,22 +27,22 @@ public class PageEntity {
     @Column(name = "LastScanDate")
     private Date lastScanDate;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "SiteID")
     private SiteEntity site;
 
-    @OneToMany(mappedBy = "page", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "page", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     private Set<PersonPageRankEntity> ranks;
 
     public PageEntity() {
         ranks = new HashSet<>();
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

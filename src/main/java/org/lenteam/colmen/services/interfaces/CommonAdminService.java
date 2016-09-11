@@ -13,16 +13,16 @@ public interface CommonAdminService {
 
     Iterable<StatisticPerson> savePerson(String name);
 
-    Iterable<StatisticPerson> deletePerson(Long id);
+    Iterable<StatisticPerson> deletePerson(Integer id);
 
     Iterable<Site> saveSite(String name);
 
-    Iterable<Site> deleteSite(Long id);
+    Iterable<Site> deleteSite(Integer id);
 
-    Iterable<Keyword> getKeysByPerson(Long id);
+    Iterable<Keyword> getKeysByPerson(Integer id);
 
-    Iterable<Keyword> saveKeyword(String keyword, Long personId);
+    Iterable<Keyword> saveKeyword(String keyword, Integer personId);
 
-    Iterable<Keyword> deleteKeyword(Long id);
+    Iterable<Keyword> deleteKeyword(Integer id);
 
 }

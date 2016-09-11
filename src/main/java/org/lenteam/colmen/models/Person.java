@@ -9,16 +9,15 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode
 public class Person {
 
-    private Long id;
-
     private String name;
+    private Integer id;
 
-    public Person(Long id, String name) {
+    public Person(Integer id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 

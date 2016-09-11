@@ -5,6 +5,7 @@ import org.lenteam.colmen.entities.PersonEntity;
 import org.lenteam.colmen.entities.PersonPageRankEntity;
 import org.lenteam.colmen.entities.SiteEntity;
 import org.lenteam.colmen.models.*;
+import org.lenteam.colmen.repositories.PageRepository;
 import org.lenteam.colmen.repositories.PersonRepository;
 import org.lenteam.colmen.repositories.SiteRepository;
 import org.lenteam.colmen.services.assembler.Assembler;
@@ -47,10 +48,9 @@ public class UserService implements CommonUserService {
     }
 
     @Override
-    public Iterable<StatisticPerson> getPersonsOnSite(Long siteId) {
+    public Iterable<StatisticPerson> getPersonsOnSite(Integer siteId) {
         SiteEntity site = siteRepository.findOne(siteId);
         Set<PersonEntity> persons = new HashSet<>();
-
         Set<PageEntity> pages = site.getPages();
         for (PageEntity page : pages) {
             Set<PersonPageRankEntity> personPageRanks = page.getRanks();
@@ -62,7 +62,7 @@ public class UserService implements CommonUserService {
     }
 
     @Override
-    public DailyStatistic getPersonStatisticOnSite(Long personId, Long siteId) {
+    public DailyStatistic getPersonStatisticOnSite(Integer personId, Integer siteId) {
         Set<PageStatistic> pageStatistics = new HashSet<>();
 
         SiteEntity site = siteRepository.findOne(siteId);

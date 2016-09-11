@@ -1,7 +1,5 @@
 package org.lenteam.colmen.entities;
 
-import lombok.EqualsAndHashCode;
-
 import javax.persistence.*;
 
 /**
@@ -14,12 +12,12 @@ public class KeywordEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private Long id;
+    private Integer id;
 
     @Column(name = "Name")
     private String name;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     @JoinColumn(name = "personID")
     private PersonEntity person;
 
@@ -27,11 +25,11 @@ public class KeywordEntity {
         //no args constructor
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

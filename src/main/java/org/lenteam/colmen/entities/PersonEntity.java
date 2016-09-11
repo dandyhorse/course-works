@@ -1,7 +1,5 @@
 package org.lenteam.colmen.entities;
 
-import lombok.EqualsAndHashCode;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,32 +17,34 @@ public class PersonEntity {
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+
+    private Integer id;
 
     @Column(name = "Name")
     private String name;
 
-    @OneToMany(mappedBy = "person", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "person", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     private Set<KeywordEntity> keywords;
 
-    @OneToMany(mappedBy = "person", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "person", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     private Set<PersonPageRankEntity> ranks;
 
     public PersonEntity() {
     }
 
-    public PersonEntity(Long id, String name) {
+
+    public PersonEntity(Integer id, String name) {
         this.id = id;
         this.name = name;
         keywords = new HashSet<>();
         ranks = new HashSet<>();
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
  * @since 8/20/2016
  */
 @Repository
-public interface PersonRepository extends CrudRepository<PersonEntity, Long> {
+public interface PersonRepository extends CrudRepository<PersonEntity, Integer> {
 }

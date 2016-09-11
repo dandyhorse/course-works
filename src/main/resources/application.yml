@@ -2,37 +2,5 @@ server:
     port: ${port:8010}
     contextPath: /api
 spring:
-    h2:
-        console:settings:trace: false
-    application:
-        name: api-colmen
-    datasource:
-        username: h2
-        password:
-        initialize: true
-        driver-class-name: org.h2.Driver
-    jpa:
-        show-sql: true
-        database-platform: colmen
-        generate-ddl: true
-        hibernate:
-            naming:
-                physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-                implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
-            ddl-auto: validate
-        properties:
-                hibernate:
-                    dialect: org.hibernate.dialect.H2Dialect
-security:
-    basic:
-         enabled: false
-management:
-    security:
-         enabled: false
-logging:
-    path: logs
-    level:
-        root: WARN
-        org:
-            springframework: INFO
-            org.hibernate: WARN
+    profiles:
+        active: prod

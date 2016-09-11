@@ -1,0 +1,35 @@
+spring:
+    profiles: prod
+    application:
+        name: api-colmen
+    datasource:
+        username: colmen
+        password:
+        url: jdbc:mysql://localhost/colmen
+        initialize: false
+        driver-class-name: com.mysql.jdbc.Driver
+    jpa:
+        show-sql: false
+        database-platform: colmen
+        generate-ddl: false
+        hibernate:
+            naming:
+                physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+                implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+            ddl-auto: validate
+        properties:
+                hibernate:
+                    dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+security:
+    basic:
+         enabled: false
+management:
+    security:
+         enabled: false
+logging:
+    path: logs
+    level:
+        root: WARN
+        org:
+            springframework: WARN
+            org.hibernate: WARN

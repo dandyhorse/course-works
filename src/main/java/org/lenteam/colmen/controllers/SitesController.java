@@ -1,6 +1,5 @@
 package org.lenteam.colmen.controllers;
 
-import org.lenteam.colmen.entities.SiteEntity;
 import org.lenteam.colmen.models.Site;
 import org.lenteam.colmen.services.interfaces.CommonAdminService;
 import org.lenteam.colmen.services.interfaces.CommonUserService;
@@ -47,7 +46,7 @@ public class SitesController {
     // удаляет сайт методом DEELETE
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
-    public void deleteSite(@PathVariable Long id) {
+    public void deleteSite(@PathVariable Integer id) {
         adminService.deleteSite(id);
     }
 }

@@ -46,7 +46,7 @@ public class PersonsController {
     // удаляет персону методом DEELETE
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
-    public void deletePerson(@PathVariable Long id) {
+    public void deletePerson(@PathVariable Integer id) {
         adminService.deletePerson(id);
     }
 

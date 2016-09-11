@@ -15,9 +15,9 @@ public interface CommonUserService {
 
     Iterable<Site> getAllSites();
 
-    Iterable<StatisticPerson> getPersonsOnSite(Long site);
+    Iterable<StatisticPerson> getPersonsOnSite(Integer siteId);
 
-    DailyStatistic getPersonStatisticOnSite(Long personId, Long siteId);
+    DailyStatistic getPersonStatisticOnSite(Integer personId, Integer siteId);
 
 }
 

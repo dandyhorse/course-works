@@ -1,7 +1,5 @@
 package org.lenteam.colmen.entities;
 
-import lombok.EqualsAndHashCode;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,23 +14,23 @@ public class SiteEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private Long id;
+    private Integer id;
 
     @Column(name = "Name")
     private String name;
 
-    @OneToMany(mappedBy = "site", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "site", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     private Set<PageEntity> pages;
 
     public SiteEntity() {
         pages = new HashSet<>();
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

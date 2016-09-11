@@ -3,6 +3,7 @@ package org.lenteam.colmen.models;
 import lombok.EqualsAndHashCode;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * @author Rinat
@@ -12,24 +13,24 @@ import java.time.LocalDate;
 public class PageStatistic {
 
     private String url;
-    private LocalDate lastScanDate;
-    private Integer pageCount;
+    private String lastScanDate;
+    private Integer rank;
 
     public PageStatistic(String url, LocalDate lastScanDate, Integer rank) {
         this.url = url;
-        this.lastScanDate = lastScanDate;
-        this.pageCount = rank;
+        this.lastScanDate = lastScanDate.format(DateTimeFormatter.ISO_DATE);
+        this.rank = rank;
     }
 
     public String getUrl() {
         return url;
     }
 
-    public LocalDate getLastScanDate() {
+    public String getLastScanDate() {
         return lastScanDate;
     }
 
-    public Integer getPageCount() {
-        return pageCount;
+    public Integer getRank() {
+        return rank;
     }
 }

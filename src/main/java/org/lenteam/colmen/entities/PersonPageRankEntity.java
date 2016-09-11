@@ -1,7 +1,5 @@
 package org.lenteam.colmen.entities;
 
-import lombok.EqualsAndHashCode;
-
 import javax.persistence.*;
 
 /**
@@ -14,16 +12,17 @@ public class PersonPageRankEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private Long id;
+
+    private Integer id;
 
     @Column(name = "Rank")
     private Integer rank;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PersonID")
     private PersonEntity person;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PageID")
     private PageEntity page;
 
@@ -31,11 +30,12 @@ public class PersonPageRankEntity {
         //no args constructor
     }
 
-    public Long getId() {
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

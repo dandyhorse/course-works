@@ -1,8 +1,8 @@
 package org.lenteam.colmen.services;
 
 import org.lenteam.colmen.models.Keyword;
-import org.lenteam.colmen.models.StatisticPerson;
 import org.lenteam.colmen.models.Site;
+import org.lenteam.colmen.models.StatisticPerson;
 import org.lenteam.colmen.services.interfaces.CommonAdminService;
 import org.springframework.stereotype.Component;
 
@@ -19,7 +19,7 @@ public class AdminService implements CommonAdminService {
     }
 
     @Override
-    public Iterable<StatisticPerson> deletePerson(Long id) {
+    public Iterable<StatisticPerson> deletePerson(Integer id) {
         return null;
     }
 
@@ -29,22 +29,22 @@ public class AdminService implements CommonAdminService {
     }
 
     @Override
-    public Iterable<Site> deleteSite(Long id) {
+    public Iterable<Site> deleteSite(Integer id) {
         return null;
     }
 
     @Override
-    public Iterable<Keyword> getKeysByPerson(Long id) {
+    public Iterable<Keyword> getKeysByPerson(Integer id) {
         return null;
     }
 
     @Override
-    public Iterable<Keyword> saveKeyword(String keyword, Long personId) {
+    public Iterable<Keyword> saveKeyword(String keyword, Integer personId) {
         return null;
     }
 
     @Override
-    public Iterable<Keyword> deleteKeyword(Long id) {
+    public Iterable<Keyword> deleteKeyword(Integer id) {
         return null;
     }
 }

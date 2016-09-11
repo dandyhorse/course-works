@@ -30,13 +30,14 @@
 
 **Получить ежедневную статистику для конкретной персоны по сайту:**
 ```
-Запрос: GET /stat/persons/daily/{person_id}/{site_id}/
+Запрос: GET /stat/persons/daily/{person_id}/{site_id}
 
     person_id : Long- идентификатор персоны
     site_id  : Long - идентификатор сайта
     
 	Без указания дат, вернет статистику за последние 30 дней.
-	Формат даты: dd.mm.YYYY
+	Date format: ISO_DATE.
+	available, such as '2011-12-03' or '2011-12-03+01:00'
 
 Результат:
     [
@@ -157,10 +158,4 @@
 ```
 
 Коды ошибок:
-    400 Keyword already exists
-        Record not exists
-        Site already exists
-        Identifier not specified
-        Parameter "parameter-name" not specified
-        Person not found
-    403 Allowed for administrator only
+    

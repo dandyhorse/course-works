@@ -31,7 +31,7 @@ public class StatisticController {
     //Запрос: GET stat/persons/onsite/id,  выводит список имен по конкретному сайту. id - id сайта
     @RequestMapping(path = "/persons/onsite/{id}", method = GET, produces = {"application/json"})
     @ResponseStatus(HttpStatus.FOUND)
-    public Iterable<StatisticPerson> getPersonsOnSite(@PathVariable Long id) {
+    public Iterable<StatisticPerson> getPersonsOnSite(@PathVariable Integer id) {
         return service.getPersonsOnSite(id);
     }
 
@@ -39,7 +39,7 @@ public class StatisticController {
     // получить ежедневную статистику
     @RequestMapping(path = "/daily/{person_id}/{site_id}", method = GET, produces = {"application/json"})
     @ResponseStatus(HttpStatus.FOUND)
-    public DailyStatistic getPersonsOnSite(@PathVariable Long person_id, @PathVariable Long site_id) {
+    public DailyStatistic getPersonsOnSite(@PathVariable Integer person_id, @PathVariable Integer site_id) {
         return service.getPersonStatisticOnSite(person_id, site_id);
     }
 
