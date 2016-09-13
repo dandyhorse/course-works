@@ -29,7 +29,6 @@ public class PersonPageRankEntity {
         //no args constructor
     }
 
-
     public Integer getId() {
         return id;
     }

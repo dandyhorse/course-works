@@ -17,9 +17,9 @@ import java.util.stream.Stream;
 public class StatisticPersonAssembler implements Assembler<StatisticPerson, PersonEntity> {
     @Override
     public StatisticPerson newModel(PersonEntity entity) {
-        Integer fullRank = entity.getRanks().stream()
-                .map(PersonPageRankEntity::getRank)
-                .reduce(0, (i1, i2) -> i1 + i2);
+        Long fullRank = entity.getRanks().stream()
+                .map(PersonPageRankEntity::getRank).map(Integer::longValue)
+                .reduce(0L, (i1, i2) -> i1 + i2);
         return new StatisticPerson(entity.getId(), fullRank);
     }
 

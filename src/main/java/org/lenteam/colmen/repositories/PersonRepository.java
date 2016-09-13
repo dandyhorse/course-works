@@ -15,12 +15,4 @@ import java.util.List;
  */
 @Repository
 public interface PersonRepository extends CrudRepository<PersonEntity, Integer>, JpaSpecificationExecutor {
-
-    @SuppressWarnings("unsafe")
-    @Query(value = "select PersonID, sum(Rank) " +
-            "from Pages p, PersonPageRank r " +
-            "where p.ID = r.PageID AND p.SiteID = :id " +
-            "group by PersonID, SiteID", nativeQuery = true)
-    List<Integer[]> sumPersonPageRanksBySite(@Param("id") Integer siteID);
-
 }

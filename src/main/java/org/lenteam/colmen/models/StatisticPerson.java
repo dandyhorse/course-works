@@ -11,14 +11,14 @@ import lombok.EqualsAndHashCode;
 @JsonIgnoreProperties(value = "name")
 public class StatisticPerson extends Person {
 
-    private Integer rank;
+    private Long rank;
 
-    public StatisticPerson(Integer id, Integer rank) {
+    public StatisticPerson(Integer id, Long rank) {
         super(id);
         this.rank = rank;
     }
 
-    public Integer getRank() {
+    public Long getRank() {
         return rank;
     }
 
