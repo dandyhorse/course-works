@@ -12,7 +12,6 @@ public class PersonPageRankEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-
     private Integer id;
 
     @Column(name = "Rank")

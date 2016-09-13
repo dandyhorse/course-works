@@ -17,7 +17,6 @@ public class PersonEntity {
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Integer id;
 
     @Column(name = "Name")
@@ -31,7 +30,6 @@ public class PersonEntity {
 
     public PersonEntity() {
     }
-
 
     public PersonEntity(Integer id, String name) {
         this.id = id;

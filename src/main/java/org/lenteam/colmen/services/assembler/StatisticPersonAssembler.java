@@ -20,7 +20,7 @@ public class StatisticPersonAssembler implements Assembler<StatisticPerson, Pers
         Integer fullRank = entity.getRanks().stream()
                 .map(PersonPageRankEntity::getRank)
                 .reduce(0, (i1, i2) -> i1 + i2);
-        return new StatisticPerson(entity.getId(), entity.getName(), fullRank);
+        return new StatisticPerson(entity.getId(), fullRank);
     }
 
     @Override
