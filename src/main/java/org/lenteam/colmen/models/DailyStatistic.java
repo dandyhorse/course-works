@@ -12,12 +12,14 @@ public class DailyStatistic {
 
     private String personName;
     private String siteName;
-    private Iterable<PageStatistic> pagesOnSite;
+    private Iterable<PageStatistic> pagesByDays;
+    private Long totalPages;
 
-    public DailyStatistic(String personName, String siteName, Iterable<PageStatistic> pagesOnSite) {
+    public DailyStatistic(String personName, String siteName, Iterable<PageStatistic> pagesByDays, Long totalPages) {
         this.personName = personName;
         this.siteName = siteName;
-        this.pagesOnSite = pagesOnSite;
+        this.pagesByDays = pagesByDays;
+        this.totalPages = totalPages;
     }
 
     public String getPersonName() {
@@ -28,8 +30,12 @@ public class DailyStatistic {
         return siteName;
     }
 
-    public Iterable<PageStatistic> getPagesOnSite() {
-        return pagesOnSite;
+    public Iterable<PageStatistic> getPagesByDays() {
+        return pagesByDays;
+    }
+
+    public Long getTotalPages() {
+        return totalPages;
     }
 }
 

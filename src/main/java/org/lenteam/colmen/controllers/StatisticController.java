@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
+
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 /**
@@ -41,6 +43,15 @@ public class StatisticController {
     @ResponseStatus(HttpStatus.FOUND)
     public DailyStatistic getPersonsOnSite(@PathVariable Integer person_id, @PathVariable Integer site_id) {
         return service.getPersonStatisticOnSite(person_id, site_id);
+    }
+
+    //Запрос: GET /stat/daily/{person_id}/{site_id}/{from_date}/{to_date}
+    // получить ежедневную статистику
+    @RequestMapping(path = "/daily/{person_id}/{site_id}/{from_date}/{to_date}", method = GET, produces = {"application/json"})
+    @ResponseStatus(HttpStatus.FOUND)
+    public DailyStatistic getPersonsOnSite(@PathVariable Integer person_id, @PathVariable Integer site_id,
+                                           @PathVariable LocalDate from_date, @PathVariable LocalDate to_date) {
+        return service.getPersonStatisticOnSite(person_id, site_id, from_date, to_date);
     }
 
 }
