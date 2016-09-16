@@ -1,3 +1,3 @@
 spark-submit \
---master yarn-client \
+--master local \
 /media/sf_share/python-ml-project/ml/main.py

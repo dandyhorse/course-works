@@ -3,6 +3,7 @@ from pyspark.mllib.regression import LabeledPoint
 from pyspark import SparkConf, SparkContext
 from pyspark.mllib.tree import GradientBoostedTrees
 from pyspark.mllib.evaluation import BinaryClassificationMetrics
+import re
 
 def comma_to_dot(x):
     if ',' in x:
@@ -12,7 +13,7 @@ def comma_to_dot(x):
 
 def NaN_to_0(x):
     if x == 'NaN':
-        return 0
+        return -100
     else:
         return x
 
@@ -39,24 +40,31 @@ def get_catogiracal_fatures():
     return categoricalFeaturesInfo
 
 def toLabeledPoint(tupl):
-    row = tupl[0]
-    lable = tupl[1]
-    features = Vectors.dense(normilize(row))
+    row = normilize(tupl[1])
+    lable = tupl[0]
+    features = Vectors.dense(row)
     return LabeledPoint(lable, features)
 
-def trainForest(sc, train):
+def trainForest(train):
     loss = 'leastSquaresError'
     numIterations = 10
-    learningRate = 0.5
+    learningRate = 0.1
     maxDepth = 5
     maxBins = 32
     return GradientBoostedTrees.trainClassifier(train, get_catogiracal_fatures(),
             loss, numIterations, learningRate, maxDepth, maxBins)
 
+def filterNaN(s):
+    if re.compile("(NaN;)+.*(NaN;)+").findall(s):
+        return False
+    else:
+        return True
+
 def prepareData(sc, target_path, object_path):
-    zt = sc.textFile(target_path).zipWithIndex().map(lambda a: (a[1], a[0]))
-    zo = sc.textFile(object_path).zipWithIndex().map(lambda a: (a[1], a[0]))
-    return zo.join(zt).map(lambda x: toLabeledPoint(x[1]))
+    targets = sc.textFile(target_path, 1)
+    objects = sc.textFile(object_path, 1)
+    zipped = targets.zip(objects)
+    return zipped.filter(lambda f: filterNaN(f[1])).map(lambda x: toLabeledPoint(x)).cache()
 
 def predictOnTest(model, test):
     predictions = model.predict(test.map(lambda x: x.features))
@@ -75,8 +83,8 @@ def main():
     conf = SparkConf().setMaster("local").setAppName("training-3")
     sc = SparkContext(conf=conf)
     labeledFeatures = prepareData(sc, target_path, object_path)
-    train, test = labeledFeatures.randomSplit([0.6, 0.4], seed = 11L)
-    model = trainForest(sc, train)
+    train, test = labeledFeatures.randomSplit([0.7, 0.3], seed = 11L)
+    model = trainForest(train)
     labelsAndPrdictions = predictOnTest(model, test)
     measure(labelsAndPrdictions, test.count())
     sc.stop()

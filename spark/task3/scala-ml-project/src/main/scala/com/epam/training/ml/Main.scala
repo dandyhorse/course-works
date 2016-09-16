@@ -5,7 +5,7 @@ package com.epam.training.ml
   * @since 9/13/2016.
   */
 
-import org.apache.spark.mllib.evaluation.BinaryClassificationMetrics
+
 import org.apache.spark.{SparkConf, SparkContext}
 
 /**
@@ -24,14 +24,13 @@ object Main {
     val labels = sc.textFile("/training/spark/ml/Target.csv", 1)
 
     val rawLabelsAndFeatures = labels.zip(features)
-
     val learning = new ML(sc)
-    val labelsAndPredictions = learning.run(rawLabelsAndFeatures)
 
-    val metrics = new BinaryClassificationMetrics(labelsAndPredictions)
-    val auROC = metrics.areaUnderROC()
+    val splitOfDate = learning.prepareData(rawLabelsAndFeatures)
+    val model = learning.train(splitOfDate(0))
+    val labelsAndPredictions = learning.test(model, splitOfDate(1))
 
-    Console.println("Area under ROC = " + auROC)
+    learning.measure(labelsAndPredictions, splitOfDate(1).count())
   }
 
 }

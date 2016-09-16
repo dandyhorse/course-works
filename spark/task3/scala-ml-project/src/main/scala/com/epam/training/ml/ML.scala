@@ -1,7 +1,9 @@
 package com.epam.training.ml
 
+import java.util.regex.Pattern
+
 import org.apache.spark.SparkContext
-import org.apache.spark.mllib.classification.{SVMModel, SVMWithSGD}
+import org.apache.spark.mllib.evaluation.BinaryClassificationMetrics
 import org.apache.spark.mllib.linalg.Vectors
 import org.apache.spark.mllib.regression.LabeledPoint
 import org.apache.spark.mllib.tree.configuration.BoostingStrategy
@@ -14,6 +16,40 @@ import org.apache.spark.rdd.RDD
   * @since 9/12/2016.
   */
 class ML(sc: SparkContext) extends Serializable {
+
+  import scala.collection.JavaConverters._
+
+  def prepareData(data: RDD[(String, String)]): Array[RDD[LabeledPoint]] = {
+    val supervisedData = data.filter(f => {
+        val p = Pattern.compile("(NaN;)+(.)*(NaN;)+")
+        !p.matcher(f._2).find()
+      })
+      .map(toLabeledPoint)
+    supervisedData.randomSplit(Array(0.7, 0.3), seed = 11L)
+  }
+
+  def toLabeledPoint(s: (String, String)): LabeledPoint = {
+    val cleanedRow = s._2.replace(",", ".").replace("NaN", "0")
+    val parsedRowInArray = cleanedRow.split(";").map(_.toDouble)
+    val features = Vectors.dense(parsedRowInArray)
+    LabeledPoint(s._1.toDouble, features)
+  }
+
+  def test(model: GradientBoostedTreesModel, test: RDD[LabeledPoint]) = {
+    test.map { point =>
+      val prediction = model.predict(point.features)
+      (point.label, prediction)
+    }
+  }
+
+  def measure(labelsAndPredictions: RDD[(Double, Double)], testSize: Long) = {
+    val metrics = new BinaryClassificationMetrics(labelsAndPredictions)
+    val auROC = metrics.areaUnderROC()
+
+    val testErr = labelsAndPredictions.filter(r => r._1 != r._2).count().toDouble / testSize
+    Console.println("Test Error = " + testErr)
+    Console.println("Area under ROC = " + auROC)
+  }
 
   def getCategoricalFeatures: Map[Int, Int] = {
     var categoricalFeaturesInfo = Map[Int, Int]()
@@ -31,44 +67,19 @@ class ML(sc: SparkContext) extends Serializable {
     categoricalFeaturesInfo
   }
 
-  def toLabeledPoint(s: (String, String)): LabeledPoint = {
-    val cleanedRow = s._2.replace(",", ".").replace("NaN", "0")
-    val parsedRowInArray = cleanedRow.split(";").map(_.toDouble)
-    val features = Vectors.dense(parsedRowInArray)
-    LabeledPoint(s._1.toDouble, features)
-  }
-
-  def run(data: RDD[(String, String)]): RDD[(Double, Double)] = {
-
-    val supervisedData = data.map(toLabeledPoint)
-    val splits = supervisedData.randomSplit(Array(0.6, 0.4), seed = 11L)
-    val train = splits(0).cache()
-    val test = splits(1)
-
-    //    val model = trainWithSGD(train)
-    //    val model = trainForestModel(train)
-    val model = trainDecisionTree(train)
-
-    return test.map { point =>
-      val prediction = model.predict(point.features)
-      (point.label, prediction)
-    }
+  def train(train: RDD[LabeledPoint]): GradientBoostedTreesModel = {
+    trainForestModel(train)
+    //    trainDecisionTree(train)
   }
 
   def trainDecisionTree(train: RDD[LabeledPoint]): DecisionTreeModel = {
     val numClasses = 2
     val impurity = "gini"
-    val maxDepth = 10
+    val maxDepth = 5
     val maxBins = 32
 
     DecisionTree.trainClassifier(train, numClasses, getCategoricalFeatures,
       impurity, maxDepth, maxBins)
-  }
-
-  def trainWithSGD(train: RDD[LabeledPoint]): SVMModel = {
-    val numIterations = 100
-    val model = SVMWithSGD.train(train, numIterations)
-    model.clearThreshold()
   }
 
   def trainForestModel(train: RDD[LabeledPoint]): GradientBoostedTreesModel = {
@@ -77,12 +88,14 @@ class ML(sc: SparkContext) extends Serializable {
     val maxDepth = 5
     val maxBins = 32
 
+    val javaMap = getCategoricalFeatures.map { case (k, v) => (int2Integer(k), int2Integer(v)) }.asJava
+
     val boostingStrategy = BoostingStrategy.defaultParams("Classification")
     boostingStrategy.setNumIterations(numIterations)
     boostingStrategy.treeStrategy.setNumClasses(numClasses)
     boostingStrategy.treeStrategy.setMaxDepth(maxDepth)
     boostingStrategy.treeStrategy.setMaxBins(maxBins)
-    boostingStrategy.treeStrategy.setCategoricalFeaturesInfo(getCategoricalFeatures)
+    boostingStrategy.treeStrategy.setCategoricalFeaturesInfo(javaMap)
     GradientBoostedTrees.train(train, boostingStrategy)
   }
 
