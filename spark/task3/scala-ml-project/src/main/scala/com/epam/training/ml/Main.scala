@@ -27,10 +27,9 @@ object Main {
     val learning = new ML(sc)
 
     val splitOfDate = learning.prepareData(rawLabelsAndFeatures)
-    val model = learning.train(splitOfDate(0))
-    val labelsAndPredictions = learning.test(model, splitOfDate(1))
-
-    learning.measure(labelsAndPredictions, splitOfDate(1).count())
+    val model = learning.train(splitOfDate._1, 3, 3)
+    val labelsAndPredictions = learning.test(model, splitOfDate._2)
+    learning.measure(labelsAndPredictions, splitOfDate._2.count())
   }
 
 }

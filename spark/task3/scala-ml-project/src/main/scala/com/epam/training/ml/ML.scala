@@ -6,10 +6,12 @@ import org.apache.spark.SparkContext
 import org.apache.spark.mllib.evaluation.BinaryClassificationMetrics
 import org.apache.spark.mllib.linalg.Vectors
 import org.apache.spark.mllib.regression.LabeledPoint
+import org.apache.spark.mllib.tree.GradientBoostedTrees
 import org.apache.spark.mllib.tree.configuration.BoostingStrategy
-import org.apache.spark.mllib.tree.model.{DecisionTreeModel, GradientBoostedTreesModel}
-import org.apache.spark.mllib.tree.{DecisionTree, GradientBoostedTrees}
+import org.apache.spark.mllib.tree.model.GradientBoostedTreesModel
 import org.apache.spark.rdd.RDD
+
+import scala.collection.mutable
 
 /**
   * @author Anton_Solovev 
@@ -19,19 +21,30 @@ class ML(sc: SparkContext) extends Serializable {
 
   import scala.collection.JavaConverters._
 
-  def prepareData(data: RDD[(String, String)]): Array[RDD[LabeledPoint]] = {
-    val supervisedData = data.filter(f => {
-        val p = Pattern.compile("(NaN;)+(.)*(NaN;)+")
-        !p.matcher(f._2).find()
-      })
-      .map(toLabeledPoint)
-    supervisedData.randomSplit(Array(0.7, 0.3), seed = 11L)
+  def prepareData(data: RDD[(String, String)]): (RDD[LabeledPoint], RDD[LabeledPoint]) = {
+    val rdds = data.randomSplit(Array(0.7, 0.3), seed = 11L)
+    val forTrain = rdds(0).filter(f => {
+      val p = Pattern.compile("(NaN;)+(.)*(NaN;)+")
+      !p.matcher(f._2).find()
+    }).map(toFilteredLabeledPoint)
+    val forTest = rdds(1).map(toLabeledPoint)
+    (forTrain, forTest)
   }
 
   def toLabeledPoint(s: (String, String)): LabeledPoint = {
-    val cleanedRow = s._2.replace(",", ".").replace("NaN", "0")
-    val parsedRowInArray = cleanedRow.split(";").map(_.toDouble)
-    val features = Vectors.dense(parsedRowInArray)
+    val parsedRowInArray = s._2.replace(",", ".").replace("NaN", "0").split(";")
+      .zipWithIndex
+      .map(z => (z._2, z._1.toDouble))
+    val features = Vectors.sparse(50, parsedRowInArray)
+    LabeledPoint(s._1.toDouble, features)
+  }
+
+  def toFilteredLabeledPoint(s: (String, String)): LabeledPoint = {
+    val parsedRowInArray = s._2.replace(",", ".").replace("NaN", "0").split(";")
+      .zipWithIndex
+      .map(z => (z._2, z._1.toDouble))
+      .filter(p => p._2 != 0)
+    val features = Vectors.sparse(50, parsedRowInArray)
     LabeledPoint(s._1.toDouble, features)
   }
 
@@ -45,14 +58,13 @@ class ML(sc: SparkContext) extends Serializable {
   def measure(labelsAndPredictions: RDD[(Double, Double)], testSize: Long) = {
     val metrics = new BinaryClassificationMetrics(labelsAndPredictions)
     val auROC = metrics.areaUnderROC()
-
     val testErr = labelsAndPredictions.filter(r => r._1 != r._2).count().toDouble / testSize
     Console.println("Test Error = " + testErr)
     Console.println("Area under ROC = " + auROC)
   }
 
-  def getCategoricalFeatures: Map[Int, Int] = {
-    var categoricalFeaturesInfo = Map[Int, Int]()
+  def getCategoricalFeatures: mutable.Map[Int, Int] = {
+    val categoricalFeaturesInfo = mutable.Map[Int, Int]()
     categoricalFeaturesInfo += (1 -> 2)
     categoricalFeaturesInfo += (2 -> 2)
     categoricalFeaturesInfo += (3 -> 2)
@@ -67,25 +79,10 @@ class ML(sc: SparkContext) extends Serializable {
     categoricalFeaturesInfo
   }
 
-  def train(train: RDD[LabeledPoint]): GradientBoostedTreesModel = {
-    trainForestModel(train)
-    //    trainDecisionTree(train)
-  }
-
-  def trainDecisionTree(train: RDD[LabeledPoint]): DecisionTreeModel = {
+  def train(train: RDD[LabeledPoint], iterations: Int, depth: Int): GradientBoostedTreesModel = {
     val numClasses = 2
-    val impurity = "gini"
-    val maxDepth = 5
-    val maxBins = 32
-
-    DecisionTree.trainClassifier(train, numClasses, getCategoricalFeatures,
-      impurity, maxDepth, maxBins)
-  }
-
-  def trainForestModel(train: RDD[LabeledPoint]): GradientBoostedTreesModel = {
-    val numClasses = 2
-    val numIterations = 10
-    val maxDepth = 5
+    val numIterations = iterations
+    val maxDepth = depth
     val maxBins = 32
 
     val javaMap = getCategoricalFeatures.map { case (k, v) => (int2Integer(k), int2Integer(v)) }.asJava
