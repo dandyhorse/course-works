@@ -1,7 +1,9 @@
 spring:
+#    main.web-environment: false
     hadoop:
-        fsUri: hdfs://localhost:8020
-        resourceManagerHost: localhost
+        fsUri: hdfs://sandbox.hortonworks.com:8020
+        resourceManagerHost: sandbox.hortonworks.com
+        resourceManagerPort: 8050
     yarn:
         appName: hw5-yarn
         applicationDir: /app/hw5-yarn/
@@ -12,6 +14,19 @@ spring:
             launchcontext:
                 archiveFile: hw5-yarn-appmaster-0.1.0.jar
         appmaster:
+            appmasterClass: com.epam.yarn.appmaster.Appmaster
             containerCount: 1
+            memory: 250
+            priority: 1
+            virtualcores: 1
+            keepContextAlive: true
             launchcontext:
                 archiveFile: hw5-yarn-container-0.1.0.jar
+---
+app:
+    server:
+        port: 9080
+    urlResources: http://${spring.hadoop.resourceManagerHost}:8088/jmx?qry=Hadoop:service=ResourceManager,name=QueueMetrics,q0=root
+    indexPath: templates/index.html
+    input: /home/hw5/data
+    output: /home/hw5/out
