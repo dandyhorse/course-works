@@ -1,16 +1,23 @@
 install: true
 language: java
 
-before_cache:
-  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+sudo: true
 
 cache:
   directories:
-    - $HOME/.gradle/caches/
-    - $HOME/.gradle/wrapper/
+    - $HOME/.m2
 
-script: "./tools/travis_gradle.sh"
+jdk:
+  - oraclejdk8
+
+branches:
+  only:
+  - master
+
+script:
+  - gradle check -q
+  - gradle build
+  - gradle assemble
 
 git:
   depth: 10
