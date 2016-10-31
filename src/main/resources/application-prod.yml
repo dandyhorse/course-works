@@ -1,0 +1,25 @@
+spring:
+  profiles: prod
+  datasource:
+    username: tourism-db
+    password:
+    url: jdbc:mysql://localhost/tourism-db
+    initialize: false
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    show-sql: false
+    database-platform: colmen
+    generate-ddl: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+
+logging:
+  path: logs
+  level:
+    root: WARN
+    org:
+      springframework: WARN
+      org.hibernate: WARN

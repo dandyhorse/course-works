@@ -1,17 +1,55 @@
-group 'ru.ssau.javacourse'
+group 'ru.ssau'
 version '1.0'
 
-apply plugin: 'groovy'
+buildscript {
+    ext {
+        kotlinVersion = '1.0.4'
+        springBootVersion = '1.4.1.RELEASE'
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
+    }
+}
+
 apply plugin: 'java'
+apply plugin: 'kotlin'
+apply plugin: 'spring-boot'
+apply plugin: 'application'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
+
+mainClassName = "ru.ssau.turism.initializer.Application"
+
+sourceSets {
+    main.kotlin.srcDirs += 'src/main/kotlin'
+    main.java.srcDirs += 'src/main/java'
+}
+
+jar {
+    baseName = 'tourism'
+    version = '1.0'
+}
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    compile 'org.codehaus.groovy:groovy-all:2.3.11'
+    compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
+    compile "org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion"
+    compile "org.springframework.boot:spring-boot-starter-groovy-templates:$springBootVersion"
+
+    compile 'com.h2database:h2:1.4.192'
+    compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.6.6"
+
     testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
+    testCompile "org.jetbrains.kotlin:kotlin-test-junit:${kotlinVersion}"
 }

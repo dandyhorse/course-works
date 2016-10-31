@@ -1,0 +1,13 @@
+server:
+  port: ${port:8080}
+  contextPath: /app
+
+spring:cd ..
+
+  profiles:
+    active: dev
+  application:
+      name: tourism
+  mvc:
+    view:
+      suffix: .html
