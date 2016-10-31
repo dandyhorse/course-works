@@ -19,9 +19,9 @@ public class CalculatorTest {
 	@Test
 	public void calculateTest() throws Exception {
 		int result1 = calculator.calculate("5 + 2 * 4 - 7");
-		int result2 = calculator.calculate("2 * 2 + 2 / 2");
+		int result2 = calculator.calculate("7 + 2 * 2 + 2 / 2");
 		assertThat(result1, equalTo(6));
-		assertThat(result2, equalTo(5));
+		assertThat(result2, equalTo(12));
 	}
 
 	@Test

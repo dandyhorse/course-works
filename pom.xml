@@ -5,8 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>net.solovev.anton</groupId>
-    <artifactId>itmo-jcourse-1</artifactId>
+    <artifactId>itmo-jcourse</artifactId>
     <version>1.0</version>
+
+    <modules>
+        <module>calculator</module>
+        <module>factorial</module>
+        <module>matrix</module>
+    </modules>
 
     <build>
         <plugins>
