@@ -1,17 +1,18 @@
 spring:
   profiles: dev
-  h2.console.settings.trace: false
   datasource:
     username: h2
     password:
     initialize: true
     driver-class-name: org.h2.Driver
+  h2.console.settings.trace: false
   jpa:
     show-sql: true
-    database-platform: colmen
+    database: h2
+    database-platform: H2
     generate-ddl: true
     hibernate:
-      ddl-auto: drop-create
+      ddl-auto: validate
     properties:
       hibernate:
         dialect: org.hibernate.dialect.H2Dialect
@@ -23,3 +24,4 @@ logging:
     org:
       springframework: INFO
       org.hibernate: WARN
+debug: false

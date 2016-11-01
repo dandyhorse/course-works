@@ -2,12 +2,14 @@ server:
   port: ${port:8080}
   contextPath: /app
 
-spring:cd ..
-
+spring:
   profiles:
     active: dev
   application:
-      name: tourism
+    name: tourism
   mvc:
     view:
+      prefix: /
       suffix: .html
+  thymeleaf:
+    enabled: true

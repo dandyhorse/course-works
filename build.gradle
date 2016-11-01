@@ -28,8 +28,9 @@ targetCompatibility = 1.8
 mainClassName = "ru.ssau.turism.initializer.Application"
 
 sourceSets {
-    main.kotlin.srcDirs += 'src/main/kotlin'
     main.java.srcDirs += 'src/main/java'
+    main.kotlin.srcDirs += 'src/main/kotlin'
+    test.kotlin.srcDirs += 'src/test/kotlin'
 }
 
 jar {
@@ -44,10 +45,12 @@ repositories {
 dependencies {
     compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
     compile "org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion"
-    compile "org.springframework.boot:spring-boot-starter-groovy-templates:$springBootVersion"
+    compile "org.springframework.boot:spring-boot-starter-thymeleaf:$springBootVersion"
+    compile "org.springframework.boot:spring-boot-devtools:$springBootVersion"
 
+    compile 'org.projectlombok:lombok:1.16.10'
     compile 'com.h2database:h2:1.4.192'
-    compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.6.6"
+    compile 'com.fasterxml.jackson.module:jackson-module-kotlin:2.6.6'
 
     testCompile group: 'junit', name: 'junit', version: '4.12'
     testCompile "org.springframework.boot:spring-boot-starter-test:$springBootVersion"

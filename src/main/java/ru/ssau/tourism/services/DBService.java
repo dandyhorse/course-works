@@ -8,8 +8,12 @@ import ru.ssau.tourism.repositories.TourRepository;
 @Service
 public class DBService {
 
+	private final TourRepository repository;
+
 	@Autowired
-	private TourRepository repository;
+	public DBService(TourRepository repository) {
+		this.repository = repository;
+	}
 
 	public Iterable<Tour> getTours() {
 		return repository.findAll();
