@@ -5,21 +5,23 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Setter
 @NoArgsConstructor
 @EqualsAndHashCode(of = {"id"})
-public class Tour {
+public class Payment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @ManyToOne
+    @JoinColumn(name = "voucher_id")
+    private Voucher voucher;
     @Column
-    private String title;
+    private LocalDate payDay;
     @Column
-    private Integer price;
-    @Column
-    private String info;
+    private Integer amount;
 
 }

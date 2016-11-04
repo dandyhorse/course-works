@@ -10,16 +10,23 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @EqualsAndHashCode(of = {"id"})
-public class Tour {
+public class TouristInfo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @OneToOne
+    @JoinColumn(name = "tourist_id")
+    private Tourist tourist;
     @Column
-    private String title;
+    private String passport;
     @Column
-    private Integer price;
+    private String city;
     @Column
-    private String info;
+    private String country;
+    @Column
+    private Integer phone_number;
+    @Column
+    private Integer index;
 
 }

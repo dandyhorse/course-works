@@ -10,16 +10,16 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @EqualsAndHashCode(of = {"id"})
-public class Tour {
+public class Tourist {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column
-    private String title;
+    private String surname;
     @Column
-    private Integer price;
+    private String name;
     @Column
-    private String info;
+    private String fatherName;
 
 }
