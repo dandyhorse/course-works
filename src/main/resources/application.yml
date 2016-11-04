@@ -13,3 +13,6 @@ spring:
       suffix: .html
   thymeleaf:
     enabled: true
+
+app:
+  author: "Анна Гончарова"

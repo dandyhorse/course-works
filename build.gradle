@@ -8,7 +8,7 @@ buildscript {
     }
 
     repositories {
-        mavenCentral()
+        jcenter()
     }
 
     dependencies {
@@ -25,11 +25,10 @@ apply plugin: 'application'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-mainClassName = "ru.ssau.turism.initializer.Application"
+mainClassName = "ru.ssau.turism.Application"
 
 sourceSets {
     main.java.srcDirs += 'src/main/java'
-    main.kotlin.srcDirs += 'src/main/kotlin'
     test.kotlin.srcDirs += 'src/test/kotlin'
 }
 
@@ -38,22 +37,30 @@ jar {
     version = '1.0'
 }
 
+bootRun {
+    addResources = true
+}
+
 repositories {
-    mavenCentral()
+    jcenter()
 }
 
 dependencies {
+
     compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
     compile "org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion"
-    compile "org.springframework.boot:spring-boot-starter-thymeleaf:$springBootVersion"
     compile "org.springframework.boot:spring-boot-devtools:$springBootVersion"
-    compile 'org.hibernate:hibernate-java8:5.0.11.Final'
 
-    compile 'org.projectlombok:lombok:1.16.10'
+    compile 'org.thymeleaf:thymeleaf-spring4:3.0.2.RELEASE'
+    compile 'org.thymeleaf:thymeleaf:3.0.2.RELEASE'
+    compile 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:2.0.5'
+
     compile 'com.h2database:h2:1.4.192'
+    compile 'org.projectlombok:lombok:1.16.10'
+    compile 'org.hibernate:hibernate-java8:5.0.11.Final'
     compile 'com.fasterxml.jackson.module:jackson-module-kotlin:2.6.6'
 
-    testCompile group: 'junit', name: 'junit', version: '4.12'
     testCompile "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
     testCompile "org.jetbrains.kotlin:kotlin-test-junit:${kotlinVersion}"
+    testCompile 'junit:junit:4.12'
 }
