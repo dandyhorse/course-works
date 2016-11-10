@@ -11,21 +11,22 @@
     <link rel="stylesheet" media="screen"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"/>
     <script rel="script" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <title>theworld🙈</title>
 </head>
 <body>
 <div class="container">
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/">На Главную</a>
+                <a class="navbar-brand" th:href="@{/}">На Главную</a>
             </div>
             <ul class="nav navbar-nav">
 
-                <li><a href="/tours">Туры</a></li>
-                <li><a href="/tourists">Туристы</a></li>
-                <li><a href="/tourists-infos">Информация о туристах</a></li>
-                <li><a href="/vouchers">Путёвки</a></li>
-                <li><a href="/seasons">Сезоны</a></li>
+                <li><a th:href="@{/tours}">Туры</a></li>
+                <li><a th:href="@{tourists}">Туристы</a></li>
+                <li><a th:href="@{/tourist-infos}">Информация о туристах</a></li>
+                <li><a th:href="@{/vouchers}">Путёвки</a></li>
+                <li><a th:href="@{/seasons}">Сезоны</a></li>
 
             </ul>
         </div>

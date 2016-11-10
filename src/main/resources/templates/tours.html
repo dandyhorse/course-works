@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<body>
+<section layout:fragment="content">
+    <div class="container">
+        <div class="jumbotron">
+            <h2>Tours</h2>
+        </div>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>title</th>
+                <th>price</th>
+                <th>Other info</th>
+                <th>Options</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!--/*@thymesVar id="tour" type="ru.ssau.tourism.entities.Tour"*/-->
+            <!--/*@thymesVar id="allTours" type="java.lang.Iterable<ru.ssau.tourism.entities.Tour>"*/-->
+            <tr th:each="tour: ${allTours}">
+                <td th:text="${tour.title}">Hadoop</td>
+                <td th:text="${tour.price}">Mezos</td>
+                <td th:text="${tour.info}">Sparkovich</td>
+                <td>
+                    <div class="btn-group">
+                        <a class="btn btn-default" role="button" href="">Edit</a>
+                        <a class="btn btn-default" role="button"
+                           th:href="@{'/tours/delete?id=' + ${tour.id}}">Delete</a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+</body>
+</html>

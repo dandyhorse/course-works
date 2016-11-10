@@ -1,4 +1,4 @@
-package ru.ssau.tourism.initializer;
+package ru.ssau.tourism.initializers;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;

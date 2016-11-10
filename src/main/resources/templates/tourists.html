@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<body>
+<section layout:fragment="content">
+    <div class="container">
+        <div class="jumbotron">
+            <h2>Tourists</h2>
+        </div>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Father's name</th>
+                <th>Options</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <!--/*@thymesVar id="tourist" type="ru.ssau.tourism.entities.Tourist"*/-->
+            <!--/*@thymesVar id="allTourists" type="java.lang.Iterable<ru.ssau.tourism.entities.Tourist>"*/-->
+            <tr th:each="tourist: ${allTourists}">
+                <td th:text="${tourist.name}">Hadoop</td>
+                <td th:text="${tourist.surname}">Mezos</td>
+                <td th:text="${tourist.fatherName}">Sparkovich</td>
+
+                <td>
+                    <div class="btn-group">
+                        <a class="btn btn-default" role="button" href="">Edit</a>
+                        <a class="btn btn-default" role="button"
+                           th:href="@{'/tourists/delete?id=' + ${tourist.id}}">Delete</a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <!--<a th:href="@{/tourists/add}" class="btn btn-success" role="button">Добавить запись</a>-->
+
+    </div>
+</section>
+</body>
+</html>
+
+
+

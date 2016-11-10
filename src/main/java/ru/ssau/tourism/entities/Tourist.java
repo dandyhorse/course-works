@@ -16,10 +16,25 @@ public class Tourist {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column
-    private String surname;
-    @Column
     private String name;
+    @Column
+    private String surname;
     @Column
     private String fatherName;
 
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public String getFatherName() {
+        return fatherName;
+    }
 }

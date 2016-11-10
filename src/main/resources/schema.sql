@@ -1,19 +1,19 @@
 CREATE TABLE IF NOT EXISTS tourist (
-	id bigint not null primary key,
+	id bigint not null primary key auto_increment,
 	surname varchar(20) not null,
 	name varchar(20) not null,
 	father_name varchar(20) not null
 );
 
 CREATE TABLE IF NOT EXISTS tour (
-	id bigint not null primary key,
+	id bigint not null primary key auto_increment,
 	title varchar(20) not null,
 	price int not null,
 	info varchar(64)
 );
 
 CREATE TABLE IF NOT EXISTS season (
-	id bigint not null primary key,
+	id bigint not null primary key auto_increment,
 	tour_id bigint not null,
 	start_date date not null,
 	finish_date date not null,
@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS season (
 );
 
 CREATE TABLE IF NOT EXISTS voucher (
-	id bigint not null primary key,
+	id bigint not null primary key auto_increment,
 	tourist_id bigint not null,
 	season_id bigint not null,
 	foreign key (tourist_id) references tourist (id),
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS payment (
 );
 
 CREATE TABLE IF NOT EXISTS tourist_info (
-  id bigint not null primary key,
+  id bigint not null primary key auto_increment,
 	tourist_id bigint not null,
 	passport varchar(10) not null,
 	city varchar(20) not null,

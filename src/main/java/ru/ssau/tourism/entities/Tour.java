@@ -22,4 +22,19 @@ public class Tour {
     @Column
     private String info;
 
+    public Long getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public String getInfo() {
+        return info;
+    }
 }

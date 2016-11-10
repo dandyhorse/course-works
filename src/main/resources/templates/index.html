@@ -3,26 +3,24 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/layout}">
 
-<head>
-    <title>Index</title>
-</head>
 <body>
 <section layout:fragment="content">
     <div class="container">
 
+        <!--/*@thymesVar id="author" type="java.lang.String"*/-->
         <div class="jumbotron">
             <h3>База данных Турагенства</h3>
             <p>Работу выполнила студент
-            <th th:text=" ${author} ">Name</th>
+            <th th:text="${author}">Name</th>
             </p>
         </div>
 
         <div class="list-group">
-            <a href="/tours" class="list-group-item">Туры</a>
-            <a href="/tourists" class="list-group-item">Туристы</a>
-            <a href="/tourists-infos" class="list-group-item">Информация о туристах</a>
-            <a href="/vouchers" class="list-group-item">Путёвки</a>
-            <a href="/seasons" class="list-group-item">Сезоны</a>
+            <a th:href="@{/tours}" class="list-group-item">Туры</a>
+            <a th:href="@{/tourists}" class="list-group-item">Туристы</a>
+            <a th:href="@{/tourists-infos}" class="list-group-item">Информация о туристах</a>
+            <a th:href="@{/vouchers}" class="list-group-item">Путёвки</a>
+            <a th:href="@{/seasons}" class="list-group-item">Сезоны</a>
         </div>
 
     </div>
