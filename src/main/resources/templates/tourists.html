@@ -8,6 +8,9 @@
         <div class="jumbotron">
             <h2>Tourists</h2>
         </div>
+
+        <!--<a th:href="@{/tourists/add}" class="btn btn-success" role="button">Добавить запись</a>-->
+
         <table class="table table-hover">
             <thead>
             <tr>
@@ -25,20 +28,18 @@
                 <td th:text="${tourist.name}">Hadoop</td>
                 <td th:text="${tourist.surname}">Mezos</td>
                 <td th:text="${tourist.fatherName}">Sparkovich</td>
-
                 <td>
                     <div class="btn-group">
-                        <a class="btn btn-default" role="button" href="">Edit</a>
                         <a class="btn btn-default" role="button"
-                           th:href="@{'/tourists/delete?id=' + ${tourist.id}}">Delete</a>
+                           th:href="@{'/tourists/edit?id=' + ${tourist.id}}">Edit</a>
+
+                        <a class="btn btn-default" role="button"
+                           th:onclick="'javascript:deleteTourist(\'' + ${tourist.id} +'\',\''+ ${#httpServletRequest.requestURI.toString()} + '\');'">Delete</a>
                     </div>
                 </td>
             </tr>
             </tbody>
         </table>
-
-        <!--<a th:href="@{/tourists/add}" class="btn btn-success" role="button">Добавить запись</a>-->
-
     </div>
 </section>
 </body>

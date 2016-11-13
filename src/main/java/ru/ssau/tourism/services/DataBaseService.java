@@ -34,4 +34,12 @@ public class DataBaseService {
     public void deleteTour(Long id) {
         tourRepository.delete(id);
     }
+
+    public Tourist getTourist(Long id) {
+        return touristRepository.findOne(id);
+    }
+
+    public Tourist saveTourist(Tourist t) {
+        return touristRepository.save(t);
+    }
 }

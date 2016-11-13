@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<body>
+<section layout:fragment="content">
+    <!--/*@thymesVar id="tourist" type="ru.ssau.tourism.entities.Tourist"*/-->
+    <!--/*@thymesVar id="action_type" type="java.lang.String"*/-->
+    <form method="POST" action="#" th:object="${tourist}" th:action="@{'/tourists/' + ${action_type}}"
+          class="form-horizontal">
+        <div class="row">
+            <div class="form-group col-md-9" layout:fragment="edit-form">
+
+                <div class="col-md-7">
+                    <input type="hidden" th:field="*{id}"/>
+                    <label class="col-sm-4 control-lable">
+                        <input type="text" th:field="*{name}" class="form-control input-sm col-sm-4"/>
+                    </label>
+                    <label class="col-xs-4 control-lable">
+                        <input type="text" th:field="*{surname}" class="form-control input-sm col-sm-4"/>
+                    </label>
+                    <label class="col-sm-4 control-lable">
+                        <input type="text" th:field="*{fatherName}" class="form-control input-sm col-sm-4"/>
+                    </label>
+                </div>
+            </div>
+            <div class="form-actions">
+                <input type="submit" class="btn btn-success" value="Подтвердить"/>
+                <a class="btn btn-default" role="button" th:href="@{/tourists}">Отмена</a>
+            </div>
+        </div>
+    </form>
+</section>
+</body>
+</html>
+

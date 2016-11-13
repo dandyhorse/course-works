@@ -24,4 +24,19 @@ public class Payment {
     @Column
     private Integer amount;
 
+    public Long getId() {
+        return id;
+    }
+
+    public Voucher getVoucher() {
+        return voucher;
+    }
+
+    public LocalDate getPayDay() {
+        return payDay;
+    }
+
+    public Integer getAmount() {
+        return amount;
+    }
 }

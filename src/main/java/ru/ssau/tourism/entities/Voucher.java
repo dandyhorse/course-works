@@ -22,4 +22,15 @@ public class Voucher {
     @JoinColumn(name = "season_id")
     private Season season;
 
+    public Long getId() {
+        return id;
+    }
+
+    public Tourist getTourist() {
+        return tourist;
+    }
+
+    public Season getSeason() {
+        return season;
+    }
 }

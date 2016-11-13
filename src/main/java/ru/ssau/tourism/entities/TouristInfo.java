@@ -29,4 +29,31 @@ public class TouristInfo {
     @Column
     private Integer index;
 
+    public Long getId() {
+        return id;
+    }
+
+    public Tourist getTourist() {
+        return tourist;
+    }
+
+    public String getPassport() {
+        return passport;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public Integer getPhone_number() {
+        return phone_number;
+    }
+
+    public Integer getIndex() {
+        return index;
+    }
 }

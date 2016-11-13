@@ -28,4 +28,27 @@ public class Season {
     @Column
     private Integer countOfPlaces;
 
+    public Long getId() {
+        return id;
+    }
+
+    public Tour getTour() {
+        return tour;
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public LocalDate getFinishDate() {
+        return finishDate;
+    }
+
+    public Boolean getFinished() {
+        return isFinished;
+    }
+
+    public Integer getCountOfPlaces() {
+        return countOfPlaces;
+    }
 }
