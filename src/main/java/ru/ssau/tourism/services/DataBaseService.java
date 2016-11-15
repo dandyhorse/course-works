@@ -20,28 +20,10 @@ public class DataBaseService {
 		this.touristRepository = touristRepository;
 	}
 
+	// tours
+
 	public Iterable<Tour> getTours() {
 		return tourRepository.findAll();
-	}
-
-	public Iterable<Tourist> getTourists() {
-		return touristRepository.findAll();
-	}
-
-	public void deleteTourist(Long id) {
-		touristRepository.delete(id);
-	}
-
-	public void deleteTour(Long id) {
-		tourRepository.delete(id);
-	}
-
-	public Tourist getTourist(Long id) {
-		return touristRepository.findOne(id);
-	}
-
-	public Tourist saveTourist(Tourist t) {
-		return touristRepository.save(t);
 	}
 
 	public Tour getTour(Long id) {
@@ -50,5 +32,27 @@ public class DataBaseService {
 
 	public void saveTour(Tour tour) {
 		tourRepository.save(tour);
+	}
+
+	public void deleteTour(Long id) {
+		tourRepository.delete(id);
+	}
+
+	// tourists
+
+	public Tourist getTourist(Long id) {
+		return touristRepository.findOne(id);
+	}
+
+	public Iterable<Tourist> getTourists() {
+		return touristRepository.findAll();
+	}
+
+	public Tourist saveTourist(Tourist t) {
+		return touristRepository.save(t);
+	}
+
+	public void deleteTourist(Long id) {
+		touristRepository.delete(id);
 	}
 }
