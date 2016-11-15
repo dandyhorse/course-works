@@ -1,3 +1,6 @@
+app:
+  author: "Анна Гончарова"
+
 server:
   port: ${port:8080}
   contextPath: /app
@@ -13,6 +16,3 @@ spring:
       suffix: .html
   thymeleaf:
     enabled: true
-
-app:
-  author: "Анна Гончарова"

@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HomeController {
 
-    @Value("${app.author}")
-    private String authorName;
+	@Value("${app.author}")
+	private String authorName;
 
-    @RequestMapping({"/", "/home"})
-    public String home(Model m) {
-        m.addAttribute("author", authorName);
-        return "index";
-    }
+	@RequestMapping({"/", "/home"})
+	public String home(Model m) {
+		m.addAttribute("author", authorName);
+		return "index";
+	}
 }

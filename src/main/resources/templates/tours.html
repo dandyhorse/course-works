@@ -14,10 +14,10 @@
         <table class="table table-hover">
             <thead>
             <tr>
-                <th>Title</th>
-                <th>Price</th>
-                <th>Other info</th>
-                <th>Options</th>
+                <th>Название</th>
+                <th>Цена</th>
+                <th>Информация</th>
+                <th>Действия</th>
             </tr>
             </thead>
             <tbody>
@@ -30,10 +30,12 @@
                 <td>
                     <div class="btn-group">
                         <a class="btn btn-default" role="button"
-                           th:href="@{'/tours/edit?id=' + ${tour.id}}">Edit</a>
+                           th:href="@{'/tours/edit?id=' + ${tour.id}}">Изменить</a>
 
-                        <a class="btn btn-default" role="button"
-                           th:href="@{'/tours/delete?id=' + ${tour.id}}">Delete</a>
+                        <a class="btn btn-default" role="button" th:onclick="'javascript:deleteAndRefresh(\'' +
+                           ${tour.id} +'\',\''+ ${#httpServletRequest.getRequestURI()} + '\');'">
+                            Удалить
+                        </a>
                     </div>
                 </td>
             </tr>

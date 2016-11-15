@@ -12,48 +12,59 @@ import ru.ssau.tourism.utils.ActionUtil;
 @RequestMapping("/tours")
 public class TourController {
 
-    private final DataBaseService service;
+	private final DataBaseService service;
 
-    @Autowired
-    public TourController(DataBaseService service) {
-        this.service = service;
-    }
+	@Autowired
+	public TourController(DataBaseService service) {
+		this.service = service;
+	}
 
-    @RequestMapping
-    public String home(Model m) {
-        m.addAttribute("allTours", getAll());
-        return "tours";
-    }
+	// REST
 
-    @RequestMapping("/all")
-    @ResponseBody
-    public Iterable<Tour> getAll() {
-        return service.getTours();
-    }
+	@RequestMapping("/all")
+	@ResponseBody
+	public Iterable<Tour> getAll() {
+		return service.getTours();
+	}
 
-    @RequestMapping("/delete")
-    public String delete(@RequestParam Long id) {
-        service.deleteTour(id);
-        return "redirect:/tours";
-    }
+	@PostMapping("/delete/{id}")
+	@ResponseBody
+	public void delete(@PathVariable Long id) {
+		service.deleteTour(id);
+	}
 
-    @GetMapping("/" + ActionUtil.editType)
-    public String getPageForEdit(@RequestParam Long id) {
-        return "redirect:/";
-    }
+	// MVC
+	
+	@RequestMapping
+	public String home(Model m) {
+		m.addAttribute("allTours", getAll());
+		return "tours";
+	}
 
-    @PostMapping("/" + ActionUtil.editType)
-    public String edit(@ModelAttribute Tour t) {
-        return "redirect:/";
-    }
+	@GetMapping("/" + ActionUtil.EDIT_TYPE)
+	public String getPageForEdit(@RequestParam Long id, Model m) {
+		Tour tour = service.getTour(id);
+		m.addAttribute("tour", tour);
+		m.addAttribute("action_type", ActionUtil.EDIT_TYPE);
+		return "forms/tour";
+	}
 
-    @GetMapping("/" + ActionUtil.addType)
-    public String getPageForAdd(Model m) {
-        return "redirect:/";
-    }
+	@PostMapping("/" + ActionUtil.EDIT_TYPE)
+	public String edit(@ModelAttribute("tour") Tour tour) {
+		service.saveTour(tour);
+		return "redirect:/tours";
+	}
 
-    @PostMapping("/" + ActionUtil.addType)
-    public String add(@ModelAttribute Tour t) {
-        return "redirect:/";
-    }
+	@GetMapping("/" + ActionUtil.ADD_TYPE)
+	public String getPageForAdd(Model m) {
+		Tour tour = new Tour();
+		m.addAttribute("tour", tour);
+		m.addAttribute("action_type", ActionUtil.ADD_TYPE);
+		return "forms/tour";
+	}
+
+	@PostMapping("/" + ActionUtil.ADD_TYPE)
+	public String add(@ModelAttribute Tour t) {
+		return "redirect:/";
+	}
 }
