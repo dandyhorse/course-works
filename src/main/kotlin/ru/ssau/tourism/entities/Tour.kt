@@ -8,9 +8,9 @@ class Tour {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	var id: Long? = null
 	@Column
-	lateinit var title: String
+	var title: String? = null
 	@Column
 	var price: Int? = null
 	@Column
-	lateinit var info: String
+	var info: String? = null
 }

@@ -6,7 +6,7 @@
 <section layout:fragment="content">
     <div class="container">
         <div class="jumbotron">
-            <h2>Tourists</h2>
+            <h3>Tourists</h3>
         </div>
 
         <a th:href="@{/tourists/add}" class="btn btn-success" role="button">Добавить запись</a>
@@ -23,8 +23,8 @@
 
             <tbody>
             <!--/*@thymesVar id="tourist" type="ru.ssau.tourism.entities.Tourist"*/-->
-            <!--/*@thymesVar id="allTourists" type="java.lang.Iterable<ru.ssau.tourism.entities.Tourist>"*/-->
-            <tr th:each="tourist: ${allTourists}">
+            <!--/*@thymesVar id="all_tourists" type="java.lang.Iterable<ru.ssau.tourism.entities.Tourist>"*/-->
+            <tr th:each="tourist: ${all_tourists}">
                 <td th:text="${tourist.name}">Hadoop</td>
                 <td th:text="${tourist.surname}">Mezos</td>
                 <td th:text="${tourist.fatherName}">Sparkovich</td>

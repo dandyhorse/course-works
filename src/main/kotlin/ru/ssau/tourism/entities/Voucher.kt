@@ -9,8 +9,8 @@ class Voucher {
 	var id: Long? = null
 	@ManyToOne
 	@JoinColumn(name = "tourist_id")
-	lateinit var tourist: Tourist
+	var tourist: Tourist? = null
 	@ManyToOne
 	@JoinColumn(name = "season_id")
-	lateinit var season: Season
+	var season: Season? = null
 }

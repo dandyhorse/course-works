@@ -10,9 +10,9 @@ class Payment {
 	var id: Long? = null
 	@ManyToOne
 	@JoinColumn(name = "voucher_id")
-	lateinit var voucher: Voucher
+	var voucher: Voucher? = null
 	@Column
-	lateinit var payDay: LocalDate
+	var payDay: LocalDate? = null
 	@Column
 	var amount: Int? = null
 }

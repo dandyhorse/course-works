@@ -10,11 +10,11 @@ class Season {
 	var id: Long? = null
 	@ManyToOne
 	@JoinColumn(name = "tour_id")
-	lateinit var tour: Tour
+	var tour: Tour? = null
 	@Column
-	lateinit var startDate: LocalDate
+	 var startDate: LocalDate? = null
 	@Column
-	lateinit var finishDate: LocalDate
+	var finishDate: LocalDate? = null
 	@Column
 	var isFinished: Boolean? = null
 	@Column

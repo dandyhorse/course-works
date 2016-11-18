@@ -9,13 +9,13 @@ class TouristInfo {
 	var id: Long? = null
 	@OneToOne
 	@JoinColumn(name = "tourist_id")
-	lateinit var tourist: Tourist
+	var tourist: Tourist? = null
 	@Column
-	lateinit var passport: String
+	var passport: String? = null
 	@Column
-	lateinit var city: String
+	var city: String? = null
 	@Column
-	lateinit var country: String
+	var country: String? = null
 	@Column
 	var phone_number: Int? = null
 	@Column

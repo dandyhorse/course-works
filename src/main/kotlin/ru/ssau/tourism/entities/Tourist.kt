@@ -8,9 +8,9 @@ class Tourist {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	var id: Long? = null
 	@Column
-	lateinit var name: String
+	var name: String? = null
 	@Column
-	lateinit var surname: String
+	var surname: String? = null
 	@Column
-	lateinit var fatherName: String
+	 var fatherName: String? = null
 }

@@ -37,7 +37,7 @@ public class TourController {
 	
 	@RequestMapping
 	public String home(Model m) {
-		m.addAttribute("allTours", getAll());
+		m.addAttribute("all_tours", getAll());
 		return "tours";
 	}
 
@@ -50,7 +50,7 @@ public class TourController {
 	}
 
 	@PostMapping("/" + ActionUtil.EDIT_TYPE)
-	public String edit(@ModelAttribute("tour") Tour tour) {
+	public String edit(@ModelAttribute Tour tour) {
 		service.saveTour(tour);
 		return "redirect:/tours";
 	}
@@ -64,7 +64,8 @@ public class TourController {
 	}
 
 	@PostMapping("/" + ActionUtil.ADD_TYPE)
-	public String add(@ModelAttribute Tour t) {
-		return "redirect:/";
+	public String add(@ModelAttribute Tour tour) {
+		service.saveTour(tour);
+		return "redirect:/tours";
 	}
 }

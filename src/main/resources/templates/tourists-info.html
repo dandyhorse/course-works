@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<body>
+<section layout:fragment="content">
+    <div class="container">
+        <div class="jumbotron">
+            <h3>Tourists Information</h3>
+        </div>
+
+        <a th:href="@{/tourists-info/add}" class="btn btn-success" role="button">Добавить запись</a>
+
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Паспорт</th>
+                <th>Город</th>
+                <th>Страна</th>
+                <th>Телефонный номер</th>
+                <th>Индекс</th>
+                <th>Действия</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <!--/*@thymesVar id="info" type="ru.ssau.tourism.entities.TouristInfo"*/-->
+            <!--/*@thymesVar id="all_tourists_info" type="java.lang.Iterable<ru.ssau.tourism.entities.TouristInfo>"*/-->
+            <tr th:each="info: ${all_tourists_info}">
+                <td th:text="${info.tourist.name}">Имя</td>
+                <td th:text="${info.tourist.surname}">Фамилия</td>
+                <td th:text="${info.passport}">Паспорт</td>
+                <td th:text="${info.city}">Город</td>
+                <td th:text="${info.country}">Страна</td>
+                <td th:text="${info.phone_number}">Телефонный номе</td>
+                <td th:text="${info.index}">Индекс</td>
+                <td>
+                    <div class="btn-group">
+                        <a class="btn btn-default" role="button"
+                           th:href="@{'/tourists-info/edit?id=' + ${info.id}}">Изменить</a>
+
+                        <a class="btn btn-default" role="button"
+                           th:onclick="'javascript:deleteAndRefresh(\'' + ${info.id} +'\',\''+ ${#httpServletRequest.getRequestURI()} + '\');'">
+                            Удалить
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+</body>
+</html>

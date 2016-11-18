@@ -24,7 +24,7 @@ public class TouristsController {
 	@GetMapping("/all")
 	@ResponseBody
 	public Iterable<Tourist> getAll() {
-		return service.getTourists();
+		return service.getAllTourists();
 	}
 
 	@PostMapping("/delete/{id}")
@@ -37,7 +37,7 @@ public class TouristsController {
 
 	@GetMapping()
 	public String home(Model m) {
-		m.addAttribute("allTourists", getAll());
+		m.addAttribute("all_tourists", getAll());
 		return "tourists";
 	}
 
@@ -50,7 +50,7 @@ public class TouristsController {
 	}
 
 	@PostMapping("/" + ActionUtil.EDIT_TYPE)
-	public String edit(@ModelAttribute("tourist") Tourist tourist) {
+	public String edit(@ModelAttribute Tourist tourist) {
 		service.saveTourist(tourist);
 		return "redirect:/tourists";
 	}
@@ -65,6 +65,7 @@ public class TouristsController {
 
 	@PostMapping("/" + ActionUtil.ADD_TYPE)
 	public String add(@ModelAttribute Tourist tourist) {
-		return "";
+		service.saveTourist(tourist);
+		return "redirect:/tourists";
 	}
 }

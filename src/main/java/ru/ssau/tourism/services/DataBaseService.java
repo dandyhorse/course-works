@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.ssau.tourism.entities.Tour;
 import ru.ssau.tourism.entities.Tourist;
+import ru.ssau.tourism.entities.TouristInfo;
 import ru.ssau.tourism.repositories.TourRepository;
+import ru.ssau.tourism.repositories.TouristInfoRepository;
 import ru.ssau.tourism.repositories.TouristRepository;
 
 
@@ -13,11 +15,13 @@ public class DataBaseService {
 
 	private final TourRepository tourRepository;
 	private final TouristRepository touristRepository;
+	private final TouristInfoRepository touristInfoRepository;
 
 	@Autowired
-	public DataBaseService(TourRepository tourRepository, TouristRepository touristRepository) {
+	public DataBaseService(TourRepository tourRepository, TouristRepository touristRepository, TouristInfoRepository touristInfoRepository) {
 		this.tourRepository = tourRepository;
 		this.touristRepository = touristRepository;
+		this.touristInfoRepository = touristInfoRepository;
 	}
 
 	// tours
@@ -44,7 +48,7 @@ public class DataBaseService {
 		return touristRepository.findOne(id);
 	}
 
-	public Iterable<Tourist> getTourists() {
+	public Iterable<Tourist> getAllTourists() {
 		return touristRepository.findAll();
 	}
 
@@ -55,4 +59,23 @@ public class DataBaseService {
 	public void deleteTourist(Long id) {
 		touristRepository.delete(id);
 	}
+
+	// tourists-infos
+
+	public Iterable<TouristInfo> getAllTouristInfos() {
+		return touristInfoRepository.findAll();
+	}
+
+	public TouristInfo getTouristInfo(Long id) {
+		return touristInfoRepository.findOne(id);
+	}
+
+	public TouristInfo saveTouristInfo(TouristInfo touristInfo) {
+		return touristInfoRepository.save(touristInfo);
+	}
+
+	public void deleteTouristInfo(Long id) {
+		touristInfoRepository.delete(id);
+	}
+
 }
