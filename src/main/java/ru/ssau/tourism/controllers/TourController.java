@@ -24,7 +24,7 @@ public class TourController {
 	@RequestMapping("/all")
 	@ResponseBody
 	public Iterable<Tour> getAll() {
-		return service.getTours();
+		return service.getAllTours();
 	}
 
 	@PostMapping("/delete/{id}")
@@ -34,8 +34,8 @@ public class TourController {
 	}
 
 	// MVC
-	
-	@RequestMapping
+
+	@GetMapping
 	public String home(Model m) {
 		m.addAttribute("all_tours", getAll());
 		return "tours";

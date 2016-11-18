@@ -35,7 +35,7 @@ public class TouristInfoController {
 
 	// MVC
 
-	@GetMapping()
+	@GetMapping
 	public String home(Model m) {
 		m.addAttribute("all_tourists_info", getAll());
 		return "tourists-info";

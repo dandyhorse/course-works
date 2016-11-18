@@ -10,12 +10,12 @@ import ru.ssau.tourism.utils.ActionUtil;
 
 @Controller
 @RequestMapping("/tourists")
-public class TouristsController {
+public class TouristController {
 
 	private final DataBaseService service;
 
 	@Autowired
-	public TouristsController(DataBaseService service) {
+	public TouristController(DataBaseService service) {
 		this.service = service;
 	}
 
@@ -35,7 +35,7 @@ public class TouristsController {
 
 	// MVC
 
-	@GetMapping()
+	@GetMapping
 	public String home(Model m) {
 		m.addAttribute("all_tourists", getAll());
 		return "tourists";
