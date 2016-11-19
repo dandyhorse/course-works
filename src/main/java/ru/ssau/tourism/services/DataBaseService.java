@@ -68,7 +68,7 @@ public class DataBaseService {
 
 	// tourists-infos
 
-	public Iterable<TouristInfo> getAllTouristInfos() {
+	public Iterable<TouristInfo> getAllTouristInfo() {
 		return touristInfoRepository.findAll();
 	}
 

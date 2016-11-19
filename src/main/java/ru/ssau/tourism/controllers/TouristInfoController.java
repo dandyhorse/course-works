@@ -24,7 +24,7 @@ public class TouristInfoController {
 	@GetMapping("/all")
 	@ResponseBody
 	public Iterable<TouristInfo> getAll() {
-		return service.getAllTouristInfos();
+		return service.getAllTouristInfo();
 	}
 
 	@PostMapping("/delete/{id}")

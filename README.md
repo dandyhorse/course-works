@@ -9,4 +9,10 @@ Run server
 gradlew run
 ```
 
-Then open [site](localhost:8080/app)
+Then open in browser http://localhost:8080/app/
+
+Technologies:
+- Java, Kotlin, JS
+- Thymeleaf
+- Spring Boot
+- Spring Data
