@@ -4,7 +4,48 @@
       layout:decorate="~{layouts/layout}">
 <body>
 <section layout:fragment="content">
-
+    <!--/*@thymesVar id="tour" type="ru.ssau.tourism.entities.Tour"*/-->
+    <!--/*@thymesVar id="all_tours" type="java.lang.Iterable<ru.ssau.tourism.entities.Tour>"*/-->
+    <!--/*@thymesVar id="season" type="ru.ssau.tourism.entities.Season"*/-->
+    <!--/*@thymesVar id="action_type" type="java.lang.String"*/-->
+    <form id="season-form" method="POST" action="#" th:object="${season}"
+          th:action="@{'/seasons/' + ${action_type}}"
+          class="form-horizontal">
+        <input type="hidden" th:field="*{id}"/>
+        <div class="form-group">
+            <label for="tourlist" class="control-lable" data-live-search="true">Тур</label>
+            <select class="form-control" id="tourlist" form="season-form" th:field="*{tour}">
+                <option th:each="tour : ${all_tours}" th:value="${tour.id}"
+                        th:text="${tour.title + ', '+ tour.price}">
+                    Тур
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-lable">Начало сезона(год-месяц-день)</label>
+            <input type="date" th:field="*{startDate}" placeholder="Start date"
+                   class="form-control input-sm"/>
+        </div>
+        <div class="form-group">
+            <label class="control-lable">Конец сезона(год-месяц-день)</label>
+            <input type="date" th:field="*{finishDate}" placeholder="Finish date"
+                   class="form-control input-sm"/>
+        </div>
+        <div class="form-check">
+            <label for="is_finished" class="form-check-label">Сезон закончен</label>
+            <input id="is_finished" type="checkbox" th:field="*{finished}"
+                   class="form-check-input"/>
+        </div>
+        <div class="form-group">
+            <label class="control-lable">Количество мест</label>
+            <input type="number" th:field="*{countOfPlaces}" placeholder="Count of places"
+                   class="form-control input-sm"/>
+        </div>
+        <div class="form-actions">
+            <input type="submit" value="Подтвердить" class="btn btn-success"/>
+            <a role="button" th:href="@{/seasons}" class="btn btn-default">Отмена</a>
+        </div>
+    </form>
 </section>
 </body>
 </html>

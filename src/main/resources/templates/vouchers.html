@@ -8,9 +8,7 @@
         <div class="jumbotron">
             <h3>Путёвки</h3>
         </div>
-
         <a th:href="@{/vouchers/add}" class="btn btn-success" role="button">Добавить запись</a>
-
         <table class="table table-hover">
             <thead>
             <tr>
@@ -23,7 +21,6 @@
                 <th>Действия</th>
             </tr>
             </thead>
-
             <tbody>
             <!--/*@thymesVar id="voucher" type="ru.ssau.tourism.entities.Voucher"*/-->
             <!--/*@thymesVar id="all_vouchers" type="java.lang.Iterable<ru.ssau.tourism.entities.Voucher>"*/-->
@@ -38,7 +35,6 @@
                     <div class="btn-group">
                         <a class="btn btn-default" role="button"
                            th:href="@{'/vouchers/edit?id=' + ${voucher.id}}">Изменить</a>
-
                         <a class="btn btn-default" role="button" th:onclick="'javascript:deleteAndRefresh(\'' +
                            ${voucher.id} +'\',\''+ ${#httpServletRequest.getRequestURI()} + '\');'">
                             Удалить

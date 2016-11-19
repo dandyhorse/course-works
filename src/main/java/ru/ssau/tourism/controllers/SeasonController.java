@@ -58,8 +58,8 @@ public class SeasonController {
 
 	@GetMapping("/" + ActionUtil.ADD_TYPE)
 	public String getPageForAdd(Model m) {
-		Season payment = new Season();
-		m.addAttribute("payment", payment);
+		Season season = new Season();
+		m.addAttribute("season", season);
 		m.addAttribute("all_tours", service.getAllTours());
 		m.addAttribute("action_type", ActionUtil.ADD_TYPE);
 		return "forms/season";

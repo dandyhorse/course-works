@@ -4,7 +4,38 @@
       layout:decorate="~{layouts/layout}">
 <body>
 <section layout:fragment="content">
-
+    <!--/*@thymesVar id="voucher" type="ru.ssau.tourism.entities.Voucher"*/-->
+    <!--/*@thymesVar id="all_vouchers" type="java.lang.Iterable<ru.ssau.tourism.entities.Voucher>"*/-->
+    <!--/*@thymesVar id="payment" type="ru.ssau.tourism.entities.Payment"*/-->
+    <!--/*@thymesVar id="action_type" type="java.lang.String"*/-->
+    <form id="payment-form" method="POST" action="#" th:object="${payment}"
+          th:action="@{'/payments/' + ${action_type}}" class="form-group">
+        <input type="hidden" th:field="*{id}"/>
+        <div class="form-group">
+            <label for="voucherList" class="control-lable">Путёвка</label>
+            <select id="voucherList" form="payment-form" th:field="*{voucher}"
+                    data-live-search="true" class="form-control">
+                <option th:each="voucher : ${all_vouchers}" th:value="${voucher.id}"
+                        th:text="${voucher.id}">
+                    Номер путёвки!
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-lable">День оплаты(год-месяц-день)</label>
+            <input type="date" th:field="*{payDay}" placeholder="Pay day"
+                   class="form-control input-sm"/>
+        </div>
+        <div class="form-group">
+            <label class="control-lable">Сумма</label>
+            <input type="number" th:field="*{amount}" placeholder="Amount"
+                   class="form-control input-sm"/>
+        </div>
+        <div class="form-actions">
+            <input type="submit" value="Подтвердить" class="btn btn-success"/>
+            <a role="button" th:href="@{/payments}" class="btn btn-default">Отмена</a>
+        </div>
+    </form>
 </section>
 </body>
 </html>

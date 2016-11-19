@@ -12,5 +12,5 @@ class Tourist {
 	@Column
 	var surname: String? = null
 	@Column
-	 var fatherName: String? = null
+	var fatherName: String? = null
 }

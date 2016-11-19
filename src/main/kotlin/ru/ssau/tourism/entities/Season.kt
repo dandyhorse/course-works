@@ -1,5 +1,6 @@
 package ru.ssau.tourism.entities
 
+import org.springframework.format.annotation.DateTimeFormat
 import java.time.LocalDate
 import javax.persistence.*
 
@@ -12,11 +13,13 @@ class Season {
 	@JoinColumn(name = "tour_id")
 	var tour: Tour? = null
 	@Column
-	 var startDate: LocalDate? = null
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	var startDate: LocalDate? = null
 	@Column
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	var finishDate: LocalDate? = null
 	@Column
-	var isFinished: Boolean? = null
+	var finished: Boolean? = false
 	@Column
 	var countOfPlaces: Int? = null
 }

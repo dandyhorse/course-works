@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS season (
 	tour_id bigint not null,
 	start_date date not null,
 	finish_date date not null,
-	is_finished boolean not null,
+	finished boolean not null,
 	count_of_places int not null,
 	foreign key (tour_id) references tour (id)
 );
