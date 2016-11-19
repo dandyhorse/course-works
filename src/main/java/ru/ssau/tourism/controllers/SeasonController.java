@@ -38,7 +38,7 @@ public class SeasonController {
 	@GetMapping
 	public String home(Model m) {
 		m.addAttribute("all_seasons", getAll());
-		return "payments";
+		return "seasons";
 	}
 
 	@GetMapping("/" + ActionUtil.EDIT_TYPE)

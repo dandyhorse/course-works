@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<body>
+<section layout:fragment="content">
+    <div class="container">
+        <div class="jumbotron">
+            <h3>Сезоны</h3>
+        </div>
+
+        <a th:href="@{/seasons/add}" class="btn btn-success" role="button">Добавить запись</a>
+
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Начало сезона</th>
+                <th>Конец сезона</th>
+                <th>Название тура</th>
+                <th>Действия</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <!--/*@thymesVar id="season" type="ru.ssau.tourism.entities.Season"*/-->
+            <!--/*@thymesVar id="all_seasons" type="java.lang.Iterable<ru.ssau.tourism.entities.Season>"*/-->
+            <tr th:each="season: ${all_seasons}">
+                <td th:text="${season.startDate}">Начало сезона</td>
+                <td th:text="${season.finishDate}">Конец сезона</td>
+                <td th:text="${season.tour.title}">Название тура</td>
+                <td>
+                    <div class="btn-group">
+                        <a class="btn btn-default" role="button"
+                           th:href="@{'/seasonss/edit?id=' + ${season.id}}">Изменить</a>
+
+                        <a class="btn btn-default" role="button" th:onclick="'javascript:deleteAndRefresh(\'' +
+                           ${season.id} +'\',\''+ ${#httpServletRequest.getRequestURI()} + '\');'">
+                            Удалить
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+</body>
+</html>
