@@ -25,7 +25,7 @@ apply plugin: 'application'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-mainClassName = "ru.ssau.turism.Application"
+mainClassName = "ru.ssau.tourism.Application"
 
 sourceSets {
     main.java.srcDirs += 'src/main/java'

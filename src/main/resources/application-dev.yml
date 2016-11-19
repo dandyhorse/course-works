@@ -24,4 +24,3 @@ logging:
     org:
       springframework: INFO
       org.hibernate: WARN
-debug: false

@@ -15,9 +15,8 @@ branches:
   - master
 
 script:
-  - gradle check -q
-  - gradle build
-  - gradle assemble
+  - gradle test
+  - gradle build assemble
 
 git:
   depth: 10
