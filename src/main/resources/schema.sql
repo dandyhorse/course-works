@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS tourist (
 	id bigint not null primary key auto_increment,
-	surname varchar(20) not null,
 	name varchar(20) not null,
+	surname varchar(20) not null,
 	father_name varchar(20) not null
 );
 
@@ -19,34 +19,34 @@ CREATE TABLE IF NOT EXISTS season (
 	finish_date date not null,
 	finished boolean not null,
 	count_of_places int not null,
-	foreign key (tour_id) references tour (id)
+	foreign key (tour_id) references tour (id) on update cascade on delete cascade
 );
 
 CREATE TABLE IF NOT EXISTS voucher (
 	id bigint not null primary key auto_increment,
 	tourist_id bigint not null,
 	season_id bigint not null,
-	foreign key (tourist_id) references tourist (id),
-	foreign key (season_id) references season (id)
+	foreign key (tourist_id) references tourist (id) on update cascade on delete cascade,
+	foreign key (season_id) references season (id) on update cascade on delete cascade
 );
 
 CREATE TABLE IF NOT EXISTS payment (
-  id bigint not null primary key,
+  id bigint not null primary key auto_increment,
 	voucher_id bigint not null,
 	pay_day date not null,
 	amount int not null,
-	foreign key (voucher_id) references voucher (id)
+	foreign key (voucher_id) references voucher (id) on update cascade on delete cascade
 );
 
 CREATE TABLE IF NOT EXISTS tourist_info (
   id bigint not null primary key auto_increment,
 	tourist_id bigint not null,
-	passport varchar(10) not null,
+	passport varchar(12) not null,
 	city varchar(20) not null,
 	country varchar(20) not null,
-	phone_number int not null,
+	phone_number varchar(12) not null,
 	index int not null,
-	foreign key (tourist_id) references tourist (id)
+	foreign key (tourist_id) references tourist (id) on update cascade on delete cascade
 );
 
 

@@ -17,7 +17,7 @@ class TouristInfo constructor(
 		@Column
 		var country: String? = null,
 		@Column
-		var phone_number: Int? = null,
+		var phone_number: String? = null,
 		@Column
 		var index: Int? = null
 ) {

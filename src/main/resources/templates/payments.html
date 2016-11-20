@@ -23,7 +23,7 @@
             <!--/*@thymesVar id="all_payments" type="java.lang.Iterable<ru.ssau.tourism.entities.Payment>"*/-->
             <tr th:each="payment: ${all_payments}">
                 <td th:text="${payment.amount}">Сумма</td>
-                <td th:text="${payment.payDay}">Дата оплаты(год-месяц-день)</td>
+                <td th:text="${payment.payDay}">Дата оплаты</td>
                 <td th:text="${payment.voucher.id}">Номер путёвки</td>
                 <td>
                     <div class="btn-group">

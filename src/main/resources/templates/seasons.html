@@ -23,8 +23,8 @@
             <!--/*@thymesVar id="season" type="ru.ssau.tourism.entities.Season"*/-->
             <!--/*@thymesVar id="all_seasons" type="java.lang.Iterable<ru.ssau.tourism.entities.Season>"*/-->
             <tr th:each="season: ${all_seasons}">
-                <td th:text="${season.startDate}">Начало сезона(год-месяц-день)</td>
-                <td th:text="${season.finishDate}">Конец сезона(год-месяц-день)</td>
+                <td th:text="${season.startDate}">Начало сезона</td>
+                <td th:text="${season.finishDate}">Конец сезона</td>
                 <td th:text="${season.finished ? 'да' : 'нет'}">Сезон закончен</td>
                 <td th:text="${season.tour.title}">Название тура</td>
                 <td>

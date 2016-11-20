@@ -7,7 +7,7 @@ server:
 
 spring:
   profiles:
-    active: prod
+    active: dev
   application:
     name: tourism
   mvc:

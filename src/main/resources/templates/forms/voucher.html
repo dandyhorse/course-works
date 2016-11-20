@@ -14,7 +14,7 @@
           th:action="@{'/vouchers/' + ${action_type}}" class="form-group">
         <div class="form-group">
             <label for="voucher_id" class="control-lable">Номер путёвки</label>
-            <input id="voucher_id" type="number" th:field="*{id}" readonly/>
+            <input id="voucher_id" class="form-control" type="number" th:field="*{id}" readonly="readonly"/>
         </div>
         <div class="form-group">
             <label for="touristList" class="col-sm-4 control-lable">Турист</label>
