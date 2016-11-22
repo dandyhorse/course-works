@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.ssau.tourism.entities.TouristInfo;
 import ru.ssau.tourism.services.DataBaseService;
-import ru.ssau.tourism.utils.ActionUtil;
+import ru.ssau.tourism.utils.ActionTypeUtil;
 
 @Controller
 @RequestMapping("/tourists-info")
@@ -41,31 +41,31 @@ public class TouristInfoController {
 		return "tourists-info";
 	}
 
-	@GetMapping("/" + ActionUtil.EDIT_TYPE)
+	@GetMapping("/" + ActionTypeUtil.EDIT_TYPE)
 	public String getPageForEdit(@RequestParam Long id, Model m) {
 		TouristInfo touristInfo = service.getTouristInfo(id);
 		m.addAttribute("tourists_info", touristInfo);
 		m.addAttribute("all_tourists", service.getAllTourists());
-		m.addAttribute("action_type", ActionUtil.EDIT_TYPE);
+		m.addAttribute("action_type", ActionTypeUtil.EDIT_TYPE);
 		return "forms/tourist-info";
 	}
 
-	@PostMapping("/" + ActionUtil.EDIT_TYPE)
+	@PostMapping("/" + ActionTypeUtil.EDIT_TYPE)
 	public String edit(@ModelAttribute TouristInfo touristInfo) {
 		service.saveTouristInfo(touristInfo);
 		return "redirect:/tourists-info";
 	}
 
-	@GetMapping("/" + ActionUtil.ADD_TYPE)
+	@GetMapping("/" + ActionTypeUtil.ADD_TYPE)
 	public String getPageForAdd(Model m) {
 		TouristInfo touristInfo = new TouristInfo();
 		m.addAttribute("tourists_info", touristInfo);
 		m.addAttribute("all_tourists", service.getAllTourists());
-		m.addAttribute("action_type", ActionUtil.ADD_TYPE);
+		m.addAttribute("action_type", ActionTypeUtil.ADD_TYPE);
 		return "forms/tourist-info";
 	}
 
-	@PostMapping("/" + ActionUtil.ADD_TYPE)
+	@PostMapping("/" + ActionTypeUtil.ADD_TYPE)
 	public String add(@ModelAttribute TouristInfo touristInfo) {
 		service.saveTouristInfo(touristInfo);
 		return "redirect:/tourists-info";

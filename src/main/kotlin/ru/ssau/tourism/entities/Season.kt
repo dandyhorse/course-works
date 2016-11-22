@@ -13,10 +13,10 @@ class Season constructor(
 		@JoinColumn(name = "tour_id")
 		var tour: Tour? = null,
 		@Column
-		@DateTimeFormat(pattern = "yyyy-MM-dd")
+		@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
 		var startDate: LocalDate? = null,
 		@Column
-		@DateTimeFormat(pattern = "yyyy-MM-dd")
+		@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
 		var finishDate: LocalDate? = null,
 		@Column
 		var finished: Boolean? = null,

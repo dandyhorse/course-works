@@ -4,6 +4,9 @@
       layout:decorate="~{layouts/layout}">
 <body>
 <section layout:fragment="content">
+    <div class="jumbotron">
+        <h3>Сезон</h3>
+    </div>
     <!--/*@thymesVar id="tour" type="ru.ssau.tourism.entities.Tour"*/-->
     <!--/*@thymesVar id="all_tours" type="java.lang.Iterable<ru.ssau.tourism.entities.Tour>"*/-->
     <!--/*@thymesVar id="season" type="ru.ssau.tourism.entities.Season"*/-->
@@ -23,14 +26,28 @@
         </div>
         <div class="form-group">
             <label class="control-lable">Начало сезона</label>
-            <input type="date" th:field="*{startDate}" placeholder="Start date"
-                   class="form-control input-sm"/>
+            <div class='input-group date' id='season_datepicker1'>
+                <input type="text" th:field="*{startDate}" placeholder="Start date"
+                       class="form-control input-sm"/>
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
         </div>
         <div class="form-group">
             <label class="control-lable">Конец сезона</label>
-            <input type="date" th:field="*{finishDate}" placeholder="Finish date"
-                   class="form-control input-sm"/>
+            <div class='input-group date' id='season_datepicker2'>
+                <input type="text" th:field="*{finishDate}" placeholder="Finish date"
+                       class="form-control input-sm"/>
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
         </div>
+        <script type="text/javascript">
+            setDatapickerListener('season_datepicker1');
+            setDatapickerListener('season_datepicker2');
+        </script>
         <div class="form-check">
             <label for="is_finished" class="form-check-label">Сезон закончен</label>
             <input id="is_finished" type="checkbox" th:field="*{finished}"

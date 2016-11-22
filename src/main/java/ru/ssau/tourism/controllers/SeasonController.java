@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.ssau.tourism.entities.Season;
 import ru.ssau.tourism.services.DataBaseService;
-import ru.ssau.tourism.utils.ActionUtil;
+import ru.ssau.tourism.utils.ActionTypeUtil;
 
 @Controller
 @RequestMapping("/seasons")
@@ -41,31 +41,31 @@ public class SeasonController {
 		return "seasons";
 	}
 
-	@GetMapping("/" + ActionUtil.EDIT_TYPE)
+	@GetMapping("/" + ActionTypeUtil.EDIT_TYPE)
 	public String getPageForEdit(@RequestParam Long id, Model m) {
 		Season season = service.getSeason(id);
 		m.addAttribute("season", season);
 		m.addAttribute("all_tours", service.getAllTours());
-		m.addAttribute("action_type", ActionUtil.EDIT_TYPE);
+		m.addAttribute("action_type", ActionTypeUtil.EDIT_TYPE);
 		return "forms/season";
 	}
 
-	@PostMapping("/" + ActionUtil.EDIT_TYPE)
+	@PostMapping("/" + ActionTypeUtil.EDIT_TYPE)
 	public String edit(@ModelAttribute Season season) {
 		service.saveSeason(season);
 		return "redirect:/seasons";
 	}
 
-	@GetMapping("/" + ActionUtil.ADD_TYPE)
+	@GetMapping("/" + ActionTypeUtil.ADD_TYPE)
 	public String getPageForAdd(Model m) {
 		Season season = new Season();
 		m.addAttribute("season", season);
 		m.addAttribute("all_tours", service.getAllTours());
-		m.addAttribute("action_type", ActionUtil.ADD_TYPE);
+		m.addAttribute("action_type", ActionTypeUtil.ADD_TYPE);
 		return "forms/season";
 	}
 
-	@PostMapping("/" + ActionUtil.ADD_TYPE)
+	@PostMapping("/" + ActionTypeUtil.ADD_TYPE)
 	public String add(@ModelAttribute Season season) {
 		service.saveSeason(season);
 		return "redirect:/seasons";

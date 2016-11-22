@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.ssau.tourism.entities.Voucher;
 import ru.ssau.tourism.services.DataBaseService;
-import ru.ssau.tourism.utils.ActionUtil;
+import ru.ssau.tourism.utils.ActionTypeUtil;
 
 @Controller
 @RequestMapping("/vouchers")
@@ -41,29 +41,29 @@ public class VoucherController {
 		return "vouchers";
 	}
 
-	@GetMapping("/" + ActionUtil.EDIT_TYPE)
+	@GetMapping("/" + ActionTypeUtil.EDIT_TYPE)
 	public String getPageForEdit(@RequestParam Long id, Model m) {
 		Voucher voucher = service.getVoucher(id);
 		setAttributes(m, voucher);
-		m.addAttribute("action_type", ActionUtil.EDIT_TYPE);
+		m.addAttribute("action_type", ActionTypeUtil.EDIT_TYPE);
 		return "forms/voucher";
 	}
 
-	@PostMapping("/" + ActionUtil.EDIT_TYPE)
+	@PostMapping("/" + ActionTypeUtil.EDIT_TYPE)
 	public String edit(@ModelAttribute Voucher voucher) {
 		service.saveVoucher(voucher);
 		return "redirect:/vouchers";
 	}
 
-	@GetMapping("/" + ActionUtil.ADD_TYPE)
+	@GetMapping("/" + ActionTypeUtil.ADD_TYPE)
 	public String getPageForAdd(Model m) {
 		Voucher voucher = new Voucher();
 		setAttributes(m, voucher);
-		m.addAttribute("action_type", ActionUtil.ADD_TYPE);
+		m.addAttribute("action_type", ActionTypeUtil.ADD_TYPE);
 		return "forms/voucher";
 	}
 
-	@PostMapping("/" + ActionUtil.ADD_TYPE)
+	@PostMapping("/" + ActionTypeUtil.ADD_TYPE)
 	public String add(@ModelAttribute Voucher voucher) {
 		service.saveVoucher(voucher);
 		return "redirect:/vouchers";

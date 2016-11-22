@@ -13,7 +13,7 @@ class Payment constructor(
 		@JoinColumn(name = "voucher_id")
 		var voucher: Voucher? = null,
 		@Column
-		@DateTimeFormat(pattern = "yyyy-MM-dd")
+		@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
 		var payDay: LocalDate? = null,
 		@Column
 		var amount: Int? = null

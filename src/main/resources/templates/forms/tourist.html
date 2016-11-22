@@ -4,6 +4,9 @@
       layout:decorate="~{layouts/layout}">
 <body>
 <section layout:fragment="content">
+    <div class="jumbotron">
+        <h3>Турист</h3>
+    </div>
     <!--/*@thymesVar id="tourist" type="ru.ssau.tourism.entities.Tourist"*/-->
     <!--/*@thymesVar id="action_type" type="java.lang.String"*/-->
     <form method="POST" action="#" th:object="${tourist}" th:action="@{'/tourists/' + ${action_type}}"

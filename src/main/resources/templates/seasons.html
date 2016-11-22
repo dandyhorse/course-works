@@ -30,7 +30,7 @@
                 <td>
                     <div class="btn-group">
                         <a class="btn btn-default" role="button"
-                           th:href="@{'/seasonss/edit?id=' + ${season.id}}">Изменить</a>
+                           th:href="@{'/seasons/edit?id=' + ${season.id}}">Изменить</a>
                         <a class="btn btn-default" role="button" th:onclick="'javascript:deleteAndRefresh(\'' +
                            ${season.id} +'\',\''+ ${#httpServletRequest.getRequestURI()} + '\');'">
                             Удалить

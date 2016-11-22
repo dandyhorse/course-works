@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.ssau.tourism.entities.Tour;
 import ru.ssau.tourism.services.DataBaseService;
-import ru.ssau.tourism.utils.ActionUtil;
+import ru.ssau.tourism.utils.ActionTypeUtil;
 
 @Controller
 @RequestMapping("/tours")
@@ -41,29 +41,29 @@ public class TourController {
 		return "tours";
 	}
 
-	@GetMapping("/" + ActionUtil.EDIT_TYPE)
+	@GetMapping("/" + ActionTypeUtil.EDIT_TYPE)
 	public String getPageForEdit(@RequestParam Long id, Model m) {
 		Tour tour = service.getTour(id);
 		m.addAttribute("tour", tour);
-		m.addAttribute("action_type", ActionUtil.EDIT_TYPE);
+		m.addAttribute("action_type", ActionTypeUtil.EDIT_TYPE);
 		return "forms/tour";
 	}
 
-	@PostMapping("/" + ActionUtil.EDIT_TYPE)
+	@PostMapping("/" + ActionTypeUtil.EDIT_TYPE)
 	public String edit(@ModelAttribute Tour tour) {
 		service.saveTour(tour);
 		return "redirect:/tours";
 	}
 
-	@GetMapping("/" + ActionUtil.ADD_TYPE)
+	@GetMapping("/" + ActionTypeUtil.ADD_TYPE)
 	public String getPageForAdd(Model m) {
 		Tour tour = new Tour();
 		m.addAttribute("tour", tour);
-		m.addAttribute("action_type", ActionUtil.ADD_TYPE);
+		m.addAttribute("action_type", ActionTypeUtil.ADD_TYPE);
 		return "forms/tour";
 	}
 
-	@PostMapping("/" + ActionUtil.ADD_TYPE)
+	@PostMapping("/" + ActionTypeUtil.ADD_TYPE)
 	public String add(@ModelAttribute Tour tour) {
 		service.saveTour(tour);
 		return "redirect:/tours";
