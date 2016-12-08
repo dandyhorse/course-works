@@ -1,0 +1,21 @@
+install: true
+language: java
+
+sudo: true
+
+cache:
+  directories:
+    - $HOME/.m2
+
+jdk:
+  - oraclejdk8
+
+branches:
+  only:
+  - master
+
+script:
+  - mvnw clean verify
+
+git:
+  depth: 10
