@@ -1,5 +1,7 @@
 package ru.ssau.realtor.entities;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -12,6 +14,7 @@ public class Trade {
 	@Column
 	private Long cost;
 	@Column
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
 	private LocalDate tradeDate;
 	@OneToOne
 	@JoinColumn(name = "id_flat")

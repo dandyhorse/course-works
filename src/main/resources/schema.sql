@@ -1,10 +1,10 @@
-CREATE TABLE seller (
+CREATE TABLE IF NOT EXISTS seller (
   id           BIGINT      NOT NULL PRIMARY KEY AUTO_INCREMENT,
   fio          VARCHAR(40) NOT NULL,
   phone_number VARCHAR(20) NOT NULL
 );
 
-CREATE TABLE customer (
+CREATE TABLE IF NOT EXISTS customer (
   id           BIGINT      NOT NULL PRIMARY KEY AUTO_INCREMENT,
   fio          VARCHAR(20) NOT NULL,
   phone_number VARCHAR(20) NOT NULL,
@@ -12,7 +12,7 @@ CREATE TABLE customer (
   post         VARCHAR(20) NOT NULL
 );
 
-CREATE TABLE address (
+CREATE TABLE IF NOT EXISTS address (
   id          BIGINT      NOT NULL PRIMARY KEY AUTO_INCREMENT,
   region      VARCHAR(20) NOT NULL,
   street      VARCHAR(20) NOT NULL,
@@ -20,18 +20,18 @@ CREATE TABLE address (
   flat_number INT
 );
 
-CREATE TABLE flat (
+CREATE TABLE IF NOT EXISTS flat (
   id             BIGINT      NOT NULL PRIMARY KEY AUTO_INCREMENT,
   type_home      VARCHAR(20) NOT NULL,
   common_space   INT         NOT NULL,
   resident_space INT         NOT NULL,
-  id_adress      BIGINT      NOT NULL,
-  CONSTRAINT flat_fk FOREIGN KEY (id_adress) REFERENCES address (id),
+  id_address     BIGINT      NOT NULL,
+  CONSTRAINT flat_fk FOREIGN KEY (id_address) REFERENCES address (id),
 );
 
-CREATE TABLE trade (
+CREATE TABLE IF NOT EXISTS trade (
   id          BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  trade_date  DATE   NOT NULL,
+  trade_date  TIMESTAMP   NOT NULL,
   cost        BIGINT NOT NULL,
   id_customer BIGINT NOT NULL,
   id_seller   BIGINT NOT NULL,

@@ -18,7 +18,6 @@ public class Flat {
 	@Column
 	private int residentSpace;
 
-
 	public Long getId() {
 		return id;
 	}

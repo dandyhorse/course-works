@@ -24,12 +24,21 @@ project {
         }
         dependency {
             groupId 'org.springframework.boot'
+            artifactId 'spring-boot-starter-web'
+        }
+        dependency {
+            groupId 'org.springframework.boot'
             artifactId 'spring-boot-starter-test'
             scope 'test'
         }
         dependency {
             groupId 'com.h2database'
             artifactId 'h2'
+        }
+        dependency {
+            groupId 'org.springframework.data'
+            artifactId 'spring-data-jpa'
+            version '1.10.5.RELEASE'
         }
     }
 
