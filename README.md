@@ -1,6 +1,11 @@
 ## Realtor application
 
-start program:
+start program on mac or linux:
 ```
-gradlew spring-boot:run
+./gradlew run
+```
+
+on windows:
+```
+gradlew.bat run
 ```
