@@ -10,9 +10,9 @@ branches:
   only:
   - master
 
-before_install: chmod +x mvnw
+before_install: chmod +x gradlew
 
-script: ./mvnw clean verify
+script: ./gradlew check assemble
 
 git:
   depth: 10

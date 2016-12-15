@@ -1,7 +1,6 @@
 target
 .idea
-.polyglot.pom.groovy
 logs
 *.iml
-
-
+build
+.gradle

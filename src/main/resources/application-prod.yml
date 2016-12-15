@@ -4,7 +4,7 @@ spring:
     password:
     url: jdbc:mysql://localhost/realtor-db
     initialize: false
-#    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.jdbc.Driver
   jpa:
     show-sql: false
     database: mysql

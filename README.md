@@ -2,5 +2,5 @@
 
 start program:
 ```
-mvnw spring-boot:run
+gradlew spring-boot:run
 ```
