@@ -30,12 +30,12 @@ CREATE TABLE IF NOT EXISTS flat (
 );
 
 CREATE TABLE IF NOT EXISTS trade (
-  id          BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  trade_date  TIMESTAMP   NOT NULL,
-  cost        BIGINT NOT NULL,
-  id_customer BIGINT NOT NULL,
-  id_seller   BIGINT NOT NULL,
-  id_flat     BIGINT NOT NULL,
+  id          BIGINT    NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  trade_date  TIMESTAMP NOT NULL,
+  cost        BIGINT    NOT NULL,
+  id_customer BIGINT    NOT NULL,
+  id_seller   BIGINT    NOT NULL,
+  id_flat     BIGINT    NOT NULL,
   CONSTRAINT trade_fk FOREIGN KEY (id_customer) REFERENCES customer (id),
   CONSTRAINT trade_fk2 FOREIGN KEY (id_seller) REFERENCES seller (id),
   CONSTRAINT trade_fk3 FOREIGN KEY (id_flat) REFERENCES flat (id)

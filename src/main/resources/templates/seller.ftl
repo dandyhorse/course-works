@@ -2,11 +2,9 @@
 <main>
     <div id="content">
         <div class="innertube">
-            <#list sellers as seller>
-                ${seller.id}, ${seller.fio}, ${seller.phoneNumber}<br>
-
-            </#list>
-
+        <#list sellers as seller>
+            ${seller.id}, ${seller.fio}, ${seller.phoneNumber}<br>
+        </#list>
 
         </div>
     </div>

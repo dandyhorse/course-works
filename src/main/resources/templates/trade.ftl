@@ -4,11 +4,7 @@
         <div class="innertube">
 
         <#list trades as trade>
-            <EntityLocation>
-                <nc:Location id="${trade.tradeDate}" dataid="${trade.id}">
-                </nc:Location>
-            </EntityLocation>
-            <br>
+            ${trade.tradeDate}, ${trade.id}, ${trade.seller.fio}<br>
         </#list>
 
         </div>

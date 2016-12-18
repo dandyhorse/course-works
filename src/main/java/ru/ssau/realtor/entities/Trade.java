@@ -1,10 +1,11 @@
 package ru.ssau.realtor.entities;
 
-import lombok.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Data
@@ -18,7 +19,7 @@ public class Trade {
 	private Long cost;
 	@Column
 	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-	private LocalDate tradeDate;
+	private Date tradeDate;
 	@OneToOne
 	@JoinColumn(name = "id_flat")
 	private Flat flat;
