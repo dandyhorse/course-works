@@ -41,7 +41,7 @@ public class DataBaseServiceTest {
 				Seller.of("Fuckoff", "88005553535"),
 				Seller.of("Boris", "+1-754-9635-487"));
 		when(sellerRepository.findAll()).thenReturn(data);
-		Iterable<Seller> allSellers = service.getAllSeller();
+		Iterable<Seller> allSellers = service.getAllSellers();
 		ArrayList<Seller> expected = new ArrayList<>(data);
 		assertThat(allSellers, equalTo(expected));
 	}

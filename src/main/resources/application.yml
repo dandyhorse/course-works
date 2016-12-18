@@ -8,4 +8,4 @@ spring:
 
 server:
   port: ${port:8080}
-  contextPath: /realtor
+  contextPath: /

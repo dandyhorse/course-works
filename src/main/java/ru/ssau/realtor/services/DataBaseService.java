@@ -5,6 +5,9 @@ import org.springframework.stereotype.Service;
 import ru.ssau.realtor.entities.Seller;
 import ru.ssau.realtor.repository.SellerRepository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class DataBaseService {
 
@@ -15,7 +18,14 @@ public class DataBaseService {
 		this.sellerRepository = sellerRepository;
 	}
 
-	public Iterable<Seller> getAllSeller() {
-		return sellerRepository.findAll();
+	public List<Seller> getAllSellers() {
+		Iterable<Seller> all = sellerRepository.findAll();
+		return toList(all);
+	}
+
+	private <T> List<T> toList(Iterable<T> all) {
+		List<T> items = new ArrayList<>();
+		all.forEach(items::add);
+		return items;
 	}
 }

@@ -1,8 +1,15 @@
 package ru.ssau.realtor.entities;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 @Entity
+@Data
+@EqualsAndHashCode(of = "id")
+@NoArgsConstructor
 public class Seller {
 
 	@Id
@@ -12,8 +19,6 @@ public class Seller {
 	private String FIO;
 	@Column
 	private String phoneNumber;
-
-	public Seller() {}
 
 	public Seller(String FIO, String phoneNumber) {
 		this.FIO = FIO;

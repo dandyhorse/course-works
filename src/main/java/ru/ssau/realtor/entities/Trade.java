@@ -1,11 +1,17 @@
 package ru.ssau.realtor.entities;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
+@Data
+@EqualsAndHashCode(of = "id")
+@NoArgsConstructor
 public class Trade {
 
 	@Id
@@ -26,51 +32,4 @@ public class Trade {
 	@JoinColumn(name = "id_seller")
 	private Seller seller;
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Long getCost() {
-		return cost;
-	}
-
-	public void setCost(Long cost) {
-		this.cost = cost;
-	}
-
-	public LocalDate getTradeDate() {
-		return tradeDate;
-	}
-
-	public void setTradeDate(LocalDate tradeDate) {
-		this.tradeDate = tradeDate;
-	}
-
-	public Flat getFlat() {
-		return flat;
-	}
-
-	public void setFlat(Flat flat) {
-		this.flat = flat;
-	}
-
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-
-	public Seller getSeller() {
-		return seller;
-	}
-
-	public void setSeller(Seller seller) {
-		this.seller = seller;
-	}
 }
