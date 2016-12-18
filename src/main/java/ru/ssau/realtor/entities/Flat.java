@@ -1,15 +1,12 @@
 package ru.ssau.realtor.entities;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Data
 @EqualsAndHashCode(of = "id")
-@NoArgsConstructor
 public class Flat {
 
 	@Id

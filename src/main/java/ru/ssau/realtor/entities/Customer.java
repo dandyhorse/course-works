@@ -1,22 +1,19 @@
 package ru.ssau.realtor.entities;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Data
 @EqualsAndHashCode(of = "id")
-@NoArgsConstructor
 public class Customer {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	@Column
-	private String FIO;
+	private String fio;
 	@Column
 	private String phoneNumber;
 	@Column

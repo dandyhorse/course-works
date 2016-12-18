@@ -1,8 +1,6 @@
 package ru.ssau.realtor.entities;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -11,7 +9,6 @@ import java.time.LocalDate;
 @Entity
 @Data
 @EqualsAndHashCode(of = "id")
-@NoArgsConstructor
 public class Trade {
 
 	@Id

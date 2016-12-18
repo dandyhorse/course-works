@@ -1,29 +1,23 @@
 package ru.ssau.realtor.entities;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Data
 @EqualsAndHashCode(of = "id")
-@NoArgsConstructor
 public class Seller {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	@Column
-	private String FIO;
+	private String fio;
 	@Column
 	private String phoneNumber;
 
-	public Seller(String FIO, String phoneNumber) {
-		this.FIO = FIO;
-		this.phoneNumber = phoneNumber;
-	}
+	public Seller() {}
 
 	public Long getId() {
 		return id;
@@ -33,12 +27,12 @@ public class Seller {
 		this.id = id;
 	}
 
-	public String getFIO() {
-		return FIO;
+	public String getFio() {
+		return fio;
 	}
 
-	public void setFIO(String FIO) {
-		this.FIO = FIO;
+	public void setFio(String fio) {
+		this.fio = fio;
 	}
 
 	public String getPhoneNumber() {
@@ -50,6 +44,9 @@ public class Seller {
 	}
 
 	public static Seller of(String fio, String number) {
-		return new Seller(fio, number);
+		Seller seller = new Seller();
+		seller.setFio(fio);
+		seller.setPhoneNumber(number);
+		return seller;
 	}
 }

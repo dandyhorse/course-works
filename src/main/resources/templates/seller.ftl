@@ -2,12 +2,11 @@
 <main>
     <div id="content">
         <div class="innertube">
+            <#list sellers as seller>
+                ${seller.id}, ${seller.fio}, ${seller.phoneNumber}<br>
 
-            <h2>Main page</h2>
+            </#list>
 
-            <div class="jumbotron">
-                <h4>Realtor's database</h4>
-            </div>
 
         </div>
     </div>
