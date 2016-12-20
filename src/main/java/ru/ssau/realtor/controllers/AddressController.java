@@ -3,9 +3,8 @@ package ru.ssau.realtor.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import ru.ssau.realtor.controllers.utils.ActionTypeUtil;
 import ru.ssau.realtor.entities.Address;
 import ru.ssau.realtor.services.DataBaseService;
 
@@ -28,14 +27,42 @@ public class AddressController {
 		return service.getAllAddresses();
 	}
 
-	@GetMapping("/edit/{id}")
-	public String getEditForm() {
-		return "forms/address";
+	@PostMapping("/delete/{id}")
+	@ResponseBody
+	public void delete(@PathVariable Long id) {
+		service.deleteAddress(id);
 	}
 
 	@GetMapping
 	public String getViewPage(Model model) {
 		model.addAttribute("addresses", getAll());
 		return "address";
+	}
+
+	@GetMapping("/edit/{id}")
+	public String getEditForm(@PathVariable Long id, Model model) {
+		model.addAttribute("address", service.findAddress(id));
+		model.addAttribute("action_type", ActionTypeUtil.EDIT_TYPE);
+		return "forms/address";
+	}
+
+	@GetMapping("/add/{id}")
+	public String getAddForm(Model m) {
+		Address tour = new Address();
+		m.addAttribute("tour", tour);
+		m.addAttribute("action_type", ActionTypeUtil.ADD_TYPE);
+		return "forms/seller";
+	}
+
+	@PostMapping("/edit")
+	public String edit(@ModelAttribute Address address) {
+		service.saveAddress(address);
+		return "redirect:/address";
+	}
+
+	@PostMapping("/add")
+	public String add(@ModelAttribute Address address) {
+		service.saveAddress(address);
+		return "redirect:/address";
 	}
 }

@@ -1,7 +1,7 @@
 INSERT INTO seller (id, fio, phone_number) VALUES (1, 'Roger Kovalsky', '098765432B1');
 INSERT INTO seller (id, fio, phone_number) VALUES (2, 'Stephan Ewen?', '1234567890a');
 
-INSERT INTO customer (id, fio, phone_number, job, post) VALUES (1, '', '1234567890a', 'Engineer', 'CEO');
+INSERT INTO customer (id, fio, phone_number, job, post) VALUES (1, 'Somebody someonovich', '1234567890a', 'Engineer', 'CEO');
 INSERT INTO customer (id, fio, phone_number, job, post) VALUES (2, 'Stephan Ewen', '1234567890a', 'Engineer', 'CEO');
 
 INSERT INTO address (id, region, street, home_number, flat_number) VALUES (1, 'Ont', 'Mr.Mr', '88', '55');

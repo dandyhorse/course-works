@@ -1,6 +1,7 @@
 package ru.ssau.realtor.entities;
 
 import lombok.*;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 
@@ -12,12 +13,16 @@ public class Address {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	@Column
+	@NonNull @NotEmpty
 	private String region;
 	@Column
+	@NonNull @NotEmpty
 	private String street;
 	@Column
+	@NonNull
 	private int homeNumber;
 	@Column
+	@NonNull
 	private int flatNumber;
 
 	public Long getId() {

@@ -10,7 +10,8 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="<#if (content.rootpath)??>${content.rootpath}<#else></#if>https://code.jquery.com/jquery-1.x-git.min.js"></script>
 <script src="<#if (content.rootpath)??>${content.rootpath}<#else></#if>https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/script.js" rel="script"></script>
+<script src="<#if (content.rootpath)??>${content.rootpath}<#else></#if>https://cdnjs.cloudflare.com/ajax/libs/fetch/1.0.0/fetch.js"></script>
+<script src="<#if (content.rootpath)??>${content.rootpath}<#else></#if>/js/script.js" rel="script"></script>
 
 </body>
 </html>

@@ -1,10 +1,11 @@
 package ru.ssau.realtor.entities;
 
 import lombok.EqualsAndHashCode;
+import lombok.NonNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 @EqualsAndHashCode(of = "id")
@@ -12,11 +13,14 @@ public class Trade {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@NonNull
 	private Long id;
 	@Column
+	@NonNull
 	private Long cost;
 	@Column
 	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+	@NonNull
 	private Date tradeDate;
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_flat")

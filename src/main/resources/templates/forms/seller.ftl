@@ -1,4 +1,4 @@
-<#include "header.ftl">
+<#include "../header.ftl">
 <main>
     <div id="content">
         <div class="innertube">
@@ -9,5 +9,5 @@
     </div>
 </main>
 
-<#include "menu.ftl">
-<#include "footer.ftl">
+<#include "../menu.ftl">
+<#include "../footer.ftl">

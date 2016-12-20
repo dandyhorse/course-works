@@ -3,9 +3,8 @@ package ru.ssau.realtor.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import ru.ssau.realtor.controllers.utils.ActionTypeUtil;
 import ru.ssau.realtor.entities.Flat;
 import ru.ssau.realtor.services.DataBaseService;
 
@@ -28,14 +27,42 @@ public class FlatController {
 		return service.getAllFlats();
 	}
 
-	@GetMapping("/edit/{id}")
-	public String getEditForm() {
-		return "forms/flat";
+	@PostMapping("/delete/{id}")
+	@ResponseBody
+	public void delete(@PathVariable Long id) {
+		service.deleteFlat(id);
 	}
 
 	@GetMapping
 	public String getViewPage(Model model) {
-		model.addAttribute("customers", getAll());
+		model.addAttribute("flats", getAll());
 		return "flat";
+	}
+
+	@GetMapping("/edit/{id}")
+	public String getEditForm(@PathVariable Long id, Model model) {
+		model.addAttribute("flat", service.findFlat(id));
+		model.addAttribute("action_type", ActionTypeUtil.EDIT_TYPE);
+		return "forms/flat";
+	}
+
+	@GetMapping("/add/{id}")
+	public String getAddForm(Model m) {
+		Flat flat = new Flat();
+		m.addAttribute("flat", flat);
+		m.addAttribute("action_type", ActionTypeUtil.ADD_TYPE);
+		return "forms/flat";
+	}
+
+	@PostMapping("/edit")
+	public String edit(@ModelAttribute Flat flat) {
+		service.saveFlat(flat);
+		return "redirect:/flat";
+	}
+
+	@PostMapping("/add")
+	public String add(@ModelAttribute Flat flat) {
+		service.saveFlat(flat);
+		return "redirect:/flat";
 	}
 }

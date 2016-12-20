@@ -1,6 +1,7 @@
 package ru.ssau.realtor.entities;
 
 import lombok.*;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 
@@ -10,15 +11,19 @@ public class Flat {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@NonNull
 	private Long id;
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_address")
 	private Address address;
 	@Column
+	@NonNull @NotEmpty
 	private String typeHome;
 	@Column
+	@NonNull
 	private int commonSpace;
 	@Column
+	@NonNull
 	private int residentSpace;
 
 	public Long getId() {

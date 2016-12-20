@@ -64,4 +64,60 @@ public class DataBaseService {
 	public Seller findSeller(Long id) {
 		return sellerRepository.findOne(id);
 	}
+
+	public Flat findFlat(Long id) {
+		return flatRepository.findOne(id);
+	}
+
+	public Customer findCustomer(Long id) {
+		return customerRepository.findOne(id);
+	}
+
+	public Trade findTrade(Long id) {
+		return tradeRepository.findOne(id);
+	}
+
+	public Address findAddress(Long id) {
+		return addressRepository.findOne(id);
+	}
+
+	public void deleteSeller(Long id) {
+		sellerRepository.delete(id);
+	}
+
+	public void deleteAddress(Long id) {
+		addressRepository.delete(id);
+	}
+
+	public void deleteFlat(Long id) {
+		flatRepository.delete(id);
+	}
+
+	public void deleteTrade(Long id) {
+		tradeRepository.delete(id);
+	}
+
+	public void deleteCustomer(Long id) {
+		customerRepository.delete(id);
+	}
+
+	public void saveSeller(Seller seller) {
+		sellerRepository.save(seller);
+	}
+
+	public void saveTrade(Trade trade) {
+		tradeRepository.save(trade);
+	}
+
+	public void saveFlat(Flat flat) {
+		flatRepository.save(flat);
+	}
+
+	public void saveAddress(Address address) {
+		addressRepository.save(address);
+	}
+
+	public void saveCustomer(Customer customer) {
+		customerRepository.save(customer);
+	}
 }

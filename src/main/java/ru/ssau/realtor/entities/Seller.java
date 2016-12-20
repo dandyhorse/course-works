@@ -1,6 +1,7 @@
 package ru.ssau.realtor.entities;
 
 import lombok.*;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 
@@ -10,10 +11,13 @@ public class Seller {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@NonNull
 	private Long id;
 	@Column
+	@NonNull @NotEmpty
 	private String fio;
 	@Column
+	@NonNull @NotEmpty
 	private String phoneNumber;
 
 	public Long getId() {
