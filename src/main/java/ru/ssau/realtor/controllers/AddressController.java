@@ -46,12 +46,12 @@ public class AddressController {
 		return "forms/address";
 	}
 
-	@GetMapping("/add/{id}")
+	@GetMapping("/add")
 	public String getAddForm(Model m) {
-		Address tour = new Address();
-		m.addAttribute("tour", tour);
+		Address address = new Address();
+		m.addAttribute("address", address);
 		m.addAttribute("action_type", ActionTypeUtil.ADD_TYPE);
-		return "forms/seller";
+		return "forms/address";
 	}
 
 	@PostMapping("/edit")

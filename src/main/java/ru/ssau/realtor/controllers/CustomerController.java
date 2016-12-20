@@ -44,7 +44,7 @@ public class CustomerController {
 		return "forms/customer";
 	}
 
-	@GetMapping("/add/{id}")
+	@GetMapping("/add")
 	public String getAddForm(Model m) {
 		Customer customer = new Customer();
 		m.addAttribute("customer", customer);

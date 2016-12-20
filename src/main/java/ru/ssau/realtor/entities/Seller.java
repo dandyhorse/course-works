@@ -13,10 +13,8 @@ public class Seller {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	@Column
-	@NonNull @NotEmpty
 	private String fio;
 	@Column
-	@NonNull @NotEmpty
 	private String phoneNumber;
 
 	public long getId() {

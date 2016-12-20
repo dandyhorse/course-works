@@ -47,7 +47,7 @@ public class FlatController {
 		return "forms/flat";
 	}
 
-	@GetMapping("/add/{id}")
+	@GetMapping("/add")
 	public String getAddForm(Model model) {
 		Flat flat = new Flat();
 		model.addAttribute("flat", flat);

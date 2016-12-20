@@ -2,6 +2,11 @@ package ru.ssau.realtor.entities;
 
 import lombok.EqualsAndHashCode;
 import lombok.NonNull;
+import org.hibernate.annotations.Type;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
+import org.joda.time.LocalDateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -14,12 +19,13 @@ public class Trade {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	private long id;
 	@Column
 	private long cost;
 	@Column
 	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-	private Date tradeDate;
+	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
+	private LocalDate tradeDate;
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_flat")
 	private Flat flat;
@@ -38,19 +44,19 @@ public class Trade {
 		this.id = id;
 	}
 
-	public Long getCost() {
+	public long getCost() {
 		return cost;
 	}
 
-	public void setCost(Long cost) {
+	public void setCost(long cost) {
 		this.cost = cost;
 	}
 
-	public Date getTradeDate() {
+	public LocalDate getTradeDate() {
 		return tradeDate;
 	}
 
-	public void setTradeDate(Date tradeDate) {
+	public void setTradeDate(LocalDate tradeDate) {
 		this.tradeDate = tradeDate;
 	}
 

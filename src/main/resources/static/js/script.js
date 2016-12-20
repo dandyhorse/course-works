@@ -10,7 +10,7 @@ function deleteAndRefresh(id, url) {
 
 function setDatapickerListener(id) {
     $('#' + id).datepicker({
-        format: "mm/dd/yy"
+        format: "yyyy-mm-dd"
     });
 }
 

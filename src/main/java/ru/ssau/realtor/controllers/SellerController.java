@@ -44,7 +44,7 @@ public class SellerController {
 		return "forms/seller";
 	}
 
-	@GetMapping("/add/{id}")
+	@GetMapping("/add")
 	public String getAddForm(Model m) {
 		Seller seller = new Seller();
 		m.addAttribute("seller", seller);

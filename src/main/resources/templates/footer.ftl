@@ -11,7 +11,8 @@
 <script src="<#if (content.rootpath)??>${content.rootpath}<#else></#if>https://code.jquery.com/jquery-1.x-git.min.js"></script>
 <script src="<#if (content.rootpath)??>${content.rootpath}<#else></#if>https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="<#if (content.rootpath)??>${content.rootpath}<#else></#if>https://cdnjs.cloudflare.com/ajax/libs/fetch/1.0.0/fetch.js"></script>
-<script rel="script" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
+<script rel="script"
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
 <script src="<#if (content.rootpath)??>${content.rootpath}<#else></#if>/js/script.js" rel="script"></script>
 
 </body>

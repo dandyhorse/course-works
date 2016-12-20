@@ -17,13 +17,10 @@ public class Flat {
 	@JoinColumn(name = "id_address")
 	private Address address;
 	@Column
-	@NonNull @NotEmpty
 	private String typeHome;
 	@Column
-	@NonNull @Min(0)
 	private int commonSpace;
 	@Column
-	@NonNull @Min(0)
 	private int residentSpace;
 
 	public long getId() {

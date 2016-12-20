@@ -44,7 +44,7 @@ public class TradeController {
 		return "forms/trade";
 	}
 
-	@GetMapping("/add/{id}")
+	@GetMapping("/add")
 	public String getAddForm(Model model) {
 		Trade trade = new Trade();
 		configureAttrForm(trade, model);

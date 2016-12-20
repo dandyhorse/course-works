@@ -13,16 +13,12 @@ public class Customer {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	@Column
-	@NonNull @NotEmpty
 	private String fio;
 	@Column
-	@NonNull @NotEmpty
 	private String phoneNumber;
 	@Column
-	@NonNull @NotEmpty
 	private String job;
 	@Column
-	@NonNull @NotEmpty
 	private String post;
 
 	public Long getId() {

@@ -6,7 +6,7 @@ spring:
       prefix: /
       suffix: .ftl
   jackson:
-    serialization.write-dates-as-timestamps: false
+    serialization.write-dates-as-timestamps: true
 
 server:
   port: ${port:8080}

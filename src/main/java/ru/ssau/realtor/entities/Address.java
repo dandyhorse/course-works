@@ -12,37 +12,53 @@ public class Address {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	private long id;
 	@Column
-	@NonNull @NotEmpty
 	private String region;
 	@Column
-	@NonNull @NotEmpty
 	private String street;
 	@Column
-	@NonNull @Min(0)
 	private int homeNumber;
 	@Column
-	@NonNull @Min(0)
 	private int flatNumber;
 
-	public Long getId() {
+	public long getId() {
 		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getRegion() {
 		return region;
 	}
 
+	public void setRegion(String region) {
+		this.region = region;
+	}
+
 	public String getStreet() {
 		return street;
+	}
+
+	public void setStreet(String street) {
+		this.street = street;
 	}
 
 	public int getHomeNumber() {
 		return homeNumber;
 	}
 
+	public void setHomeNumber(int homeNumber) {
+		this.homeNumber = homeNumber;
+	}
+
 	public int getFlatNumber() {
 		return flatNumber;
+	}
+
+	public void setFlatNumber(int flatNumber) {
+		this.flatNumber = flatNumber;
 	}
 }
