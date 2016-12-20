@@ -10,16 +10,19 @@
         <form action="/trade/${action_type}" method="POST" class="form-group" id="tradeForm">
             <input type="hidden" name="id" value="${trade.id}"/>
 
+             <div class='input-group date' id='trade_datepicker1'>
+                <label class="control-lable">Trade Date</label>
+                    <input type="text" name="tradeDate" value="${trade.tradeDate?date?iso_utc}"
+                        placeholder="Trade date" class="form-control input-sm"/>
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div></br>
+
              <div class="form-group">
                 <label class="control-lable">Cost</label>
-                <input type="text" name="cost" value="${trade.cost}"/>
-            </div>
-
-             <div class="form-group">
-                <label class="control-lable">Trade Date</label>
-                <input type="text" name="tradeDate" value="${trade.tradeDate?date?iso_utc}"/>
+                <input type="number" name="cost" value="${trade.cost?c}"/>
              </div>
-
 
             <div class="form-group">
                 <label for="flatList" class="control-lable">Flats</label>

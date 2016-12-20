@@ -13,3 +13,5 @@ function setDatapickerListener(id) {
         format: "mm/dd/yy"
     });
 }
+
+setDatapickerListener('trade_datepicker1');
