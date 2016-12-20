@@ -36,8 +36,7 @@ public class DataBaseService {
 	}
 
 	public List<Seller> getAllSellers() {
-		Iterable<Seller> all = sellerRepository.findAll();
-		return toList(all);
+		return toList(sellerRepository.findAll());
 	}
 
 	private <T> List<T> toList(Iterable<T> all) {
@@ -54,12 +53,12 @@ public class DataBaseService {
 		return customerRepository.findAll();
 	}
 
-	public Iterable<Flat> getAllFlats() {
-		return flatRepository.findAll();
+	public List<Flat> getAllFlats() {
+		return toList(flatRepository.findAll());
 	}
 
-	public Iterable<Address> getAllAddresses() {
-		return addressRepository.findAll();
+	public List<Address> getAllAddresses() {
+		return toList(addressRepository.findAll());
 	}
 
 	public Seller findSeller(Long id) {

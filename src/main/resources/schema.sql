@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS flat (
   common_space   INT         NOT NULL,
   resident_space INT         NOT NULL,
   id_address     BIGINT      NOT NULL,
-  CONSTRAINT flat_fk FOREIGN KEY (id_address) REFERENCES address (id),
+  CONSTRAINT flat_fk FOREIGN KEY (id_address) REFERENCES address (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS trade (
@@ -36,9 +36,9 @@ CREATE TABLE IF NOT EXISTS trade (
   id_customer BIGINT    NOT NULL,
   id_seller   BIGINT    NOT NULL,
   id_flat     BIGINT    NOT NULL,
-  CONSTRAINT trade_fk FOREIGN KEY (id_customer) REFERENCES customer (id),
-  CONSTRAINT trade_fk2 FOREIGN KEY (id_seller) REFERENCES seller (id),
-  CONSTRAINT trade_fk3 FOREIGN KEY (id_flat) REFERENCES flat (id)
+  CONSTRAINT trade_fk FOREIGN KEY (id_customer) REFERENCES customer (id) ON UPDATE CASCADE ON DELETE CASCADE,
+  CONSTRAINT trade_fk2 FOREIGN KEY (id_seller) REFERENCES seller (id) ON UPDATE CASCADE ON DELETE CASCADE,
+  CONSTRAINT trade_fk3 FOREIGN KEY (id_flat) REFERENCES flat (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 

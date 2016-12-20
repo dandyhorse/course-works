@@ -5,7 +5,6 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Data
 @EqualsAndHashCode(of = "id")
 public class Address {
 
@@ -21,4 +20,23 @@ public class Address {
 	@Column
 	private int flatNumber;
 
+	public Long getId() {
+		return id;
+	}
+
+	public String getRegion() {
+		return region;
+	}
+
+	public String getStreet() {
+		return street;
+	}
+
+	public int getHomeNumber() {
+		return homeNumber;
+	}
+
+	public int getFlatNumber() {
+		return flatNumber;
+	}
 }

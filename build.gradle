@@ -58,7 +58,7 @@ dependencies {
     compile 'com.h2database:h2:1.4.192'
     compile 'mysql:mysql-connector-java:6.0.5'
     compile 'org.hibernate:hibernate-java8:5.0.11.Final'
-    compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.8.4'
+    compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.8.5'
 
     provided 'org.projectlombok:lombok:1.16.12'
 

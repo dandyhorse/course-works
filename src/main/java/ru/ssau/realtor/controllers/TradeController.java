@@ -28,7 +28,7 @@ public class TradeController {
 
 	@GetMapping("/edit/{id}")
 	public String getEditForm() {
-		return "seller";
+		return "forms/trade";
 	}
 
 	@GetMapping

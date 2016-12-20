@@ -5,7 +5,6 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Data
 @EqualsAndHashCode(of = "id")
 public class Seller {
 
@@ -16,8 +15,6 @@ public class Seller {
 	private String fio;
 	@Column
 	private String phoneNumber;
-
-	public Seller() {}
 
 	public Long getId() {
 		return id;

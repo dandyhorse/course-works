@@ -3,7 +3,7 @@
 <div id="footer">
     <div class="container">
         <p class="muted credit">&copy; Provided by SSAU 2016 | Mixed with <a href="http://getbootstrap.com/">Bootstrap
-            v3.3.7</a></a></p>
+            v3.3.7</a></p>
     </div>
 </div>
 

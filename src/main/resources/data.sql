@@ -11,6 +11,6 @@ INSERT INTO address (id, region, street, home_number, flat_number) VALUES (2, 'T
 INSERT INTO flat (id, type_home, common_space, resident_space, id_address) VALUES (1, 'vila', 33, 33, 1);
 INSERT INTO flat (id, type_home, common_space, resident_space, id_address) VALUES (2, 'garbage bucket', 2, 1, 2);
 
-INSERT INTO trade (trade_date, cost, id_customer, id_seller, id_flat) VALUES ('2015-12-1', 20000, 2, 2, 1);
-INSERT INTO trade (trade_date, cost, id_customer, id_seller, id_flat) VALUES ('2008-12-1', 100, 1, 1, 2);
+INSERT INTO trade (id, trade_date, cost, id_customer, id_seller, id_flat) VALUES (1, '2015-12-10', 20000, 2, 2, 1);
+INSERT INTO trade (id, trade_date, cost, id_customer, id_seller, id_flat) VALUES (2, '2008-12-1', 100, 1, 1, 2);
 
