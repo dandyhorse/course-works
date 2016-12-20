@@ -3,6 +3,10 @@
     <div id="content">
         <div class="innertube">
 
+        <div class="page-header">
+            <h4>Sellers</h4>
+        </div>
+
         <a href="/seller/add" class="btn btn-success" role="button">Add record</a>
 
         <table class="table table-hover">

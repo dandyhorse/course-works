@@ -11,8 +11,7 @@ public class Seller {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@NonNull
-	private Long id;
+	private long id;
 	@Column
 	@NonNull @NotEmpty
 	private String fio;
@@ -20,11 +19,11 @@ public class Seller {
 	@NonNull @NotEmpty
 	private String phoneNumber;
 
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

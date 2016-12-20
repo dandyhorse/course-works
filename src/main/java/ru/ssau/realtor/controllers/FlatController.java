@@ -42,15 +42,17 @@ public class FlatController {
 	@GetMapping("/edit/{id}")
 	public String getEditForm(@PathVariable Long id, Model model) {
 		model.addAttribute("flat", service.findFlat(id));
+		model.addAttribute("addresses", service.getAllAddresses());
 		model.addAttribute("action_type", ActionTypeUtil.EDIT_TYPE);
 		return "forms/flat";
 	}
 
 	@GetMapping("/add/{id}")
-	public String getAddForm(Model m) {
+	public String getAddForm(Model model) {
 		Flat flat = new Flat();
-		m.addAttribute("flat", flat);
-		m.addAttribute("action_type", ActionTypeUtil.ADD_TYPE);
+		model.addAttribute("flat", flat);
+		model.addAttribute("addresses", service.getAllAddresses());
+		model.addAttribute("action_type", ActionTypeUtil.ADD_TYPE);
 		return "forms/flat";
 	}
 

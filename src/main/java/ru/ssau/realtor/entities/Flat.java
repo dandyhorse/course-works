@@ -4,6 +4,7 @@ import lombok.*;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 
 @Entity
 @EqualsAndHashCode(of = "id")
@@ -11,8 +12,7 @@ public class Flat {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@NonNull
-	private Long id;
+	private long id;
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_address")
 	private Address address;
@@ -20,13 +20,13 @@ public class Flat {
 	@NonNull @NotEmpty
 	private String typeHome;
 	@Column
-	@NonNull
+	@NonNull @Min(0)
 	private int commonSpace;
 	@Column
-	@NonNull
+	@NonNull @Min(0)
 	private int residentSpace;
 
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
 

@@ -5,6 +5,7 @@ import lombok.NonNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import java.sql.Date;
 
 @Entity
@@ -13,14 +14,11 @@ public class Trade {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@NonNull
 	private Long id;
 	@Column
-	@NonNull
-	private Long cost;
+	private long cost;
 	@Column
 	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-	@NonNull
 	private Date tradeDate;
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_flat")
@@ -32,11 +30,11 @@ public class Trade {
 	@JoinColumn(name = "id_seller")
 	private Seller seller;
 
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

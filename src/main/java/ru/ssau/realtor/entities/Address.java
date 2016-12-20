@@ -4,6 +4,7 @@ import lombok.*;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 
 @Entity
 @EqualsAndHashCode(of = "id")
@@ -19,10 +20,10 @@ public class Address {
 	@NonNull @NotEmpty
 	private String street;
 	@Column
-	@NonNull
+	@NonNull @Min(0)
 	private int homeNumber;
 	@Column
-	@NonNull
+	@NonNull @Min(0)
 	private int flatNumber;
 
 	public Long getId() {

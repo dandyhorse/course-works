@@ -3,6 +3,12 @@
     <div id="content">
         <div class="innertube">
 
+        <div class="page-header">
+            <h4>Flats</h4>
+        </div>
+
+        <a href="/flat/add" class="btn btn-success" role="button">Add record</a>
+
         <table class="table table-hover">
             <thead>
             <tr>

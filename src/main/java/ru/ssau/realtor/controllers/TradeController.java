@@ -39,17 +39,24 @@ public class TradeController {
 
 	@GetMapping("/edit/{id}")
 	public String getEditForm(@PathVariable Long id, Model model) {
-		model.addAttribute("flat", service.findTrade(id));
+		configureAttrForm(service.findTrade(id), model);
 		model.addAttribute("action_type", ActionTypeUtil.EDIT_TYPE);
 		return "forms/trade";
 	}
 
 	@GetMapping("/add/{id}")
-	public String getAddForm(Model m) {
+	public String getAddForm(Model model) {
 		Trade trade = new Trade();
-		m.addAttribute("trade", trade);
-		m.addAttribute("action_type", ActionTypeUtil.ADD_TYPE);
+		configureAttrForm(trade, model);
+		model.addAttribute("action_type", ActionTypeUtil.ADD_TYPE);
 		return "forms/trade";
+	}
+
+	private void configureAttrForm(Trade trade, Model model) {
+		model.addAttribute("trade", trade);
+		model.addAttribute("flats", service.getAllFlats());
+		model.addAttribute("customers", service.getAllCustomers());
+		model.addAttribute("sellers", service.getAllSellers());
 	}
 
 	@PostMapping("/edit")
