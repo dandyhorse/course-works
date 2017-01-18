@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!--database connection conf-->
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5555/db_for_web</property>
+        <property name="hibernate.connection.username">postgres</property>
+        <property name="hibernate.connection.password">123</property>
+        <!--dialect-->
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQL9Dialect</property>
+        <property name="show_sql">true</property>
+
+        <!--lazy initialization-->
+        <property name="hibernate.enable_lazy_load_no_trans">true</property>
+        <property name="hbm2ddl.auto">update</property>
+
+        <!--encoding UTF-->
+        <property name="hibernate.connection.characterEncoding">UTF-8 </property>
+        <property name="hibernate.connection.charSet">UTF-8 </property>
+        <property name="hibernate.connection.useUnicode">true </property>
+
+        <!--entities-->
+        <mapping class="hibernate.entity.Admin" />
+        <mapping class="hibernate.entity.User" />
+        <mapping class="hibernate.entity.Repository" />
+        <mapping class="hibernate.entity.News" />
+
+    </session-factory>
+</hibernate-configuration>
