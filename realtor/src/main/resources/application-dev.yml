@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    username: h2
+    password:
+    initialize: true
+    driver-class-name: org.h2.Driver
+  h2.console.settings.trace: false
+  jpa:
+    show-sql: true
+    database: h2
+    database-platform: H2
+    generate-ddl: true
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+
+logging:
+  path: logs
+  level:
+    root: WARN
+    org:
+      springframework: INFO
+      org.hibernate: WARN

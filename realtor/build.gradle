@@ -1,0 +1,70 @@
+group 'ru.ssau'
+version '1.0'
+
+buildscript {
+    ext {
+        springBootVersion = '1.4.1.RELEASE'
+    }
+    repositories {
+        jcenter {
+            url = 'https://plugins.gradle.org/m2/'
+        }
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.netflix.nebula:gradle-extra-configurations-plugin:3.0.3'
+        classpath "io.franzbecker:gradle-lombok:1.8"
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
+    }
+}
+
+apply plugin: 'nebula.provided-base'
+apply plugin: 'io.franzbecker.gradle-lombok'
+apply plugin: 'java'
+apply plugin: 'spring-boot'
+apply plugin: 'application'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+mainClassName = "ru.ssau.realtor.Application"
+
+sourceSets {
+    main.java.srcDirs += 'src/main/java'
+    test.java.srcDirs += 'src/test/java'
+}
+
+jar {
+    baseName = 'realtor'
+    version = '0.1'
+}
+
+bootRun {
+    addResources = true
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+
+    compile "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
+    compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
+    compile "org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion"
+
+    compile 'org.springframework.boot:spring-boot-starter-freemarker:1.4.2.RELEASE'
+
+    compile 'com.h2database:h2:1.4.192'
+    compile 'mysql:mysql-connector-java:6.0.5'
+    compile 'org.hibernate:hibernate-java8:5.0.11.Final'
+    compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.8.5'
+
+    compile 'joda-time:joda-time:2.9.6'
+    compile 'org.jadira.usertype:usertype.core:5.0.0.GA'
+
+    provided 'org.projectlombok:lombok:1.16.12'
+
+    testCompile "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
+    testCompile 'junit:junit:4.12'
+}

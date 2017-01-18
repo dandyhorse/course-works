@@ -1,0 +1,13 @@
+spring:
+  profiles:
+    active: dev
+  mvc:
+    view:
+      prefix: /
+      suffix: .ftl
+  jackson:
+    serialization.write-dates-as-timestamps: true
+
+server:
+  port: ${port:8080}
+  contextPath: /
