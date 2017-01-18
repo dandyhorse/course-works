@@ -1,0 +1,108 @@
+plugins {
+    id 'java'
+    id 'war'
+    id "org.akhikhl.gretty" version "1.2.4"
+    id "com.moowork.node" version "0.13"
+}
+
+group 'com.epam.memorina'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+sourceCompatibility = targetCompatibility = 1.8
+
+def pathToWebResources = "${project.projectDir}/src/main/webapp/static/"
+
+node {
+    // Version of node to use.
+    version = '4.4.7'
+
+    // Version of npm to use.
+    npmVersion = '3.10.5'
+
+    npmCommand = 'npm'
+    // Base URL for fetching node distributions.
+    distBaseUrl = 'https://nodejs.org/dist'
+
+    // If true, it will download node using above parameters.
+    // If false, it will try to use globally installed node.
+    //TODO false -> true when deploy
+    download = true
+
+    // Set the work directory for unpacking node
+    workDir = file("$buildDir/nodejs")
+
+    // Set the work directory where node_modules should be located
+    nodeModulesDir = file(pathToWebResources)
+}
+
+task createBuiltFolder {
+    group = 'memorina'
+    new File(pathToWebResources + "built").mkdir()
+    new File(pathToWebResources + "built/js").mkdir()
+    new File(pathToWebResources + "built/css").mkdir()
+}
+
+task cleanAll(dependsOn: clean, type: Delete) {
+    group = 'memorina'
+    delete pathToWebResources + 'node_modules',
+            pathToWebResources + 'built',
+            pathToWebResources + 'etc',
+            'out'
+}
+
+task npmInstall(dependsOn: [createBuiltFolder, npmSetup], type: NpmTask, overwrite: true) {
+    group = 'memorina'
+    args = ['install', '--prefix', pathToWebResources]
+}
+
+task npmRunBuild(dependsOn: 'npmInstall', type: NpmTask) {
+    group = 'memorina'
+    args = ['run', 'build', '--prefix', pathToWebResources]
+}
+
+task copyCssToBuilt(type: Copy) {
+    group = 'memorina'
+    shouldRunAfter createBuiltFolder
+    from pathToWebResources + 'src/css/'
+    into pathToWebResources + 'built/css'
+    include '*.css'
+}
+
+gretty {
+    port = 8080
+    contextPath = '/memorina'
+    //TODO 'hard' -> 'soft' when deploy
+    inplaceMode = 'hard'
+    webappCopy { CopySpec copySpec ->
+        exclude '**/node_modules/**', '**/etc/', '**/src/', '**/package.json', '**/webpack.config.js'
+    }
+}
+
+//build.dependsOn npmRunBuild, copyCssToBuilt
+
+dependencies {
+    compile group: 'org.springframework', name: 'spring-webmvc', version: '4.3.1.RELEASE'
+    compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '1.10.2.RELEASE'
+
+    compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.1.0.Final'
+    compile group: 'org.hibernate', name: 'hibernate-core', version: '5.1.0.Final'
+    compile group: 'com.h2database', name: 'h2', version: '1.4.192'
+
+    compile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
+    compile group: 'com.fasterxml.jackson.jaxrs', name: 'jackson-jaxrs-json-provider', version: '2.8.1'
+    compile group: 'javax.el', name: 'javax.el-api', version: '3.0.0'
+
+    testCompile group: 'org.springframework', name: 'spring-test', version: '4.3.2.RELEASE'
+    testCompile group: 'org.mockito', name: 'mockito-core', version: '2.0.93-beta'
+    testCompile([group: 'junit', name: 'junit', version: '4.12']) {
+        exclude group: 'org.hamcrest'
+    }
+    testCompile group: 'org.hamcrest', name: 'hamcrest-core', version: '1.3'
+}
+
+

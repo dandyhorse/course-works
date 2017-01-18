@@ -1,0 +1,36 @@
+{
+  "engines": {
+    "node": "^4.4.7",
+    "npm": "^3.10.5"
+  },
+  "name": "webapp",
+  "version": "1.0.0",
+  "description": "frontend part of memorina game project",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "watch": "",
+    "test": ""
+  },
+  "author": "Solovev Anton",
+  "repository": {
+    "type": "git",
+    "url": "https://git.epam.com/Anton_Solovev/memorina.git"
+  },
+  "dependencies": {
+    "immutable": "^3.8.1",
+    "isomorphic-fetch": "^2.2.1",
+    "react": "^15.2.1",
+    "react-dom": "^15.2.1",
+    "react-redux": "^4.4.5",
+    "react-router": "^2.6.0",
+    "redux": "^3.5.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.11.4",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.11.1",
+    "webpack": "^1.13.1"
+  }
+}
