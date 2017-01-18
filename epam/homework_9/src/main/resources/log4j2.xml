@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration name="testConfiguration" status="ERROR" strict="true" schema="Log4J-V2.0.xsd">
+    <appenders>
+        <rollingFile name="FILE"
+                     fileName="logs/default.log"
+                     filePattern="./logs/${date:yyyy-MM}/default-%d{yyyy-MM-dd}-%i.log">
+            <patternLayout pattern="$${date:MM-dd-yyyy HH:mm:ss} [%t] %-5p %c{1}:%L - %msg%n"/>
+            <policies>
+                <TimeBasedTriggeringPolicy interval="6" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="1 MB"/>
+            </policies>
+            <defaultRolloverStrategy max="20"/>
+        </rollingFile>
+
+        <console name="STDOUT" target="SYSTEM_OUT">
+            <patternLayout pattern="$${date:HH:mm:ss} %t %-5p %c{1} line:%L (%F:%L) - %msg%n"/>
+        </console>
+
+        <console name="STDERR" target="SYSTEM_ERR">
+            <patternLayout pattern="$${date:HH:mm:ss} %t %-5p %c{1} line:%L (%F:%L) - %msg%n"/>
+        </console>
+
+    </appenders>
+
+    <loggers>
+        <logger name="com.epam.homework_9.console" level="INFO" additivity="false">
+            <appenderRef ref="STDOUT"/>
+        </logger>
+
+        <logger name="com.epam.homework_9.file" level="INFO" additivity="false">
+            <appenderRef ref="FILE"/>
+        </logger>
+
+        <logger name="com.epam.homework_9.fullErrLog" level="ERROR" additivity="false">
+            <appenderRef ref="FILE"/>
+            <appenderRef ref="STDERR"/>
+        </logger>
+
+        <logger name="com.epam.homework_9.fullOutLog" level="ERROR" additivity="false">
+            <appenderRef ref="FILE"/>
+            <appenderRef ref="STDOUT"/>
+        </logger>
+
+        <root level="INFO">
+            <appenderRef ref="STDOUT"/>
+            <appenderRef ref="FILE"/>
+        </root>
+    </loggers>
+
+</configuration>

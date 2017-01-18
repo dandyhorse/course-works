@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+           targetNamespace="http://www.epam.com/musicGuide" xmlns="http://www.epam.com/musicGuide">
+
+    <xs:element name="guide" type="ArtistList"/>
+    <xs:element name="artist" type="Artist"/>
+    <xs:element name="album" type="Album"/>
+    <xs:element name="track" type="Track"/>
+
+    <xs:complexType name="ArtistList">
+        <xs:sequence>
+            <xs:element name="artist" type="Artist" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Artist">
+        <xs:sequence>
+            <xs:element name="album" type="Album" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:unsignedLong" use="required"/>
+        <xs:attribute name="name" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="Album">
+        <xs:sequence>
+            <xs:element name="track" type="Track" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:unsignedLong" use="required"/>
+        <xs:attribute name="title" type="xs:string" use="required"/>
+        <xs:attribute name="genre" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="Track">
+        <xs:attribute name="id" type="xs:unsignedLong" use="required"/>
+        <xs:attribute name="title" type="xs:string" use="required"/>
+        <xs:attribute name="duration" type="xs:duration" use="required"/>
+    </xs:complexType>
+
+
+</xs:schema>
