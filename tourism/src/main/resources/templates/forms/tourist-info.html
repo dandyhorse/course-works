@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<body>
+<section layout:fragment="content">
+    <div class="jumbotron">
+        <h3>Информация о туристе</h3>
+    </div>
+    <!--/*@thymesVar id="tourists_info" type="ru.ssau.tourism.entities.TouristInfo"*/-->
+    <!--/*@thymesVar id="all_tourists" type="java.lang.Iterable<ru.ssau.tourism.entities.Tourist>"*/-->
+    <!--/*@thymesVar id="tourist" type="ru.ssau.tourism.entities.Tourist"*/-->
+    <!--/*@thymesVar id="action_type" type="java.lang.String"*/-->
+    <form id="info-form" method="POST" action="#" th:object="${tourists_info}"
+          th:action="@{'/tourists-info/' + ${action_type}}" class="form-group">
+        <input type="hidden" th:field="*{id}"/>
+        <div class="form-group">
+            <label for="touristlist">Турист</label>
+            <select id="touristlist" form="info-form" th:field="*{tourist}" data-live-search="true"
+                    class="form-control" data-width="auto">
+                <option th:each="tourist : ${all_tourists}" th:value="${tourist.id}"
+                        th:text="${tourist.name + ', '+ tourist.surname +', ' + tourist.fatherName}">
+                    Турист
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-lable">Паспорт</label>
+            <input type="text" th:field="*{passport}" placeholder="passport"
+                   class="form-control input-sm"/>
+        </div>
+        <div class="form-group">
+            <label class="control-lable">Город</label>
+            <input type="text" th:field="*{city}" placeholder="city"
+                   class="form-control input-sm"/>
+        </div>
+        <div class="form-group">
+            <label class="control-lable">Страна</label>
+            <input type="text" th:field="*{country}" placeholder="country"
+                   class="form-control input-sm"/>
+        </div>
+        <div class="form-group">
+            <label class="control-lable">Номер телефона</label>
+            <input type="text" th:field="*{phone_number}" placeholder="phone number"
+                   class="form-control input-sm"/>
+        </div>
+        <div class="form-group">
+            <label class="control-lable">Индекс</label>
+            <input type="number" th:field="*{index}" placeholder="index"
+                   class="form-control input-sm"/>
+        </div>
+        <div class="form-actions">
+            <input type="submit" value="Подтвердить" class="btn btn-success"/>
+            <a role="button" th:href="@{/tourists-info}" class="btn btn-default">Отмена</a>
+        </div>
+    </form>
+</section>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<body>
+<section layout:fragment="content">
+    <div class="jumbotron">
+        <h3>Путёвка</h3>
+    </div>
+    <!--/*@thymesVar id="tourist" type="ru.ssau.tourism.entities.Tourist"*/-->
+    <!--/*@thymesVar id="all_tourists" type="java.lang.Iterable<ru.ssau.tourism.entities.Tour>"*/-->
+    <!--/*@thymesVar id="season" type="ru.ssau.tourism.entities.Season"*/-->
+    <!--/*@thymesVar id="all_seasons" type="java.lang.Iterable<ru.ssau.tourism.entities.Season>"*/-->
+    <!--/*@thymesVar id="voucher" type="ru.ssau.tourism.entities.Voucher"*/-->
+    <!--/*@thymesVar id="action_type" type="java.lang.String"*/-->
+    <form id="voucher-form" method="POST" action="#" th:object="${voucher}"
+          th:action="@{'/vouchers/' + ${action_type}}" class="form-group">
+        <div class="form-group">
+            <label for="voucher_id" class="control-lable">Номер путёвки</label>
+            <input id="voucher_id" class="form-control" type="number" th:field="*{id}" readonly="readonly"/>
+        </div>
+        <div class="form-group">
+            <label for="touristList" class="col-sm-4 control-lable">Турист</label>
+            <select id="touristList" form="voucher-form" th:field="*{tourist}"
+                    data-live-search="true" class="form-control">
+                <option th:each="tourist : ${all_tourists}" th:value="${tourist.id}"
+                        th:text="${tourist.name + ', '+ tourist.surname +', ' + tourist.fatherName}">
+                    Турист
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="seasonList" class="control-lable">Сезон</label>
+            <select id="seasonList" form="voucher-form" th:field="*{season}"
+                    data-live-search="true" class="form-control">
+                <option th:each="season : ${all_seasons}" th:value="${season.id}"
+                        th:text="${season.id + ', '+ season.startDate + ', ' + season.finishDate}">
+                    Сезон
+                </option>
+            </select>
+        </div>
+        <div class="form-actions">
+            <input type="submit" value="Подтвердить" class="btn btn-success"/>
+            <a role="button" th:href="@{/vouchers}" class="btn btn-default">Отмена</a>
+        </div>
+    </form>
+</section>
+</body>
+</html>

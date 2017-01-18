@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<body>
+<section layout:fragment="content">
+    <div class="container">
+        <!--/*@thymesVar id="author" type="java.lang.String"*/-->
+        <div class="jumbotron">
+            <h3>База данных Турагенства</h3>
+            <p>Работу выполнила студент
+            <th th:text="${author}">Name</th>
+            </p>
+        </div>
+        <div class="list-group">
+            <a th:href="@{/tours}" class="list-group-item">Туры</a>
+            <a th:href="@{/tourists}" class="list-group-item">Туристы</a>
+            <a th:href="@{/tourists-info}" class="list-group-item">Информация о туристах</a>
+            <a th:href="@{/vouchers}" class="list-group-item">Путёвки</a>
+            <a th:href="@{/seasons}" class="list-group-item">Сезоны</a>
+            <a th:href="@{/payments}" class="list-group-item">Оплаты</a>
+        </div>
+    </div>
+</section>
+</body>
+</html>

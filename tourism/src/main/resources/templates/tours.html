@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<body>
+<section layout:fragment="content">
+    <div class="container">
+        <div class="jumbotron">
+            <h3>Туры</h3>
+        </div>
+
+        <a th:href="@{/tours/add}" class="btn btn-success" role="button">Добавить запись</a>
+
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Название</th>
+                <th>Цена</th>
+                <th>Информация</th>
+                <th>Действия</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!--/*@thymesVar id="tour" type="ru.ssau.tourism.entities.Tour"*/-->
+            <!--/*@thymesVar id="all_tours" type="java.lang.Iterable<ru.ssau.tourism.entities.Tour>"*/-->
+            <tr th:each="tour: ${all_tours}">
+                <td th:text="${tour.title}">Hadoop</td>
+                <td th:text="${tour.price}">Mezos</td>
+                <td th:text="${tour.info}">Sparkovich</td>
+                <td>
+                    <div class="btn-group">
+                        <a class="btn btn-default" role="button"
+                           th:href="@{'/tours/edit?id=' + ${tour.id}}">Изменить</a>
+
+                        <a class="btn btn-default" role="button" th:onclick="'javascript:deleteAndRefresh(\'' +
+                           ${tour.id} +'\',\''+ ${#httpServletRequest.getRequestURI()} + '\');'">
+                            Удалить
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+</body>
+</html>

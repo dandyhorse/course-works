@@ -1,0 +1,18 @@
+app:
+  author: "Анна Гончарова"
+
+server:
+  port: ${port:8080}
+  contextPath: /app
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: tourism
+  mvc:
+    view:
+      prefix: /
+      suffix: .html
+  thymeleaf:
+    enabled: true
