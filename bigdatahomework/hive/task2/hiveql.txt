@@ -1,0 +1,15 @@
+0. dataset from hw1
+
+1. Find all carriers who cancelled
+
+SELECT fl.UniqueCarrier, sum(fl.cancelled) AS canceled_fl,
+concat_ws(",", collect_set(ap.city))
+FROM flights AS fl
+JOIN airports AS ap
+    ON (fl.origin = ap.iata)
+WHERE fl.year = 2007
+GROUP BY fl.uniquecarrier
+HAVING canceled_fl > 1
+SORT BY canceled_fl DESC;
+
+1 mapreduce jobs

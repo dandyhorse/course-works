@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head><title>Yarn Job Submitter</title></head>
+<body>
+<h3>available resources</h3>
+<table>
+    <thead>
+    <tr>
+        <th>name</th>
+        <th>value</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>memory</td>
+        <td align='right'><p th:text="${memory}"></p></td>
+    </tr>
+    <tr>
+        <td>cores</td>
+        <td align='right'><p th:text="${cores}"></p></td>
+    </tr>
+    </tbody>
+</table>
+<form method='POST' action='/submit'>
+    <table>
+        <tr>
+            <th>name</th>
+            <th>needed value</th>
+        </tr>
+        <tr>
+            <td>memory</td>
+            <td><input type='text' name='memory' value='250'/></td>
+        </tr>
+        <tr>
+            <td>cores</td>
+            <td><input type='text' name='cores' value='1'/></td>
+        </tr>
+
+        <tr>
+            <td>priority</td>
+            <td><input type='text' name='priority' value='1'/></td>
+        </tr>
+
+        <tr>
+            <td>containers</td>
+            <td><input type='text' name='containers' value='1'/></td>
+        </tr>
+        <tr>
+            <td colspan='2'><input align='center' type='submit' value='start execution'/></td>
+        </tr>
+    </table>
+</form>
+
+<form method='POST' action='/shutdown'>
+    <input align='center' type='submit' value='shutdown service'/>
+</form>
+
+</body>
+</html>
